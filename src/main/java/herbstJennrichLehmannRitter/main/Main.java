@@ -9,6 +9,7 @@ public class Main {
 		System.out.println("magic!");
 		// buhu
 		//Daniel ist doof
+		//sdhajdo
 	}
 
 }
