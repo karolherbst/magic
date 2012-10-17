@@ -1,4 +1,4 @@
-package herbstJennrichLehmannRitter.test;
+package herbstJennrichLehmannRitter.tests;
 
 import static org.junit.Assert.*;
 
