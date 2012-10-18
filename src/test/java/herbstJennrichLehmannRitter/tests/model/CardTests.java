@@ -5,9 +5,9 @@ import static org.junit.Assert.fail;
 
 import java.io.StringReader;
 
-import herbstJennrichLehmannRitter.main.model.Card;
-import herbstJennrichLehmannRitter.main.model.Card.CardType;
-import herbstJennrichLehmannRitter.main.model.impl.CardImpl;
+import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.Card.CardType;
+import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

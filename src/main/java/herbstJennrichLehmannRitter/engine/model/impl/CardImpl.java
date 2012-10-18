@@ -1,8 +1,8 @@
-package herbstJennrichLehmannRitter.main.model.impl;
+package herbstJennrichLehmannRitter.engine.model.impl;
 
-import herbstJennrichLehmannRitter.main.model.Card;
-import herbstJennrichLehmannRitter.main.model.ComplexCardAction;
-import herbstJennrichLehmannRitter.main.model.SimpleCardAction;
+import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.ComplexCardAction;
+import herbstJennrichLehmannRitter.engine.model.SimpleCardAction;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;

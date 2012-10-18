@@ -1,4 +1,4 @@
-package herbstJennrichLehmannRitter.main.model;
+package herbstJennrichLehmannRitter.engine.model;
 
 /**
  * 
