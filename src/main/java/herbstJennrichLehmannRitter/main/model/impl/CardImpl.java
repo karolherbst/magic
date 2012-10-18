@@ -1,8 +1,11 @@
 package herbstJennrichLehmannRitter.main.model.impl;
 
 import herbstJennrichLehmannRitter.main.model.Card;
+import herbstJennrichLehmannRitter.main.model.ComplexCardAction;
+import herbstJennrichLehmannRitter.main.model.SimpleCardAction;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement
@@ -59,24 +62,26 @@ public class CardImpl implements Card {
 		return 0;
 	}
 
-//	public void setSimpleCardAction(SimpleCardAction simpleCardAction) {
-//		// TODO Auto-generated method stub
-//
-//	}
-//
-//	public SimpleCardAction getSimpleCardAction() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	public void setComplexCardAction(ComplexCardAction complexCardAction) {
-//		// TODO Auto-generated method stub
-//
-//	}
-//
-//	public ComplexCardAction getComplexCardAction() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	public void setSimpleCardAction(SimpleCardAction simpleCardAction) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@XmlTransient
+	public SimpleCardAction getSimpleCardAction() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setComplexCardAction(ComplexCardAction complexCardAction) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@XmlTransient
+	public ComplexCardAction getComplexCardAction() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

@@ -33,6 +33,7 @@ public class CardTests {
 		try {
 			this.jaxbContext = jaxbContextBuilder.build();
 		} catch (JAXBException e) {
+			e.printStackTrace();
 			fail(e.getLocalizedMessage());
 		}
 	}

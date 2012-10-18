@@ -90,24 +90,24 @@ public interface Card {
 	 * 
 	 * @param simpleCardAction
 	 */
-	//public void setSimpleCardAction(SimpleCardAction simpleCardAction);
+	public void setSimpleCardAction(SimpleCardAction simpleCardAction);
 	
 	/**
 	 * 
 	 * @return
 	 */
-	//public SimpleCardAction getSimpleCardAction();
+	public SimpleCardAction getSimpleCardAction();
 	
 	/**
 	 * 
 	 * @param complexCardAction
 	 */
-	//public void setComplexCardAction(ComplexCardAction complexCardAction);
+	public void setComplexCardAction(ComplexCardAction complexCardAction);
 	
 	/**
 	 * 
 	 * @return
 	 */
-	//public ComplexCardAction getComplexCardAction();
+	public ComplexCardAction getComplexCardAction();
 	
 }
