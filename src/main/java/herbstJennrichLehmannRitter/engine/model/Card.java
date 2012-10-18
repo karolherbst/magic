@@ -1,8 +1,10 @@
 package herbstJennrichLehmannRitter.engine.model;
 
 /**
+ * 
  * Interface für die Spielkarten
  * Dieses Interface beinhaltet die Schnittstellen für alle Kartenaktionen
+ * 
  */
 public interface Card {
 	

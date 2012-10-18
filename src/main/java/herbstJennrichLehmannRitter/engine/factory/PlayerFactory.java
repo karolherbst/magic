@@ -3,7 +3,9 @@ package herbstJennrichLehmannRitter.engine.factory;
 import herbstJennrichLehmannRitter.engine.model.Player;
 
 /**
+ * 
  * Interface für die Erstellung von Spielerobjekten
+ * 
  */
 public interface PlayerFactory {
 	

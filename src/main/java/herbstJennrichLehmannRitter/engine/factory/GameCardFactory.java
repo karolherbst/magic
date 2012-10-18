@@ -5,7 +5,9 @@ import java.util.Collection;
 import herbstJennrichLehmannRitter.engine.model.Card;
 
 /**
+ * 
  * Interface für die Erstellung von Kartenobjekten
+ * 
  */
 public interface GameCardFactory {
 	
