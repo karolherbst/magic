@@ -1,0 +1,21 @@
+GIT
+
+Am Anfang:
+1) Git-Repository Exploring öffnen
+2) Fetch from Upstream machen
+
+Hochladen:
+1) Rechte Maustaste im Package Explorer auf "magic"
+2) Team -> Synchronize Workspace
+3) Git-Repository Exploring öffnen
+4) Die Ansicht "Git Staging" öffnen
+5) Die Dateien von "Unstaged Changes" nach "Stages Changes" verschieben
+6) Ein Comment bei "Comment Message" eingeben
+7) Auf das Symbol "Commit" drücken
+8) Push to Upstream machen
+
+Pushen geht nicht und es kommt eine Fehlermeldung:
+1) Fetch from Upstream
+2) Rebase
+2.1) Funktioniert Rebase nicht, muss gemergt werden
+3) Push to Upstream
