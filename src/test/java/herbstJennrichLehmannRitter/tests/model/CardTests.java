@@ -3,7 +3,7 @@ package herbstJennrichLehmannRitter.tests.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
-import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.ChangeableCard;
 import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.SimpleCardActionImpl;
 
@@ -38,7 +38,7 @@ public class CardTests {
 	
 	@Test
 	public void testJaxBCard() {
-		Card card = new CardImpl();
+		ChangeableCard card = new CardImpl();
 		card.setSimpleCardAction(new SimpleCardActionImpl());
 		card.setCardType(CardType.CARD_TYPE_DUNGEON);
 		card.setName("Karte");
@@ -52,7 +52,7 @@ public class CardTests {
 					"<Name>dahsjdhaks</Name><CardType>Steinbruch</CardType><CostBrick>2</CostBrick><CostCrystal>4</CostCrystal>" +
 					"<CostMonster>6</CostMonster></Card>";
 			StringReader stringReader = new StringReader(xmlTree);
-			Card card2 = (Card)unmarshaller.unmarshal(stringReader);
+			ChangeableCard card2 = (ChangeableCard)unmarshaller.unmarshal(stringReader);
 			
 			assertEquals(card2.getName(), "dahsjdhaks");
 			assertEquals(card2.getCostBrick(), 2);

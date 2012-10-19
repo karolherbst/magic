@@ -1,7 +1,7 @@
 package herbstJennrichLehmannRitter.engine.model.impl;
 
 import herbstJennrichLehmannRitter.engine.enums.CardType;
-import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.ChangeableCard;
 import herbstJennrichLehmannRitter.engine.model.ComplexCardAction;
 import herbstJennrichLehmannRitter.engine.model.SimpleCardAction;
 
@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement(name="Card")
-public class CardImpl implements Card {
+public class CardImpl implements ChangeableCard {
 
 	private String name;
 	private CardType cardType;
