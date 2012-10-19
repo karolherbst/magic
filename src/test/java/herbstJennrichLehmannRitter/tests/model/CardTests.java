@@ -45,12 +45,16 @@ public class CardTests {
 			marshaller.marshal(card, System.out);
 			
 			Unmarshaller unmarshaller = this.jaxbContext.createUnmarshaller();
-			String xmlTree = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><cardImpl>" +
-					"<name>dahsjdhaks</name><costBrick>0</costBrick><costCrystal>0</costCrystal>" +
-					"<costMonsters>0</costMonsters></cardImpl>";
+			String xmlTree = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><card>" +
+					"<name>dahsjdhaks</name><costBrick>2</costBrick><costCrystal>4</costCrystal>" +
+					"<costMonsters>6</costMonsters></card>";
 			StringReader stringReader = new StringReader(xmlTree);
 			Card card2 = (Card)unmarshaller.unmarshal(stringReader);
-			System.out.println(card2.toString());
+			
+			assertEquals(card2.getName(), "dahsjdhaks");
+			assertEquals(card2.getCostBrick(), 2);
+			assertEquals(card2.getCostCrystal(), 4);
+			assertEquals(card2.getCostMonsters(), 6);
 		} catch (JAXBException e) {
 			fail(e.getLocalizedMessage());
 		}

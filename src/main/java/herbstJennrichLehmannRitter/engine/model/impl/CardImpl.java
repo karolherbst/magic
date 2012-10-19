@@ -6,13 +6,17 @@ import herbstJennrichLehmannRitter.engine.model.SimpleCardAction;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement
-@XmlType(propOrder={"name", "cardType", "costBrick", "costCrystal", "costMonsters"})
+@XmlRootElement(name="card")
 public class CardImpl implements Card {
 
 	private String name;
+	private CardType cardType;
+	private int costBrick;
+	private int costMonster;
+	private int costCrystal;
+	private SimpleCardAction simpleCardAction;
+	private ComplexCardAction complexCardAction;
 	
 	public void setName(String name) {
 		this.name = name;
@@ -23,65 +27,53 @@ public class CardImpl implements Card {
 	}
 
 	public void setCardType(CardType cardType) {
-		// TODO Auto-generated method stub
-
+		this.cardType = cardType;
 	}
 
 	public CardType getCardType() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.cardType;
 	}
 
 	public void setCostBrick(int costBrick) {
-		// TODO Auto-generated method stub
-
+		this.costBrick = costBrick;
 	}
 
 	public int getCostBrick() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.costBrick;
 	}
 
 	public void setCostMonsters(int costMonsters) {
-		// TODO Auto-generated method stub
-
+		this.costMonster = costMonsters;
 	}
 
 	public int getCostMonsters() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.costMonster;
 	}
 
 	public void setCostCrystal(int costCrystal) {
-		// TODO Auto-generated method stub
-
+		this.costCrystal = costCrystal;
 	}
 
 	public int getCostCrystal() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.costCrystal;
 	}
 
 	public void setSimpleCardAction(SimpleCardAction simpleCardAction) {
-		// TODO Auto-generated method stub
-
+		this.simpleCardAction = simpleCardAction;
 	}
 
 	@XmlTransient
 	public SimpleCardAction getSimpleCardAction() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.simpleCardAction;
 	}
 
 	public void setComplexCardAction(ComplexCardAction complexCardAction) {
-		// TODO Auto-generated method stub
-
+		this.complexCardAction = complexCardAction;
 	}
 
 	@XmlTransient
 	public ComplexCardAction getComplexCardAction() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.complexCardAction;
 	}
 
 }

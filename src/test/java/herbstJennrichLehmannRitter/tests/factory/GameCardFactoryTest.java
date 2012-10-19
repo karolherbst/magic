@@ -1,6 +1,7 @@
 package herbstJennrichLehmannRitter.tests.factory;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
