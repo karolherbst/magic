@@ -2,12 +2,11 @@ package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-
-import java.io.StringReader;
-
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Card.CardType;
 import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
+
+import java.io.StringReader;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -17,21 +16,14 @@ import javax.xml.bind.Unmarshaller;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sun.xml.bind.v2.runtime.JAXBContextImpl.JAXBContextBuilder;
-
 public class CardTests {
 
 	private JAXBContext jaxbContext;
 	
 	@Before
 	public void before() {
-		JAXBContextBuilder jaxbContextBuilder = new JAXBContextBuilder();
-		
-		Class<?>[] jaxbClasses = {CardImpl.class};
-			
-		jaxbContextBuilder.setClasses(jaxbClasses);
 		try {
-			this.jaxbContext = jaxbContextBuilder.build();
+			this.jaxbContext = JAXBContext.newInstance("herbstJennrichLehmannRitter.engine.model");
 		} catch (JAXBException e) {
 			e.printStackTrace();
 			fail(e.getLocalizedMessage());
