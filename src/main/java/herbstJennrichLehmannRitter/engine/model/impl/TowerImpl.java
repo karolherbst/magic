@@ -3,7 +3,6 @@
  */
 package herbstJennrichLehmannRitter.engine.model.impl;
 
-import herbstJennrichLehmannRitter.engine.model.DefenceBuilding;
 
 /**
  * 
@@ -11,18 +10,11 @@ import herbstJennrichLehmannRitter.engine.model.DefenceBuilding;
  * Spielerobjekt gespeichert. 
  *
  */
-public class TowerImpl implements DefenceBuilding {
-
-	private int actualPoints;
-	
-	@Override
-	public int getActualPoints() {
-		return this.actualPoints;
-	}
+public class TowerImpl extends AbstractDefenceBuilding {
 
 	@Override
-	public void setActualPoints(int points) {
-		this.actualPoints = points;
+	public String getName() {
+		return "Turm";
 	}
 
 }

@@ -6,7 +6,7 @@ package herbstJennrichLehmannRitter.engine.model;
  * Interface für die Ressourcenbebäude.
  *
  */
-public interface ResourceBuilding {
+public interface ResourceBuilding extends Building {
 	
 	public int getLevel();
 	public void setLevel(int level);

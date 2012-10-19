@@ -1,6 +1,5 @@
 package herbstJennrichLehmannRitter.engine.model.impl;
 
-import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
 
 /**
 *
@@ -8,30 +7,11 @@ import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
 * Speichert das Level und den Ressourcenstand des Zauberlabors.
 *
 */
-public class MagicLabImpl implements ResourceBuilding {
-	
-	private int level;
-	private int stock;
+public class MagicLabImpl extends AbstractResourceBuilding {
 	
 	@Override
-	public int getLevel() {
-		return this.level;
+	public String getName() {
+		return "Zauberlabor";
 	}
-	
-	@Override
-	public void setLevel(int level) {
-		this.level = level;
-	}
-	
-	@Override
-	public int getStock() {
-		return this.stock;
-	}
-	
-	@Override
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
-
 
 }
