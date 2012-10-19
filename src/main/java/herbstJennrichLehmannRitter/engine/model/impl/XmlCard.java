@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement(name="Card")
-public class CardImpl implements ChangeableCard {
+public class XmlCard implements ChangeableCard {
 
 	private String name;
 	private CardType cardType;

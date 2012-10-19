@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.ChangeableCard;
-import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
+import herbstJennrichLehmannRitter.engine.model.impl.XmlCard;
 import herbstJennrichLehmannRitter.engine.model.impl.SimpleCardActionImpl;
 
 import java.io.StringReader;
@@ -38,7 +38,7 @@ public class CardTests {
 	
 	@Test
 	public void testJaxBCard() {
-		ChangeableCard card = new CardImpl();
+		ChangeableCard card = new XmlCard();
 		card.setSimpleCardAction(new SimpleCardActionImpl());
 		card.setCardType(CardType.CARD_TYPE_DUNGEON);
 		card.setName("Karte");

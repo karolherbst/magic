@@ -15,7 +15,7 @@ public class CardsImpl implements Cards {
 	private Collection<Card> cards;
 
 	@XmlElements(value={
-		@XmlElement(name="Card", type=CardImpl.class)	
+		@XmlElement(name="Card", type=XmlCard.class)	
 	})
 	@Override
 	public Collection<Card> getCards() {
