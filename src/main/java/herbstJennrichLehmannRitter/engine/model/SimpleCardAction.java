@@ -24,8 +24,8 @@ public interface SimpleCardAction {
 	public int getEnemyDungeonLvlEffect();
 	public int getOwnDungeonLvlEffect();
 
-	public int getEnemyMagicLabEffect();
-	public int getOwnMagicLabEffect();
+	public int getEnemyMagicLabLvlEffect();
+	public int getOwnMagicLabLvlEffect();
 
 	public int getEnemyBrickEffect();
 	public int getOwnBrickEffect();
@@ -33,13 +33,13 @@ public interface SimpleCardAction {
 	public int getEnemyMonsterEffect();
 	public int getOwnMonsterEffect();
 
-	public int getEnemyCristallEffect();
-	public int getOwnCristallEffect();
+	public int getEnemyCrystalEffect();
+	public int getOwnCrystalEffect();
 
 	public int getAmountCardDraw();
 	public int getAmountCardDiscard();
 
-	public Boolean getPlayCards();
+	public boolean getPlayCards();
 
 	public int getDamage();
 }

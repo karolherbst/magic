@@ -4,104 +4,186 @@ import herbstJennrichLehmannRitter.engine.model.SimpleCardAction;
 
 public class SimpleCardActionImpl implements SimpleCardAction {
 
+	private int enemyTowerEffect;
+	private int ownTowerEffect;
+	private int enemyWallEffect;
+	private int ownWallEffect;
+	private int enemyMineLvlEffect;
+	private int ownMineLvlEffect;
+	private int enemyDungeonLvlEffect;
+	private int ownDungeonLvlEffect;
+	private int enemyMagicLabLvlEffect;
+	private int ownMagicLabLvlEffect;
+	private int enemyMonsterEffect;
+	private int ownMonsterEffect;
+	private int enemyCrystalEffect;
+	private int ownCrystalEffect;
+	private int enemyBrickEffect;
+	private int ownBrickEffect;
+	private int amountCardDraw;
+	private int amountCardDiscard;
+	private boolean playCards;
+	private int damage;
+	
 	public int getEnemyTowerEffect() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.enemyTowerEffect;
+	}
+
+	public void setEnemyTowerEffect(int enemyTowerEffect) {
+		this.enemyTowerEffect = enemyTowerEffect;
 	}
 
 	public int getOwnTowerEffect() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.ownTowerEffect;
+	}
+
+	public void setOwnTowerEffect(int ownTowerEffect) {
+		this.ownTowerEffect = ownTowerEffect;
 	}
 
 	public int getEnemyWallEffect() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.enemyWallEffect;
+	}
+
+	public void setEnemyWallEffect(int enemyWallEffect) {
+		this.enemyWallEffect = enemyWallEffect;
 	}
 
 	public int getOwnWallEffect() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.ownWallEffect;
+	}
+
+	public void setOwnWallEffect(int ownWallEffect) {
+		this.ownWallEffect = ownWallEffect;
 	}
 
 	public int getEnemyMineLvlEffect() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.enemyMineLvlEffect;
+	}
+
+	public void setEnemyMineLvlEffect(int enemyMineLvlEffect) {
+		this.enemyMineLvlEffect = enemyMineLvlEffect;
 	}
 
 	public int getOwnMineLvlEffect() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.ownMineLvlEffect;
+	}
+
+	public void setOwnMineLvlEffect(int ownMineLvlEffect) {
+		this.ownMineLvlEffect = ownMineLvlEffect;
 	}
 
 	public int getEnemyDungeonLvlEffect() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.enemyDungeonLvlEffect;
+	}
+
+	public void setEnemyDungeonLvlEffect(int enemyDungeonLvlEffect) {
+		this.enemyDungeonLvlEffect = enemyDungeonLvlEffect;
 	}
 
 	public int getOwnDungeonLvlEffect() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.ownDungeonLvlEffect;
 	}
 
-	public int getEnemyMagicLabEffect() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setOwnDungeonLvlEffect(int ownDungeonLvlEffect) {
+		this.ownDungeonLvlEffect = ownDungeonLvlEffect;
 	}
 
-	public int getOwnMagicLabEffect() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getEnemyMagicLabLvlEffect() {
+		return this.enemyMagicLabLvlEffect;
 	}
 
-	public int getEnemyBrickEffect() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setEnemyMagicLabLvlEffect(int enemyMagicLabLvlEffect) {
+		this.enemyMagicLabLvlEffect = enemyMagicLabLvlEffect;
 	}
 
-	public int getOwnBrickEffect() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getOwnMagicLabLvlEffect() {
+		return this.ownMagicLabLvlEffect;
+	}
+
+	public void setOwnMagicLabLvlEffect(int ownMagicLabLvlEffect) {
+		this.ownMagicLabLvlEffect = ownMagicLabLvlEffect;
 	}
 
 	public int getEnemyMonsterEffect() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.enemyMonsterEffect;
+	}
+
+	public void setEnemyMonsterEffect(int enemyMonsterEffect) {
+		this.enemyMonsterEffect = enemyMonsterEffect;
 	}
 
 	public int getOwnMonsterEffect() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.ownMonsterEffect;
 	}
 
-	public int getEnemyCristallEffect() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void setOwnMonsterEffect(int ownMonsterEffect) {
+		this.ownMonsterEffect = ownMonsterEffect;
 	}
 
-	public int getOwnCristallEffect() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getEnemyCrystalEffect() {
+		return this.enemyCrystalEffect;
+	}
+
+	public void setEnemyCrystalEffect(int enemyCrystalEffect) {
+		this.enemyCrystalEffect = enemyCrystalEffect;
+	}
+
+	public int getOwnCrystalEffect() {
+		return this.ownCrystalEffect;
+	}
+
+	public void setOwnCrystalEffect(int ownCrystalEffect) {
+		this.ownCrystalEffect = ownCrystalEffect;
+	}
+
+	public int getEnemyBrickEffect() {
+		return this.enemyBrickEffect;
+	}
+
+	public void setEnemyBrickEffect(int enemyBrickEffect) {
+		this.enemyBrickEffect = enemyBrickEffect;
+	}
+
+	public int getOwnBrickEffect() {
+		return this.ownBrickEffect;
+	}
+
+	public void setOwnBrickEffect(int ownBrickEffect) {
+		this.ownBrickEffect = ownBrickEffect;
 	}
 
 	public int getAmountCardDraw() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.amountCardDraw;
+	}
+
+	public void setAmountCardDraw(int amountCardDraw) {
+		this.amountCardDraw = amountCardDraw;
 	}
 
 	public int getAmountCardDiscard() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.amountCardDiscard;
 	}
 
-	public Boolean getPlayCards() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setAmountCarddiscard(int amountCarddiscard) {
+		this.amountCardDiscard = amountCarddiscard;
+	}
+
+	public boolean getPlayCards() {
+		return this.playCards;
+	}
+
+	public void setPlayCards(boolean playCards) {
+		this.playCards = playCards;
 	}
 
 	public int getDamage() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.damage;
 	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+	
 
 }

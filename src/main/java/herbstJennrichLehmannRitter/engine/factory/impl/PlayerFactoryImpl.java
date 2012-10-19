@@ -3,21 +3,20 @@
  */
 package herbstJennrichLehmannRitter.engine.factory.impl;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.DefenceBuilding;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
-import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.DungeonImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.MagicLabImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.MineImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.PlayerImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.TowerImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.WallImpl;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * 

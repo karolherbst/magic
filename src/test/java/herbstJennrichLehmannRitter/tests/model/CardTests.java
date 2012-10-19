@@ -5,6 +5,7 @@ import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Card.CardType;
 import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
+import herbstJennrichLehmannRitter.engine.model.impl.SimpleCardActionImpl;
 
 import java.io.StringReader;
 
@@ -38,6 +39,7 @@ public class CardTests {
 	@Test
 	public void testJaxBCard() {
 		Card card = new CardImpl();
+		card.setSimpleCardAction(new SimpleCardActionImpl());
 		card.setName("Karte");
 		
 		try {
