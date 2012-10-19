@@ -1,9 +1,10 @@
-package herbstJennrichLehmannRitter.engine.model.impl;
+package herbstJennrichLehmannRitter.engine.model.xml;
 
 import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.ChangeableCard;
 import herbstJennrichLehmannRitter.engine.model.ComplexCardAction;
 import herbstJennrichLehmannRitter.engine.model.SimpleCardAction;
+import herbstJennrichLehmannRitter.engine.model.impl.SimpleCardActionImpl;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;

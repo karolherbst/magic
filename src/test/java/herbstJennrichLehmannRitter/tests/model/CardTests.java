@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.ChangeableCard;
-import herbstJennrichLehmannRitter.engine.model.impl.XmlCard;
 import herbstJennrichLehmannRitter.engine.model.impl.SimpleCardActionImpl;
+import herbstJennrichLehmannRitter.engine.model.xml.XmlCard;
 
 import java.io.StringReader;
 

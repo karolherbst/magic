@@ -1,4 +1,4 @@
-package herbstJennrichLehmannRitter.engine.model.impl;
+package herbstJennrichLehmannRitter.engine.model.xml;
 
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Cards;
@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="Cards")
-public class CardsImpl implements Cards {
+public class XmlCards implements Cards {
 	
 	private Collection<Card> cards;
 

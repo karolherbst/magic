@@ -1,2 +1,2 @@
-impl.CardImpl
-impl.CardsImpl
+xml.XmlCard
+xml.XmlCards
