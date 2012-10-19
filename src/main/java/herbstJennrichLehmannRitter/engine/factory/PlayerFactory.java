@@ -1,5 +1,8 @@
 package herbstJennrichLehmannRitter.engine.factory;
 
+import java.util.Collection;
+
+import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Player;
 
 /**
@@ -9,9 +12,6 @@ import herbstJennrichLehmannRitter.engine.model.Player;
  */
 public interface PlayerFactory {
 	
-	// TODO: which arguments do we need to create players?
-	public Player createLocalPlayer();
+	public Player createPlayer(String name, Collection<Card> deck, int pointsTower, int pointsWall, int resourceBuildingLvl, int resourceBuildingStock);
 
-	public Player createNetworkPlayer();
-	
 }

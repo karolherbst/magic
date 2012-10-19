@@ -13,16 +13,22 @@ import herbstJennrichLehmannRitter.engine.model.Player;
 public class DataImpl implements Data {
 
 	private Player ownPlayer;
-	private Player enemyPlaner;
-	
-	// TODO wie und wo werden ownPlayer und enemyPlayer eigentlich gesetzt? 
+	private Player enemyPlayer;
 	
 	public Player getOwnPlayer() {
 		return this.ownPlayer;
 	}
+	
+	public void setOwnPlayer(Player ownPlayer) {
+		this.ownPlayer = ownPlayer;
+	}
 
 	public Player getEnemyPlayer() {
-		return this.enemyPlaner;
+		return this.enemyPlayer;
+	}
+
+	public void setEnemyPlayer(Player enemyPlayer) {
+		this.enemyPlayer = enemyPlayer;
 	}
 
 }

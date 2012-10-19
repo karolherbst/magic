@@ -16,9 +16,9 @@ public interface Player {
 	public Collection<Card> getHandDeck();
 	public Collection<Card> getCemeteryDeck();
 
-	public ResourceBuilding getMine();
 	public ResourceBuilding getDungeon();
 	public ResourceBuilding getMagicLab();
+	public ResourceBuilding getMine();
 
 	public DefenceBuilding getTower();
 	public DefenceBuilding getWall();
