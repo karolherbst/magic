@@ -4,24 +4,23 @@ import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
 
 public class DungeonImpl implements ResourceBuilding {
 
+	private int level;
+	private int stock;
+	
 	public int getLevel() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.level;
 	}
 
 	public void setLevel(int level) {
-		// TODO Auto-generated method stub
-
+		this.level = level;
 	}
 
 	public int getStock() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.stock;
 	}
 
 	public void setStock(int stock) {
-		// TODO Auto-generated method stub
-
+		this.stock = stock;
 	}
 
 }
