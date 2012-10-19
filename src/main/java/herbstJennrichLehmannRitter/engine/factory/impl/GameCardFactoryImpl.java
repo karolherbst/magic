@@ -4,6 +4,7 @@ import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Cards;
+import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,8 +49,10 @@ public class GameCardFactoryImpl implements GameCardFactory {
 	}
 	
 	@Override
-	public Card createCard(String card) {
-		return this.cards.get(card);
+	public Card createCard(String cardName) {
+		Card card = this.cards.get(cardName);
+		return new CardImpl(card.getName(), card.getCardType(), card.getCostBrick(), card.getCostMonsters(),
+				card.getCostCrystal(), card.getSimpleCardAction(), card.getComplexCardAction());
 	}
 
 	@Override
