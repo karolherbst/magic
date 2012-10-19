@@ -1,5 +1,7 @@
 package herbstJennrichLehmannRitter.engine.model.impl;
 
+import javax.xml.bind.annotation.XmlElement;
+
 import herbstJennrichLehmannRitter.engine.model.SimpleCardAction;
 
 public class SimpleCardActionImpl implements SimpleCardAction {
@@ -33,6 +35,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.enemyTowerEffect = enemyTowerEffect;
 	}
 
+	@XmlElement(name="OwnTowerEffect")
 	public int getOwnTowerEffect() {
 		return this.ownTowerEffect;
 	}
@@ -41,6 +44,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.ownTowerEffect = ownTowerEffect;
 	}
 
+	@XmlElement(name="EnemyWallEffect")
 	public int getEnemyWallEffect() {
 		return this.enemyWallEffect;
 	}
@@ -49,6 +53,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.enemyWallEffect = enemyWallEffect;
 	}
 
+	@XmlElement(name="OwnWallEffect")
 	public int getOwnWallEffect() {
 		return this.ownWallEffect;
 	}

@@ -1,5 +1,7 @@
 package herbstJennrichLehmannRitter.engine.model;
 
+import herbstJennrichLehmannRitter.engine.enums.CardType;
+
 /**
  * 
  * Interface für die Spielkarten
@@ -7,24 +9,6 @@ package herbstJennrichLehmannRitter.engine.model;
  * 
  */
 public interface Card {
-	
-	public enum CardType {
-		CARD_TYPE_MINE("Steinbruch"),
-		CARD_TYPE_MAGIC_LAB("Zauberlabor"),
-		CARD_TYPE_DUNGEON("Verlies"),
-		CARD_TYPE_SPECIAL("Spezial");
-		
-		private String value;
-		
-		private CardType(String value) {
-			this.value = value;
-		}
-		
-		@Override
-		public String toString() {
-			return this.value;
-		}
-	}
 	
 	public void setName(String name);
 	public String getName();

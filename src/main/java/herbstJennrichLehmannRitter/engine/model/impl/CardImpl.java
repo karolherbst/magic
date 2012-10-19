@@ -1,5 +1,6 @@
 package herbstJennrichLehmannRitter.engine.model.impl;
 
+import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.ComplexCardAction;
 import herbstJennrichLehmannRitter.engine.model.SimpleCardAction;

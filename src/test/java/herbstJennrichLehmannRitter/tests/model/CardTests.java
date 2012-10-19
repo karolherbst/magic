@@ -2,8 +2,8 @@ package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.Card;
-import herbstJennrichLehmannRitter.engine.model.Card.CardType;
 import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.SimpleCardActionImpl;
 
@@ -40,6 +40,7 @@ public class CardTests {
 	public void testJaxBCard() {
 		Card card = new CardImpl();
 		card.setSimpleCardAction(new SimpleCardActionImpl());
+		card.setCardType(CardType.CARD_TYPE_DUNGEON);
 		card.setName("Karte");
 		
 		try {
@@ -48,7 +49,7 @@ public class CardTests {
 			
 			Unmarshaller unmarshaller = this.jaxbContext.createUnmarshaller();
 			String xmlTree = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><Card>" +
-					"<Name>dahsjdhaks</Name><CostBrick>2</CostBrick><CostCrystal>4</CostCrystal>" +
+					"<Name>dahsjdhaks</Name><CardType>Steinbruch</CardType><CostBrick>2</CostBrick><CostCrystal>4</CostCrystal>" +
 					"<CostMonster>6</CostMonster></Card>";
 			StringReader stringReader = new StringReader(xmlTree);
 			Card card2 = (Card)unmarshaller.unmarshal(stringReader);
@@ -57,6 +58,7 @@ public class CardTests {
 			assertEquals(card2.getCostBrick(), 2);
 			assertEquals(card2.getCostCrystal(), 4);
 			assertEquals(card2.getCostMonsters(), 6);
+			//assertEquals(card2.getCardType(), CardType.CARD_TYPE_MINE);
 		} catch (JAXBException e) {
 			fail(e.getLocalizedMessage());
 		}

@@ -1,3 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Cards>
+  <Card>
+    <Name>Architektur</Name>
+    <CardType>Steinbruch</CardType>
+    <SimpleCardAction>
+      <OwnWallEffect>8</OwnWallEffect>
+      <OwnTowerEffect>5</OwnTowerEffect>
+    </SimpleCardAction>
+    <CostBrick>15</CostBrick>
+  </Card>
 </Cards>
