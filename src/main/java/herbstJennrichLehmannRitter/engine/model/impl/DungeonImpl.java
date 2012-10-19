@@ -2,6 +2,12 @@ package herbstJennrichLehmannRitter.engine.model.impl;
 
 import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
 
+/**
+ *
+ * Implementation des Ressourcengebäudes Verlies.<br />
+ * Speichert das Level und den Ressourcenstand des Verlies.
+ *
+ */
 public class DungeonImpl implements ResourceBuilding {
 
 	private int level;

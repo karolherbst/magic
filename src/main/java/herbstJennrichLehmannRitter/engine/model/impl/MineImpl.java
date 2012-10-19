@@ -2,6 +2,12 @@ package herbstJennrichLehmannRitter.engine.model.impl;
 
 import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
 
+/**
+*
+* Implementation des Ressourcengebäudes Mine.<br />
+* Speichert das Level und den Ressourcenstand der Mine.
+*
+*/
 public class MineImpl implements ResourceBuilding {
 	
 	private int level;
