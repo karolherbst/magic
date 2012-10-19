@@ -26,6 +26,7 @@ import java.util.Collection;
  */
 public class PlayerFactoryImpl implements PlayerFactory {
 
+	@Override
 	public Player createPlayer(String name, Collection<Card> deck, int pointsTower, int pointsWall, int resourceBuildingLvl, int resourceBuildingStock) {
 		Collection<Card> handDeck = new ArrayList<Card>();
 		Collection<Card> cemeteryDeck = new ArrayList<Card>();

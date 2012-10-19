@@ -27,6 +27,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 	private boolean playCards;
 	private int damage;
 	
+	@Override
 	public int getEnemyTowerEffect() {
 		return this.enemyTowerEffect;
 	}
@@ -36,6 +37,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 	}
 
 	@XmlElement(name="OwnTowerEffect")
+	@Override
 	public int getOwnTowerEffect() {
 		return this.ownTowerEffect;
 	}
@@ -45,6 +47,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 	}
 
 	@XmlElement(name="EnemyWallEffect")
+	@Override
 	public int getEnemyWallEffect() {
 		return this.enemyWallEffect;
 	}
@@ -54,6 +57,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 	}
 
 	@XmlElement(name="OwnWallEffect")
+	@Override
 	public int getOwnWallEffect() {
 		return this.ownWallEffect;
 	}
@@ -62,6 +66,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.ownWallEffect = ownWallEffect;
 	}
 
+	@Override
 	public int getEnemyMineLvlEffect() {
 		return this.enemyMineLvlEffect;
 	}
@@ -70,6 +75,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.enemyMineLvlEffect = enemyMineLvlEffect;
 	}
 
+	@Override
 	public int getOwnMineLvlEffect() {
 		return this.ownMineLvlEffect;
 	}
@@ -78,6 +84,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.ownMineLvlEffect = ownMineLvlEffect;
 	}
 
+	@Override
 	public int getEnemyDungeonLvlEffect() {
 		return this.enemyDungeonLvlEffect;
 	}
@@ -86,6 +93,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.enemyDungeonLvlEffect = enemyDungeonLvlEffect;
 	}
 
+	@Override
 	public int getOwnDungeonLvlEffect() {
 		return this.ownDungeonLvlEffect;
 	}
@@ -94,6 +102,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.ownDungeonLvlEffect = ownDungeonLvlEffect;
 	}
 
+	@Override
 	public int getEnemyMagicLabLvlEffect() {
 		return this.enemyMagicLabLvlEffect;
 	}
@@ -102,6 +111,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.enemyMagicLabLvlEffect = enemyMagicLabLvlEffect;
 	}
 
+	@Override
 	public int getOwnMagicLabLvlEffect() {
 		return this.ownMagicLabLvlEffect;
 	}
@@ -110,6 +120,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.ownMagicLabLvlEffect = ownMagicLabLvlEffect;
 	}
 
+	@Override
 	public int getEnemyMonsterEffect() {
 		return this.enemyMonsterEffect;
 	}
@@ -118,6 +129,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.enemyMonsterEffect = enemyMonsterEffect;
 	}
 
+	@Override
 	public int getOwnMonsterEffect() {
 		return this.ownMonsterEffect;
 	}
@@ -126,6 +138,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.ownMonsterEffect = ownMonsterEffect;
 	}
 
+	@Override
 	public int getEnemyCrystalEffect() {
 		return this.enemyCrystalEffect;
 	}
@@ -134,6 +147,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.enemyCrystalEffect = enemyCrystalEffect;
 	}
 
+	@Override
 	public int getOwnCrystalEffect() {
 		return this.ownCrystalEffect;
 	}
@@ -142,6 +156,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.ownCrystalEffect = ownCrystalEffect;
 	}
 
+	@Override
 	public int getEnemyBrickEffect() {
 		return this.enemyBrickEffect;
 	}
@@ -150,6 +165,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.enemyBrickEffect = enemyBrickEffect;
 	}
 
+	@Override
 	public int getOwnBrickEffect() {
 		return this.ownBrickEffect;
 	}
@@ -158,6 +174,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.ownBrickEffect = ownBrickEffect;
 	}
 
+	@Override
 	public int getAmountCardDraw() {
 		return this.amountCardDraw;
 	}
@@ -166,6 +183,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.amountCardDraw = amountCardDraw;
 	}
 
+	@Override
 	public int getAmountCardDiscard() {
 		return this.amountCardDiscard;
 	}
@@ -174,6 +192,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.amountCardDiscard = amountCarddiscard;
 	}
 
+	@Override
 	public boolean getPlayCards() {
 		return this.playCards;
 	}
@@ -182,6 +201,7 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		this.playCards = playCards;
 	}
 
+	@Override
 	public int getDamage() {
 		return this.damage;
 	}

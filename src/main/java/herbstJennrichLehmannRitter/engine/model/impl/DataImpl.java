@@ -15,6 +15,7 @@ public class DataImpl implements Data {
 	private Player ownPlayer;
 	private Player enemyPlayer;
 	
+	@Override
 	public Player getOwnPlayer() {
 		return this.ownPlayer;
 	}
@@ -23,6 +24,7 @@ public class DataImpl implements Data {
 		this.ownPlayer = ownPlayer;
 	}
 
+	@Override
 	public Player getEnemyPlayer() {
 		return this.enemyPlayer;
 	}

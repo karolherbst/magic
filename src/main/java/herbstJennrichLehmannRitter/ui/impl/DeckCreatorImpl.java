@@ -10,20 +10,24 @@ public class DeckCreatorImpl implements DeckCreator {
 
 	Collection<Card> cards = new ArrayList<Card>();
 	
+	@Override
 	public void addCard(Card card) {
 		this.cards.add(card);
 	}
 
+	@Override
 	public void removeCard(Card card) {
 		this.cards.remove(card);
 	}
 
-	public void addCards(Collection<Card> cards) {
-		this.cards.addAll(cards);
+	@Override
+	public void addCards(Collection<Card> cardsToAdd) {
+		this.cards.addAll(cardsToAdd);
 	}
 
-	public void removeCards(Collection<Card> cards) {
-		this.cards.removeAll(cards);
+	@Override
+	public void removeCards(Collection<Card> cardsToRemove) {
+		this.cards.removeAll(cardsToRemove);
 	}
 
 }

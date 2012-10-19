@@ -31,6 +31,7 @@ public class PlayerImpl implements Player {
 	private DefenceBuilding tower;
 	private DefenceBuilding wall;
 	
+	@Override
 	public String getName() {
 		return this.name;
 	}
@@ -39,6 +40,7 @@ public class PlayerImpl implements Player {
 		this.name = name;
 	}
 
+	@Override
 	public Collection<Card> getDeck() {
 		return this.deck;
 	}
@@ -47,6 +49,7 @@ public class PlayerImpl implements Player {
 		this.deck = deck;
 	}
 
+	@Override
 	public Collection<Card> getHandDeck() {
 		return this.handDeck;
 	}
@@ -55,6 +58,7 @@ public class PlayerImpl implements Player {
 		this.handDeck = handDeck;
 	}
 
+	@Override
 	public Collection<Card> getCemeteryDeck() {
 		return this.cemeteryDeck;
 	}
@@ -63,6 +67,7 @@ public class PlayerImpl implements Player {
 		this.cemeteryDeck = cemeteryDeck;
 	}
 
+	@Override
 	public ResourceBuilding getDungeon() {
 		return this.dungeon;
 	}
@@ -71,6 +76,7 @@ public class PlayerImpl implements Player {
 		this.dungeon = dungeon;
 	}
 	
+	@Override
 	public ResourceBuilding getMagicLab() {
 		return this.magicLab;
 	}
@@ -79,6 +85,7 @@ public class PlayerImpl implements Player {
 		this.magicLab = magiclab;
 	}	
 
+	@Override
 	public ResourceBuilding getMine() {
 		return this.mine;
 	}
@@ -87,6 +94,7 @@ public class PlayerImpl implements Player {
 		this.mine = mine;
 	}
 
+	@Override
 	public DefenceBuilding getTower() {
 		return this.tower;
 	}
@@ -95,6 +103,7 @@ public class PlayerImpl implements Player {
 		this.tower = tower;
 	}
 
+	@Override
 	public DefenceBuilding getWall() {
 		return this.wall;
 	}

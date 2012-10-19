@@ -16,11 +16,13 @@ public class CardsImpl implements Cards {
 
 	@XmlElements(value={
 		@XmlElement(name="Card", type=CardImpl.class)	
-	})	
+	})
+	@Override
 	public Collection<Card> getCards() {
-		return cards;
+		return this.cards;
 	}
 
+	@Override
 	public void setCards(Collection<Card> cards) {
 		this.cards = cards;
 	}
