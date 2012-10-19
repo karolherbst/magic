@@ -4,10 +4,11 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.ComplexCardAction;
 import herbstJennrichLehmannRitter.engine.model.SimpleCardAction;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-@XmlRootElement(name="card")
+@XmlRootElement(name="Card")
 public class CardImpl implements Card {
 
 	private String name;
@@ -22,6 +23,7 @@ public class CardImpl implements Card {
 		this.name = name;
 	}
 
+	@XmlElement(name="Name")
 	public String getName() {
 		return this.name;
 	}
@@ -30,6 +32,7 @@ public class CardImpl implements Card {
 		this.cardType = cardType;
 	}
 
+	@XmlElement(name="CardType")
 	public CardType getCardType() {
 		return this.cardType;
 	}
@@ -38,6 +41,7 @@ public class CardImpl implements Card {
 		this.costBrick = costBrick;
 	}
 
+	@XmlElement(name="CostBrick")
 	public int getCostBrick() {
 		return this.costBrick;
 	}
@@ -46,6 +50,7 @@ public class CardImpl implements Card {
 		this.costMonster = costMonsters;
 	}
 
+	@XmlElement(name="CostMonster")
 	public int getCostMonsters() {
 		return this.costMonster;
 	}
@@ -54,6 +59,7 @@ public class CardImpl implements Card {
 		this.costCrystal = costCrystal;
 	}
 
+	@XmlElement(name="CostCrystal")
 	public int getCostCrystal() {
 		return this.costCrystal;
 	}
@@ -62,7 +68,7 @@ public class CardImpl implements Card {
 		this.simpleCardAction = simpleCardAction;
 	}
 
-	@XmlTransient
+	@XmlElement(name="SimpleCardAction", type=SimpleCardActionImpl.class)
 	public SimpleCardAction getSimpleCardAction() {
 		return this.simpleCardAction;
 	}
