@@ -4,7 +4,6 @@ import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.ComplexCardAction;
 import herbstJennrichLehmannRitter.engine.model.SimpleCardAction;
-import herbstJennrichLehmannRitter.engine.model.impl.SimpleCardActionImpl;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,7 +24,7 @@ public class XmlCard implements Card {
 		this.name = name;
 	}
 
-	@XmlElement(name="Name")
+	@XmlElement(name="Name", required=true)
 	@Override
 	public String getName() {
 		return this.name;
@@ -35,7 +34,7 @@ public class XmlCard implements Card {
 		this.cardType = cardType;
 	}
 
-	@XmlElement(name="CardType")
+	@XmlElement(name="CardType", required=true)
 	@Override
 	public CardType getCardType() {
 		return this.cardType;
@@ -75,7 +74,7 @@ public class XmlCard implements Card {
 		this.simpleCardAction = simpleCardAction;
 	}
 
-	@XmlElement(name="SimpleCardAction", type=XmlSimpleCardAction.class)
+	@XmlElement(name="SimpleCardAction", type=XmlSimpleCardAction.class, required=true)
 	@Override
 	public SimpleCardAction getSimpleCardAction() {
 		return this.simpleCardAction;

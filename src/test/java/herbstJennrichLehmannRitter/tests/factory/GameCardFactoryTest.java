@@ -3,6 +3,7 @@ package herbstJennrichLehmannRitter.tests.factory;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
+import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
@@ -29,7 +30,7 @@ public class GameCardFactoryTest {
 		Card card = this.gameCardFactory.createCard("Architektur");
 		assertNotNull(card);
 		assertEquals(card.getName(), "Architektur");
-		//assertEquals(card.getCardType(), CardType.CARD_TYPE_MINE);
+		assertEquals(card.getCardType(), CardType.CARD_TYPE_MINE);
 		assertEquals(card.getSimpleCardAction().getOwnWallEffect(), 8);
 		assertEquals(card.getSimpleCardAction().getOwnTowerEffect(), 5);
 		assertEquals(card.getCostBrick(), 15);

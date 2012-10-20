@@ -60,7 +60,7 @@ public class CardTests {
 			assertEquals(card2.getCostBrick(), 2);
 			assertEquals(card2.getCostCrystal(), 4);
 			assertEquals(card2.getCostMonsters(), 6);
-			//assertEquals(card2.getCardType(), CardType.CARD_TYPE_MINE);
+			assertEquals(card2.getCardType(), CardType.CARD_TYPE_MINE);
 		} catch (JAXBException e) {
 			fail(e.getLocalizedMessage());
 		}
