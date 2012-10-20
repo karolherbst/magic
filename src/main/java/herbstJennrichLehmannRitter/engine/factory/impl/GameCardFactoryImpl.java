@@ -10,6 +10,7 @@ import herbstJennrichLehmannRitter.engine.model.impl.SimpleCardActionImpl;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -83,7 +84,13 @@ public class GameCardFactoryImpl implements GameCardFactory {
 
 	@Override
 	public Collection<Card> createDefaultDeck() {
-		return null;
+		Collection<Card> defaultDeck = new ArrayList<Card>();
+		
+		for (String cardName : this.cards.keySet()) {
+			defaultDeck.add(createCard(cardName));
+		}
+		
+		return defaultDeck;
 	}
 
 }
