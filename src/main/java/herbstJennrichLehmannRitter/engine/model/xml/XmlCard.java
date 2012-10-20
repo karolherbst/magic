@@ -75,7 +75,7 @@ public class XmlCard implements Card {
 		this.simpleCardAction = simpleCardAction;
 	}
 
-	@XmlElement(name="SimpleCardAction", type=SimpleCardActionImpl.class)
+	@XmlElement(name="SimpleCardAction", type=XmlSimpleCardAction.class)
 	@Override
 	public SimpleCardAction getSimpleCardAction() {
 		return this.simpleCardAction;

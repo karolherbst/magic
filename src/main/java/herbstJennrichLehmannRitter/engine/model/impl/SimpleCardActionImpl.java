@@ -1,69 +1,76 @@
 package herbstJennrichLehmannRitter.engine.model.impl;
 
-import javax.xml.bind.annotation.XmlElement;
-
 import herbstJennrichLehmannRitter.engine.model.SimpleCardAction;
 
 public class SimpleCardActionImpl implements SimpleCardAction {
 
-	private int enemyTowerEffect;
-	private int ownTowerEffect;
-	private int enemyWallEffect;
-	private int ownWallEffect;
-	private int enemyMineLvlEffect;
-	private int ownMineLvlEffect;
-	private int enemyDungeonLvlEffect;
-	private int ownDungeonLvlEffect;
-	private int enemyMagicLabLvlEffect;
-	private int ownMagicLabLvlEffect;
-	private int enemyMonsterEffect;
-	private int ownMonsterEffect;
-	private int enemyCrystalEffect;
-	private int ownCrystalEffect;
-	private int enemyBrickEffect;
-	private int ownBrickEffect;
-	private int amountCardDraw;
-	private int amountCardDiscard;
-	private boolean playCards;
-	private int damage;
+	private final int enemyTowerEffect;
+	private final int ownTowerEffect;
+	private final int enemyWallEffect;
+	private final int ownWallEffect;
+	private final int enemyMineLvlEffect;
+	private final int ownMineLvlEffect;
+	private final int enemyDungeonLvlEffect;
+	private final int ownDungeonLvlEffect;
+	private final int enemyMagicLabLvlEffect;
+	private final int ownMagicLabLvlEffect;
+	private final int enemyMonsterEffect;
+	private final int ownMonsterEffect;
+	private final int enemyCrystalEffect;
+	private final int ownCrystalEffect;
+	private final int enemyBrickEffect;
+	private final int ownBrickEffect;
+	private final int amountCardDraw;
+	private final int amountCardDiscard;
+	private final boolean playCards;
+	private final int damage;
+	
+	public SimpleCardActionImpl(int enemyTowerEffect, int ownTowerEffect, int enemyWallEffect, int ownWallEffect,
+			int enemyMineLvlEffect, int ownMineLvlEffect, int enemyDungeonLvlEffect, int ownDungeonLvlEffect,
+			int enemyMagicLabLvlEffect, int ownMagicLabLvlEffect, int enemyMonsterEffect, int ownMonsterEffect,
+			int enemyCrystalEffect, int ownCrystalEffect, int enemyBrickEffect, int ownBrickEffect, int amountCardDraw,
+			int amountCardDiscard, boolean playCards, int damage) {
+		
+		this.enemyTowerEffect = enemyTowerEffect;
+		this.ownTowerEffect = ownTowerEffect;
+		this.enemyWallEffect = enemyWallEffect;
+		this.ownWallEffect = ownWallEffect;
+		this.enemyMineLvlEffect = enemyMineLvlEffect;
+		this.ownMineLvlEffect = ownMineLvlEffect;
+		this.enemyDungeonLvlEffect = enemyDungeonLvlEffect;
+		this.ownDungeonLvlEffect = ownDungeonLvlEffect;
+		this.enemyMagicLabLvlEffect = enemyMagicLabLvlEffect;
+		this.ownMagicLabLvlEffect = ownMagicLabLvlEffect;
+		this.enemyMonsterEffect = enemyMonsterEffect;
+		this.ownMonsterEffect = ownMonsterEffect;
+		this.enemyCrystalEffect = enemyCrystalEffect;
+		this.ownCrystalEffect = ownCrystalEffect;
+		this.enemyBrickEffect = enemyBrickEffect;
+		this.ownBrickEffect = ownBrickEffect;
+		this.amountCardDraw = amountCardDraw;
+		this.amountCardDiscard = amountCardDiscard;
+		this.playCards = playCards;
+		this.damage = damage;
+	}
 	
 	@Override
 	public int getEnemyTowerEffect() {
 		return this.enemyTowerEffect;
 	}
 
-	public void setEnemyTowerEffect(int enemyTowerEffect) {
-		this.enemyTowerEffect = enemyTowerEffect;
-	}
-
-	@XmlElement(name="OwnTowerEffect")
 	@Override
 	public int getOwnTowerEffect() {
 		return this.ownTowerEffect;
 	}
 
-	public void setOwnTowerEffect(int ownTowerEffect) {
-		this.ownTowerEffect = ownTowerEffect;
-	}
-
-	@XmlElement(name="EnemyWallEffect")
 	@Override
 	public int getEnemyWallEffect() {
 		return this.enemyWallEffect;
 	}
 
-	public void setEnemyWallEffect(int enemyWallEffect) {
-		this.enemyWallEffect = enemyWallEffect;
-	}
-
-	@XmlElement(name="OwnWallEffect")
 	@Override
 	public int getOwnWallEffect() {
 		return this.ownWallEffect;
-	}
-
-	public void setOwnWallEffect(int ownWallEffect) {
-		this.ownWallEffect = ownWallEffect;
 	}
 
 	@Override
@@ -71,17 +78,9 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		return this.enemyMineLvlEffect;
 	}
 
-	public void setEnemyMineLvlEffect(int enemyMineLvlEffect) {
-		this.enemyMineLvlEffect = enemyMineLvlEffect;
-	}
-
 	@Override
 	public int getOwnMineLvlEffect() {
 		return this.ownMineLvlEffect;
-	}
-
-	public void setOwnMineLvlEffect(int ownMineLvlEffect) {
-		this.ownMineLvlEffect = ownMineLvlEffect;
 	}
 
 	@Override
@@ -89,17 +88,9 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		return this.enemyDungeonLvlEffect;
 	}
 
-	public void setEnemyDungeonLvlEffect(int enemyDungeonLvlEffect) {
-		this.enemyDungeonLvlEffect = enemyDungeonLvlEffect;
-	}
-
 	@Override
 	public int getOwnDungeonLvlEffect() {
 		return this.ownDungeonLvlEffect;
-	}
-
-	public void setOwnDungeonLvlEffect(int ownDungeonLvlEffect) {
-		this.ownDungeonLvlEffect = ownDungeonLvlEffect;
 	}
 
 	@Override
@@ -107,17 +98,9 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		return this.enemyMagicLabLvlEffect;
 	}
 
-	public void setEnemyMagicLabLvlEffect(int enemyMagicLabLvlEffect) {
-		this.enemyMagicLabLvlEffect = enemyMagicLabLvlEffect;
-	}
-
 	@Override
 	public int getOwnMagicLabLvlEffect() {
 		return this.ownMagicLabLvlEffect;
-	}
-
-	public void setOwnMagicLabLvlEffect(int ownMagicLabLvlEffect) {
-		this.ownMagicLabLvlEffect = ownMagicLabLvlEffect;
 	}
 
 	@Override
@@ -125,17 +108,9 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		return this.enemyMonsterEffect;
 	}
 
-	public void setEnemyMonsterEffect(int enemyMonsterEffect) {
-		this.enemyMonsterEffect = enemyMonsterEffect;
-	}
-
 	@Override
 	public int getOwnMonsterEffect() {
 		return this.ownMonsterEffect;
-	}
-
-	public void setOwnMonsterEffect(int ownMonsterEffect) {
-		this.ownMonsterEffect = ownMonsterEffect;
 	}
 
 	@Override
@@ -143,17 +118,9 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		return this.enemyCrystalEffect;
 	}
 
-	public void setEnemyCrystalEffect(int enemyCrystalEffect) {
-		this.enemyCrystalEffect = enemyCrystalEffect;
-	}
-
 	@Override
 	public int getOwnCrystalEffect() {
 		return this.ownCrystalEffect;
-	}
-
-	public void setOwnCrystalEffect(int ownCrystalEffect) {
-		this.ownCrystalEffect = ownCrystalEffect;
 	}
 
 	@Override
@@ -161,17 +128,9 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		return this.enemyBrickEffect;
 	}
 
-	public void setEnemyBrickEffect(int enemyBrickEffect) {
-		this.enemyBrickEffect = enemyBrickEffect;
-	}
-
 	@Override
 	public int getOwnBrickEffect() {
 		return this.ownBrickEffect;
-	}
-
-	public void setOwnBrickEffect(int ownBrickEffect) {
-		this.ownBrickEffect = ownBrickEffect;
 	}
 
 	@Override
@@ -179,17 +138,9 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		return this.amountCardDraw;
 	}
 
-	public void setAmountCardDraw(int amountCardDraw) {
-		this.amountCardDraw = amountCardDraw;
-	}
-
 	@Override
 	public int getAmountCardDiscard() {
 		return this.amountCardDiscard;
-	}
-
-	public void setAmountCarddiscard(int amountCarddiscard) {
-		this.amountCardDiscard = amountCarddiscard;
 	}
 
 	@Override
@@ -197,17 +148,9 @@ public class SimpleCardActionImpl implements SimpleCardAction {
 		return this.playCards;
 	}
 
-	public void setPlayCards(boolean playCards) {
-		this.playCards = playCards;
-	}
-
 	@Override
 	public int getDamage() {
 		return this.damage;
-	}
-
-	public void setDamage(int damage) {
-		this.damage = damage;
 	}
 	
 

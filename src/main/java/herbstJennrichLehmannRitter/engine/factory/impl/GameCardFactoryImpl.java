@@ -4,7 +4,9 @@ import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Cards;
+import herbstJennrichLehmannRitter.engine.model.SimpleCardAction;
 import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
+import herbstJennrichLehmannRitter.engine.model.impl.SimpleCardActionImpl;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,9 +52,33 @@ public class GameCardFactoryImpl implements GameCardFactory {
 	
 	@Override
 	public Card createCard(String cardName) {
+		// we have to create a complete new instance
 		Card card = this.cards.get(cardName);
+		SimpleCardAction simpleCardAction = card.getSimpleCardAction();
+		
+		SimpleCardAction newSimpleCardAction = new SimpleCardActionImpl(
+				simpleCardAction.getEnemyTowerEffect(),
+				simpleCardAction.getOwnTowerEffect(), 
+				simpleCardAction.getEnemyWallEffect(),
+				simpleCardAction.getOwnWallEffect(),
+				simpleCardAction.getEnemyMineLvlEffect(),
+				simpleCardAction.getOwnMineLvlEffect(),
+				simpleCardAction.getEnemyDungeonLvlEffect(),
+				simpleCardAction.getOwnDungeonLvlEffect(),
+				simpleCardAction.getEnemyMagicLabLvlEffect(),
+				simpleCardAction.getOwnMagicLabLvlEffect(),
+				simpleCardAction.getEnemyMonsterEffect(),
+				simpleCardAction.getOwnMonsterEffect(),
+				simpleCardAction.getEnemyCrystalEffect(),
+				simpleCardAction.getOwnCrystalEffect(),
+				simpleCardAction.getEnemyBrickEffect(),
+				simpleCardAction.getOwnBrickEffect(),
+				simpleCardAction.getAmountCardDraw(),
+				simpleCardAction.getAmountCardDiscard(),
+				simpleCardAction.getPlayCards(),
+				simpleCardAction.getDamage());
 		return new CardImpl(card.getName(), card.getCardType(), card.getCostBrick(), card.getCostMonsters(),
-				card.getCostCrystal(), card.getSimpleCardAction(), card.getComplexCardAction());
+				card.getCostCrystal(), newSimpleCardAction, card.getComplexCardAction());
 	}
 
 	@Override
