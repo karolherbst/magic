@@ -1,9 +1,12 @@
 package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
+import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.ChangeableCard;
+import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.SimpleCardActionImpl;
 import herbstJennrichLehmannRitter.engine.model.xml.XmlCard;
 
@@ -63,6 +66,20 @@ public class CardTests {
 			fail(e.getLocalizedMessage());
 		}
 		
+	}
+	
+	@SuppressWarnings("static-method")
+	@Test
+	public void testCard2() {
+		ChangeableCard changeableCard = new XmlCard();
+		changeableCard.setName("changeableCard");
+		
+		Card card = new CardImpl(changeableCard.getName(), changeableCard.getCardType(), changeableCard.getCostBrick(),
+				changeableCard.getCostMonsters(), changeableCard.getCostCrystal(), changeableCard.getSimpleCardAction(),
+				changeableCard.getComplexCardAction());
+		
+		assertEquals(changeableCard.getName(), card.getName());
+		assertFalse(card == changeableCard);
 	}
 
 }
