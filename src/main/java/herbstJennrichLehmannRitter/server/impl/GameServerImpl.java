@@ -1,24 +1,27 @@
 package herbstJennrichLehmannRitter.server.impl;
 
+import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.service.GameService;
+import herbstJennrichLehmannRitter.server.GameServer;
+import herbstJennrichLehmannRitter.ui.UserInterface;
+
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
-import herbstJennrichLehmannRitter.engine.model.Card;
-import herbstJennrichLehmannRitter.engine.model.Data;
-import herbstJennrichLehmannRitter.engine.model.impl.DataImpl;
-import herbstJennrichLehmannRitter.server.GameServer;
-import herbstJennrichLehmannRitter.ui.UserInterface;
-
 public class GameServerImpl implements GameServer {
-	//TODO was bedeutet diese Warnung?
-	private Data data = new DataImpl();
+
 	private List<UserInterface> userInterfaces = new ArrayList<UserInterface>();
+	
+	private final GameService gameService;
+	
+	public GameServerImpl(GameService gameService) {
+		this.gameService = gameService;
+	}
 
 	@Override
 	public void start() {
-		// TODO Auto-generated method stub
-
+		this.gameService.start();
 	}
 
 	@Override
