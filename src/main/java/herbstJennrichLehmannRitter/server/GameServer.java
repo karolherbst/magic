@@ -1,5 +1,7 @@
 package herbstJennrichLehmannRitter.server;
 
+import java.rmi.RemoteException;
+
 import herbstJennrichLehmannRitter.engine.service.GameService;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
@@ -10,8 +12,8 @@ import herbstJennrichLehmannRitter.ui.UserInterface;
  */
 public interface GameServer extends GameService {
 	
-	public void register(UserInterface userInterface);
+	public void register(UserInterface userInterface) throws RemoteException;
 
-	public void unregister(UserInterface userInterface);
+	public void unregister(UserInterface userInterface) throws RemoteException;
 	
 }

@@ -48,7 +48,7 @@ public class PlayerImpl implements Player {
 	public void setDeck(Collection<Card> deck) {
 		this.deck = deck;
 	}
-
+	
 	@Override
 	public Collection<Card> getHandDeck() {
 		return this.handDeck;
@@ -56,6 +56,14 @@ public class PlayerImpl implements Player {
 
 	public void setHandDeck(Collection<Card> handDeck) {
 		this.handDeck = handDeck;
+	}
+	
+	public void addCardToHandDeck(Card card) {
+		this.handDeck.add(card);
+	}
+	
+	public void removeCardFromHandDeck(Card card) {
+		this.handDeck.remove(card);
 	}
 
 	@Override
@@ -65,6 +73,14 @@ public class PlayerImpl implements Player {
 
 	public void setCemeteryDeck(Collection<Card> cemeteryDeck) {
 		this.cemeteryDeck = cemeteryDeck;
+	}
+	
+	public void addCardToCemeteryDeck(Card card) {
+		this.cemeteryDeck.add(card);
+	}
+	
+	public void removeCardFromCemerteryDeck(Card card) {
+		this.cemeteryDeck.remove(card);
 	}
 
 	@Override
