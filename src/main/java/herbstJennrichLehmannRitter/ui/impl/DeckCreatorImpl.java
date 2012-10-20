@@ -29,5 +29,9 @@ public class DeckCreatorImpl implements DeckCreator {
 	public void removeCards(Collection<Card> cardsToRemove) {
 		this.cards.removeAll(cardsToRemove);
 	}
+	
+	public Collection<Card> getCards() {
+		return this.cards;
+	}
 
 }
