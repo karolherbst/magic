@@ -47,8 +47,7 @@ public class DeckCreatorTests {
 	@Test
 	public void testAddCardsToDeck() {
 		Card firstCard = this.gameCardFactory.createCard("Architektur");
-		// TODO Add a second Card and edit the Name here to make this test green
-		Card secondCard = new GameCardFactoryImpl().createCard("Karte");
+		Card secondCard = new GameCardFactoryImpl().createCard("Auge des Koloss");
 		
 		Collection<Card> cardArray = new ArrayList<Card>();
 		cardArray.add(firstCard);
@@ -80,8 +79,7 @@ public class DeckCreatorTests {
 	@Test
 	public void testRemoveCardsFromDeck() {
 		Card firstCard = this.gameCardFactory.createCard("Architektur");
-		// TODO Add a second Card and edit the Name here to make this test green
-		Card secondCard = new GameCardFactoryImpl().createCard("Karte");
+		Card secondCard = new GameCardFactoryImpl().createCard("Auge des Koloss");
 		
 		Collection<Card> cardArray = new ArrayList<Card>();
 		cardArray.add(firstCard);

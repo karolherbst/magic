@@ -9,4 +9,12 @@
     </SimpleCardAction>
     <CostBrick>15</CostBrick>
   </Card>
+  <Card>
+    <Name>Auge des Koloss</Name>
+    <CardType>Steinbruch</CardType>
+    <SimpleCardAction>
+      <OwnWallEffect>25</OwnWallEffect>
+    </SimpleCardAction>
+    <CostBrick>20</CostBrick>
+  </Card>
 </Cards>
