@@ -5,7 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.Card;
-import herbstJennrichLehmannRitter.engine.model.ChangeableCard;
 import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.SimpleCardActionImpl;
 import herbstJennrichLehmannRitter.engine.model.xml.XmlCard;
@@ -41,7 +40,7 @@ public class CardTests {
 	
 	@Test
 	public void testJaxBCard() {
-		ChangeableCard card = new XmlCard();
+		XmlCard card = new XmlCard();
 		card.setSimpleCardAction(new SimpleCardActionImpl());
 		card.setCardType(CardType.CARD_TYPE_DUNGEON);
 		card.setName("Karte");
@@ -55,7 +54,7 @@ public class CardTests {
 					"<Name>dahsjdhaks</Name><CardType>Steinbruch</CardType><CostBrick>2</CostBrick><CostCrystal>4</CostCrystal>" +
 					"<CostMonster>6</CostMonster></Card>";
 			StringReader stringReader = new StringReader(xmlTree);
-			ChangeableCard card2 = (ChangeableCard)unmarshaller.unmarshal(stringReader);
+			XmlCard card2 = (XmlCard)unmarshaller.unmarshal(stringReader);
 			
 			assertEquals(card2.getName(), "dahsjdhaks");
 			assertEquals(card2.getCostBrick(), 2);
@@ -71,15 +70,15 @@ public class CardTests {
 	@SuppressWarnings("static-method")
 	@Test
 	public void testCard2() {
-		ChangeableCard changeableCard = new XmlCard();
-		changeableCard.setName("changeableCard");
+		XmlCard xmlCard = new XmlCard();
+		xmlCard.setName("changeableCard");
 		
-		Card card = new CardImpl(changeableCard.getName(), changeableCard.getCardType(), changeableCard.getCostBrick(),
-				changeableCard.getCostMonsters(), changeableCard.getCostCrystal(), changeableCard.getSimpleCardAction(),
-				changeableCard.getComplexCardAction());
+		Card card = new CardImpl(xmlCard.getName(), xmlCard.getCardType(), xmlCard.getCostBrick(),
+				xmlCard.getCostMonsters(), xmlCard.getCostCrystal(), xmlCard.getSimpleCardAction(),
+				xmlCard.getComplexCardAction());
 		
-		assertEquals(changeableCard.getName(), card.getName());
-		assertFalse(card == changeableCard);
+		assertEquals(xmlCard.getName(), card.getName());
+		assertFalse(card == xmlCard);
 	}
 
 }

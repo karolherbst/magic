@@ -1,7 +1,7 @@
 package herbstJennrichLehmannRitter.engine.model.xml;
 
 import herbstJennrichLehmannRitter.engine.enums.CardType;
-import herbstJennrichLehmannRitter.engine.model.ChangeableCard;
+import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.ComplexCardAction;
 import herbstJennrichLehmannRitter.engine.model.SimpleCardAction;
 import herbstJennrichLehmannRitter.engine.model.impl.SimpleCardActionImpl;
@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement(name="Card")
-public class XmlCard implements ChangeableCard {
+public class XmlCard implements Card {
 
 	private String name;
 	private CardType cardType;
@@ -21,7 +21,6 @@ public class XmlCard implements ChangeableCard {
 	private SimpleCardAction simpleCardAction;
 	private ComplexCardAction complexCardAction;
 	
-	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -32,7 +31,6 @@ public class XmlCard implements ChangeableCard {
 		return this.name;
 	}
 	
-	@Override
 	public void setCardType(CardType cardType) {
 		this.cardType = cardType;
 	}
@@ -43,7 +41,6 @@ public class XmlCard implements ChangeableCard {
 		return this.cardType;
 	}
 
-	@Override
 	public void setCostBrick(int costBrick) {
 		this.costBrick = costBrick;
 	}
@@ -54,7 +51,6 @@ public class XmlCard implements ChangeableCard {
 		return this.costBrick;
 	}
 
-	@Override
 	public void setCostMonsters(int costMonsters) {
 		this.costMonster = costMonsters;
 	}
@@ -65,7 +61,6 @@ public class XmlCard implements ChangeableCard {
 		return this.costMonster;
 	}
 
-	@Override
 	public void setCostCrystal(int costCrystal) {
 		this.costCrystal = costCrystal;
 	}
@@ -76,7 +71,6 @@ public class XmlCard implements ChangeableCard {
 		return this.costCrystal;
 	}
 
-	@Override
 	public void setSimpleCardAction(SimpleCardAction simpleCardAction) {
 		this.simpleCardAction = simpleCardAction;
 	}
@@ -87,7 +81,6 @@ public class XmlCard implements ChangeableCard {
 		return this.simpleCardAction;
 	}
 
-	@Override
 	public void setComplexCardAction(ComplexCardAction complexCardAction) {
 		this.complexCardAction = complexCardAction;
 	}
