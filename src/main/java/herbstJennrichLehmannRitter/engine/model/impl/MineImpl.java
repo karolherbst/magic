@@ -11,7 +11,7 @@ public class MineImpl extends AbstractResourceBuilding {
 	
 	@Override
 	public String getName() {
-		return "Verlies";
+		return "Steinbruch";
 	}
 
 }
