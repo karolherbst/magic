@@ -58,14 +58,6 @@ public class PlayerImpl implements Player {
 		this.handDeck = handDeck;
 	}
 	
-	public void addCardToHandDeck(Card card) {
-		this.handDeck.add(card);
-	}
-	
-	public void removeCardFromHandDeck(Card card) {
-		this.handDeck.remove(card);
-	}
-
 	@Override
 	public Collection<Card> getCemeteryDeck() {
 		return this.cemeteryDeck;
@@ -75,14 +67,6 @@ public class PlayerImpl implements Player {
 		this.cemeteryDeck = cemeteryDeck;
 	}
 	
-	public void addCardToCemeteryDeck(Card card) {
-		this.cemeteryDeck.add(card);
-	}
-	
-	public void removeCardFromCemerteryDeck(Card card) {
-		this.cemeteryDeck.remove(card);
-	}
-
 	@Override
 	public ResourceBuilding getDungeon() {
 		return this.dungeon;

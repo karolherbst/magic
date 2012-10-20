@@ -1,6 +1,7 @@
 package herbstJennrichLehmannRitter.server.impl;
 
 import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.service.GameService;
 import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.ui.UserInterface;
@@ -25,37 +26,22 @@ public class GameServerImpl implements GameServer {
 	}
 
 	@Override
-	public void playCard(Card card) {
-		// TODO Auto-generated method stub
-
+	public void playCard(Player player, Card card) {
+		this.gameService.playCard(player, card);
 	}
 
 	@Override
-	public void discardCard(Card card) {
-		// TODO: HILFE - ich komme hier nicht weiter... (siehe mehrzeiliges Kommentar)
-		/**
-		 * Ich (Sebastian) möchte die Karte vom handDeck entfernen und auf das cemeteryDeck packen.
-		 * Dazu habe ich in der PlayerImpl 2 Methode: removeCardFromHandDeck und addCardToCemeteryDeck geschrieben.
-		 * 
-		 * Da ich aber über this.data nur auf das Interface von Player zugreifen kann (in DataImpl steht
-		 * private Player ownPlayer; und private Player enemyPlayer;), kann ich nicht auf die Methode zugreifen.
-		 * Ich würde nun in der DataImpl die obigen Zeile auf private PlayerImpl ändern. 
-		 * Kann ich das so einfach? Damit müsste ich im Interface Data das Package PlayerImpl importieren. Das 
-		 * finde ich irgendwie nicht schön. Gibt es eine andere, bessere und schänere Alternative? 
-	     */
-//		this.data.getOwnPlayer().removeCardFromHandDeck(card);
-//		this.data.getOwnPlayer().addCardToCemeteryDeck(card);
+	public void discardCard(Player player, Card card) {
+		this.gameService.discardCard(player,card);
 	}
 
 	@Override
 	public void getAllPossibleCards() {
-		// TODO Auto-generated method stub
-
+		this.gameService.getAllPossibleCards();
 	}
 
 	@Override
 	public synchronized void register(UserInterface userInterface) throws RemoteException {
-		// TODO Karol: Bitte hier mal drüberschauen - ist das so richtig?
 		if( userInterface != null ) {
 			this.userInterfaces.add(userInterface);
 		}
@@ -63,7 +49,6 @@ public class GameServerImpl implements GameServer {
 
 	@Override
 	public void unregister(UserInterface userInterface) throws RemoteException {
-		// TODO Karol: Bitte hier mal drüberschauen - ist das so richtig?
 		if( userInterface != null) {
 			this.userInterfaces.remove(userInterface);
 		}

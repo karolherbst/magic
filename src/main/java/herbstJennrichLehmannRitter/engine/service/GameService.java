@@ -1,6 +1,7 @@
 package herbstJennrichLehmannRitter.engine.service;
 
 import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.Player;
 
 /**
  * 
@@ -11,8 +12,8 @@ public interface GameService {
 	
 	public void start();
 
-	public void playCard(Card card);
-	public void discardCard(Card card);
+	public void playCard(Player player, Card card);
+	public void discardCard(Player player, Card card);
 
 	public void getAllPossibleCards();
 }
