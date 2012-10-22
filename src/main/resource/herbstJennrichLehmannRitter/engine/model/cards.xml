@@ -3,18 +3,18 @@
   <Card>
     <Name>Architektur</Name>
     <CardType>Steinbruch</CardType>
-    <SimpleCardAction>
-      <OwnWallEffect>8</OwnWallEffect>
-      <OwnTowerEffect>5</OwnTowerEffect>
-    </SimpleCardAction>
+    <OwnCardAction>
+      <WallEffect>8</WallEffect>
+      <TowerEffect>5</TowerEffect>
+    </OwnCardAction>
     <CostBrick>15</CostBrick>
   </Card>
   <Card>
     <Name>Auge des Koloss</Name>
     <CardType>Steinbruch</CardType>
-    <SimpleCardAction>
-      <OwnWallEffect>25</OwnWallEffect>
-    </SimpleCardAction>
+    <OwnCardAction>
+      <WallEffect>25</WallEffect>
+    </OwnCardAction>
     <CostBrick>20</CostBrick>
   </Card>
 </Cards>

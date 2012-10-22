@@ -1,6 +1,8 @@
 package herbstJennrichLehmannRitter.engine.model;
 
 import herbstJennrichLehmannRitter.engine.enums.CardType;
+import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
+import herbstJennrichLehmannRitter.engine.model.action.OtherActions;
 
 /**
  * 
@@ -15,6 +17,7 @@ public interface Card {
 	public int getCostBrick();
 	public int getCostMonsters();
 	public int getCostCrystal();
-	public SimpleCardAction getSimpleCardAction();
+	public OtherActions getOwnSimpleCardAction();
+	public OtherActions getEnemySimpleCardAction();
 	public ComplexCardAction getComplexCardAction();
 }

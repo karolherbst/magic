@@ -1,3 +1,4 @@
 xml.XmlCard
 xml.XmlCards
-xml.XmlSimpleCardAction
+xml.XmlCardAction
+xml.XmlOtherActions

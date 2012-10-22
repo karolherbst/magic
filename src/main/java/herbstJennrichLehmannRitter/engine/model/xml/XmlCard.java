@@ -2,8 +2,8 @@ package herbstJennrichLehmannRitter.engine.model.xml;
 
 import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.Card;
-import herbstJennrichLehmannRitter.engine.model.ComplexCardAction;
-import herbstJennrichLehmannRitter.engine.model.SimpleCardAction;
+import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
+import herbstJennrichLehmannRitter.engine.model.action.OtherActions;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -17,7 +17,8 @@ public class XmlCard implements Card {
 	private int costBrick;
 	private int costMonster;
 	private int costCrystal;
-	private SimpleCardAction simpleCardAction;
+	private OtherActions ownSimpleCardAction;
+	private OtherActions enemySimpleCardAction;
 	private ComplexCardAction complexCardAction;
 	
 	public void setName(String name) {
@@ -70,14 +71,24 @@ public class XmlCard implements Card {
 		return this.costCrystal;
 	}
 
-	public void setSimpleCardAction(SimpleCardAction simpleCardAction) {
-		this.simpleCardAction = simpleCardAction;
+	public void setOwnSimpleCardAction(OtherActions ownSimpleCardAction) {
+		this.ownSimpleCardAction = ownSimpleCardAction;
 	}
 
-	@XmlElement(name="SimpleCardAction", type=XmlSimpleCardAction.class, required=true)
+	@XmlElement(name="OwnCardAction", type=XmlOtherActions.class, required=true)
 	@Override
-	public SimpleCardAction getSimpleCardAction() {
-		return this.simpleCardAction;
+	public OtherActions getOwnSimpleCardAction() {
+		return this.ownSimpleCardAction;
+	}
+	
+	public void setEnemySimpleCardAction(OtherActions enemySimpleCardAction) {
+		this.enemySimpleCardAction = enemySimpleCardAction;
+	}
+
+	@XmlElement(name="EnemyCardAction", type=XmlOtherActions.class, required=true)
+	@Override
+	public OtherActions getEnemySimpleCardAction() {
+		return this.enemySimpleCardAction;
 	}
 
 	public void setComplexCardAction(ComplexCardAction complexCardAction) {

@@ -1,7 +1,7 @@
-package herbstJennrichLehmannRitter.engine.model.impl;
+package herbstJennrichLehmannRitter.engine.model.action.impl;
 
-import herbstJennrichLehmannRitter.engine.model.ComplexCardAction;
 import herbstJennrichLehmannRitter.engine.model.Player;
+import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
 public class ComplexCardActionImpl implements ComplexCardAction {
 

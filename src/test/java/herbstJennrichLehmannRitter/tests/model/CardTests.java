@@ -7,7 +7,7 @@ import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
 import herbstJennrichLehmannRitter.engine.model.xml.XmlCard;
-import herbstJennrichLehmannRitter.engine.model.xml.XmlSimpleCardAction;
+import herbstJennrichLehmannRitter.engine.model.xml.XmlOtherActions;
 
 import java.io.StringReader;
 
@@ -41,7 +41,8 @@ public class CardTests {
 	@Test
 	public void testJaxBCard() {
 		XmlCard card = new XmlCard();
-		card.setSimpleCardAction(new XmlSimpleCardAction());
+		card.setOwnSimpleCardAction(new XmlOtherActions());
+		card.setEnemySimpleCardAction(new XmlOtherActions());
 		card.setCardType(CardType.CARD_TYPE_DUNGEON);
 		card.setName("Karte");
 		
@@ -73,9 +74,7 @@ public class CardTests {
 		XmlCard xmlCard = new XmlCard();
 		xmlCard.setName("changeableCard");
 		
-		Card card = new CardImpl(xmlCard.getName(), xmlCard.getCardType(), xmlCard.getCostBrick(),
-				xmlCard.getCostMonsters(), xmlCard.getCostCrystal(), xmlCard.getSimpleCardAction(),
-				xmlCard.getComplexCardAction());
+		Card card = new CardImpl(xmlCard);
 		
 		assertEquals(xmlCard.getName(), card.getName());
 		assertFalse(card == xmlCard);

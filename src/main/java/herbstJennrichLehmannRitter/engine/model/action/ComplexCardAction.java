@@ -1,4 +1,6 @@
-package herbstJennrichLehmannRitter.engine.model;
+package herbstJennrichLehmannRitter.engine.model.action;
+
+import herbstJennrichLehmannRitter.engine.model.Player;
 
 
 /**
