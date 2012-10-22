@@ -57,8 +57,9 @@ public class CLIUserInterface implements UserInterface {
 			System.out.println("These commands are available:");
 			System.out.println("quit - will quit this application");
 			System.out.println("start [local] - will start a new local game");
+			return true;
 		} else if (command.startsWith("start")) {
-			
+			return true;
 		}
 		return false;
 	}
