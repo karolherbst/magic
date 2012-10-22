@@ -87,13 +87,12 @@ public class CardTests {
 	@Test
 	public void testAllCards() {
 		try {
-			JAXBContext jaxbContext = JAXBContext.newInstance("herbstJennrichLehmannRitter.engine.model");
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+			Unmarshaller unmarshaller = this.jaxbContext.createUnmarshaller();
 			InputStream is = this.getClass().getResourceAsStream("/herbstJennrichLehmannRitter/engine/model/cards.xml");
 			Cards xmlCards = (Cards)unmarshaller.unmarshal(is);
 			is.close();
 			
-			Marshaller marshaller = jaxbContext.createMarshaller();
+			Marshaller marshaller = this.jaxbContext.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			marshaller.marshal(xmlCards, System.out);
 			
