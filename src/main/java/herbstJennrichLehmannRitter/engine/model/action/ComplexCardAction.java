@@ -7,6 +7,8 @@ import herbstJennrichLehmannRitter.engine.model.Player;
  * 
  * Interface für alle Karten, die über die Ressourcenverteilung, Gebäudeaktionen, 
  * Schaden und Kartenzuteilung hinausgehen 
+ * 
+ * Steinbruch-Karten: Barracke, Demolieren
  *
  */
 public interface ComplexCardAction {

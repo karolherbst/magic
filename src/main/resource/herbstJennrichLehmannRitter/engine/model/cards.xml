@@ -24,6 +24,39 @@
     </OwnResourceAction>
   </Card>
   <Card name="Barracke">
-    
+    <CardType>Steinbruch</CardType>
+    <CostBrick>10</CostBrick>
+    <OwnResourceAction>
+      <MonsterEffect>6</MonsterEffect>
+      <WallEffect>6</WallEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Demolieren">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>16</CostBrick>
+  </Card>
+  <Card name="Drachenherz">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>24</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>20</WallEffect>
+      <TowerEffect>8</TowerEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Einfache Mauer">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>2</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>3</WallEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Erdbeben">
+    <CardType>Steinbruch</CardType>
+    <OwnResourceAction>
+      <MineEffect>-1</MineEffect>
+    </OwnResourceAction>
+    <EnemyResourceAction>
+      <MineEffect>-1</MineEffect>
+    </EnemyResourceAction>
   </Card>
 </Cards>
