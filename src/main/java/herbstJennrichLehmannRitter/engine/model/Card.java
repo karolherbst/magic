@@ -19,7 +19,7 @@ public interface Card {
 	public int getCostMonsters();
 	public int getCostCrystal();
 	public CardAction getCardAction();
-	public ResourceAction getOwnSimpleCardAction();
-	public ResourceAction getEnemySimpleCardAction();
+	public ResourceAction getOwnResourceAction();
+	public ResourceAction getEnemyResourceAction();
 	public ComplexCardAction getComplexCardAction();
 }

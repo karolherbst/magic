@@ -17,8 +17,8 @@ public class CardImpl implements Card {
 	private final int costMonsters;
 	private final int costCrystal;
 	private final CardAction cardAction;
-	private final ResourceAction ownOtherActions;
-	private final ResourceAction enemyOtherActions;
+	private final ResourceAction ownResourceActions;
+	private final ResourceAction enemyResourceActions;
 	private final ComplexCardAction complexCardAction;
 	
 	public CardImpl(Card card) {
@@ -33,8 +33,8 @@ public class CardImpl implements Card {
 		this.costMonsters = card.getCostMonsters();
 		this.costCrystal = card.getCostCrystal();
 		this.cardAction = new CardActionImpl(card.getCardAction());
-		this.ownOtherActions = new ResourceActionImpl(card.getOwnSimpleCardAction());
-		this.enemyOtherActions = new ResourceActionImpl(card.getEnemySimpleCardAction());
+		this.ownResourceActions = new ResourceActionImpl(card.getOwnResourceAction());
+		this.enemyResourceActions = new ResourceActionImpl(card.getEnemyResourceAction());
 		this.complexCardAction = card.getComplexCardAction();
 	}
 	
@@ -64,13 +64,13 @@ public class CardImpl implements Card {
 	}
 
 	@Override
-	public ResourceAction getOwnSimpleCardAction() {
-		return this.ownOtherActions;
+	public ResourceAction getOwnResourceAction() {
+		return this.ownResourceActions;
 	}
 	
 	@Override
-	public ResourceAction getEnemySimpleCardAction() {
-		return this.enemyOtherActions;
+	public ResourceAction getEnemyResourceAction() {
+		return this.enemyResourceActions;
 	}
 
 	@Override

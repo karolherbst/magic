@@ -41,7 +41,7 @@ public class CardTests {
 	@Test
 	public void testJaxBCard() {
 		XmlCard card = new XmlCard();
-		card.setOwnSimpleCardAction(new XmlResourceAction());
+		card.setOwnResourceAction(new XmlResourceAction());
 		card.setEnemySimpleCardAction(new XmlResourceAction());
 		card.setCardType(CardType.CARD_TYPE_DUNGEON);
 		card.setName("Karte");

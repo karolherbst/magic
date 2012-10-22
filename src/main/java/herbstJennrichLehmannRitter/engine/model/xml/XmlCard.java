@@ -21,8 +21,8 @@ public class XmlCard implements Card {
 	private int costMonster;
 	private int costCrystal;
 	private CardAction cardAction;
-	private ResourceAction ownSimpleCardAction;
-	private ResourceAction enemySimpleCardAction;
+	private ResourceAction ownResourceAction;
+	private ResourceAction enemyResourceAction;
 	private ComplexCardAction complexCardAction;
 	
 	public void setName(String name) {
@@ -76,24 +76,24 @@ public class XmlCard implements Card {
 		return this.costCrystal;
 	}
 
-	public void setOwnSimpleCardAction(ResourceAction ownSimpleCardAction) {
-		this.ownSimpleCardAction = ownSimpleCardAction;
+	public void setOwnResourceAction(ResourceAction ownResourceAction) {
+		this.ownResourceAction = ownResourceAction;
 	}
 
-	@XmlElement(name="OwnCardAction", type=XmlResourceAction.class)
+	@XmlElement(name="OwnResourceAction", type=XmlResourceAction.class)
 	@Override
-	public ResourceAction getOwnSimpleCardAction() {
-		return this.ownSimpleCardAction;
+	public ResourceAction getOwnResourceAction() {
+		return this.ownResourceAction;
 	}
 	
-	public void setEnemySimpleCardAction(ResourceAction enemySimpleCardAction) {
-		this.enemySimpleCardAction = enemySimpleCardAction;
+	public void setEnemySimpleCardAction(ResourceAction enemyResourceAction) {
+		this.enemyResourceAction = enemyResourceAction;
 	}
 
-	@XmlElement(name="EnemyCardAction", type=XmlResourceAction.class)
+	@XmlElement(name="EnemyResourceAction", type=XmlResourceAction.class)
 	@Override
-	public ResourceAction getEnemySimpleCardAction() {
-		return this.enemySimpleCardAction;
+	public ResourceAction getEnemyResourceAction() {
+		return this.enemyResourceAction;
 	}
 
 	public void setComplexCardAction(ComplexCardAction complexCardAction) {

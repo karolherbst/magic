@@ -2,21 +2,20 @@
 <Cards>
   <Card name="Architektur">
     <CardType>Steinbruch</CardType>
-    <OwnCardAction>
+    <OwnResourceAction>
       <WallEffect>8</WallEffect>
       <TowerEffect>5</TowerEffect>
-    </OwnCardAction>
+    </OwnResourceAction>
     <CostBrick>15</CostBrick>
   </Card>
   <Card name="Auge des Koloss">
     <CardType>Steinbruch</CardType>
-    <OwnCardAction>
+    <OwnResourceAction>
       <WallEffect>25</WallEffect>
-    </OwnCardAction>
+    </OwnResourceAction>
     <CostBrick>20</CostBrick>
   </Card>
   <Card name="Ausbeutung">
     <CardType>Steinbruch</CardType>
-    
   </Card>
 </Cards>
