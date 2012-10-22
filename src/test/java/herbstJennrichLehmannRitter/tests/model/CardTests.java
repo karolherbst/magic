@@ -5,10 +5,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.Cards;
 import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
 import herbstJennrichLehmannRitter.engine.model.xml.XmlCard;
 import herbstJennrichLehmannRitter.engine.model.xml.XmlResourceAction;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringReader;
 
 import javax.xml.bind.JAXBContext;
@@ -79,6 +82,29 @@ public class CardTests {
 		
 		assertEquals(xmlCard.getName(), card.getName());
 		assertFalse(card == xmlCard);
+	}
+	
+	@Test
+	public void testAllCards() {
+		try {
+			JAXBContext jaxbContext = JAXBContext.newInstance("herbstJennrichLehmannRitter.engine.model");
+			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+			InputStream is = this.getClass().getResourceAsStream("/herbstJennrichLehmannRitter/engine/model/cards.xml");
+			Cards xmlCards = (Cards)unmarshaller.unmarshal(is);
+			is.close();
+			
+			Marshaller marshaller = jaxbContext.createMarshaller();
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			marshaller.marshal(xmlCards, System.out);
+			
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			fail(e.getLocalizedMessage());
+		} catch (IOException e) {
+			e.printStackTrace();
+			fail(e.getLocalizedMessage());
+		}
+		
 	}
 
 }

@@ -17,5 +17,13 @@
   </Card>
   <Card name="Ausbeutung">
     <CardType>Steinbruch</CardType>
+    <OwnResourceAction>
+      <MineEffect>-1</MineEffect>
+      <WallEffect>10</WallEffect>
+      <CrystalEffect>5</CrystalEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Barracke">
+    
   </Card>
 </Cards>

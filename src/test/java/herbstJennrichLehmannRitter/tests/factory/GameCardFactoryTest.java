@@ -8,6 +8,13 @@ import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.xml.XmlCards;
+
+import java.util.Collection;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -35,5 +42,4 @@ public class GameCardFactoryTest {
 		assertEquals(card.getOwnResourceAction().getTowerEffect(), 5);
 		assertEquals(card.getCostBrick(), 15);
 	}
-
 }
