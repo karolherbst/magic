@@ -86,7 +86,7 @@ public class XmlCard implements Card {
 		return this.ownResourceAction;
 	}
 	
-	public void setEnemySimpleCardAction(ResourceAction enemyResourceAction) {
+	public void setEnemyResourceAction(ResourceAction enemyResourceAction) {
 		this.enemyResourceAction = enemyResourceAction;
 	}
 
