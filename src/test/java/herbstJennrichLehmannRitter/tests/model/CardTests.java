@@ -7,7 +7,7 @@ import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
 import herbstJennrichLehmannRitter.engine.model.xml.XmlCard;
-import herbstJennrichLehmannRitter.engine.model.xml.XmlOtherActions;
+import herbstJennrichLehmannRitter.engine.model.xml.XmlResourceAction;
 
 import java.io.StringReader;
 
@@ -41,8 +41,8 @@ public class CardTests {
 	@Test
 	public void testJaxBCard() {
 		XmlCard card = new XmlCard();
-		card.setOwnSimpleCardAction(new XmlOtherActions());
-		card.setEnemySimpleCardAction(new XmlOtherActions());
+		card.setOwnSimpleCardAction(new XmlResourceAction());
+		card.setEnemySimpleCardAction(new XmlResourceAction());
 		card.setCardType(CardType.CARD_TYPE_DUNGEON);
 		card.setName("Karte");
 		

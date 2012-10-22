@@ -2,9 +2,9 @@ package herbstJennrichLehmannRitter.engine.model.xml;
 
 import javax.xml.bind.annotation.XmlElement;
 
-import herbstJennrichLehmannRitter.engine.model.action.OtherActions;
+import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
 
-public class XmlOtherActions implements OtherActions {
+public class XmlResourceAction implements ResourceAction {
 
 	private int towerEffect;
 	private int wallEffect;

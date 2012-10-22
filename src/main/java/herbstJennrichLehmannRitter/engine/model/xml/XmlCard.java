@@ -3,7 +3,7 @@ package herbstJennrichLehmannRitter.engine.model.xml;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
-import herbstJennrichLehmannRitter.engine.model.action.OtherActions;
+import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -18,8 +18,8 @@ public class XmlCard implements Card {
 	private int costBrick;
 	private int costMonster;
 	private int costCrystal;
-	private OtherActions ownSimpleCardAction;
-	private OtherActions enemySimpleCardAction;
+	private ResourceAction ownSimpleCardAction;
+	private ResourceAction enemySimpleCardAction;
 	private ComplexCardAction complexCardAction;
 	
 	public void setName(String name) {
@@ -72,23 +72,23 @@ public class XmlCard implements Card {
 		return this.costCrystal;
 	}
 
-	public void setOwnSimpleCardAction(OtherActions ownSimpleCardAction) {
+	public void setOwnSimpleCardAction(ResourceAction ownSimpleCardAction) {
 		this.ownSimpleCardAction = ownSimpleCardAction;
 	}
 
-	@XmlElement(name="OwnCardAction", type=XmlOtherActions.class, required=true)
+	@XmlElement(name="OwnCardAction", type=XmlResourceAction.class, required=true)
 	@Override
-	public OtherActions getOwnSimpleCardAction() {
+	public ResourceAction getOwnSimpleCardAction() {
 		return this.ownSimpleCardAction;
 	}
 	
-	public void setEnemySimpleCardAction(OtherActions enemySimpleCardAction) {
+	public void setEnemySimpleCardAction(ResourceAction enemySimpleCardAction) {
 		this.enemySimpleCardAction = enemySimpleCardAction;
 	}
 
-	@XmlElement(name="EnemyCardAction", type=XmlOtherActions.class, required=true)
+	@XmlElement(name="EnemyCardAction", type=XmlResourceAction.class, required=true)
 	@Override
-	public OtherActions getEnemySimpleCardAction() {
+	public ResourceAction getEnemySimpleCardAction() {
 		return this.enemySimpleCardAction;
 	}
 

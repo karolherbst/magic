@@ -10,7 +10,7 @@ package herbstJennrichLehmannRitter.engine.model.action;
  *  hinausgehen
  *
  */
-public interface OtherActions {
+public interface ResourceAction {
 	
 	public int getTowerEffect();
 	public int getWallEffect();

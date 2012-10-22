@@ -4,8 +4,8 @@ import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
-import herbstJennrichLehmannRitter.engine.model.action.OtherActions;
-import herbstJennrichLehmannRitter.engine.model.action.impl.OtherActionsImpl;
+import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
+import herbstJennrichLehmannRitter.engine.model.action.impl.ResourceActionImpl;
 
 public class CardImpl implements Card {
 
@@ -14,8 +14,8 @@ public class CardImpl implements Card {
 	private final int costBrick;
 	private final int costMonsters;
 	private final int costCrystal;
-	private final OtherActions ownOtherActions;
-	private final OtherActions enemyOtherActions;
+	private final ResourceAction ownOtherActions;
+	private final ResourceAction enemyOtherActions;
 	private final ComplexCardAction complexCardAction;
 	
 	public CardImpl(Card card) {
@@ -29,8 +29,8 @@ public class CardImpl implements Card {
 		this.costBrick = card.getCostBrick();
 		this.costMonsters = card.getCostMonsters();
 		this.costCrystal = card.getCostCrystal();
-		this.ownOtherActions = new OtherActionsImpl(card.getOwnSimpleCardAction());
-		this.enemyOtherActions = new OtherActionsImpl(card.getEnemySimpleCardAction());
+		this.ownOtherActions = new ResourceActionImpl(card.getOwnSimpleCardAction());
+		this.enemyOtherActions = new ResourceActionImpl(card.getEnemySimpleCardAction());
 		this.complexCardAction = card.getComplexCardAction();
 	}
 	
@@ -60,12 +60,12 @@ public class CardImpl implements Card {
 	}
 
 	@Override
-	public OtherActions getOwnSimpleCardAction() {
+	public ResourceAction getOwnSimpleCardAction() {
 		return this.ownOtherActions;
 	}
 	
 	@Override
-	public OtherActions getEnemySimpleCardAction() {
+	public ResourceAction getEnemySimpleCardAction() {
 		return this.enemyOtherActions;
 	}
 

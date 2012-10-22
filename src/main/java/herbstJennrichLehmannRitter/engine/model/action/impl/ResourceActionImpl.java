@@ -1,8 +1,8 @@
 package herbstJennrichLehmannRitter.engine.model.action.impl;
 
-import herbstJennrichLehmannRitter.engine.model.action.OtherActions;
+import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
 
-public class OtherActionsImpl implements OtherActions {
+public class ResourceActionImpl implements ResourceAction {
 
 	private final int towerEffect;
 	private final int wallEffect;
@@ -13,7 +13,7 @@ public class OtherActionsImpl implements OtherActions {
 	private final int crystalEffect;
 	private final int brickEffect;
 	
-	public OtherActionsImpl(OtherActions simpleCardAction) {
+	public ResourceActionImpl(ResourceAction simpleCardAction) {
 		if (simpleCardAction == null) {
 			this.towerEffect = 0;
 			this.wallEffect = 0;
