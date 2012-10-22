@@ -12,8 +12,8 @@ import herbstJennrichLehmannRitter.ui.UserInterface;
  */
 public interface GameServer extends GameService {
 	
-	public void register(UserInterface userInterface) throws RemoteException;
+	public void register(UserInterface userInterface);
 
-	public void unregister(UserInterface userInterface) throws RemoteException;
+	public void unregister(UserInterface userInterface);
 	
 }

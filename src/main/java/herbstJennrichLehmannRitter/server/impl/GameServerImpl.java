@@ -41,14 +41,14 @@ public class GameServerImpl implements GameServer {
 	}
 
 	@Override
-	public synchronized void register(UserInterface userInterface) throws RemoteException {
+	public synchronized void register(UserInterface userInterface) {
 		if( userInterface != null ) {
 			this.userInterfaces.add(userInterface);
 		}
 	}
 
 	@Override
-	public void unregister(UserInterface userInterface) throws RemoteException {
+	public void unregister(UserInterface userInterface) {
 		if( userInterface != null) {
 			this.userInterfaces.remove(userInterface);
 		}
