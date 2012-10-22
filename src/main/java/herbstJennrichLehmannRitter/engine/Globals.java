@@ -2,16 +2,23 @@ package herbstJennrichLehmannRitter.engine;
 
 import herbstJennrichLehmannRitter.engine.controller.GameEngineController;
 import herbstJennrichLehmannRitter.engine.controller.impl.GameEngineControllerImpl;
-import herbstJennrichLehmannRitter.engine.service.GameService;
+import herbstJennrichLehmannRitter.server.GameServer;
 
 public final class Globals {
 	
 	private static GameEngineController gameEngineController;
-	private static GameService gameService;
-	private static Thread gameEngineThread;
+	private static boolean started = false;
 	
-	static public void buildUpEngine() {
-		new GameEngineControllerImpl();
+	private static void buildUpEngine() {
+		gameEngineController = new GameEngineControllerImpl();
+		started = true;
+	}
+	
+	public static GameServer getGameServer() {
+		if (!started) {
+			buildUpEngine();
+		}
+		return gameEngineController.getGameServer();
 	}
 	
 }

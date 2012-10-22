@@ -10,7 +10,13 @@ import java.io.InputStreamReader;
 
 public class CLIUserInterface implements UserInterface {
 
+	private enum CLIState {
+		MAINMENU,
+		LOCALGAME
+	}
+	
 	private Thread eventLoopThread;
+	private CLIState cliState = CLIState.MAINMENU;
 	
 	public CLIUserInterface() {
 		startEventLoop();
@@ -49,17 +55,37 @@ public class CLIUserInterface implements UserInterface {
 		}
 	}
 	
-	private static boolean handleCommand(String command) {
-		if (command.startsWith("quit")) {
-			Thread.currentThread().interrupt();
-			return true;
-		} else if (command.startsWith("help")) {
-			System.out.println("These commands are available:");
-			System.out.println("quit - will quit this application");
-			System.out.println("start [local] - will start a new local game");
-			return true;
-		} else if (command.startsWith("start")) {
-			return true;
+	private boolean handleCommand(String command) {
+		switch (this.cliState) {
+		case MAINMENU:
+			if (command.startsWith("quit")) {
+				Thread.currentThread().interrupt();
+				return true;
+			} else if (command.startsWith("help")) {
+				System.out.println("These commands are available:");
+				System.out.println("quit - will quit this application");
+				System.out.println("start [local] - will start a new local game");
+				return true;
+			} else if (command.startsWith("start")) {
+				if (command.startsWith("start local")) {
+					System.out.println("start local game against KI");
+					this.cliState = CLIState.LOCALGAME;
+				} else {
+					return false;
+				}
+				return true;
+			}
+			break;
+		case LOCALGAME:
+			if (command.startsWith("quit")) {
+				this.cliState = CLIState.MAINMENU;
+				System.out.println("returned back to main menu");
+				return true;
+			}
+			break;
+		default:
+			// undefined state
+			return false;
 		}
 		return false;
 	}
