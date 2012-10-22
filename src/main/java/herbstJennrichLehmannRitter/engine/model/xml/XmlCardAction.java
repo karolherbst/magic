@@ -1,5 +1,7 @@
 package herbstJennrichLehmannRitter.engine.model.xml;
 
+import javax.xml.bind.annotation.XmlElement;
+
 import herbstJennrichLehmannRitter.engine.model.action.CardAction;
 
 public class XmlCardAction implements CardAction {
@@ -10,6 +12,7 @@ public class XmlCardAction implements CardAction {
 	private boolean playCards;
 	private int damage;
 	
+	@XmlElement(name="DrawCard")
 	@Override
 	public int getAmountCardDraw() {
 		return this.amountCardDraw;
@@ -19,6 +22,7 @@ public class XmlCardAction implements CardAction {
 		this.amountCardDraw = amountCardDraw;
 	}
 
+	@XmlElement(name="OwnDiscardCard")
 	@Override
 	public int getOwnAmountCardDiscard() {
 		return this.ownAmountCardDiscard;
@@ -28,6 +32,7 @@ public class XmlCardAction implements CardAction {
 		this.ownAmountCardDiscard = ownAmountCardDiscard;
 	}
 	
+	@XmlElement(name="EnemyDiscardCard")
 	@Override
 	public int getEnemyAmountCardDiscard() {
 		return this.enemyAmountCardDiscard;
@@ -37,6 +42,7 @@ public class XmlCardAction implements CardAction {
 		this.enemyAmountCardDiscard = enemyAmountCardDiscard;
 	}
 
+	@XmlElement(name="PlayAnotherCard")
 	@Override
 	public boolean getPlayCards() {
 		return this.playCards;
@@ -46,6 +52,7 @@ public class XmlCardAction implements CardAction {
 		this.playCards = playCards;
 	}
 
+	@XmlElement(name="Damage")
 	@Override
 	public int getDamage() {
 		return this.damage;

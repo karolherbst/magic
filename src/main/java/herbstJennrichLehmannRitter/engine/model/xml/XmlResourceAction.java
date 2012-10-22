@@ -35,6 +35,7 @@ public class XmlResourceAction implements ResourceAction {
 		this.wallEffect = wallEffect;
 	}
 
+	@XmlElement(name="MineEffect")
 	@Override
 	public int getMineLvlEffect() {
 		return this.mineLvlEffect;
@@ -44,6 +45,7 @@ public class XmlResourceAction implements ResourceAction {
 		this.mineLvlEffect = mineLvlEffect;
 	}
 
+	@XmlElement(name="Dungeon")
 	@Override
 	public int getDungeonLvlEffect() {
 		return this.dungeonLvlEffect;
@@ -53,6 +55,7 @@ public class XmlResourceAction implements ResourceAction {
 		this.dungeonLvlEffect = dungeonLvlEffect;
 	}
 
+	@XmlElement(name="MagicLabEffect")
 	@Override
 	public int getMagicLabLvlEffect() {
 		return this.magicLabLvlEffect;
@@ -62,6 +65,7 @@ public class XmlResourceAction implements ResourceAction {
 		this.magicLabLvlEffect = magicLabLvlEffect;
 	}
 
+	@XmlElement(name="MonsterEffect")
 	@Override
 	public int getMonsterEffect() {
 		return this.monsterEffect;
@@ -71,6 +75,7 @@ public class XmlResourceAction implements ResourceAction {
 		this.monsterEffect = monsterEffect;
 	}
 
+	@XmlElement(name="CrystalEffect")
 	@Override
 	public int getCrystalEffect() {
 		return this.crystalEffect;
@@ -80,6 +85,7 @@ public class XmlResourceAction implements ResourceAction {
 		this.crystalEffect = crystalEffect;
 	}
 
+	@XmlElement(name="BrickEffect")
 	@Override
 	public int getBrickEffect() {
 		return this.brickEffect;
