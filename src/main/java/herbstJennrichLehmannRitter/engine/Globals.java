@@ -10,8 +10,8 @@ public final class Globals {
 	private static GameService gameService;
 	private static Thread gameEngineThread;
 	
-	static {
-		gameEngineController = new GameEngineControllerImpl();
+	static public void buildUpEngine() {
+		new GameEngineControllerImpl();
 	}
 	
 }

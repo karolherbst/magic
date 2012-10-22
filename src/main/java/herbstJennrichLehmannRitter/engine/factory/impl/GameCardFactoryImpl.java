@@ -4,8 +4,6 @@ import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Cards;
-import herbstJennrichLehmannRitter.engine.model.action.OtherActions;
-import herbstJennrichLehmannRitter.engine.model.action.impl.OtherActionsImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
 
 import java.io.IOException;

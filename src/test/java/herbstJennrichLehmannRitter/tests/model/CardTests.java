@@ -48,6 +48,7 @@ public class CardTests {
 		
 		try {
 			Marshaller marshaller = this.jaxbContext.createMarshaller();
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			marshaller.marshal(card, System.out);
 			
 			Unmarshaller unmarshaller = this.jaxbContext.createUnmarshaller();
