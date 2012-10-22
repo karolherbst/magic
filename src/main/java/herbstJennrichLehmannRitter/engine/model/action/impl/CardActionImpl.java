@@ -11,11 +11,19 @@ public class CardActionImpl implements CardAction {
 	private final int damage;
 	
 	public CardActionImpl(CardAction cardAction) {
-		this.amountCardDraw = cardAction.getAmountCardDraw();
-		this.ownAmountCardDiscard = cardAction.getOwnAmountCardDiscard();
-		this.enemyAmountCardDiscard = cardAction.getEnemyAmountCardDiscard();
-		this.playCards = cardAction.getPlayCards();
-		this.damage = cardAction.getDamage();
+		if (cardAction == null) {
+			this.amountCardDraw = 0;
+			this.ownAmountCardDiscard = 0;
+			this.enemyAmountCardDiscard = 0;
+			this.playCards = false;
+			this.damage = 0;
+		} else {
+			this.amountCardDraw = cardAction.getAmountCardDraw();
+			this.ownAmountCardDiscard = cardAction.getOwnAmountCardDiscard();
+			this.enemyAmountCardDiscard = cardAction.getEnemyAmountCardDiscard();
+			this.playCards = cardAction.getPlayCards();
+			this.damage = cardAction.getDamage();
+		}
 	}
 	
 	@Override

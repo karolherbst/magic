@@ -2,11 +2,13 @@ package herbstJennrichLehmannRitter.engine.model.xml;
 
 import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.action.CardAction;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -18,6 +20,7 @@ public class XmlCard implements Card {
 	private int costBrick;
 	private int costMonster;
 	private int costCrystal;
+	private CardAction cardAction;
 	private ResourceAction ownSimpleCardAction;
 	private ResourceAction enemySimpleCardAction;
 	private ComplexCardAction complexCardAction;
@@ -26,6 +29,7 @@ public class XmlCard implements Card {
 		this.name = name;
 	}
 
+	@XmlID
 	@XmlAttribute(name="name", required=true)
 	@Override
 	public String getName() {
@@ -76,7 +80,7 @@ public class XmlCard implements Card {
 		this.ownSimpleCardAction = ownSimpleCardAction;
 	}
 
-	@XmlElement(name="OwnCardAction", type=XmlResourceAction.class, required=true)
+	@XmlElement(name="OwnCardAction", type=XmlResourceAction.class)
 	@Override
 	public ResourceAction getOwnSimpleCardAction() {
 		return this.ownSimpleCardAction;
@@ -86,7 +90,7 @@ public class XmlCard implements Card {
 		this.enemySimpleCardAction = enemySimpleCardAction;
 	}
 
-	@XmlElement(name="EnemyCardAction", type=XmlResourceAction.class, required=true)
+	@XmlElement(name="EnemyCardAction", type=XmlResourceAction.class)
 	@Override
 	public ResourceAction getEnemySimpleCardAction() {
 		return this.enemySimpleCardAction;
@@ -100,6 +104,16 @@ public class XmlCard implements Card {
 	@Override
 	public ComplexCardAction getComplexCardAction() {
 		return this.complexCardAction;
+	}
+	
+	public void setCardAction(CardAction cardAction) {
+		this.cardAction = cardAction;
+	}
+
+	@XmlElement(name="CardAction", type=XmlCardAction.class)
+	@Override
+	public CardAction getCardAction() {
+		return this.cardAction;
 	}
 
 }

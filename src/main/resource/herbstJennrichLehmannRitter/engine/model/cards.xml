@@ -15,4 +15,8 @@
     </OwnCardAction>
     <CostBrick>20</CostBrick>
   </Card>
+  <Card name="Ausbeutung">
+    <CardType>Steinbruch</CardType>
+    
+  </Card>
 </Cards>
