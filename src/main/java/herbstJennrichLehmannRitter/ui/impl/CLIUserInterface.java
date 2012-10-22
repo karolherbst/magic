@@ -1,7 +1,9 @@
 package herbstJennrichLehmannRitter.ui.impl;
 
+import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
+import herbstJennrichLehmannRitter.ki.KI;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
 import java.io.BufferedReader;
@@ -12,7 +14,8 @@ public class CLIUserInterface implements UserInterface {
 
 	private enum CLIState {
 		MAINMENU,
-		LOCALGAME
+		LOCALGAME,
+		LOCALGAME_STARTED
 	}
 	
 	private Thread eventLoopThread;
@@ -81,6 +84,28 @@ public class CLIUserInterface implements UserInterface {
 				this.cliState = CLIState.MAINMENU;
 				System.out.println("returned back to main menu");
 				return true;
+			} else if (command.startsWith("help")) {
+				System.out.println("These commands are available:");
+				System.out.println("quit - will return to main menu");
+				System.out.println("start - will start the game!");
+				return true;
+			} else if (command.startsWith("start")) {
+				Globals.getGameServer().register(this);
+				Globals.getGameServer().register(new KI());
+				this.cliState = CLIState.LOCALGAME_STARTED;
+				return true;
+			}
+			break;
+		case LOCALGAME_STARTED:
+			if (command.startsWith("quit")) {
+				this.cliState = CLIState.MAINMENU;
+				Globals.getGameServer().unregister(this);
+				System.out.println("returned back to main menu");
+				return true;
+			} else if (command.startsWith("help")) {
+				System.out.println("These commands are available:");
+				System.out.println("quit - will return to main menu");
+				return true;
 			}
 			break;
 		default:
@@ -114,15 +139,13 @@ public class CLIUserInterface implements UserInterface {
 	}
 
 	@Override
-	public boolean youLost() {
-		// TODO Auto-generated method stub
-		return false;
+	public void youLost() {
+		System.out.println("You have lost!");
 	}
 
 	@Override
-	public boolean youWon() {
-		// TODO Auto-generated method stub
-		return false;
+	public void youWon() {
+		System.out.println("You have won!");
 	}
 
 	@Override

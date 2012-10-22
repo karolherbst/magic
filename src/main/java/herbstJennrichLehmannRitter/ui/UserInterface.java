@@ -18,9 +18,9 @@ public interface UserInterface {
 
 	public void enemeyPlayedCard(Card card);
 
-	public boolean youLost();
+	public void youLost();
 
-	public boolean youWon();
+	public void youWon();
 
 	public void abort();
 	

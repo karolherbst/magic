@@ -1,7 +1,5 @@
 package herbstJennrichLehmannRitter.server;
 
-import java.rmi.RemoteException;
-
 import herbstJennrichLehmannRitter.engine.service.GameService;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 

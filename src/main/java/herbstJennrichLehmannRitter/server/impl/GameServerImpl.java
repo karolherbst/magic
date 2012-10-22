@@ -6,13 +6,10 @@ import herbstJennrichLehmannRitter.engine.service.GameService;
 import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.List;
-
 public class GameServerImpl implements GameServer {
 
-	private List<UserInterface> userInterfaces = new ArrayList<UserInterface>();
+	private UserInterface userInterface1 = null;
+	private UserInterface userInterface2 = null;
 	
 	private final GameService gameService;
 	
@@ -41,17 +38,44 @@ public class GameServerImpl implements GameServer {
 	}
 
 	@Override
-	public synchronized void register(UserInterface userInterface) {
-		if( userInterface != null ) {
-			this.userInterfaces.add(userInterface);
+	public void register(UserInterface userInterface) {
+		if (userInterface == null) {
+			// TODO: is this possible?
+		}
+		
+		if (this.userInterface1 == null) {
+			System.out.println("engine: " + userInterface + " has been registered as Player1");
+			this.userInterface1 = userInterface;
+		} else if (this.userInterface2 == null) {
+			System.out.println("engine: " + userInterface + " has been registered as Player2");
+			this.userInterface2 = userInterface;
 		}
 	}
 
 	@Override
 	public void unregister(UserInterface userInterface) {
-		if( userInterface != null) {
-			this.userInterfaces.remove(userInterface);
+		if (userInterface == null) {
+			// TODO: what do we have to do here?
 		}
+		
+		if (this.userInterface1 == userInterface) {
+			System.out.println("engine: Player1 unregistered!");
+
+			if (this.userInterface2 != null) {
+				this.userInterface1.youLost();
+				this.userInterface2.youWon();
+			}
+			
+		} else if (this.userInterface2 == userInterface) {
+			System.out.println("engine: Player2 unregistered!");
+
+			if (this.userInterface1 != null) {
+				this.userInterface2.youLost();
+				this.userInterface1.youWon();
+			}
+		}
+		this.userInterface1 = null;
+		this.userInterface2 = null;
 	}
 	
 }
