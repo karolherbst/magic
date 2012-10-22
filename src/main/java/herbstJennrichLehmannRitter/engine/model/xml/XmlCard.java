@@ -5,6 +5,7 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 import herbstJennrichLehmannRitter.engine.model.action.OtherActions;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -25,7 +26,7 @@ public class XmlCard implements Card {
 		this.name = name;
 	}
 
-	@XmlElement(name="Name", required=true)
+	@XmlAttribute(name="name", required=true)
 	@Override
 	public String getName() {
 		return this.name;

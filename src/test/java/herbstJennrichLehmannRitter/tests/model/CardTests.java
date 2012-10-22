@@ -52,8 +52,8 @@ public class CardTests {
 			marshaller.marshal(card, System.out);
 			
 			Unmarshaller unmarshaller = this.jaxbContext.createUnmarshaller();
-			String xmlTree = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><Card>" +
-					"<Name>dahsjdhaks</Name><CardType>Steinbruch</CardType><CostBrick>2</CostBrick><CostCrystal>4</CostCrystal>" +
+			String xmlTree = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><Card name=\"dahsjdhaks\">" +
+					"<CardType>Steinbruch</CardType><CostBrick>2</CostBrick><CostCrystal>4</CostCrystal>" +
 					"<CostMonster>6</CostMonster></Card>";
 			StringReader stringReader = new StringReader(xmlTree);
 			XmlCard card2 = (XmlCard)unmarshaller.unmarshal(stringReader);
