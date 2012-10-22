@@ -11,7 +11,6 @@ import java.io.InputStreamReader;
 public class CLIUserInterface implements UserInterface {
 
 	private Thread eventLoopThread;
-	private Thread GameEngineThread;
 	
 	public CLIUserInterface() {
 		startEventLoop();
