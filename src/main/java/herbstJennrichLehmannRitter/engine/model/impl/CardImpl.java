@@ -6,8 +6,6 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.action.CardAction;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
-import herbstJennrichLehmannRitter.engine.model.action.impl.CardActionImpl;
-import herbstJennrichLehmannRitter.engine.model.action.impl.ResourceActionImpl;
 
 public class CardImpl implements Card {
 

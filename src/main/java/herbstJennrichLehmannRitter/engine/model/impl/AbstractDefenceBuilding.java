@@ -23,6 +23,13 @@ private int actualPoints;
 	
 	@Override
 	public int applyDamage(int damage) {
+		if (this.actualPoints < damage) {
+			int result = damage - this.actualPoints;
+			this.actualPoints = 0;
+			return result;
+		}
+		
+		this.actualPoints -= damage;
 		return 0;
 	}
 
