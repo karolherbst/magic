@@ -9,7 +9,7 @@ public class BlitzUndDonnerComplexAction implements ComplexCardAction {
 
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
-		if (sourcePlayer.getTower().getActualPoints() > targetPlayer.getTower().getActualPoints() ) {
+		if (sourcePlayer.getTower().getActualPoints() > targetPlayer.getTower().getActualPoints()) {
 			targetPlayer.getTower().applyDamage(8);
 		} else {
 			targetPlayer.getTower().applyDamage(6);

@@ -9,7 +9,7 @@ public class HauptaderComplexAction implements ComplexCardAction {
 
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
-		if( sourcePlayer.getMine().getLevel() < targetPlayer.getMine().getLevel()) {
+		if (sourcePlayer.getMine().getLevel() < targetPlayer.getMine().getLevel()) {
 			sourcePlayer.getMine().addLevel(2);
 		} else {
 			sourcePlayer.getMine().addLevel(1);

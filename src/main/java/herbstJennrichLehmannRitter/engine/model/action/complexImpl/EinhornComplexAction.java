@@ -7,10 +7,9 @@ import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 public class EinhornComplexAction implements ComplexCardAction {
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
-		if (sourcePlayer.getMagicLab().getLevel() > targetPlayer.getMagicLab().getLevel()){
+		if (sourcePlayer.getMagicLab().getLevel() > targetPlayer.getMagicLab().getLevel()) {
 			targetPlayer.getTower().applyDamage(targetPlayer.getWall().applyDamage(12));
-		}
-		else {
+		} else {
 			targetPlayer.getTower().applyDamage(targetPlayer.getWall().applyDamage(8));
 		}
 		

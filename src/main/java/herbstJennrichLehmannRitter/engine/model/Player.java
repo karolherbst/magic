@@ -11,11 +11,9 @@ import java.util.Collection;
 public interface Player {
 	
 	public String getName();
-
-	public Collection<Card> getDeck();
-	public Collection<Card> getHandDeck();
-	public Collection<Card> getCemeteryDeck();
-
+	
+	public Deck getDeck();
+	
 	public ResourceBuilding getDungeon();
 	public ResourceBuilding getMagicLab();
 	public ResourceBuilding getMine();
