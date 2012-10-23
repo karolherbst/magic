@@ -1,5 +1,6 @@
 package herbstJennrichLehmannRitter.engine.factory.impl;
 
+import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.model.Card;
@@ -56,8 +57,8 @@ public class GameCardFactoryImpl implements GameCardFactory {
 			File file = files[i];
 			String className = file.getName().substring(0, file.getName().length() - 6);
 			Class<?> currentClass = Class.forName(packageName + '.' + className);
-			
-			
+			ComplexCard complexCard = currentClass.getAnnotation(ComplexCard.class);
+			classes.put(complexCard.value(), currentClass);
 		}
 		
 		return classes;
@@ -87,11 +88,13 @@ public class GameCardFactoryImpl implements GameCardFactory {
 			// a list even if the list is sorted
 			this.cards = new HashMap<String, Card>(xmlCards.getCards().size(), 1);
 			for (XmlCard card : xmlCards.getCards()) {
+				assertCard(card);
 				Class<?> complexActionClass = this.complexCardActions.get(card.getName());
+				
 				if (complexActionClass != null) {
 					try {
-						assertCard(card);
 						card.setComplexCardAction((ComplexCardAction)complexActionClass.newInstance());
+						
 					} catch (InstantiationException e) {
 						e.printStackTrace();
 					} catch (IllegalAccessException e) {
