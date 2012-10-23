@@ -13,6 +13,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -39,7 +40,7 @@ public class GameCardFactoryImpl implements GameCardFactory {
 		
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		URL resource = classLoader.getResource(packageName.replace('.', '/'));
-		File directory = new File(resource.getPath());
+		File directory = new File(URLDecoder.decode(resource.getFile(), "UTF-8"));
 		
 		if (!directory.exists()) {
 			throw new EngineCouldNotStartException("could not find ComplexCard Actions");
