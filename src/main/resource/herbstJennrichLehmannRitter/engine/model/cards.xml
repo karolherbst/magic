@@ -59,4 +59,88 @@
       <MineEffect>-1</MineEffect>
     </EnemyResourceAction>
   </Card>
+  <Card name="Erzharmonie">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>11</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>6</WallEffect>
+      <TowerEffect>3</TowerEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Fallgatter">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>9</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>5</WallEffect>
+      <DungeonEffect>1</DungeonEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Freundliche Umgebung">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>1</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>1</WallEffect>
+    </OwnResourceAction>
+    <CardEffect>
+      <DrawCard>1</DrawCard>
+      <PlayAnotherCard>true</PlayAnotherCard>
+    </CardEffect>
+  </Card>
+  <Card name="Geheimraum">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>8</CostBrick>
+    <OwnResourceAction>
+      <MagicLabEffect>1</MagicLabEffect>
+    </OwnResourceAction>
+    <CardEffect>
+      <PlayAnotherCard>true</PlayAnotherCard>
+    </CardEffect>
+  </Card>
+  <Card name="Große Mauer">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>5</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>6</WallEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Glücksfund">
+    <CardType>Steinbruch</CardType>
+    <OwnResourceAction>
+      <BrickEffect>2</BrickEffect>
+      <CrystalEffect>2</CrystalEffect>
+    </OwnResourceAction>
+    <CardEffect>
+      <DrawCard>1</DrawCard>
+      <PlayAnotherCard>true</PlayAnotherCard>
+    </CardEffect>
+  </Card>
+  <Card name="Grundstein">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>3</CostBrick>
+  </Card>
+  <Card name="Hauptader">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>4</CostBrick>
+  </Card>
+  <Card name="Innovation">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>2</CostBrick>
+    <OwnResourceAction>
+      <MineEffect>1</MineEffect>
+      <CrystalEffect>4</CrystalEffect>
+    </OwnResourceAction>
+    <EnemyResourceAction>
+      <MineEffect>1</MineEffect>
+    </EnemyResourceAction>
+  </Card>
+  <Card name="Katapult">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>18</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>6</WallEffect>
+    </OwnResourceAction>
+    <EnemyResourceAction>
+      <Damage>10</Damage>
+    </EnemyResourceAction>
+  </Card>
 </Cards>
