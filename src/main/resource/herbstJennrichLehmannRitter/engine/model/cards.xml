@@ -560,7 +560,7 @@
   	</EnemyResourceAction>
   </Card> 
   <Card name="Berserker">
-  	<CardType>Velies</CardType>
+  	<CardType>Verlies</CardType>
   	<CostMonster>4</CostMonster>
   	<OwnResourceAction>
   		<TowerEffect>-3</TowerEffect>
