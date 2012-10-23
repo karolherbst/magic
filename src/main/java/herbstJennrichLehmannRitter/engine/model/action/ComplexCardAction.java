@@ -11,6 +11,8 @@ import herbstJennrichLehmannRitter.engine.model.Player;
  * Steinbruch-Karten: Barracke, Demolieren, Grundstein, Hauptader, Spionage, Verschiebung
  * Zauberlabor-Karten: Baukoloss, Blitz und Donner, Glasperlen,  
  *
+ *Verslies Karten: Blutmond, Dieb, Einhorn, Elfische Bogenschützen, Elfischer Späher,
+ *Fee, 
  */
 public interface ComplexCardAction {
 	
