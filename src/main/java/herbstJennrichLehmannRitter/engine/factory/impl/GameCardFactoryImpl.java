@@ -28,6 +28,12 @@ public class GameCardFactoryImpl implements GameCardFactory {
 	private Map<String, Card> cards;
 	private Map<String, Class<?>> complexCardActions;
 	
+	private static void assertCard(Card card) {
+		if (card.getCardType() == null) {
+			throw new EngineCouldNotStartException("Card with name " + card.getName() + " has no CardType");
+		}
+	}
+	
 	private static Map<String, Class<?>> getComplexCardActions(String packageName) throws IOException, ClassNotFoundException {
 		Map<String, Class<?>> classes = new HashMap<String, Class<?>>();
 		
@@ -83,6 +89,7 @@ public class GameCardFactoryImpl implements GameCardFactory {
 				Class<?> complexActionClass = this.complexCardActions.get(card.getName());
 				if (complexActionClass != null) {
 					try {
+						assertCard(card);
 						card.setComplexCardAction((ComplexCardAction)complexActionClass.newInstance());
 					} catch (InstantiationException e) {
 						e.printStackTrace();
