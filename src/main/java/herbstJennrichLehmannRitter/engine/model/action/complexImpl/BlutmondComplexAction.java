@@ -7,7 +7,9 @@ import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 @ComplexCard("Blutmond")
 
 public class BlutmondComplexAction implements ComplexCardAction {
-	// TODO: Verwirf alle Karten, ziehe 8 zufällige Verlies-Karten,
+	// TODO: Verwirf alle Karten, ziehe 6 zufällige Verlies-Karten,
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
+	
+		
 	}
 }

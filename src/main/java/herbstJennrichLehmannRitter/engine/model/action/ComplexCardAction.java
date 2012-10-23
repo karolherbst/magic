@@ -8,7 +8,7 @@ import herbstJennrichLehmannRitter.engine.model.Player;
  * Interface für alle Karten, die über die Ressourcenverteilung, Gebäudeaktionen, 
  * Schaden und Kartenzuteilung hinausgehen 
  * 
- * Verlies Karten: Blutmond, Dieb, Elfische Bogenschützen, Elfischer Späher,
+ * Verlies Karten: Blutmond, Elfische Bogenschützen, Elfischer Späher,
  * Fee, Korrosion, Schäfchen, Schattenfee, Speerträger, Speikäfer
  */
 public interface ComplexCardAction {
