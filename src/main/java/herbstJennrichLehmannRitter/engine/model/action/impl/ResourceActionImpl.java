@@ -12,6 +12,7 @@ public class ResourceActionImpl implements ResourceAction {
 	private final int monsterEffect;
 	private final int crystalEffect;
 	private final int brickEffect;
+	private final int damage;
 	
 	public ResourceActionImpl(ResourceAction simpleCardAction) {
 		if (simpleCardAction == null) {
@@ -23,6 +24,7 @@ public class ResourceActionImpl implements ResourceAction {
 			this.monsterEffect = 0;
 			this.crystalEffect = 0;
 			this.brickEffect = 0;
+			this.damage = 0;
 		} else {
 			this.towerEffect = simpleCardAction.getTowerEffect();
 			this.wallEffect = simpleCardAction.getWallEffect();
@@ -32,6 +34,7 @@ public class ResourceActionImpl implements ResourceAction {
 			this.monsterEffect = simpleCardAction.getMonsterEffect();
 			this.crystalEffect = simpleCardAction.getCrystalEffect();
 			this.brickEffect = simpleCardAction.getBrickEffect();
+			this.damage = simpleCardAction.getDamage();
 		}
 	}
 	
@@ -73,5 +76,10 @@ public class ResourceActionImpl implements ResourceAction {
 	@Override
 	public int getBrickEffect() {
 		return this.brickEffect;
+	}
+	
+	@Override
+	public int getDamage() {
+		return this.damage;
 	}
 }

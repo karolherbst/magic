@@ -6,6 +6,5 @@ public interface CardAction {
 	public int getOwnAmountCardDiscard();
 	public int getEnemyAmountCardDiscard();
 	public boolean getPlayCards();
-	public int getDamage();
 	
 }

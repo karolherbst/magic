@@ -110,7 +110,7 @@ public class XmlCard implements Card {
 		this.cardAction = cardAction;
 	}
 
-	@XmlElement(name="CardAction", type=XmlCardAction.class)
+	@XmlElement(name="CardEffect", type=XmlCardAction.class)
 	@Override
 	public CardAction getCardAction() {
 		return this.cardAction;

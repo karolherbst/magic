@@ -10,7 +10,6 @@ public class XmlCardAction implements CardAction {
 	private int ownAmountCardDiscard;
 	private int enemyAmountCardDiscard;
 	private boolean playCards;
-	private int damage;
 	
 	@XmlElement(name="DrawCard")
 	@Override
@@ -51,15 +50,4 @@ public class XmlCardAction implements CardAction {
 	public void setPlayCards(boolean playCards) {
 		this.playCards = playCards;
 	}
-
-	@XmlElement(name="Damage")
-	@Override
-	public int getDamage() {
-		return this.damage;
-	}
-
-	public void setDamage(int damage) {
-		this.damage = damage;
-	}
-
 }

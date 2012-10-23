@@ -20,4 +20,5 @@ public interface ResourceAction {
 	public int getBrickEffect();
 	public int getMonsterEffect();
 	public int getCrystalEffect();
+	public int getDamage();
 }

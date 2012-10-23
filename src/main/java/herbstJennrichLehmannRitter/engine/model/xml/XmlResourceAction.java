@@ -14,6 +14,7 @@ public class XmlResourceAction implements ResourceAction {
 	private int monsterEffect;
 	private int crystalEffect;
 	private int brickEffect;
+	private int damage;
 	
 	@XmlElement(name="TowerEffect")
 	@Override
@@ -45,7 +46,7 @@ public class XmlResourceAction implements ResourceAction {
 		this.mineLvlEffect = mineLvlEffect;
 	}
 
-	@XmlElement(name="Dungeon")
+	@XmlElement(name="DungeonEffect")
 	@Override
 	public int getDungeonLvlEffect() {
 		return this.dungeonLvlEffect;
@@ -93,5 +94,15 @@ public class XmlResourceAction implements ResourceAction {
 
 	public void setBrickEffect(int brickEffect) {
 		this.brickEffect = brickEffect;
+	}
+	
+	@XmlElement(name="Damage")
+	@Override
+	public int getDamage() {
+		return this.damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
 	}
 }
