@@ -8,13 +8,20 @@ public class DiebComplexAction implements ComplexCardAction {
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
 		// TODO: Gegner verliert 10 Kristalle und 5 Ziegel, die H ̈alfte des Verlusts erhält man selbst (aufgerundet)
-		if (targetPlayer.getMagicLab().getStock() < 10){
+		if (targetPlayer.getMagicLab().getStock() > 10){
 			targetPlayer.getMagicLab().reduceStock(10);
 			sourcePlayer.getMagicLab().addStock(5);
 		}
 		else {
+			sourcePlayer.getMagicLab().addStock(targetPlayer.getMagicLab().getStock() / 2);
+			targetPlayer.getMagicLab().reduceStock(targetPlayer.getMagicLab().getStock());	
+		}
+		if (targetPlayer.getMine().getStock() > 5){
+			targetPlayer.getMine().reduceStock(5);
+			sourcePlayer.getMine().addStock(5/2);
+		}
+		else {
 			
 		}
-		
 	}
 }
