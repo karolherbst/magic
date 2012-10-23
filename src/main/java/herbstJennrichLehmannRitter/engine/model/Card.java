@@ -24,4 +24,5 @@ public interface Card {
 	public ResourceAction getOwnResourceAction();
 	public ResourceAction getEnemyResourceAction();
 	public ComplexCardAction getComplexCardAction();
+	public boolean getCanBeDiscarded();
 }

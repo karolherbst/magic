@@ -1,6 +1,5 @@
 Deck: Sebastian
 GUI: Soenke, Daniel
-canbediscarded: karol
 complexCards: soenke
 netzwerk: karol
 Ki: ???

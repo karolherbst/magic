@@ -18,6 +18,7 @@ public class CardImpl implements Card {
 	private final ResourceAction ownResourceActions;
 	private final ResourceAction enemyResourceActions;
 	private final ComplexCardAction complexCardAction;
+	private final boolean canBeDiscarded;
 	
 	public CardImpl(Card card) {
 		
@@ -50,6 +51,7 @@ public class CardImpl implements Card {
 		}
 		
 		this.complexCardAction = card.getComplexCardAction();
+		this.canBeDiscarded = card.getCanBeDiscarded();
 	}
 	
 	@Override
@@ -95,6 +97,11 @@ public class CardImpl implements Card {
 	@Override
 	public CardAction getCardAction() {
 		return this.cardAction;
+	}
+	
+	@Override
+	public boolean getCanBeDiscarded() {
+		return this.canBeDiscarded;
 	}
 
 }

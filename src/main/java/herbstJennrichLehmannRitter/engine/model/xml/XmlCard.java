@@ -24,6 +24,7 @@ public class XmlCard implements Card {
 	private ResourceAction ownResourceAction;
 	private ResourceAction enemyResourceAction;
 	private ComplexCardAction complexCardAction;
+	private boolean canBeDiscarded;
 	
 	public void setName(String name) {
 		this.name = name;
@@ -114,6 +115,16 @@ public class XmlCard implements Card {
 	@Override
 	public CardAction getCardAction() {
 		return this.cardAction;
+	}
+	
+	public void setCanBeDiscarded(boolean canBeDiscarded) {
+		this.canBeDiscarded = canBeDiscarded;
+	}
+	
+	@XmlElement(name="CanBeDiscarded")
+	@Override
+	public boolean getCanBeDiscarded() {
+		return this.canBeDiscarded;
 	}
 
 }
