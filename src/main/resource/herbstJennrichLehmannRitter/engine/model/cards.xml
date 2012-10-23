@@ -399,6 +399,10 @@
       <MonsterEffect>7</MonsterEffect>
     </OwnResourceAction>
   </Card>
+  <Card name="Glasperlen">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>0</CostCrystal>
+  </Card>
   <Card name="Harmonie">
     <CardType>Zauberlabor</CardType>
     <CostCrystal>7</CostCrystal>
@@ -483,6 +487,10 @@
       <MagicLabEffect>2</MagicLabEffect>
     </OwnResourceAction>
   </Card>
+  <Card name="Parität">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>7</CostCrystal>
+  </Card>
   <Card name="Perle der Weisheit">
     <CardType>Zauberlabor</CardType>
     <CostCrystal>9</CostCrystal>
@@ -500,6 +508,21 @@
       <MonsterEffect>6</MonsterEffect>
     </OwnResourceAction>
   </Card>
+  <Card name="Prisma">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>2</CostCrystal>
+  </Card>
+  <Card name="Pure Magie">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>15</CostCrystal>
+  </Card>
+  <Card name="Quarz">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>1</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>1</TowerEffect>
+    </OwnResourceAction>
+  </Card>
   <Card name="Regenbogen">
     <CardType>Zauberlabor</CardType>
     <CostCrystal>0</CostCrystal>
@@ -510,6 +533,13 @@
     <EnemyResourceAction>
       <TowerEffect>1</TowerEffect>
     </EnemyResourceAction>
+  </Card>
+  <Card name="Rauchquarz">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>2</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>-1</TowerEffect>
+    </OwnResourceAction>
   </Card>
   <Card name="Rubin">
     <CardType>Zauberlabor</CardType>
@@ -541,6 +571,15 @@
     <EnemyResourceAction>
       <TowerEffect>-2</TowerEffect>
     </EnemyResourceAction>
+  </Card>
+  <Card name="Weihnachtsmann">
+  	<CardType>Zauberlabor</CardType>
+  	<CostCrystal>0</CostCrystal>
+  	<OwnResourceAction>
+  	  <BrickEffect>5</BrickEffect>
+  	  <CrystalEffect>5</CrystalEffect>
+  	  <MonsterEffect>5</MonsterEffect>
+  	</OwnResourceAction>
   </Card>
   <Card name="Zauberlehrling">
     <CardType>Zauberlabor</CardType>

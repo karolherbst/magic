@@ -4,12 +4,12 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
-@ComplexCard("Baukoloss")
+@ComplexCard("Weihnachtsmann")
 public class WeihnachtsmannComplexAction implements ComplexCardAction {
 
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
-		// TODO Karte kann nicht verworfen werden
+		// TODO Zufällige Karte mit Kosten>14 vom Vorratsstapel oder Kartenfriedhof auf die Hand
 	}
 
 }

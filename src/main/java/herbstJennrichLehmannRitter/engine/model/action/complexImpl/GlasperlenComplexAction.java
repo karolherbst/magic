@@ -4,12 +4,17 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
-@ComplexCard("Baukoloss")
+@ComplexCard("Glasperlen")
 public class GlasperlenComplexAction implements ComplexCardAction {
 
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
-		// TODO Karte kann nicht verworfen werden
+		if (sourcePlayer.getTower().getActualPoints() < targetPlayer.getTower().getActualPoints()) {
+			sourcePlayer.getTower().addPoints(2);
+		} else {
+			sourcePlayer.getTower().addPoints(1);
+		}
+			
 	}
 
 }
