@@ -3,6 +3,7 @@
  */
 package herbstJennrichLehmannRitter.engine.model.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import herbstJennrichLehmannRitter.engine.model.Card;
@@ -20,16 +21,16 @@ public class PlayerImpl implements Player {
 
 	private String name;
 	
-	private Collection<Card> deck;
-	private Collection<Card> handDeck;
-	private Collection<Card> cemeteryDeck;
+	private Collection<Card> deck = new ArrayList<Card>();
+	private Collection<Card> handDeck = new ArrayList<Card>();
+	private Collection<Card> cemeteryDeck = new ArrayList<Card>();
 	
-	private ResourceBuilding dungeon;
-	private ResourceBuilding magicLab;
-	private ResourceBuilding mine;
+	private ResourceBuilding dungeon = new DungeonImpl();
+	private ResourceBuilding magicLab = new MagicLabImpl();
+	private ResourceBuilding mine = new MineImpl();
 
-	private DefenceBuilding tower;
-	private DefenceBuilding wall;
+	private DefenceBuilding tower = new TowerImpl();
+	private DefenceBuilding wall = new WallImpl();
 	
 	@Override
 	public String getName() {

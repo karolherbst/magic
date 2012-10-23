@@ -4,8 +4,8 @@ import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
 
 public abstract class AbstractResourceBuilding implements ResourceBuilding {
 
-	private int level;
-	private int stock;
+	private int level = 1;
+	private int stock = 15;
 	
 	@Override
 	public int getLevel() {
@@ -28,7 +28,7 @@ public abstract class AbstractResourceBuilding implements ResourceBuilding {
 	
 	@Override
 	public void reduceLevel(int levels){
-		if (levels > 0) {
+		if (levels < 0) {
 			addLevel(-levels);
 		} else {
 			this.level -= levels;
@@ -59,7 +59,7 @@ public abstract class AbstractResourceBuilding implements ResourceBuilding {
 	
 	@Override
 	public void reduceStock(int stocks){
-		if (stocks > 0) {
+		if (stocks < 0) {
 			reduceStock(-stocks);
 		} else {
 			this.stock -= stocks;

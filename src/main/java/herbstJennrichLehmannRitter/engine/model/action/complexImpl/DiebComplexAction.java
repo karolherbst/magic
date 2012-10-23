@@ -3,7 +3,7 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
-@ComplexCard("Einhorn")
+@ComplexCard("Dieb")
 public class DiebComplexAction implements ComplexCardAction {
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {

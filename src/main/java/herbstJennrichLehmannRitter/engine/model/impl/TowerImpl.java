@@ -12,6 +12,10 @@ package herbstJennrichLehmannRitter.engine.model.impl;
  */
 public class TowerImpl extends AbstractDefenceBuilding {
 
+	public TowerImpl() {
+		super(25);
+	}
+	
 	@Override
 	public String getName() {
 		return "Turm";

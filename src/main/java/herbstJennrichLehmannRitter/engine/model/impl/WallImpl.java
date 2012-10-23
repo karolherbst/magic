@@ -11,6 +11,10 @@ package herbstJennrichLehmannRitter.engine.model.impl;
  */
 public class WallImpl extends AbstractDefenceBuilding {
 
+	public WallImpl() {
+		super(10);
+	}
+	
 	@Override
 	public String getName() {
 		return "Mauer";

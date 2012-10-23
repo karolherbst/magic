@@ -4,7 +4,11 @@ import herbstJennrichLehmannRitter.engine.model.DefenceBuilding;
 
 public abstract class AbstractDefenceBuilding implements DefenceBuilding {
 
-private int actualPoints;
+	private int actualPoints;
+	
+	public AbstractDefenceBuilding(int actualPoints) {
+		this.actualPoints = actualPoints;
+	}
 	
 	@Override
 	public int getActualPoints() {
