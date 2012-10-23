@@ -151,6 +151,142 @@
       <CrystalEffect>7</CrystalEffect>
     </OwnResourceAction>
   </Card>
+  <Card name="Mehrarbeit">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>2</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>5</WallEffect>
+      <CrystalEffect>-6</CrystalEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Meteorregen">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>5</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>-10</WallEffect>
+      <TowerEffect>-10</TowerEffect>
+    </OwnResourceAction>
+    <EnemyResourceAction>
+      <WallEffect>-10</WallEffect>
+      <TowerEffect>-10</TowerEffect>
+    </EnemyResourceAction>
+  </Card>
+  <Card name="Minenarbeiter">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>3</CostBrick>
+    <OwnResourceAction>
+      <MineEffect>1</MineEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Nachbeben">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>7</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>-5</WallEffect>
+    </OwnResourceAction>
+    <EnemyResourceAction>
+      <WallEffect>-5</WallEffect>
+    </EnemyResourceAction>
+  </Card>
+  <Card name="Neues Werkzeug">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>6</CostBrick>
+    <OwnResourceAction>
+      <MineEffect>2</MineEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Orkan">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>20</CostBrick>
+    <EnemyResourceAction>
+      <WallEffect>-10</WallEffect>
+      <TowerEffect>-10</TowerEffect>
+    </EnemyResourceAction>
+  </Card>
+  <Card name="Recycling">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>5</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>-15</WallEffect>
+      <MineEffect>2</MineEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Riesige Mauer">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>16</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>15</WallEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Robuste Mauer">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>3</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>4</WallEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Schießscharten">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>14</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>6</WallEffect>
+    </OwnResourceAction>
+    <EnemyResourceAction>
+      <Damage>6</Damage>
+    </EnemyResourceAction>
+  </Card>
+  <Card name="Spionage">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>5</CostBrick>
+  </Card>
+  <Card name="Steingarten">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>1</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>1</WallEffect>
+      <TowerEffect>1</TowerEffect>
+      <MonsterEffect>2</MonsterEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Überflutung">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>6</CostBrick>
+  </Card>
+  <Card name="Verschiebung">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>17</CostBrick>
+  </Card>
+  <Card name="Verstärkte Mauer">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>8</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>8</WallEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Ziegelkrise">
+    <CardType>Steinbruch</CardType>
+    <OwnResourceAction>
+      <BrickEffect>-8</BrickEffect>
+    </OwnResourceAction>
+    <EnemyResourceAction>
+      <BrickEffect>-8</BrickEffect>
+    </EnemyResourceAction>
+  </Card>
+  <Card name="Zusammenbruch">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>4</CostBrick>
+    <EnemyResourceAction>
+      <MineEffect>-1</MineEffect>
+    </EnemyResourceAction>
+  </Card>
+  <Card name="Zwangsarbeit">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>7</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>9</WallEffect>
+      <MonsterEffect>-5</MonsterEffect>
+    </OwnResourceAction>
+  </Card>
   <Card name="Zwergen Minenarbeiter">
     <CardType>Steinbruch</CardType>
     <CostBrick>7</CostBrick>

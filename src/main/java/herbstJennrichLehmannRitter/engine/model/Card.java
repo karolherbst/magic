@@ -10,6 +10,8 @@ import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
  * Interface für die Spielkarten
  * Dieses Interface beinhaltet die Schnittstellen für alle Kartenaktionen
  * 
+ * Karten mit Fragen: Überflutung
+ * 
  */
 public interface Card {
 	
