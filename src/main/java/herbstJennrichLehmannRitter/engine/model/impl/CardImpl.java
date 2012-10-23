@@ -32,9 +32,25 @@ public class CardImpl implements Card {
 		this.costBrick = card.getCostBrick();
 		this.costMonsters = card.getCostMonsters();
 		this.costCrystal = card.getCostCrystal();
-		this.cardAction = new CardActionImpl(card.getCardAction());
-		this.ownResourceActions = new ResourceActionImpl(card.getOwnResourceAction());
-		this.enemyResourceActions = new ResourceActionImpl(card.getEnemyResourceAction());
+		
+		if (card.getCardAction() != null) {
+			this.cardAction = card.getCardAction();
+		} else {
+			this.cardAction = null;
+		}
+		
+		if (card.getOwnResourceAction() != null) {
+			this.ownResourceActions = card.getOwnResourceAction();
+		} else {
+			this.ownResourceActions = null;
+		}
+		
+		if (card.getEnemyResourceAction() != null) {
+			this.enemyResourceActions = card.getEnemyResourceAction();
+		} else {
+			this.enemyResourceActions = null;
+		}
+		
 		this.complexCardAction = card.getComplexCardAction();
 	}
 	
