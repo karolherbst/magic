@@ -159,4 +159,21 @@
       <MineEffect>1</MineEffect>
     </OwnResourceAction>
   </Card>
+  <Card name="Amethyst">
+  	<CardType>Zauberlabor</CardType>
+  	<CostCrystal>2</CostCrystal>
+  	<OwnResourceAction>
+  	  <TowerEffect>3</TowerEffect>
+  	</OwnResourceAction>
+  </Card>
+  <Card name="Zerschmettern">
+  	<CardType>Zauberlabor</CardType>
+  	<CostCrystal>8</CostCrystal>
+  	<OwnResourceAction>
+  	  <MagicLabEffect>-1</MagicLabEffect>
+  	</OwnResourceAction>
+  	<EnemyResourceAction>
+  	  <TowerEffect>-9</TowerEffect>
+  	</EnemyResourceAction>
+  </Card>  
 </Cards>
