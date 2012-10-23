@@ -9,6 +9,7 @@ import herbstJennrichLehmannRitter.engine.model.Player;
  * Schaden und Kartenzuteilung hinausgehen 
  * 
  * Steinbruch-Karten: Barracke, Demolieren, Grundstein, Hauptader
+ * Zauberlabor-Karten: Baukoloss, Blitz und Donner, Glasperlen,  
  *
  */
 public interface ComplexCardAction {

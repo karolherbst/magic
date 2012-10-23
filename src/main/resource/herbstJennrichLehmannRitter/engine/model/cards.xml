@@ -166,6 +166,140 @@
   	  <TowerEffect>3</TowerEffect>
   	</OwnResourceAction>
   </Card>
+  <Card name="Ausgebrannt">
+    <CardType>Zauberlabor</CardType>
+  	<CostCrystal>3</CostCrystal>
+    <OwnResourceAction>
+      <MagicLabEffect>2</MagicLabEffect>
+      <TowerEffect>-5</TowerEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Brüchiger Stein">
+    <CardType>Zauberlabor</CardType>
+  	<CostCrystal>7</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>5</TowerEffect>
+    </OwnResourceAction>
+    <EnemyResourceAction>
+      <BrickEffect>-6</BrickEffect>
+    </EnemyResourceAction>
+  </Card>
+  <Card name="Diamant">
+    <CardType>Zauberlabor</CardType>
+   	<CostCrystal>16</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>15</TowerEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Disput">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>5</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>-7</TowerEffect>
+      <MagicLabEffect>-1</MagicLabEffect>
+    </OwnResourceAction>
+    <EnemyResourceAction>
+      <TowerEffect>-7</TowerEffect>
+      <MagicLabEffect>-1</MagicLabEffect>
+    </EnemyResourceAction>
+  </Card>
+  <Card name="Drachenauge">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>21</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>20</TowerEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Empathiestein">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>14</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>8</TowerEffect>
+      <DungeonEffect>1</DungeonEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Energiestrudel">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>16</CostCrystal>
+    <EnemyResourceAction>
+      <MagicLabEffect>-2</MagicLabEffect>
+    </EnemyResourceAction>
+  </Card>
+  <Card name="Fehlerhaftes Juwel">
+  	<CardType>Zauberlabor</CardType>
+  	<CostCrystal>2</CostCrystal>
+  	<OwnResourceAction>
+  	  <TowerEffect>-3</TowerEffect>
+  	</OwnResourceAction>
+  	<EnemyResourceAction>
+  	  <TowerEffect>-3</TowerEffect>
+  	</EnemyResourceAction>
+  </Card>
+  <Card name="Feuerrubin">
+  	<CardType>Zauberlabor</CardType>
+  	<CostCrystal>13</CostCrystal>
+  	<OwnResourceAction>
+  	  <TowerEffect>2</TowerEffect>
+  	</OwnResourceAction>
+  	<EnemyResourceAction>
+  	  <TowerEffect>-4</TowerEffect>
+  	</EnemyResourceAction>
+  </Card>
+  <Card name="Feuerwerk">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>0</CostCrystal>
+    <OwnResourceAction>
+      <BrickEffect>7</BrickEffect>
+      <CrystalEffect>7</CrystalEffect>
+      <MonsterEffect>7</MonsterEffect>
+      <TowerEffect>-7</TowerEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Harmonie">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>7</CostCrystal>
+    <OwnResourceAction>
+      <MagicLabEffect>1</MagicLabEffect>
+      <TowerEffect>3</TowerEffect>
+      <WallEffect>3</WallEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Heiligtum">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>15</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>10</TowerEffect>
+      <WallEffect>5</WallEffect>
+      <MonsterEffect>5</MonsterEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Hilfe vom Steinbruch">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>4</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>7</TowerEffect>
+      <CrystalEffect>-10</CrystalEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Kristallisierung">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>8</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>11</TowerEffect>
+      <WallEffect>-6</WallEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Kristallmatrix">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>6</CostCrystal>
+    <OwnResourceAction>
+      <MagicLabEffect>1</MagicLabEffect>
+      <TowerEffect>3</TowerEffect>
+    </OwnResourceAction>
+    <EnemyResourceAction>
+      <TowerEffect>1</TowerEffect>
+    </EnemyResourceAction>
+  </Card>
   <Card name="Zerschmettern">
   	<CardType>Zauberlabor</CardType>
   	<CostCrystal>8</CostCrystal>
