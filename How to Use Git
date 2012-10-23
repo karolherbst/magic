@@ -3,6 +3,7 @@ GIT
 Am Anfang:
 1) Git-Repository Exploring öffnen
 2) Fetch from Upstream machen
+3) Rebase machen, wenn neues gefunden wurde
 
 Hochladen:
 1) Rechte Maustaste im Package Explorer auf "magic"
