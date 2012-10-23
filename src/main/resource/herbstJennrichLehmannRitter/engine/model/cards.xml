@@ -143,4 +143,20 @@
       <Damage>10</Damage>
     </EnemyResourceAction>
   </Card>
+  <Card name="Kristallsteine">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>9</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>7</WallEffect>
+      <CrystalEffect>7</CrystalEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Zwergen Minenarbeiter">
+    <CardType>Steinbruch</CardType>
+    <CostBrick>7</CostBrick>
+    <OwnResourceAction>
+      <WallEffect>4</WallEffect>
+      <MineEffect>1</MineEffect>
+    </OwnResourceAction>
+  </Card>
 </Cards>
