@@ -509,6 +509,11 @@
   <Card name="Prisma">
     <CardType>Zauberlabor</CardType>
     <CostCrystal>2</CostCrystal>
+    <CardEffect>
+    	<DrawCard>1</DrawCard>
+    	<OwnDiscardCard>1</OwnDiscardCard>
+    	<PlayAnotherCard>true</PlayAnotherCard>
+    </CardEffect>
   </Card>
   <Card name="Pure Magie">
     <CardType>Zauberlabor</CardType>
@@ -520,6 +525,10 @@
     <OwnResourceAction>
       <TowerEffect>1</TowerEffect>
     </OwnResourceAction>
+    <CardEffect>
+    	<DrawCard>1</DrawCard>
+    	<PlayAnotherCard>true</PlayAnotherCard>
+    </CardEffect>
   </Card>
   <Card name="Regenbogen">
     <CardType>Zauberlabor</CardType>
@@ -647,9 +656,14 @@
   	<CardType>Verlies</CardType>
   	<CostMonster>10</CostMonster>
   </Card>
-  <Card name="Elfische Späher">
+  <Card name="Elfischer Späher">
   	<CardType>Verlies</CardType>
   	<CostMonster>2</CostMonster>
+  	<CardEffect>
+    	<DrawCard>1</DrawCard>
+    	<OwnDiscardCard>1</OwnDiscardCard>
+    	<PlayAnotherCard>true</PlayAnotherCard>
+    </CardEffect>
   </Card>
   <Card name="Fee">
   	<CardType>Verlies</CardType>
