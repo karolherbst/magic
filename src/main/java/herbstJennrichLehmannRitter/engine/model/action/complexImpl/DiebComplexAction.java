@@ -13,15 +13,15 @@ public class DiebComplexAction implements ComplexCardAction {
 			sourcePlayer.getMagicLab().addStock(5);
 		}
 		else {
-			sourcePlayer.getMagicLab().addStock(targetPlayer.getMagicLab().getStock() / 2);
+			sourcePlayer.getMagicLab().addStock(Math.round((float)targetPlayer.getMagicLab().getStock() / 2));
 			targetPlayer.getMagicLab().reduceStock(targetPlayer.getMagicLab().getStock());	
 		}
 		if (targetPlayer.getMine().getStock() > 5){
 			targetPlayer.getMine().reduceStock(5);
-			sourcePlayer.getMine().addStock(5/2);
+			sourcePlayer.getMine().addStock(Math.round(5f/2));
 		}
 		else {
-			sourcePlayer.getMine().addStock(targetPlayer.getMine().getStock() / 2);
+			sourcePlayer.getMine().addStock(Math.round((float)targetPlayer.getMine().getStock() / 2));
 			targetPlayer.getMine().reduceStock(targetPlayer.getMine().getStock());
 		}
 	}
