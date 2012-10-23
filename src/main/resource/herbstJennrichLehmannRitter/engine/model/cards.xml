@@ -615,6 +615,18 @@
   		<Damage>8</Damage>
   	</EnemyResourceAction>
   </Card>
+  <Card name="Dieb">
+   <CardType>Verlies</CardType>
+   <CostMonster>12</CostMonster>
+   <OwnResourceAction>
+    <CrystalEffect>5</CrystalEffect>
+    <BrickEffect>3</BrickEffect>
+   </OwnResourceAction>
+   <EnemyResourceAction>
+    <CrystalEffect>10</CrystalEffect>
+    <BrickEffect>5</BrickEffect>
+   </EnemyResourceAction>
+  </Card>
   <Card name="Drache">
   	<CardType>Verlies</CardType>
   	<CostMonster>25</CostMonster>
@@ -623,6 +635,10 @@
 		<CrystalEffect>-10</CrystalEffect>
 		<DungeonEffect>-1</DungeonEffect>
 	</EnemyResourceAction>
+  </Card>
+  <Card name="Einhorn">
+  <CardType>Verlies</CardType>
+  <CostMonster>9</CostMonster>
   </Card>
   <Card name="Felsgigant">
  	 <CardType>Verlies</CardType>
