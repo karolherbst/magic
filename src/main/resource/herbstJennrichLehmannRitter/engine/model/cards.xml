@@ -391,7 +391,6 @@
   </Card>
   <Card name="Feuerwerk">
     <CardType>Zauberlabor</CardType>
-    <CostCrystal>0</CostCrystal>
     <OwnResourceAction>
       <TowerEffect>-7</TowerEffect>
       <BrickEffect>7</BrickEffect>
@@ -401,7 +400,6 @@
   </Card>
   <Card name="Glasperlen">
     <CardType>Zauberlabor</CardType>
-    <CostCrystal>0</CostCrystal>
   </Card>
   <Card name="Harmonie">
     <CardType>Zauberlabor</CardType>
@@ -426,7 +424,7 @@
     <CostCrystal>4</CostCrystal>
     <OwnResourceAction>
       <TowerEffect>7</TowerEffect>
-      <CrystalEffect>-10</CrystalEffect>
+      <BrickEffect>-10</BrickEffect>
     </OwnResourceAction>
   </Card>
   <Card name="Kristallisierung">
@@ -525,7 +523,6 @@
   </Card>
   <Card name="Regenbogen">
     <CardType>Zauberlabor</CardType>
-    <CostCrystal>0</CostCrystal>
     <OwnResourceAction>
       <TowerEffect>1</TowerEffect>
       <CrystalEffect>3</CrystalEffect>
@@ -537,9 +534,9 @@
   <Card name="Rauchquarz">
     <CardType>Zauberlabor</CardType>
     <CostCrystal>2</CostCrystal>
-    <OwnResourceAction>
+    <EnemyResourceAction>
       <TowerEffect>-1</TowerEffect>
-    </OwnResourceAction>
+    </EnemyResourceAction>
   </Card>
   <Card name="Rubin">
     <CardType>Zauberlabor</CardType>
@@ -574,7 +571,6 @@
   </Card>
   <Card name="Weihnachtsmann">
   	<CardType>Zauberlabor</CardType>
-  	<CostCrystal>0</CostCrystal>
   	<OwnResourceAction>
   	  <BrickEffect>5</BrickEffect>
   	  <CrystalEffect>5</CrystalEffect>
@@ -616,7 +612,7 @@
   		<TowerEffect>-3</TowerEffect>
   	</OwnResourceAction>
   	<EnemyResourceAction>
-  		<Damage>-8</Damage>
+  		<Damage>8</Damage>
   	</EnemyResourceAction>
   </Card>
   <Card name="Drache">
