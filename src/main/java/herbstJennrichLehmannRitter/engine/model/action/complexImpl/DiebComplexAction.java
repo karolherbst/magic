@@ -4,14 +4,16 @@ import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
 @ComplexCard("Einhorn")
-public class EinhornComplexAction implements ComplexCardAction {
+public class DiebComplexAction implements ComplexCardAction {
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
-		if (sourcePlayer.getMagicLab().getLevel() > targetPlayer.getMagicLab().getLevel()){
-			targetPlayer.getTower().applyDamage(targetPlayer.getWall().applyDamage(12));
+		// TODO: Gegner verliert 10 Kristalle und 5 Ziegel, die H ̈alfte des Verlusts erhält man selbst (aufgerundet)
+		if (targetPlayer.getMagicLab().getStock() < 10){
+			targetPlayer.getMagicLab().reduceStock(10);
+			sourcePlayer.getMagicLab().addStock(5);
 		}
 		else {
-			targetPlayer.getTower().applyDamage(targetPlayer.getWall().applyDamage(8));
+			
 		}
 		
 	}

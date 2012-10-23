@@ -10,7 +10,7 @@ import herbstJennrichLehmannRitter.engine.model.Player;
  * 
  * Steinbruch-Karten: Barracke, Demolieren, Grundstein, Hauptader, Spionage, Verschiebung
  *
- * Verlies Karten: Blutmond, Dieb, Einhorn, Elfische Bogenschützen, Elfischer Späher,
+ * Verlies Karten: Blutmond, Dieb, Elfische Bogenschützen, Elfischer Späher,
  * Fee, Korrosion, Schäfchen, Schattenfee, Speerträger, Speikäfer
  * 
  * Spezialkarten: Auferstehung, Baumgeist, Paradoxon, Pfuschender Schmied, 

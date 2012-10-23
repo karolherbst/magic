@@ -615,17 +615,16 @@
   		<Damage>8</Damage>
   	</EnemyResourceAction>
   </Card>
+  <Card name="Blutmond">
+   <CardType>Verlies</CardType>
+   <CostMonster>8</CostMonster>
+   <OwnResourceAction>
+    <MagicLabEffect>-1</MagicLabEffect>
+   </OwnResourceAction>
+  </Card>
   <Card name="Dieb">
    <CardType>Verlies</CardType>
    <CostMonster>12</CostMonster>
-   <OwnResourceAction>
-    <CrystalEffect>5</CrystalEffect>
-    <BrickEffect>3</BrickEffect>
-   </OwnResourceAction>
-   <EnemyResourceAction>
-    <CrystalEffect>10</CrystalEffect>
-    <BrickEffect>5</BrickEffect>
-   </EnemyResourceAction>
   </Card>
   <Card name="Drache">
   	<CardType>Verlies</CardType>
