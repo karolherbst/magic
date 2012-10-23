@@ -592,14 +592,14 @@
   		<WallEffect>4</WallEffect>
   	 </OwnResourceAction>
   	 <EnemyResourceAction>
-  		<Damage>-10</Damage>
+  		<Damage>10</Damage>
   	 </EnemyResourceAction>
   </Card>
   <Card name="Giftviper">
   	<CardType>Verlies</CardType>
   	<CostMonster>14</CostMonster>
   	<EnemyResourceAction>
-  		<DungeonEffect>-2</DungeonEffect>
+  		<DungeonEffect>2</DungeonEffect>
   	</EnemyResourceAction>
   </Card>
   <Card name="Gnome">
@@ -609,24 +609,313 @@
   		<CrystalEffect>1</CrystalEffect>
  	</OwnResourceAction>
   	<EnemyResourceAction>
-  		<Damage>-3</Damage>
+  		<Damage>3</Damage>
   	</EnemyResourceAction>
   </Card>
  <Card name="Goblinmeute">
  	<CardType>Verlies</CardType>
  	<CostMonster>3</CostMonster>
  	<OwnResourceAction>
- 		<Damage>-3</Damage>
+ 		<Damage>3</Damage>
  	</OwnResourceAction>
  	<EnemyResourceAction>
- 		<Damage>-6</Damage>
+ 		<Damage>6</Damage>
  	</EnemyResourceAction>
  </Card>
-  <Card name="Zyklop">
+ <Card name="Goblinschützen">
+	<CardType>Verlies</CardType>
+	<CostMonster>4</CostMonster>
+	<OwnResourceAction>
+		<Damage>1</Damage>
+	</OwnResourceAction>
+	<EnemyResourceAction>
+		<TowerEffect>-3</TowerEffect>
+	</EnemyResourceAction>
+ </Card>
+ <Card name="Kobold">
+	<CardType>Verlies</CardType>
+	<CostMonster>5</CostMonster>
+	<OwnResourceAction>
+		<BrickEffect>-5</BrickEffect>
+		<CrystalEffect>-5</CrystalEffect>
+		<MonsterEffect>-5</MonsterEffect>
+	</OwnResourceAction>
+	<EnemyResourceAction>
+		<Damage>6</Damage>
+		<BrickEffect>-5</BrickEffect>
+		<CrystalEffect>-5</CrystalEffect>
+		<MonsterEffect>-5</MonsterEffect>
+	</EnemyResourceAction>
+ </Card>
+ <Card name="Koloss">
+	<CardType>Verlies</CardType>
+	<CostMonster>60</CostMonster>
+	<EnemyResourceAction>
+		<Damage>45</Damage>
+	</EnemyResourceAction>
+ </Card>
+ <Card name="Kriegstreiber">
+ 	<CardType>Verlies</CardType>
+	<CostMonster>13</CostMonster>
+	<OwnResourceAction>
+		<CrystalEffect>-3</CrystalEffect>
+	</OwnResourceAction>
+	<EnemyResourceAction>
+		<Damage>13</Damage>
+	</EnemyResourceAction>
+ </Card>
+ <Card name="Launische Goblins">
+ 	<CardType>Verlies</CardType>
+	<CostMonster>1</CostMonster>
+	<OwnResourceAction>
+		<CrystalEffect>-3</CrystalEffect>
+	</OwnResourceAction>
+	<EnemyResourceAction>
+		<Damage>4</Damage>
+	</EnemyResourceAction>
+ </Card>
+ <Card name="Minotaurus">
+ 	<CardType>Verlies</CardType>
+	<CostMonster>3</CostMonster>
+	<OwnResourceAction>
+		<DungeonEffect>1</DungeonEffect>
+	</OwnResourceAction>
+ </Card>
+ <Card name="Oger">
+ 	<CardType>Verlies</CardType>
+	<CostMonster>6</CostMonster>
+	<EnemyResourceAction>
+		<Damage>7</Damage>
+	</EnemyResourceAction>
+ </Card>
+ <Card name="Ork">
+ 	<CardType>Verlies</CardType>
+	<CostMonster>3</CostMonster>
+	<EnemyResourceAction>
+		<Damage>5</Damage>
+	</EnemyResourceAction>
+ </Card>
+  <Card name="Panther">
+ 	<CardType>Verlies</CardType>
+	<CostMonster>15</CostMonster>
+	<EnemyResourceAction>
+		<Damage>11</Damage>
+		<CrystalEffect>-5</CrystalEffect>
+	</EnemyResourceAction>
+ </Card>
+  <Card name="Pegasus Lanzenreiter">
+ 	<CardType>Verlies</CardType>
+	<CostMonster>18</CostMonster>
+	<EnemyResourceAction>
+		<TowerEffect>-12</TowerEffect>
+	</EnemyResourceAction>
+ </Card>
+ <Card name="Rinderwahnsinn">
+ 	<CardType>Verlies</CardType>
+	<OwnResourceAction>
+		<MonsterEffect>-6</MonsterEffect>
+	</OwnResourceAction>
+	<EnemyResourceAction>
+		<MonsterEffect>-6</MonsterEffect>
+	</EnemyResourceAction>
+ </Card>
+  <Card name="Schlangen">
+   <CardType>Verlies</CardType>
+   <CostMonster>6</CostMonster>
+   <EnemyResourceAction>
+    <TowerEffect>-4</TowerEffect>
+  </EnemyResourceAction>
+ </Card>
+ <Card name="Statue">
+   <CardType>Verlies</CardType>
+   <CostMonster>14</CostMonster>
+	<OwnResourceAction>
+		<TowerEffect>7</TowerEffect>
+		<WallEffect>7</WallEffect>
+	</OwnResourceAction>
+ </Card>
+ <Card name="Steinfresser">
+   <CardType>Verlies</CardType>
+   <CostMonster>11</CostMonster>
+   <EnemyResourceAction>
+    <Damage>8</Damage>
+    <MineEffect>-1</MineEffect>
+  </EnemyResourceAction>
+ </Card>
+ <Card name="Schlitzer">
+   <CardType>Verlies</CardType>
+   <CostMonster>5</CostMonster>
+   <EnemyResourceAction>
+    <Damage>6</Damage>
+  </EnemyResourceAction>
+ </Card>
+ <Card name="Sukkubus">
+   <CardType>Verlies</CardType>
+   <CostMonster>14</CostMonster>
+   <EnemyResourceAction>
+    <TowerEffect>-5</TowerEffect>
+    <MonsterEffect>-8</MonsterEffect>
+  </EnemyResourceAction>
+ </Card>
+ <Card name="Tollwütiges Schaf">
+   <CardType>Verlies</CardType>
+   <CostMonster>6</CostMonster>
+   <EnemyResourceAction>
+    <Damage>6</Damage>
+    <MonsterEffect>-3</MonsterEffect>
+  </EnemyResourceAction>
+ </Card>
+ <Card name="Trollwächter">
+   <CardType>Verlies</CardType>
+   <CostMonster>7</CostMonster>
+   <OwnResourceAction>
+    <DungeonEffect>2</DungeonEffect>
+   </OwnResourceAction>
+ </Card>
+ <Card name="Turmgremlin">
+   <CardType>Verlies</CardType>
+   <CostMonster>8</CostMonster>
+   <OwnResourceAction>
+    <WallEffect>4</WallEffect>
+    <TowerEffect>2</TowerEffect>
+   </OwnResourceAction>
+   <EnemyResourceAction>
+    <Damage>2</Damage>
+  </EnemyResourceAction>
+ </Card>
+ <Card name="Vampir">
+   <CardType>Verlies</CardType>
+   <CostMonster>17</CostMonster>
+   <EnemyResourceAction>
+    <Damage>10</Damage>
+    <MonsterEffect>-5</MonsterEffect>
+    <DungeonEffect>-1</DungeonEffect>
+  </EnemyResourceAction>
+ </Card>
+ <Card name="Vollmond">
+   <CardType>Verlies</CardType>
+   <OwnResourceAction>
+    <DungeonEffect>1</DungeonEffect>
+    <MonsterEffect>3</MonsterEffect>
+   </OwnResourceAction>
+   <EnemyResourceAction>
+    <DungeonEffect>1</DungeonEffect>
+  </EnemyResourceAction>
+ </Card>
+ <Card name="Werwolf">
+   <CardType>Verlies</CardType>
+   <CostMonster>9</CostMonster>
+   <EnemyResourceAction>
+    <Damage>9</Damage>
+  </EnemyResourceAction>
+ </Card>
+ <Card name="Wolfsschamane">
+   <CardType>Verlies</CardType>
+   <CostMonster>3</CostMonster>
+	<OwnResourceAction>
+	 <DungeonEffect>2</DungeonEffect>
+	 <TowerEffect>-7</TowerEffect>
+	</OwnResourceAction>
+ </Card>
+  <Card name="Wütender Ork">
+   <CardType>Verlies</CardType>
+   <CostMonster>10</CostMonster>
+   <EnemyResourceAction>
+    <Damage>10</Damage>
+    <MonsterEffect>-3</MonsterEffect>
+  </EnemyResourceAction>
+ </Card>
+ <Card name="Zwerge">
+   <CardType>Verlies</CardType>
+   <CostMonster>5</CostMonster>
+   <OwnResourceAction>
+    <WallEffect>3</WallEffect>
+   </OwnResourceAction>
+   <EnemyResourceAction>
+    <Damage>4</Damage>
+  </EnemyResourceAction>
+ </Card>
+ <Card name="Zyklop">
    <CardType>Verlies</CardType>
    <CostMonster>20</CostMonster>
    <EnemyResourceAction>
-    <Damage>-18</Damage>
+    <Damage>18</Damage>
   </EnemyResourceAction>
+ </Card>
+ <Card name="Dämonin">
+   <CardType>Spezial</CardType>
+   <CostCrystal>25</CostCrystal>
+   <CostBrick>15</CostBrick>
+   <EnemyResourceAction>
+    <TowerEffect>-20</TowerEffect>
+  </EnemyResourceAction>
+ </Card>
+  <Card name="Eisdrache">
+   <CardType>Spezial</CardType>
+   <CostCrystal>25</CostCrystal>
+   <CostMonster>15</CostMonster>
+   <OwnResourceAction>
+    <MagicLabEffect>-1</MagicLabEffect>
+    <BrickEffect>-10</BrickEffect>
+   </OwnResourceAction>
+   <EnemyResourceAction>
+   	<Damage>20</Damage>
+  </EnemyResourceAction>
+ </Card>
+ <Card name="Feuerherrscher">
+   <CardType>Spezial</CardType>
+   <CostCrystal>36</CostCrystal>
+   <CostBrick>30</CostBrick>
+   <EnemyResourceAction>
+   	<Damage>40</Damage>
+   	<MagicLabEffect>-1</MagicLabEffect>
+  </EnemyResourceAction>
+ </Card>
+ <Card name="Göttliche Hilfe">
+   <CardType>Spezial</CardType>
+	<OwnResourceAction>
+	 <MonsterEffect>5</MonsterEffect>
+	 <BrickEffect>5</BrickEffect>
+	 <CrystalEffect>5</CrystalEffect>
+	</OwnResourceAction>
+ </Card>
+ <Card name="Karavane">
+   <CardType>Spezial</CardType>
+   <CostMonster>7</CostMonster>
+   <CostBrick>7</CostBrick>
+	<OwnResourceAction>
+	 <MagicLabEffect>1</MagicLabEffect>
+	 <CrystalEffect>10</CrystalEffect>
+	</OwnResourceAction>
+ </Card>
+ <Card name="Kometenschweif">
+   <CardType>Spezial</CardType>
+   <CostMonster>5</CostMonster>
+   <CostCrystal>5</CostCrystal>
+	<OwnResourceAction>
+	 <MagicLabEffect>1</MagicLabEffect>
+	 <DungeonEffect>1</DungeonEffect>
+	</OwnResourceAction>
+ </Card>
+ <Card name="Seelenfresser">
+   <CardType>Spezial</CardType>
+   <CostMonster>11</CostMonster>
+   <CostCrystal>7</CostCrystal>
+	<EnemyResourceAction>
+	 <MonsterEffect>-10</MonsterEffect>
+	 <CrystalEffect>-10</CrystalEffect>
+	 <BrickEffect>-2</BrickEffect>
+	</EnemyResourceAction>
+ </Card>
+ <Card name="Vulkanausbruch">
+   <CardType>Spezial</CardType>
+   <CostCrystal>8</CostCrystal>
+   <CostBrick>8</CostBrick>
+	<OwnResourceAction>
+	 <Damage>20</Damage>
+	</OwnResourceAction>
+	<EnemyResourceAction>
+	 <Damage>20</Damage>
+	</EnemyResourceAction>
  </Card>
 </Cards>
