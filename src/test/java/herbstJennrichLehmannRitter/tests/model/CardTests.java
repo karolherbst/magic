@@ -5,9 +5,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.Card;
-import herbstJennrichLehmannRitter.engine.model.Cards;
 import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
 import herbstJennrichLehmannRitter.engine.model.xml.XmlCard;
+import herbstJennrichLehmannRitter.engine.model.xml.XmlCards;
 import herbstJennrichLehmannRitter.engine.model.xml.XmlResourceAction;
 
 import java.io.IOException;
@@ -89,7 +89,7 @@ public class CardTests {
 		try {
 			Unmarshaller unmarshaller = this.jaxbContext.createUnmarshaller();
 			InputStream is = this.getClass().getResourceAsStream("/herbstJennrichLehmannRitter/engine/model/cards.xml");
-			Cards xmlCards = (Cards)unmarshaller.unmarshal(is);
+			XmlCards xmlCards = (XmlCards)unmarshaller.unmarshal(is);
 			is.close();
 			
 			Marshaller marshaller = this.jaxbContext.createMarshaller();
