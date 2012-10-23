@@ -636,8 +636,27 @@
 	</EnemyResourceAction>
   </Card>
   <Card name="Einhorn">
-  <CardType>Verlies</CardType>
-  <CostMonster>9</CostMonster>
+  	<CardType>Verlies</CardType>
+  	<CostMonster>9</CostMonster>
+  </Card>
+  <Card name="Elfische Bogenschützen">
+  	<CardType>Verlies</CardType>
+  	<CostMonster>10</CostMonster>
+  </Card>
+  <Card name="Elfische Späher">
+  	<CardType>Verlies</CardType>
+  	<CostMonster>2</CostMonster>
+  </Card>
+  <Card name="Fee">
+  	<CardType>Verlies</CardType>
+  	<CostMonster>1</CostMonster>
+  	<EnemyResourceAction>
+  	   <Damage>2</Damage>
+  	</EnemyResourceAction>
+  	<CardEffect>
+  	  <DrawCard>1</DrawCard>
+      <PlayAnotherCard>true</PlayAnotherCard>
+  	</CardEffect>
   </Card>
   <Card name="Felsgigant">
  	 <CardType>Verlies</CardType>
@@ -653,7 +672,7 @@
   	<CardType>Verlies</CardType>
   	<CostMonster>14</CostMonster>
   	<EnemyResourceAction>
-  		<DungeonEffect>2</DungeonEffect>
+  		<DungeonEffect>-2</DungeonEffect>
   	</EnemyResourceAction>
   </Card>
   <Card name="Gnome">
@@ -707,6 +726,10 @@
 	<EnemyResourceAction>
 		<Damage>45</Damage>
 	</EnemyResourceAction>
+ </Card>
+ <Card name="Korrosion">
+	<CardType>Verlies</CardType>
+	<CostMonster>11</CostMonster>
  </Card>
  <Card name="Kriegstreiber">
  	<CardType>Verlies</CardType>
@@ -773,12 +796,38 @@
 		<MonsterEffect>-6</MonsterEffect>
 	</EnemyResourceAction>
  </Card>
+ <Card name="Schäfchen">
+	<CardType>Verlies</CardType>
+	<CostMonster>6</CostMonster>
+	<EnemyResourceAction>
+		<Damage>1</Damage>
+	</EnemyResourceAction>
+ </Card>
+ <Card name="Schattenfee">
+	<CardType>Verlies</CardType>
+	<CostMonster>6</CostMonster>
+	<EnemyResourceAction>
+		<TowerEffect>-2</TowerEffect>
+	</EnemyResourceAction>
+	<CardEffect>
+		<DrawCard>1</DrawCard>
+		<PlayAnotherCard>true</PlayAnotherCard>
+	</CardEffect>
+ </Card>
   <Card name="Schlangen">
    <CardType>Verlies</CardType>
    <CostMonster>6</CostMonster>
    <EnemyResourceAction>
     <TowerEffect>-4</TowerEffect>
   </EnemyResourceAction>
+ </Card>
+ <Card name="Speerträger">
+   <CardType>Verlies</CardType>
+   <CostMonster>2</CostMonster>
+ </Card>
+ <Card name="Speikäfer">
+   <CardType>Verlies</CardType>
+   <CostMonster>8</CostMonster>
  </Card>
  <Card name="Statue">
    <CardType>Verlies</CardType>
