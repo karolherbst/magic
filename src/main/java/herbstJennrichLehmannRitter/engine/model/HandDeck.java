@@ -11,7 +11,7 @@ public interface HandDeck {
 	public void pickCard();
 	public void pickCards(int numberOfCards);
 	public void pickNumberOfCardsWithType(int numberOfCards, CardType cardType);
-	public void pickCardWithCostHigherThan(int cost);
+	public void pickCardFromDeckStackOrCemeteryDeckWithCostAbout(int cost);
 	
 	public void exchangeCardsWithHandDeck(HandDeck handDeck);
 }

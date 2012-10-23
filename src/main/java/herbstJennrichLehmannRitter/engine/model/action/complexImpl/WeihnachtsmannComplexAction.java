@@ -9,7 +9,7 @@ public class WeihnachtsmannComplexAction implements ComplexCardAction {
 
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
-		// TODO Zufällige Karte mit Kosten>14 vom Vorratsstapel oder Kartenfriedhof auf die Hand
+		sourcePlayer.getDeck().getHandDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(14);
 	}
 
 }

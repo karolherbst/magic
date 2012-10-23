@@ -9,8 +9,6 @@ import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
 public class BlutmondComplexAction implements ComplexCardAction {
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
-		// TODO: Verwirf alle Karten, ziehe 6 zufällige Verlies-Karten
-		
 		sourcePlayer.getDeck().getHandDeck().discardAllCards();
 		sourcePlayer.getDeck().getHandDeck().pickNumberOfCardsWithType(6, CardType.CARD_TYPE_DUNGEON);
 	}

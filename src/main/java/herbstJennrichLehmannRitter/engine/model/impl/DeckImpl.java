@@ -34,6 +34,7 @@ public class DeckImpl implements Deck {
 			this.handDeck.clear();
 		}
 		
+		@Override
 		public void discardAllCardsByType(CardType cardType) {
 			for (Card card : this.handDeck) {
 				if (card.getCardType() == cardType) {
@@ -41,10 +42,23 @@ public class DeckImpl implements Deck {
 				}
 			}
 		}
+		
+		private void addCardToHandDeck(Card card) {
+			try {
+				if (this.handDeck.size() > 6) {
+					// TODO: Hier eine Exception sinnvoll?
+					throw new Exception("Es können nicht mehr als 6 Karten gleichzeitig aufgenommen werden!");
+				} else {
+					this.handDeck.add(card);
+				}
+			} catch (Exception e) {
+				System.out.println(e.getLocalizedMessage());
+			}
+		}
 
 		@Override
 		public void pickCard() {
-			this.handDeck.add(deckStackImpl.pickCard());
+			this.addCardToHandDeck(deckStackImpl.pickCard());
 		}
 
 		@Override
@@ -54,15 +68,49 @@ public class DeckImpl implements Deck {
 					if (this.handDeck.size() > 6 ) {
 						break;
 					}
-					this.handDeck.add(deckStackImpl.pickCard());
+					this.addCardToHandDeck(deckStackImpl.pickCard());
 				}
 			}
 		}
 		
 		@Override
-		public void pickCardWithCostHigherThan(int cost) {
-			// TODO: Implements this method
-//			return super.pickCardWithCostHigherThan(cost);
+		public void pickCardFromDeckStackOrCemeteryDeckWithCostAbout(int cost) {
+			List<Card> cards = new ArrayList<Card>();
+			Card result = null;
+			
+			cards.addAll(cemeteryDeckImpl.getAllCards());
+			cards.addAll(deckStackImpl.getAllCards());
+			Collections.shuffle(cards);
+			
+			for (Card card : cards) {
+				if (card.getCostBrick() > cost || card.getCostCrystal() > cost | card.getCostMonsters() > cost) {
+					result = card;
+					break;
+				}
+			}
+			
+			if( result != null ) {
+				this.addCardToHandDeck(result);
+			} else {
+				// TODO: Muss hier eine Exception hin, wenn es keine Karte gibt?
+			}
+		}
+
+		@Override
+		public void pickNumberOfCardsWithType(int numberOfCards, CardType cardType) {
+			List<Card> cards = new ArrayList<Card>();
+			Card card;
+			do {
+				card = deckStackImpl.pickCard();
+				if (card.getCardType() == cardType) {
+					cards.add(card);
+				}
+			} while ( this.handDeck.size() < numberOfCards );
+			
+			Collections.shuffle(cards);
+			for (int i = 0; i <= numberOfCards; i++) {
+				this.addCardToHandDeck(cards.get(i));
+			}
 		}
 		
 		public void exchangeCardsWithHandDeck(HandDeck handDeck) {
@@ -74,18 +122,6 @@ public class DeckImpl implements Deck {
 				otherHandDeck.handDeck = tmp;
 			}
 		}
-
-		@Override
-		public void pickNumberOfCardsWithType(int numberOfCards, CardType cardType) {
-			Card card;
-			do {
-				card = deckStackImpl.pickCard();
-				if (card.getCardType() == cardType) {
-					this.handDeck.add(card);
-				}
-			} while ( this.handDeck.size() < numberOfCards );
-		}
-		
 	}
 	
 	private class CemeteryDeckImpl implements CemeteryDeck {
@@ -98,12 +134,6 @@ public class DeckImpl implements Deck {
 		
 		public void addCards(Collection<Card> cards) {
 			this.cemeteryDeck.addAll(cards);
-		}
-		
-		@Override
-		public void pickCardWithCostHigherThan(int cost) {
-			// TODO: Implements this method
-//			return super.pickCardWithCostHigherThan(cost);
 		}
 		
 		public Collection<Card> getAllCards() {
@@ -139,10 +169,10 @@ public class DeckImpl implements Deck {
 			deckStack.addAll(cemeteryDeckImpl.getAllCards());
 			cemeteryDeckImpl.clear();
 		}
-	}
-	
-	protected void pickCardWithCostHigherThan(int costs) {
-		// TODO how to implements this function?
+		
+		public Collection<Card> getAllCards() {
+			return this.deckStack;
+		}
 	}
 	
 	@Override
