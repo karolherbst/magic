@@ -229,7 +229,7 @@
     <CardType>Steinbruch</CardType>
     <CostBrick>14</CostBrick>
     <OwnResourceAction>
-      <WallEffect>6</WallEffect>
+      <WallEffect>7</WallEffect>
     </OwnResourceAction>
     <EnemyResourceAction>
       <Damage>6</Damage>
