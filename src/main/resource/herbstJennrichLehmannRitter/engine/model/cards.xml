@@ -537,6 +537,10 @@
     <EnemyResourceAction>
       <TowerEffect>-1</TowerEffect>
     </EnemyResourceAction>
+    <CardEffect>
+    	<DrawCard>1</DrawCard>
+    	<PlayAnotherCard>true</PlayAnotherCard>
+    </CardEffect>
   </Card>
   <Card name="Rubin">
     <CardType>Zauberlabor</CardType>
@@ -945,6 +949,17 @@
     <Damage>18</Damage>
   </EnemyResourceAction>
  </Card>
+ <Card name="Auferstehung">
+   <CardType>Spezial</CardType>
+   <CostMonster>6</CostMonster>
+   <CostBrick>6</CostBrick>
+   <CostCrystal>6</CostCrystal>
+ </Card>
+ <Card name="Baumgeist">
+   <CardType>Spezial</CardType>
+   <CostMonster>9</CostMonster>
+   <CostBrick>7</CostBrick>
+ </Card>
  <Card name="Dämonin">
    <CardType>Spezial</CardType>
    <CostCrystal>25</CostCrystal>
@@ -956,7 +971,7 @@
   <Card name="Eisdrache">
    <CardType>Spezial</CardType>
    <CostCrystal>25</CostCrystal>
-   <CostMonster>15</CostMonster>
+   <CostMonster>6</CostMonster>
    <OwnResourceAction>
     <MagicLabEffect>-1</MagicLabEffect>
     <BrickEffect>-10</BrickEffect>
@@ -1000,6 +1015,21 @@
 	 <DungeonEffect>1</DungeonEffect>
 	</OwnResourceAction>
  </Card>
+<Card name="Paradoxon">
+   <CardType>Spezial</CardType>
+   <CostMonster>5</CostMonster>
+   <CostCrystal>5</CostCrystal>
+   <CostBrick>5</CostBrick>
+ </Card>
+ <Card name="Pfuschender Schmied">
+   <CardType>Spezial</CardType>
+   <CostBrick>2</CostBrick>
+   <CostCrystal>2</CostCrystal>
+	<CardEffect>
+		<DrawCard>1</DrawCard>
+		<PlayAnotherCard>true</PlayAnotherCard>
+	</CardEffect>
+ </Card> 
  <Card name="Seelenfresser">
    <CardType>Spezial</CardType>
    <CostMonster>11</CostMonster>
