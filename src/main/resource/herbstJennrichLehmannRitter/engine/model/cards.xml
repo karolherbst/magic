@@ -317,6 +317,10 @@
       <TowerEffect>3</TowerEffect>
     </OwnResourceAction>
   </Card>
+  <Card name="Blitz und Donner">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>11</CostCrystal>
+  </Card>
   <Card name="Brüchiger Stein">
     <CardType>Zauberlabor</CardType>
   	<CostCrystal>7</CostCrystal>
