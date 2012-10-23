@@ -7,7 +7,7 @@ import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 public class DiebComplexAction implements ComplexCardAction {
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
-		// TODO: Gegner verliert 10 Kristalle und 5 Ziegel, die H ̈alfte des Verlusts erhält man selbst (aufgerundet)
+		// TODO: Gegner verliert 10 Kristalle und 5 Ziegel, die Hälfte des Verlusts erhält man selbst (aufgerundet)
 		if (targetPlayer.getMagicLab().getStock() > 10){
 			targetPlayer.getMagicLab().reduceStock(10);
 			sourcePlayer.getMagicLab().addStock(5);
@@ -21,7 +21,8 @@ public class DiebComplexAction implements ComplexCardAction {
 			sourcePlayer.getMine().addStock(5/2);
 		}
 		else {
-			
+			sourcePlayer.getMine().addStock(targetPlayer.getMine().getStock() / 2);
+			targetPlayer.getMine().reduceStock(targetPlayer.getMine().getStock());
 		}
 	}
 }
