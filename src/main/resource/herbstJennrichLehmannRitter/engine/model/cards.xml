@@ -364,9 +364,6 @@
   <Card name="Fehlerhaftes Juwel">
   	<CardType>Zauberlabor</CardType>
   	<CostCrystal>2</CostCrystal>
-  	<OwnResourceAction>
-  	  <TowerEffect>-3</TowerEffect>
-  	</OwnResourceAction>
   	<EnemyResourceAction>
   	  <TowerEffect>-3</TowerEffect>
   	</EnemyResourceAction>
@@ -375,7 +372,7 @@
   	<CardType>Zauberlabor</CardType>
   	<CostCrystal>13</CostCrystal>
   	<OwnResourceAction>
-  	  <TowerEffect>2</TowerEffect>
+  	  <TowerEffect>6</TowerEffect>
   	</OwnResourceAction>
   	<EnemyResourceAction>
   	  <TowerEffect>-4</TowerEffect>
@@ -385,10 +382,10 @@
     <CardType>Zauberlabor</CardType>
     <CostCrystal>0</CostCrystal>
     <OwnResourceAction>
+      <TowerEffect>-7</TowerEffect>
       <BrickEffect>7</BrickEffect>
       <CrystalEffect>7</CrystalEffect>
       <MonsterEffect>7</MonsterEffect>
-      <TowerEffect>-7</TowerEffect>
     </OwnResourceAction>
   </Card>
   <Card name="Harmonie">
@@ -435,6 +432,122 @@
     <EnemyResourceAction>
       <TowerEffect>1</TowerEffect>
     </EnemyResourceAction>
+  </Card>
+  <Card name="Kristallschild">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>12</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>8</TowerEffect>
+      <WallEffect>3</WallEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Kristallspeer">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>4</CostCrystal>
+    <EnemyResourceAction>
+      <TowerEffect>-5</TowerEffect>
+    </EnemyResourceAction>
+  </Card>
+  <Card name="Lavajuwel">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>17</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>12</TowerEffect>
+    </OwnResourceAction>
+    <EnemyResourceAction>
+      <Damage>6</Damage>
+    </EnemyResourceAction>
+  </Card>
+  <Card name="Magische Faust">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>6</CostCrystal>
+    <EnemyResourceAction>
+      <Damage>10</Damage>
+    </EnemyResourceAction>
+  </Card>
+  <Card name="Magische Quelle">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>8</CostCrystal>
+    <OwnResourceAction>
+      <MagicLabEffect>2</MagicLabEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Perle der Weisheit">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>9</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>5</TowerEffect>
+      <MagicLabEffect>1</MagicLabEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Phasenjuwel">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>18</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>13</TowerEffect>
+      <BrickEffect>6</BrickEffect>
+      <MonsterEffect>6</MonsterEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Regenbogen">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>0</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>1</TowerEffect>
+      <CrystalEffect>3</CrystalEffect>
+    </OwnResourceAction>
+    <EnemyResourceAction>
+      <TowerEffect>1</TowerEffect>
+    </EnemyResourceAction>
+  </Card>
+  <Card name="Rubin">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>3</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>5</TowerEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Saphir">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>10</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>11</TowerEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Smaragd">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>6</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>8</TowerEffect>
+    </OwnResourceAction>
+  </Card>
+  <Card name="Sonnenfinsternis">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>4</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>2</TowerEffect>
+    </OwnResourceAction>
+    <EnemyResourceAction>
+      <TowerEffect>-2</TowerEffect>
+    </EnemyResourceAction>
+  </Card>
+  <Card name="Zauberlehrling">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>5</CostCrystal>
+    <OwnResourceAction>
+      <TowerEffect>4</TowerEffect>
+      <MonsterEffect>-3</MonsterEffect>
+    </OwnResourceAction>
+    <EnemyResourceAction>
+      <TowerEffect>-2</TowerEffect>
+    </EnemyResourceAction>
+  </Card>
+  <Card name="Zaubersprüche">
+    <CardType>Zauberlabor</CardType>
+    <CostCrystal>3</CostCrystal>
+    <OwnResourceAction>
+      <MagicLabEffect>1</MagicLabEffect>
+    </OwnResourceAction>
   </Card>
   <Card name="Zerschmettern">
   	<CardType>Zauberlabor</CardType>
