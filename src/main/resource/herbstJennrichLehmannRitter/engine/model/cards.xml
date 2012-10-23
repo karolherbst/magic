@@ -311,5 +311,68 @@
   	<EnemyResourceAction>
   	  <TowerEffect>-9</TowerEffect>
   	</EnemyResourceAction>
-  </Card>  
+  </Card> 
+  <Card name="Berserker">
+  	<CardType>Velies</CardType>
+  	<CostMonster>4</CostMonster>
+  	<OwnResourceAction>
+  		<TowerEffect>-3</TowerEffect>
+  	</OwnResourceAction>
+  	<EnemyResourceAction>
+  		<Damage>-8</Damage>
+  	</EnemyResourceAction>
+  </Card>
+  <Card name="Drache">
+  	<CardType>Verlies</CardType>
+  	<CostMonster>25</CostMonster>
+	<EnemyResourceAction>
+		<Damage>20</Damage>
+		<CrystalEffect>-10</CrystalEffect>
+		<DungeonEffect>-1</DungeonEffect>
+	</EnemyResourceAction>
+  </Card>
+  <Card name="Felsgigant">
+ 	 <CardType>Verlies</CardType>
+  	 <CostMonster>15</CostMonster>
+  	 <OwnResourceAction>
+  		<WallEffect>4</WallEffect>
+  	 </OwnResourceAction>
+  	 <EnemyResourceAction>
+  		<Damage>-10</Damage>
+  	 </EnemyResourceAction>
+  </Card>
+  <Card name="Giftviper">
+  	<CardType>Verlies</CardType>
+  	<CostMonster>14</CostMonster>
+  	<EnemyResourceAction>
+  		<DungeonEffect>-2</DungeonEffect>
+  	</EnemyResourceAction>
+  </Card>
+  <Card name="Gnome">
+  	<CardType>Verlies</CardType>
+  	<CostMonster>2</CostMonster>
+  	<OwnResourceAction>
+  		<CrystalEffect>1</CrystalEffect>
+ 	</OwnResourceAction>
+  	<EnemyResourceAction>
+  		<Damage>-3</Damage>
+  	</EnemyResourceAction>
+  </Card>
+ <Card name="Goblinmeute">
+ 	<CardType>Verlies</CardType>
+ 	<CostMonster>3</CostMonster>
+ 	<OwnResourceAction>
+ 		<Damage>-3</Damage>
+ 	</OwnResourceAction>
+ 	<EnemyResourceAction>
+ 		<Damage>-6</Damage>
+ 	</EnemyResourceAction>
+ </Card>
+  <Card name="Zyklop">
+   <CardType>Verlies</CardType>
+   <CostMonster>20</CostMonster>
+   <EnemyResourceAction>
+    <Damage>-18</Damage>
+  </EnemyResourceAction>
+ </Card>
 </Cards>
