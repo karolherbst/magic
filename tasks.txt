@@ -1,0 +1,8 @@
+Deck: Sebastian
+GUI: Soenke, Daniel
+canbediscarded: karol
+complexCards: soenke
+netzwerk: karol
+Ki: ???
+CLIInterface: karol
+toString Card: karol
