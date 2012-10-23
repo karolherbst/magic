@@ -11,12 +11,7 @@ public class BlutmondComplexAction implements ComplexCardAction {
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
 		// TODO: Verwirf alle Karten, ziehe 6 zufällige Verlies-Karten
 		
-		sourcePlayer.getHandDeck().removeAll(sourcePlayer.getHandDeck());
-		 int i = 0;
-		 while (i < 6){
-			 sourcePlayer.getHandDeck.pickCard(card.getCardType() == CardType.CARD_TYPE_DUNGEON);
-			 i++;
-		 }
-		
+		sourcePlayer.getDeck().getHandDeck().discardAllCards();
+		sourcePlayer.getDeck().getHandDeck().pickNumberOfCardsWithType(6, CardType.CARD_TYPE_DUNGEON);
 	}
 }

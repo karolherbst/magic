@@ -3,10 +3,7 @@
  */
 package herbstJennrichLehmannRitter.engine.model.impl;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.Deck;
 import herbstJennrichLehmannRitter.engine.model.DefenceBuilding;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
@@ -21,9 +18,7 @@ public class PlayerImpl implements Player {
 
 	private String name;
 	
-	private Collection<Card> deck = new ArrayList<Card>();
-	private Collection<Card> handDeck = new ArrayList<Card>();
-	private Collection<Card> cemeteryDeck = new ArrayList<Card>();
+	private Deck deck = new DeckImpl();
 	
 	private ResourceBuilding dungeon = new DungeonImpl();
 	private ResourceBuilding magicLab = new MagicLabImpl();
@@ -42,32 +37,14 @@ public class PlayerImpl implements Player {
 	}
 
 	@Override
-	public Collection<Card> getDeck() {
+	public Deck getDeck() {
 		return this.deck;
 	}
 
-	public void setDeck(Collection<Card> deck) {
+	public void setDeck(Deck deck) {
 		this.deck = deck;
 	}
-	
-	@Override
-	public Collection<Card> getHandDeck() {
-		return this.handDeck;
-	}
-
-	public void setHandDeck(Collection<Card> handDeck) {
-		this.handDeck = handDeck;
-	}
-	
-	@Override
-	public Collection<Card> getCemeteryDeck() {
-		return this.cemeteryDeck;
-	}
-
-	public void setCemeteryDeck(Collection<Card> cemeteryDeck) {
-		this.cemeteryDeck = cemeteryDeck;
-	}
-	
+		
 	@Override
 	public ResourceBuilding getDungeon() {
 		return this.dungeon;

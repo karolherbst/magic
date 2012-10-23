@@ -1,12 +1,17 @@
 package herbstJennrichLehmannRitter.engine.model;
 
-import java.util.Collection;
+import herbstJennrichLehmannRitter.engine.enums.CardType;
 
 public interface HandDeck {
 
-	public boolean discardCard(Card card);
-	public boolean discardAllCards();
+	public void discardCard(Card card);
+	public void discardAllCards();
+	public void discardAllCardsByType(CardType cardType);
 	
-	public Card pickCard();
-	public Collection<Card> pickCards(int numberOfCards);	
+	public void pickCard();
+	public void pickCards(int numberOfCards);
+	public void pickNumberOfCardsWithType(int numberOfCards, CardType cardType);
+	public void pickCardWithCostHigherThan(int cost);
+	
+	public void exchangeCardsWithHandDeck(HandDeck handDeck);
 }

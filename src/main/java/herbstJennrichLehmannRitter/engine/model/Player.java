@@ -1,7 +1,5 @@
 package herbstJennrichLehmannRitter.engine.model;
 
-import java.util.Collection;
-
 /**
  * 
  * Interface für das Spielerobjekt.

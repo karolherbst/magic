@@ -1,6 +1,5 @@
 package herbstJennrichLehmannRitter.engine.model;
 
-import java.util.Collection;
 
 /**
  * 
@@ -9,8 +8,8 @@ import java.util.Collection;
  */
 public interface Deck {
 	
-	public Collection<Card> getDeck();
-	public Collection<Card> getHandDeck();
-	public Collection<Card> getCemeteryDeck();
+	public DeckStack getDeck();
+	public HandDeck getHandDeck();
+	public CemeteryDeck getCemeteryDeck();
 
 }
