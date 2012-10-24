@@ -42,11 +42,11 @@ public class MainMenuGUI {
 	}
 
 	private void initBtnNewWindow() {
-		btnNewWindow = new Button(shell, SWT.NONE);
-		btnNewWindow.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
+		this.btnNewWindow = new Button(shell, SWT.NONE);
+		this.btnNewWindow.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
-		btnNewWindow.setText("(.) (.)");
-		btnNewWindow.addSelectionListener(new SelectionAdapter() {
+		this.btnNewWindow.setText("(.) (.)");
+		this.btnNewWindow.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				new MainMenuGUI();
 			}
@@ -54,11 +54,11 @@ public class MainMenuGUI {
 	}
 
 	private void initBtnExit() {
-		btnExit = new Button(shell, SWT.NONE);
-		btnExit.setText("Beenden");
-		btnExit.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
+		this.btnExit = new Button(shell, SWT.NONE);
+		this.btnExit.setText("Beenden");
+		this.btnExit.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
-		btnExit.addSelectionListener(new SelectionAdapter() {
+		this.btnExit.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				shell.dispose();
 			}
@@ -66,43 +66,43 @@ public class MainMenuGUI {
 	}
 
 	private void initBtnSartDemo() {
-		btnSartDemo = new Button(shell, SWT.NONE);
-		btnSartDemo.setText("Starte Demo");
-		btnSartDemo.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
+		this.btnSartDemo = new Button(shell, SWT.NONE);
+		this.btnSartDemo.setText("Starte Demo");
+		this.btnSartDemo.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
-		btnSartDemo.addSelectionListener(new SelectionAdapter() {
+		this.btnSartDemo.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 			}
 		});
 	}
 
 	private void initBtnStartGame() {
-		btnStartGame = new Button(shell, SWT.NONE);
-		btnStartGame.setText("Starte Spiel");
-		btnStartGame.addSelectionListener(new SelectionAdapter() {
+		this.btnStartGame = new Button(shell, SWT.NONE);
+		this.btnStartGame.setText("Starte Spiel");
+		this.btnStartGame.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 			}
 		});
-		btnStartGame.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
+		this.btnStartGame.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
 	}
 
 
 	private void initShell() {
-		shell = new Shell(SWT.TITLE | SWT.CLOSE);
+		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
 		shells++;
-		shell.addDisposeListener(new DisposeListener() {
+		this.shell.addDisposeListener(new DisposeListener() {
 			public void widgetDisposed(DisposeEvent d) {
 				shells--;
 			}
 		});
-		shell.addListener(SWT.Close, new Listener() {
+		this.shell.addListener(SWT.Close, new Listener() {
 			public void handleEvent(Event event) {
 			}
 		});
-		shell.setText("Hauptmenü");
-		shell.setLayout(new GridLayout(1, false));
-		shell.setSize(220, 180);
+		this.shell.setText("Hauptmenü");
+		this.shell.setLayout(new GridLayout(1, false));
+		this.shell.setSize(220, 180);
 	};
 
 
