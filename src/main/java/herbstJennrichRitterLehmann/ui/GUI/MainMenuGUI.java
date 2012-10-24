@@ -36,7 +36,7 @@ public class MainMenuGUI {
 	public MainMenuGUI() {
 		initShell();
 		initBtnStartGame();
-		initBtnSartDemo();
+		initBtnStartDemo();
 		initBtnNewWindow();
 		initBtnExit();
 		shell.open();
@@ -66,7 +66,7 @@ public class MainMenuGUI {
 			});
 	}
 
-	private void initBtnSartDemo() {
+	private void initBtnStartDemo() {
 		this.btnSartDemo = new Button(shell, SWT.NONE);
 		this.btnSartDemo.setText("Starte Demo");
 		this.btnSartDemo.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
