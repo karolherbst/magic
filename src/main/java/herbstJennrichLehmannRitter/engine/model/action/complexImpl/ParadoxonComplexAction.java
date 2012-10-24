@@ -9,7 +9,7 @@ public class ParadoxonComplexAction implements ComplexCardAction {
 
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
-		sourcePlayer.getDeck().getHandDeck().exchangeCardsWithHandDeck(targetPlayer.getDeck().getHandDeck());
+		sourcePlayer.getDeck().exchangeCardsWithHandDeck(targetPlayer.getDeck());
 	}
 
 }

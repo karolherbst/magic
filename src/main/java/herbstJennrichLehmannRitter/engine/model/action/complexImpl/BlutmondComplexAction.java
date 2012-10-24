@@ -9,7 +9,7 @@ import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
 public class BlutmondComplexAction implements ComplexCardAction {
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
-		sourcePlayer.getDeck().getHandDeck().discardAllCards();
-		sourcePlayer.getDeck().getHandDeck().pickNumberOfCardsWithType(6, CardType.CARD_TYPE_DUNGEON);
+		sourcePlayer.getDeck().discardAllCards();
+		sourcePlayer.getDeck().pickNumberOfCardsWithType(6, CardType.CARD_TYPE_DUNGEON);
 	}
 }

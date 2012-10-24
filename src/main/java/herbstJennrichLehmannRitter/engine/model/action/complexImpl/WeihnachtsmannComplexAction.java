@@ -9,7 +9,7 @@ public class WeihnachtsmannComplexAction implements ComplexCardAction {
 
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
-		sourcePlayer.getDeck().getHandDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(14);
+		sourcePlayer.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(14);
 	}
 
 }

@@ -18,7 +18,7 @@ public class PlayerImpl implements Player {
 
 	private String name;
 	
-	private Deck deck = new DeckImpl();
+	private Deck deck = null;
 	
 	private ResourceBuilding dungeon = new DungeonImpl();
 	private ResourceBuilding magicLab = new MagicLabImpl();

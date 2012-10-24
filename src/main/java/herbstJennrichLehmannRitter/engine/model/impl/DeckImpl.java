@@ -1,40 +1,38 @@
 package herbstJennrichLehmannRitter.engine.model.impl;
 
+import herbstJennrichLehmannRitter.engine.enums.CardType;
+import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.Deck;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import herbstJennrichLehmannRitter.engine.enums.CardType;
-import herbstJennrichLehmannRitter.engine.model.Card;
-import herbstJennrichLehmannRitter.engine.model.CemeteryDeck;
-import herbstJennrichLehmannRitter.engine.model.Deck;
-import herbstJennrichLehmannRitter.engine.model.DeckStack;
-import herbstJennrichLehmannRitter.engine.model.HandDeck;
-
 public class DeckImpl implements Deck {
 	
-	private HandDeckImpl handDeckImpl = new HandDeckImpl();
-	private CemeteryDeckImpl cemeteryDeckImpl = new CemeteryDeckImpl();
-	private DeckStackImpl deckStackImpl = new DeckStackImpl();
+	private HandDeckImpl handDeck = new HandDeckImpl();
+	private CemeteryDeckImpl cemeteryDeck = new CemeteryDeckImpl();
+	private DeckStackImpl deckStack = new DeckStackImpl();
 	
-	private class HandDeckImpl implements HandDeck {
+	private class HandDeckImpl {
 		
 		private Collection<Card> handDeck = new ArrayList<Card>();
 		
-		@Override
+		public Collection<Card> getCards() {
+			return Collections.unmodifiableCollection(this.handDeck);
+		}
+		
 		public void discardCard(Card card) {
 			this.handDeck.remove(card);
-			cemeteryDeckImpl.addCard(card);
+			DeckImpl.this.cemeteryDeck.addCard(card);
 		}
 
-		@Override
 		public void discardAllCards() {
-			cemeteryDeckImpl.addCards(this.handDeck);
+			DeckImpl.this.cemeteryDeck.addCards(this.handDeck);
 			this.handDeck.clear();
 		}
 		
-		@Override
 		public void discardAllCardsByType(CardType cardType) {
 			for (Card card : this.handDeck) {
 				if (card.getCardType() == cardType) {
@@ -43,95 +41,97 @@ public class DeckImpl implements Deck {
 			}
 		}
 		
-		private void addCard(Card card) {
-			try {
-				if (this.handDeck.size() > 6) {
-					// TODO: Hier eine Exception sinnvoll?
-					throw new Exception("Es können nicht mehr als 6 Karten gleichzeitig aufgenommen werden!");
-				} else {
-					this.handDeck.add(card);
-				}
-			} catch (Exception e) {
-				System.out.println(e.getLocalizedMessage());
+		public boolean pickCard() {
+			if (this.handDeck.size() <= 6) {
+				this.handDeck.add(deckStack.pickCard());
+				return true;
+			} else {
+				return false;
 			}
 		}
 
-		@Override
-		public void pickCard() {
-			this.addCard(deckStackImpl.pickCard());
-		}
-
-		@Override
-		public void pickCards(int numberOfCards) {
-			if (numberOfCards < 6) {
+		public boolean pickCards(int numberOfCards) {
+			if (this.handDeck.size() <= 6) {
 				for (int i = 0; i < numberOfCards; i++) {
 					if (this.handDeck.size() > 6) {
 						break;
 					}
-					this.addCard(deckStackImpl.pickCard());
+					this.handDeck.add(deckStack.pickCard());
 				}
+				return true;
+			} else {
+				return false;
 			}
 		}
 		
-		@Override
-		public void pickCardFromDeckStackOrCemeteryDeckWithCostAbout(int cost) {
-			List<Card> cards = new ArrayList<Card>();
-			Card card = null;
-			
-			cards.addAll(cemeteryDeckImpl.getAllCards());
-			cards.addAll(deckStackImpl.getAllCards());
-			Collections.shuffle(cards);
-			
-			for (Card cardIteration : cards) {
-				if (cardIteration.getCostBrick() > cost 
-						|| cardIteration.getCostCrystal() > cost 
-						|| cardIteration.getCostMonsters() > cost) {
-					card = cardIteration;
-					break;
+		public boolean pickCardFromDeckStackOrCemeteryDeckWithCostAbout(int cost) {
+			if( this.handDeck.size() <= 6) {
+				List<Card> cards = new ArrayList<Card>();
+				Card card = null;
+					
+				cards.addAll(DeckImpl.this.cemeteryDeck.getAllCards());
+				cards.addAll(DeckImpl.this.deckStack.getAllCards());
+				Collections.shuffle(cards);
+					
+				for (Card cardIteration : cards) {
+					if (cardIteration.getCostBrick() > cost 
+							|| cardIteration.getCostCrystal() > cost 
+							|| cardIteration.getCostMonsters() > cost) {
+						card = cardIteration;
+						break;
+					}
 				}
-			}
-			
-			if( card != null ) {
-				if (cemeteryDeckImpl.getAllCards().contains(card)) {
-					cemeteryDeckImpl.removeCard(card);
+					
+				if( card != null ) {
+					if (cemeteryDeck.getAllCards().contains(card)) {
+						cemeteryDeck.removeCard(card);
+					} else {
+						DeckImpl.this.deckStack.removeCard(card);
+					}
+					this.handDeck.add(card);
+					return true;
 				} else {
-					deckStackImpl.removeCard(card);
+					return false;
 				}
-				this.addCard(card);
 			} else {
-				// TODO: Muss hier eine Exception hin, wenn es keine Karte gibt?
+				return false;
 			}
 		}
 
-		@Override
-		public void pickNumberOfCardsWithType(int numberOfCards, CardType cardType) {
-			List<Card> cards = new ArrayList<Card>();
-			Card card;
-			do {
-				card = deckStackImpl.pickCard();
-				if (card.getCardType() == cardType) {
-					cards.add(card);
+		public boolean pickNumberOfCardsWithType(int numberOfCards, CardType cardType) {
+			if (this.handDeck.size() <= 6) {
+				List<Card> cards = new ArrayList<Card>();
+				Card card;
+				
+				do {
+					card = deckStack.pickCard();
+					if (card.getCardType() == cardType) {
+						cards.add(card);
+					}
+				} while (this.handDeck.size() < numberOfCards);
+				
+				Collections.shuffle(cards);
+				
+				for (int i = 0; i <= numberOfCards; i++) {
+					if (this.handDeck.size() <= 6) {
+						break;
+					}
+					this.handDeck.add(cards.get(i));
 				}
-			} while (this.handDeck.size() < numberOfCards);
-			
-			Collections.shuffle(cards);
-			for (int i = 0; i <= numberOfCards; i++) {
-				this.addCard(cards.get(i));
+				return true;
+			} else {
+				return false;
 			}
 		}
 		
-		public void exchangeCardsWithHandDeck(HandDeck handDeck) {
-			if (handDeck instanceof HandDeckImpl) {
-				HandDeckImpl otherHandDeck = (HandDeckImpl)handDeck;
-				
-				Collection<Card> tmp = this.handDeck;
-				this.handDeck = otherHandDeck.handDeck;
-				otherHandDeck.handDeck = tmp;
-			}
+		public void exchangeCardsWithHandDeck(HandDeckImpl handDeck) {
+			Collection<Card> tmp = this.handDeck;
+			this.handDeck = handDeck.handDeck;
+			handDeck.handDeck = tmp;
 		}
 	}
 	
-	private class CemeteryDeckImpl implements CemeteryDeck {
+	private class CemeteryDeckImpl {
 
 		private Collection<Card> cemeteryDeck = new ArrayList<Card>();
 		
@@ -156,11 +156,10 @@ public class DeckImpl implements Deck {
 		 }
 	}
 	
-	private class DeckStackImpl implements DeckStack {
+	private class DeckStackImpl {
 
 		private List<Card> deckStack = new ArrayList<Card>();
 		
-		@Override
 		public void shuffle() {
 			Collections.shuffle(deckStack);
 		}
@@ -180,8 +179,8 @@ public class DeckImpl implements Deck {
 		}
 		
 		private void refill() {
-			deckStack.addAll(cemeteryDeckImpl.getAllCards());
-			cemeteryDeckImpl.clear();
+			deckStack.addAll(cemeteryDeck.getAllCards());
+			cemeteryDeck.clear();
 		}
 		
 		public Collection<Card> getAllCards() {
@@ -189,18 +188,61 @@ public class DeckImpl implements Deck {
 		}
 	}
 	
-	@Override
-	public DeckStack getDeck() {
-		return this.deckStackImpl;
+	public DeckImpl(Collection<Card> cards) {
+		this.deckStack.deckStack.addAll(cards);
+		this.deckStack.shuffle();
+		this.handDeck.pickCards(6);
 	}
 
 	@Override
-	public HandDeck getHandDeck() {
-		return this.handDeckImpl;
+	public Collection<Card> getAllCards() {
+		return this.handDeck.getCards();
 	}
 
 	@Override
-	public CemeteryDeck getCemeteryDeck() {
-		return this.cemeteryDeckImpl;
+	public void discardCard(Card card) {
+		this.handDeck.discardCard(card);
+	}
+
+	@Override
+	public void discardAllCards() {
+		this.handDeck.discardAllCards();
+	}
+
+	@Override
+	public void discardAllCardsByType(CardType cardType) {
+		this.handDeck.discardAllCardsByType(cardType);
+	}
+
+	@Override
+	public boolean pickCard() {
+		return this.handDeck.pickCard();
+	}
+
+	@Override
+	public boolean pickCards(int numberOfCards) {
+		return this.handDeck.pickCards(numberOfCards);
+	}
+
+	@Override
+	public boolean pickNumberOfCardsWithType(int numberOfCards,	CardType cardType) {
+		return this.handDeck.pickNumberOfCardsWithType(numberOfCards, cardType);
+	}
+
+	@Override
+	public boolean pickCardFromDeckStackOrCemeteryDeckWithCostAbout(int cost) {
+		return this.handDeck.pickCardFromDeckStackOrCemeteryDeckWithCostAbout(cost);
+	}
+
+	@Override
+	public void exchangeCardsWithHandDeck(Deck deck) {
+		if (deck instanceof DeckImpl) {
+			this.handDeck.exchangeCardsWithHandDeck(((DeckImpl)deck).handDeck);
+		}
+	}
+
+	@Override
+	public void shuffle() {
+		this.deckStack.shuffle();
 	}
 }

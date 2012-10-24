@@ -10,6 +10,6 @@ public class PfuschenderSchmiedComplexAction implements ComplexCardAction {
 
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
-		targetPlayer.getDeck().getHandDeck().discardAllCardsByType(CardType.CARD_TYPE_MINE);
+		targetPlayer.getDeck().discardAllCardsByType(CardType.CARD_TYPE_MINE);
 	}
 }

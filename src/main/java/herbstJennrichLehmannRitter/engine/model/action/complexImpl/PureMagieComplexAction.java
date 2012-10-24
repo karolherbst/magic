@@ -10,7 +10,7 @@ public class PureMagieComplexAction implements ComplexCardAction {
 
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
-		sourcePlayer.getDeck().getHandDeck().discardAllCards();
-		sourcePlayer.getDeck().getHandDeck().pickNumberOfCardsWithType(6, CardType.CARD_TYPE_MAGIC_LAB);
+		sourcePlayer.getDeck().discardAllCards();
+		sourcePlayer.getDeck().pickNumberOfCardsWithType(6, CardType.CARD_TYPE_MAGIC_LAB);
 	}
 }
