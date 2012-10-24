@@ -31,8 +31,22 @@ public class GameCardFactoryImpl implements GameCardFactory {
 	private Map<String, Class<?>> complexCardActions;
 	
 	private static void assertCard(Card card) {
+		final String DEFAULT_ERROR_STRING = "Card with name " + card.getName() + ' ';
+		
 		if (card.getCardType() == null) {
-			throw new EngineCouldNotStartException("Card with name " + card.getName() + " has no CardType");
+			throw new EngineCouldNotStartException(DEFAULT_ERROR_STRING + "has no CardType");
+		}
+		
+		if (card.getCostBrick() < 0) {
+			throw new EngineCouldNotStartException(DEFAULT_ERROR_STRING + "has brick costs < 0");
+		}
+		
+		if (card.getCostCrystal() < 0) {
+			throw new EngineCouldNotStartException(DEFAULT_ERROR_STRING + "has brick crystal < 0");
+		}
+
+		if (card.getCostMonsters() < 0) {
+			throw new EngineCouldNotStartException(DEFAULT_ERROR_STRING + "has brick monster < 0");
 		}
 	}
 	
