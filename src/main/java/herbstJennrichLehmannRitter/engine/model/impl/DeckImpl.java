@@ -34,10 +34,16 @@ public class DeckImpl implements Deck {
 		}
 		
 		public void discardAllCardsByType(CardType cardType) {
+			Collection<Card> cardToRemove = new ArrayList<Card>();
+			
 			for (Card card : this.handDeck) {
 				if (card.getCardType() == cardType) {
-					this.discardCard(card);
+					cardToRemove.add(card);
 				}
+			}
+			
+			for (Card card : cardToRemove) {
+				this.discardCard(card);
 			}
 		}
 		
@@ -108,12 +114,12 @@ public class DeckImpl implements Deck {
 					if (card.getCardType() == cardType) {
 						cards.add(card);
 					}
-				} while (this.handDeck.size() < numberOfCards);
+				} while (cards.size() < numberOfCards);
 				
 				Collections.shuffle(cards);
 				
-				for (int i = 0; i <= numberOfCards; i++) {
-					if (this.handDeck.size() <= 6) {
+				for (int i = 0; i < numberOfCards; i++) {
+					if (this.handDeck.size() == 6) {
 						break;
 					}
 					this.handDeck.add(cards.get(i));

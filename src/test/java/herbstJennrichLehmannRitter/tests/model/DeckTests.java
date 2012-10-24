@@ -1,6 +1,8 @@
 package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.*;
+import herbstJennrichLehmannRitter.engine.enums.CardType;
+import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
@@ -14,46 +16,156 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class DeckTests {
 
 	private PlayerFactory playerFactory = new PlayerFactoryImpl();
 	private GameCardFactory gameCardFactory = new GameCardFactoryImpl();
+	private Collection<Card> cardsOnHand = new ArrayList<Card>();
+	private Deck globalDeck = null;
+	private Player globalPlayer = null;
 	
-//	@Test
+	@Before
+	public void before() {
+		try {
+			this.cardsOnHand.add(this.gameCardFactory.createCard("Architektur"));
+			this.cardsOnHand.add(this.gameCardFactory.createCard("Auge des Koloss"));
+			this.cardsOnHand.add(this.gameCardFactory.createCard("Diamant"));
+			this.cardsOnHand.add(this.gameCardFactory.createCard("Drachenauge"));
+			this.cardsOnHand.add(this.gameCardFactory.createCard("Oger"));
+			this.cardsOnHand.add(this.gameCardFactory.createCard("Rinderwahnsinn"));
+		} catch (EngineCouldNotStartException e) {
+			fail(e.getLocalizedMessage());
+		}
+	}
+	
+	@Test
 	public void testGetAllCards() {
-		fail("Not yet implemented");
+		this.globalDeck = new DeckImpl(this.cardsOnHand);
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.globalDeck, 0, 0, 0, 0);
+		
+		assertTrue(this.cardsOnHand.containsAll(this.globalPlayer.getDeck().getAllCards()));
 	}
 
-//	@Test
+	@Test
 	public void testDiscardCard() {
-		fail("Not yet implemented");
+		Collection<Card> cards = new ArrayList<Card>();
+		Card cardOne = this.gameCardFactory.createCard("Architektur");
+		
+		cards.add(cardOne);
+		cards.add(this.gameCardFactory.createCard("Auge des Koloss"));
+		cards.add(this.gameCardFactory.createCard("Diamant"));
+		cards.add(this.gameCardFactory.createCard("Drachenauge"));
+		cards.add(this.gameCardFactory.createCard("Oger"));
+		cards.add(this.gameCardFactory.createCard("Rinderwahnsinn"));
+
+		Deck deck = new DeckImpl(cards);
+		Player player = this.playerFactory.createPlayer("Player", deck, 0, 0, 0, 0);
+		
+		player.getDeck().discardCard(cardOne);
+		
+		assertFalse(player.getDeck().getAllCards().containsAll(cards));
+		assertEquals(5, player.getDeck().getAllCards().size());
 	}
 
-//	@Test
+	@Test
 	public void testDiscardAllCards() {
-		fail("Not yet implemented");
+		this.globalDeck = new DeckImpl(this.cardsOnHand);
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.globalDeck, 0, 0, 0, 0);
+		
+		this.globalPlayer.getDeck().discardAllCards();
+		
+		assertTrue(this.globalPlayer.getDeck().getAllCards().isEmpty());
+		assertEquals(0, this.globalPlayer.getDeck().getAllCards().size());
 	}
 
-//	@Test
+	@Test
 	public void testDiscardAllCardsByType() {
-		fail("Not yet implemented");
+		Collection<Card> cards = new ArrayList<Card>();
+		Card cardArchitektur = this.gameCardFactory.createCard("Architektur");
+		Card cardAugeDesKoloss = this.gameCardFactory.createCard("Auge des Koloss");
+		Card cardDiamant = this.gameCardFactory.createCard("Diamant");
+		Card cardDrachenauge = this.gameCardFactory.createCard("Drachenauge");
+		Card cardOger = this.gameCardFactory.createCard("Oger");
+		Card cardRinderwahnsinn = this.gameCardFactory.createCard("Rinderwahnsinn");
+		
+		cards.add(cardArchitektur);
+		cards.add(cardAugeDesKoloss);
+		cards.add(cardDiamant);
+		cards.add(cardDrachenauge);
+		cards.add(cardOger);
+		cards.add(cardRinderwahnsinn);
+
+		Deck deck = new DeckImpl(cards);
+		Player player = this.playerFactory.createPlayer("Player", deck, 0, 0, 0, 0);
+
+		player.getDeck().discardAllCardsByType(CardType.CARD_TYPE_MAGIC_LAB);
+		assertTrue(player.getDeck().getAllCards().contains(cardArchitektur));
+		assertTrue(player.getDeck().getAllCards().contains(cardAugeDesKoloss));
+		assertFalse(player.getDeck().getAllCards().contains(cardDiamant));
+		assertFalse(player.getDeck().getAllCards().contains(cardDrachenauge));
+		assertTrue(player.getDeck().getAllCards().contains(cardOger));
+		assertTrue(player.getDeck().getAllCards().contains(cardRinderwahnsinn));
 	}
 
-//	@Test
+	@Test
 	public void testPickCard() {
-		fail("Not yet implemented");
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Schäfchen"));
+		
+		this.globalDeck = new DeckImpl(this.cardsOnHand);
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.globalDeck, 0, 0, 0, 0);
+
+		this.globalPlayer.getDeck().discardAllCards();
+		
+		assertTrue(this.globalPlayer.getDeck().pickCard());
+		assertEquals(this.globalPlayer.getDeck().getAllCards().size(),1);
 	}
 
-//	@Test
-	public void testPickCards() {
-		fail("Not yet implemented");
+	@Test
+	public void testPickCardsWith3Cards() {
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Schäfchen"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Prisma"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Rauchquarz"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Zaubersprüche"));
+		
+		this.globalDeck = new DeckImpl(this.cardsOnHand);
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.globalDeck, 0, 0, 0, 0);
+
+		this.globalPlayer.getDeck().discardAllCards();
+		
+		assertTrue(this.globalPlayer.getDeck().pickCards(3));
+		assertEquals(this.globalPlayer.getDeck().getAllCards().size(),3);
 	}
 
-//	@Test
+	@Test
 	public void testPickNumberOfCardsWithType() {
-		fail("Not yet implemented");
+		Collection<Card> cards = new ArrayList<Card>();
+		
+		Card cardKaravane = this.gameCardFactory.createCard("Karavane");
+		Card cardEisdrache = this.gameCardFactory.createCard("Eisdrache");
+		Card cardVulkanausbruch = this.gameCardFactory.createCard("Vulkanausbruch");
+		
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Schäfchen"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Prisma"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Rauchquarz"));
+		this.cardsOnHand.add(cardKaravane);
+		this.cardsOnHand.add(cardEisdrache);
+		this.cardsOnHand.add(cardVulkanausbruch);
+		
+		cards.add(cardKaravane);
+		cards.add(cardEisdrache);
+		cards.add(cardVulkanausbruch);
+		
+		this.globalDeck = new DeckImpl(this.cardsOnHand);
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.globalDeck, 0, 0, 0, 0);
+
+		this.globalPlayer.getDeck().discardAllCards();
+		
+		assertTrue(this.globalPlayer.getDeck().pickNumberOfCardsWithType(3, CardType.CARD_TYPE_SPECIAL));
+		assertEquals(this.globalPlayer.getDeck().getAllCards().size(), 3);
+		assertTrue(this.globalPlayer.getDeck().getAllCards().containsAll(cards));
 	}
 
 	@Test
@@ -63,18 +175,7 @@ public class DeckTests {
 		Player player = this.playerFactory.createPlayer("Player", deck, 0, 0, 0, 0);
 		
 		player.getDeck().discardAllCards();
-		player.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(14);
-		
-		Card card = player.getDeck().getAllCards().iterator().next();
-		if( card.getCostBrick() > 14) {
-			assertTrue(card.getCostBrick() > 14);
-		} else if (card.getCostCrystal() > 14) {
-			assertTrue(card.getCostCrystal() > 14);
-		} else if (card.getCostMonsters() > 14) {
-			assertTrue(card.getCostMonsters() > 14);
-		} else {
-			assertFalse(true);
-		}
+		assertTrue(player.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(14));
 	}
 
 	@Test
