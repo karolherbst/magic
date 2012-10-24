@@ -1,4 +1,4 @@
-package herbstJennrichLehmannRitter.ui.GUI;
+package herbstJennrichLehmannRitter.ui.GUI_Jigloo;
 import com.cloudgarden.resource.SWTResourceManager;
 
 import org.eclipse.swt.layout.FillLayout;
@@ -23,17 +23,18 @@ import org.eclipse.swt.SWT;
 * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
-public class GameServerGUI extends org.eclipse.swt.widgets.Dialog {
+public class GameClientGUI extends org.eclipse.swt.widgets.Dialog {
 
 	private Shell dialogShell;
-	private Text textBoxWaiting;
+	private Text textBoxHostAdress;
+	private Text textBoxHeadline;
 
 	/**
 	* Auto-generated main method to display this 
 	* org.eclipse.swt.widgets.Dialog inside a new Shell.
 	*/
 	
-	public GameServerGUI(Shell parent, int style) {
+	public GameClientGUI(Shell parent, int style) {
 		super(parent, style);
 	}
 
@@ -54,16 +55,31 @@ public class GameServerGUI extends org.eclipse.swt.widgets.Dialog {
 			dialogShell.pack();			
 			dialogShell.setSize(250, 100);
 			{
-				textBoxWaiting = new Text(dialogShell, SWT.NONE);
-				FormData textBoxWaitingLData = new FormData();
-				textBoxWaitingLData.left =  new FormAttachment(0, 1000, 24);
-				textBoxWaitingLData.top =  new FormAttachment(0, 1000, 29);
-				textBoxWaitingLData.width = 196;
-				textBoxWaitingLData.height = 19;
-				textBoxWaiting.setLayoutData(textBoxWaitingLData);
-				textBoxWaiting.setText("Warte auf Client...");
-				textBoxWaiting.setFont(SWTResourceManager.getFont("Lucida Grande", 16, 0, false, false));
-				textBoxWaiting.setEditable(false);
+				textBoxHeadline = new Text(dialogShell, SWT.MULTI | SWT.WRAP);
+				FormData textBoxHeadlineLData = new FormData();
+				textBoxHeadlineLData.left =  new FormAttachment(0, 1000, 12);
+				textBoxHeadlineLData.top =  new FormAttachment(0, 1000, 19);
+				textBoxHeadlineLData.width = 224;
+				textBoxHeadlineLData.height = 13;
+				textBoxHeadline.setLayoutData(textBoxHeadlineLData);
+				textBoxHeadline.setText("Bitte IP-Adresse des Servers angeben");
+				textBoxHeadline.setEditable(false);
+				textBoxHeadline.setBackground(SWTResourceManager.getColor(184, 184, 184));
+			}
+			{
+				textBoxHostAdress = new Text(dialogShell, SWT.NONE);
+				FormData textBoxHostAdressLData = new FormData();
+				textBoxHostAdressLData.left =  new FormAttachment(0, 1000, 12);
+				textBoxHostAdressLData.top =  new FormAttachment(0, 1000, 38);
+				textBoxHostAdressLData.width = 224;
+				textBoxHostAdressLData.height = 19;
+				textBoxHostAdress.setLayoutData(textBoxHostAdressLData);
+				textBoxHostAdress.setText("127.0.0.1");
+				textBoxHostAdress.setToolTipText("IP-Adresse des Servers eingeben");
+				textBoxHostAdress.setFont(SWTResourceManager.getFont("Lucida Grande", 16, 0, false, false));
+				textBoxHostAdress.setDoubleClickEnabled(false);
+				textBoxHostAdress.setDragDetect(false);
+				textBoxHostAdress.setOrientation(SWT.HORIZONTAL);
 			}
 			dialogShell.setLocation(getParent().toDisplay(100, 100));
 			dialogShell.open();

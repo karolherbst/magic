@@ -6,6 +6,7 @@ import herbstJennrichLehmannRitter.ui.impl.CLIUserInterface;
 public class Main {
 
 	public static void main(String[] args) {
+		
 		UserInterface cli = new CLIUserInterface();
 	}
 

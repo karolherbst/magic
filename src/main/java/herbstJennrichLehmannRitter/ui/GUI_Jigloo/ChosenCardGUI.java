@@ -1,4 +1,4 @@
-package herbstJennrichLehmannRitter.ui.GUI;
+package herbstJennrichLehmannRitter.ui.GUI_Jigloo;
 
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
