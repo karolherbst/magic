@@ -45,13 +45,12 @@ public class MainMenuGUI {
 		btnNewWindow = new Button(shell, SWT.NONE);
 		btnNewWindow.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
-		btnNewWindow.setText("(.)(.)");
+		btnNewWindow.setText("(.) (.)");
 		btnNewWindow.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				new MainMenuGUI();
 			}
 		});
-
 	}
 
 	private void initBtnExit() {
@@ -74,7 +73,6 @@ public class MainMenuGUI {
 		btnSartDemo.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 			}
-
 		});
 	}
 
@@ -105,7 +103,6 @@ public class MainMenuGUI {
 		shell.setText("Hauptmenü");
 		shell.setLayout(new GridLayout(1, false));
 		shell.setSize(220, 180);
-		
 	};
 
 
