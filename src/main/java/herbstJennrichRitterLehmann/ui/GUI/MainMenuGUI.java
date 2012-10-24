@@ -36,7 +36,7 @@ public class MainMenuGUI {
 	public MainMenuGUI() {
 		initShell();
 		initBtnStartGame();
-		initBtnStartDemo();
+		initBtnSartDemo();
 		initBtnNewWindow();
 		initBtnExit();
 		shell.open();
@@ -66,7 +66,7 @@ public class MainMenuGUI {
 			});
 	}
 
-	private void initBtnStartDemo() {
+	private void initBtnSartDemo() {
 		this.btnSartDemo = new Button(shell, SWT.NONE);
 		this.btnSartDemo.setText("Starte Demo");
 		this.btnSartDemo.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
@@ -84,7 +84,7 @@ public class MainMenuGUI {
 				true, false));
 		this.btnStartGame.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				GameMenuGUI GameMenu = new GameMenuGUI();
+				GameMenuGUI.main();
 				
 			}
 		});
