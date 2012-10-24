@@ -45,7 +45,7 @@ public class MainMenuGUI {
 		this.btnNewWindow = new Button(shell, SWT.NONE);
 		this.btnNewWindow.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
-		this.btnNewWindow.setText("(.) (.)");
+		this.btnNewWindow.setText("(*) (.)");
 		this.btnNewWindow.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				new MainMenuGUI();
