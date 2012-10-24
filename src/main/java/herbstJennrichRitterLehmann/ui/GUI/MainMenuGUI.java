@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Text;
 public class MainMenuGUI {
 
 	/**
-	 * Implementation Hauptmenue
+	 * Implementation Hauptmenü
 	 */
 	
 	private static int shells = 0;
