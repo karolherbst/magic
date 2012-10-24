@@ -32,9 +32,7 @@ public class MainMenuGUI {
 	private Button btnNewWindow;
 	private Button btnExit;
 	
-
 	public MainMenuGUI() {
-
 		initShell();
 		initBtnStartGame();
 		initBtnSartDemo();
@@ -47,7 +45,7 @@ public class MainMenuGUI {
 		btnNewWindow = new Button(shell, SWT.NONE);
 		btnNewWindow.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
-		btnNewWindow.setText("Neues Fenster");
+		btnNewWindow.setText("(.)(.)");
 		btnNewWindow.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
 				new MainMenuGUI();
@@ -93,7 +91,7 @@ public class MainMenuGUI {
 
 
 	private void initShell() {
-		shell = new Shell();
+		shell = new Shell(SWT.TITLE | SWT.CLOSE);
 		shells++;
 		shell.addDisposeListener(new DisposeListener() {
 			public void widgetDisposed(DisposeEvent d) {
@@ -107,6 +105,7 @@ public class MainMenuGUI {
 		shell.setText("Hauptmenü");
 		shell.setLayout(new GridLayout(1, false));
 		shell.setSize(220, 180);
+		
 	};
 
 
