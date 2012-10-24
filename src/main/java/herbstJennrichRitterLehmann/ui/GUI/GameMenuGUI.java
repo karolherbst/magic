@@ -41,11 +41,9 @@ public class GameMenuGUI {
 	          if (!display.readAndDispatch()) {
 	            display.sleep();
 	          }
-	      }
-		
+		 }
 	}
-
-
+	
 	private void initBtnExit() {
 		this.btnExit = new Button(shell, SWT.NONE);
 		this.btnExit.setText("Zurück");
@@ -56,8 +54,6 @@ public class GameMenuGUI {
 				shell.dispose();
 			}
 		});
-		
-		
 	}
 
 
@@ -67,7 +63,6 @@ public class GameMenuGUI {
 		this.btnStartClient.setToolTipText("An einem Spiel teilnehmen");
 		this.btnStartClient.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
-		
 	}
 
 
@@ -81,7 +76,6 @@ public class GameMenuGUI {
 			public void widgetSelected(SelectionEvent e) {
 			}
 		});
-		
 	}
 
 
@@ -92,10 +86,7 @@ public class GameMenuGUI {
 		this.shell.setSize(220, 145);
 	};
 
-
-
-
-	public static void main(String[] args) {
+	public static void main() {
 		display = new Display();
 		new GameMenuGUI();
 	}

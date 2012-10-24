@@ -22,6 +22,7 @@ public class MainMenuGUI {
 
 	/**
 	 * Implementation Hauptmenü
+	 * TODO: Event neues Fenster anderer Klasse öffnen!
 	 */
 	
 	private static int shells = 0;
@@ -79,12 +80,15 @@ public class MainMenuGUI {
 	private void initBtnStartGame() {
 		this.btnStartGame = new Button(shell, SWT.NONE);
 		this.btnStartGame.setText("Starte Spiel");
-		this.btnStartGame.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent e) {
-			}
-		});
 		this.btnStartGame.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
+		this.btnStartGame.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				GameMenuGUI GameMenu = new GameMenuGUI();
+				
+			}
+		});
+
 	}
 
 
