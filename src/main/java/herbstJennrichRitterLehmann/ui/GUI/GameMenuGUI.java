@@ -97,7 +97,6 @@ public class GameMenuGUI {
 
 	public static void main(String[] args) {
 		display = new Display();
-		shells++;
 		new GameMenuGUI();
 	}
 }
