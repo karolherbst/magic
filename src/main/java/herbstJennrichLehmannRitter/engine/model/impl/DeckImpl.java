@@ -43,7 +43,7 @@ public class DeckImpl implements Deck {
 			}
 		}
 		
-		private void addCardToHandDeck(Card card) {
+		private void addCard(Card card) {
 			try {
 				if (this.handDeck.size() > 6) {
 					// TODO: Hier eine Exception sinnvoll?
@@ -58,17 +58,17 @@ public class DeckImpl implements Deck {
 
 		@Override
 		public void pickCard() {
-			this.addCardToHandDeck(deckStackImpl.pickCard());
+			this.addCard(deckStackImpl.pickCard());
 		}
 
 		@Override
 		public void pickCards(int numberOfCards) {
 			if (numberOfCards < 6) {
 				for (int i = 0; i < numberOfCards; i++) {
-					if (this.handDeck.size() > 6 ) {
+					if (this.handDeck.size() > 6) {
 						break;
 					}
-					this.addCardToHandDeck(deckStackImpl.pickCard());
+					this.addCard(deckStackImpl.pickCard());
 				}
 			}
 		}
@@ -76,21 +76,28 @@ public class DeckImpl implements Deck {
 		@Override
 		public void pickCardFromDeckStackOrCemeteryDeckWithCostAbout(int cost) {
 			List<Card> cards = new ArrayList<Card>();
-			Card result = null;
+			Card card = null;
 			
 			cards.addAll(cemeteryDeckImpl.getAllCards());
 			cards.addAll(deckStackImpl.getAllCards());
 			Collections.shuffle(cards);
 			
-			for (Card card : cards) {
-				if (card.getCostBrick() > cost || card.getCostCrystal() > cost | card.getCostMonsters() > cost) {
-					result = card;
+			for (Card cardIteration : cards) {
+				if (cardIteration.getCostBrick() > cost 
+						|| cardIteration.getCostCrystal() > cost 
+						|| cardIteration.getCostMonsters() > cost) {
+					card = cardIteration;
 					break;
 				}
 			}
 			
-			if( result != null ) {
-				this.addCardToHandDeck(result);
+			if( card != null ) {
+				if (cemeteryDeckImpl.getAllCards().contains(card)) {
+					cemeteryDeckImpl.removeCard(card);
+				} else {
+					deckStackImpl.removeCard(card);
+				}
+				this.addCard(card);
 			} else {
 				// TODO: Muss hier eine Exception hin, wenn es keine Karte gibt?
 			}
@@ -105,11 +112,11 @@ public class DeckImpl implements Deck {
 				if (card.getCardType() == cardType) {
 					cards.add(card);
 				}
-			} while ( this.handDeck.size() < numberOfCards );
+			} while (this.handDeck.size() < numberOfCards);
 			
 			Collections.shuffle(cards);
 			for (int i = 0; i <= numberOfCards; i++) {
-				this.addCardToHandDeck(cards.get(i));
+				this.addCard(cards.get(i));
 			}
 		}
 		
@@ -136,6 +143,10 @@ public class DeckImpl implements Deck {
 			this.cemeteryDeck.addAll(cards);
 		}
 		
+		public void removeCard(Card card) {
+			this.cemeteryDeck.remove(card);
+		}
+		
 		public Collection<Card> getAllCards() {
 			return this.cemeteryDeck;
 		}
@@ -143,7 +154,6 @@ public class DeckImpl implements Deck {
 		 public void clear() {
 			 this.cemeteryDeck.clear();
 		 }
-		
 	}
 	
 	private class DeckStackImpl implements DeckStack {
@@ -156,13 +166,17 @@ public class DeckImpl implements Deck {
 		}
 		
 		public Card pickCard() {
-			if( deckStack.isEmpty() ) {
+			if (deckStack.isEmpty()) {
 				this.refill();
 			}
 			
 			Card result = this.deckStack.get(0);
 			this.deckStack.remove(0);
 			return result;
+		}
+		
+		public void removeCard(Card card) {
+			this.deckStack.remove(card);
 		}
 		
 		private void refill() {
