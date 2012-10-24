@@ -106,7 +106,7 @@ public class MainMenuGUI {
 	};
 
 
-	private static void startLoop() {
+	private static void keepOpen() {
 		while (!allShellsDisposed()) {
 			if (!display.readAndDispatch())
 				display.sleep();
@@ -121,6 +121,6 @@ public class MainMenuGUI {
 	public static void main(String[] args) {
 		display = new Display();
 		new MainMenuGUI();
-		startLoop();
+		keepOpen();
 	}
 }
