@@ -3,6 +3,9 @@
  */
 package herbstJennrichLehmannRitter.engine.model.impl;
 
+import herbstJennrichLehmannRitter.engine.enums.BuildingType;
+
+
 
 /**
  * 
@@ -18,7 +21,7 @@ public class TowerImpl extends AbstractDefenceBuilding {
 	
 	@Override
 	public String getName() {
-		return "Turm";
+		return BuildingType.TOWER.name();
 	}
 
 }
