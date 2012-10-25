@@ -1,6 +1,15 @@
 package herbstJennrichLehmannRitter.engine.model.action.impl;
 
+import static herbstJennrichLehmannRitter.engine.enums.BuildingType.DUNGEON;
+import static herbstJennrichLehmannRitter.engine.enums.BuildingType.MAGIC_LAB;
+import static herbstJennrichLehmannRitter.engine.enums.BuildingType.MINE;
+import static herbstJennrichLehmannRitter.engine.enums.BuildingType.TOWER;
+import static herbstJennrichLehmannRitter.engine.enums.BuildingType.WALL;
+import static herbstJennrichLehmannRitter.engine.enums.RessourceType.BRICK;
+import static herbstJennrichLehmannRitter.engine.enums.RessourceType.CRYSTAL;
+import static herbstJennrichLehmannRitter.engine.enums.RessourceType.MONSTER;
 import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
+import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 
 public class ResourceActionImpl implements ResourceAction {
 
@@ -81,5 +90,22 @@ public class ResourceActionImpl implements ResourceAction {
 	@Override
 	public int getDamage() {
 		return this.damage;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		
+		MagicUtils.addValueToStringBuilder(WALL, Integer.valueOf(getWallEffect()), stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(TOWER, Integer.valueOf(getTowerEffect()), stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(MINE, Integer.valueOf(getMineLvlEffect()), stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(DUNGEON, Integer.valueOf(getDungeonLvlEffect()), stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(MAGIC_LAB, Integer.valueOf(getMagicLabLvlEffect()), stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(BRICK, Integer.valueOf(getBrickEffect()), stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(MONSTER, Integer.valueOf(getMonsterEffect()), stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(CRYSTAL, Integer.valueOf(getCrystalEffect()), stringBuilder, true);
+		MagicUtils.addValueToStringBuilder("Schaden", Integer.valueOf(getDamage()), stringBuilder, true);
+		
+		return stringBuilder.toString();
 	}
 }
