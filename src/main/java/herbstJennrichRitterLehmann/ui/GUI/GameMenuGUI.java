@@ -14,11 +14,16 @@ public class GameMenuGUI {
 	 * Implementation Menü Spielauswahl
 	 */
 	
+	
 	private Shell shell;
 	private final Display display;
 	private Button btnStartHost;
 	private Button btnStartClient;
 	private Button btnExit;
+	
+	//Subviews
+	private HostMenuGUI hostMenuGUI;
+	
 	
 	public GameMenuGUI(Display parent) {
 		this.display = parent;
@@ -26,6 +31,8 @@ public class GameMenuGUI {
 		initBtnStartHost();
 		initBtnStartClient();
 		initBtnExit();
+		
+		this.hostMenuGUI = new HostMenuGUI(this.display);
 	}
 	
 	public void open() {
@@ -62,6 +69,7 @@ public class GameMenuGUI {
 				true, false));
 		this.btnStartHost.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
+				hostMenuGUI.open();
 			}
 		});
 	}

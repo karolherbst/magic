@@ -31,6 +31,7 @@ public class MainMenuGUI {
 	// subviews
 	private GameMenuGUI gameMenuGUI;
 	
+	
 	public MainMenuGUI() {
 		this.display = new Display();
 		initShell();
@@ -39,6 +40,7 @@ public class MainMenuGUI {
 		initBtnExit();
 		
 		this.gameMenuGUI = new GameMenuGUI(this.display);
+
 		
 		this.shell.open();
 	}

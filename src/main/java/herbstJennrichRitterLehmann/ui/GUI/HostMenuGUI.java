@@ -17,20 +17,25 @@ public class HostMenuGUI {
 	 */
 	
 	private Shell shell;
-	private static Display display;
+	private final Display display;
 	private Button btnExit;
 	private Label lblWfC;
 	
-	public HostMenuGUI(){
+
+	
+	
+	public HostMenuGUI(Display parent){
+		this.display = parent;
 		initShell();
 		initLblWfC();
 		initBtnExit();
-		shell.open();
-		 while (!shell.isDisposed()) {
-	          if (!display.readAndDispatch()) {
-	            display.sleep();
-	          }
-	      }	
+		
+
+	}
+	
+	
+	public void open() {
+		this.shell.open();
 	}
 	
 	private void initLblWfC() {
@@ -61,8 +66,4 @@ public class HostMenuGUI {
 		this.shell.setSize(220, 100);
 	};
 	
-	public static void main(String[] args) {
-		display = new Display();
-		new HostMenuGUI();
-	}
 }
