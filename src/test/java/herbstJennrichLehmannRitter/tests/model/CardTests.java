@@ -38,7 +38,7 @@ public class CardTests {
 	
 	@Test
 	public void testCardTypeEnum() {
-		assertEquals(CardType.CARD_TYPE_MINE.toString(), "Steinbruch");getClass();
+		assertEquals(CardType.CARD_TYPE_MINE.toString(), "Steinbruchkarte");getClass();
 	}
 	
 	@Test

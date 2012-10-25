@@ -22,6 +22,6 @@ public enum CardType {
 	
 	@Override
 	public String toString() {
-		return this.value;
+		return this.value + "karte";
 	}
 }
