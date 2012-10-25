@@ -87,6 +87,6 @@ public class GameMenuGUI {
 		this.shell.setText("Spielauswahl");
 		this.shell.setLayout(new GridLayout(1, false));
 		this.shell.setSize(220, 145);
-	};
+	}
 
 }

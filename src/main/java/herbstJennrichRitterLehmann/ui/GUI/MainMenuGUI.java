@@ -93,7 +93,7 @@ public class MainMenuGUI {
 		this.shell.setText("Hauptmenü");
 		this.shell.setLayout(new GridLayout(1, false));
 		this.shell.setSize(220, 180);
-	};
+	}
 
 
 	private void keepOpen() {
