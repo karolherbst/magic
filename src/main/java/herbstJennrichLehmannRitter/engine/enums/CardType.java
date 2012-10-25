@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name="CardType")
 @XmlEnum
 public enum CardType {
+	// TODO simplier names
 	
 	@XmlEnumValue("Steinbruch")		CARD_TYPE_MINE("Steinbruch"),
 	@XmlEnumValue("Zauberlabor")	CARD_TYPE_MAGIC_LAB("Zauberlabor"),
