@@ -48,7 +48,7 @@ public class ClientMenuGUI {
 				true, false));
 		this.btnBack.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				shell.dispose();
+				shell.setVisible(false);
 			}
 			});
 	}
