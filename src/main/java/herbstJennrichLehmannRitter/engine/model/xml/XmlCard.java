@@ -1,10 +1,10 @@
 package herbstJennrichLehmannRitter.engine.model.xml;
 
 import herbstJennrichLehmannRitter.engine.enums.CardType;
-import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.action.CardAction;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
+import herbstJennrichLehmannRitter.engine.model.impl.AbstractCard;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement(name="Card")
-public class XmlCard implements Card {
+public class XmlCard extends AbstractCard {
 
 	private String name;
 	private CardType cardType;
@@ -24,7 +24,7 @@ public class XmlCard implements Card {
 	private ResourceAction ownResourceAction;
 	private ResourceAction enemyResourceAction;
 	private ComplexCardAction complexCardAction;
-	private boolean canBeDiscarded;
+	private boolean canBeDiscarded = true;
 	
 	public void setName(String name) {
 		this.name = name;
@@ -121,7 +121,7 @@ public class XmlCard implements Card {
 		this.canBeDiscarded = canBeDiscarded;
 	}
 	
-	@XmlElement(name="CanBeDiscarded")
+	@XmlElement(name="CanBeDiscarded", defaultValue="true")
 	@Override
 	public boolean getCanBeDiscarded() {
 		return this.canBeDiscarded;
