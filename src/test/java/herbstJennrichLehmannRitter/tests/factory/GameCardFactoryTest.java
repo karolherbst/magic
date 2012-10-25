@@ -1,7 +1,9 @@
 package herbstJennrichLehmannRitter.tests.factory;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
@@ -36,6 +38,7 @@ public class GameCardFactoryTest {
 		assertEquals(card.getOwnResourceAction().getWallEffect(), 8);
 		assertEquals(card.getOwnResourceAction().getTowerEffect(), 5);
 		assertEquals(card.getCostBrick(), 15);
+		assertTrue(card.getCanBeDiscarded());
 	}
 	
 	@Test
@@ -50,5 +53,11 @@ public class GameCardFactoryTest {
 		assertEquals(18, player1.getMine().getStock());
 		assertEquals(5, player2.getMagicLab().getStock());
 		assertEquals(10, player2.getMine().getStock());
+	}
+	
+	@Test
+	public void testBaukoloss() {
+		Card baukoloss = this.gameCardFactory.createCard("Baukoloss");
+		assertFalse(baukoloss.getCanBeDiscarded());
 	}
 }
