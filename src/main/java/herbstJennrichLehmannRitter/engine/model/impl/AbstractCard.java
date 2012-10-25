@@ -51,7 +51,6 @@ public abstract class AbstractCard implements Card {
 	
 	@Override
 	public String toString() {
-		// TODO: spezial action
 		StringBuilder stringBuilder = new StringBuilder(getName());
 		
 		String costDescription = getCostDescription();
