@@ -29,8 +29,6 @@ public class HostMenuGUI {
 		initShell();
 		initLblWfC();
 		initBtnExit();
-		
-
 	}
 	
 	
@@ -39,22 +37,22 @@ public class HostMenuGUI {
 	}
 	
 	private void initLblWfC() {
-		this.lblWfC = new Label(shell, SWT.CENTER);
+		this.lblWfC = new Label(this.shell, SWT.CENTER);
 		this.lblWfC.setText("Warte auf Client");
 		this.lblWfC.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
-		this.lblWfC.setBounds(shell.getClientArea());
+		this.lblWfC.setBounds(this.shell.getClientArea());
 		
 	}
 
 	private void initBtnExit() {
-		this.btnExit = new Button(shell, SWT.NONE);
+		this.btnExit = new Button(this.shell, SWT.NONE);
 		this.btnExit.setText("Abbrechen");
 		this.btnExit.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
 		this.btnExit.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				shell.dispose();
+				shell.setVisible(false);
 			}
 		});
 	}
