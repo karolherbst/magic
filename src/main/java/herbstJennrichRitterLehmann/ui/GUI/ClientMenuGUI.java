@@ -24,19 +24,22 @@ public class ClientMenuGUI {
 	 * Implementation des Spiels als Client mit der Eingabe der IP-Adresse
 	 */
 	
-	private static int shells = 0;
 	private Shell shell;
-	private static Display display;
+	private final Display display;
 	private Button btnEntryCorrect;
 	private Button btnBack;
 	private Text txtIpBox;
 	
-	public ClientMenuGUI() {
+	public ClientMenuGUI(Display parent) {
+		this.display = parent;
 		initShell();
 		initIpBox();
 		initBtnEntryCorrect();
 		initBtnBack();
-		shell.open();
+	}
+	
+	public void open() {
+		this.shell.open();
 	}
 	
 	private void initIpBox() {
@@ -45,9 +48,6 @@ public class ClientMenuGUI {
 		gridData.grabExcessHorizontalSpace = true;
 		gridData.horizontalSpan = 3;
 		this.txtIpBox.setLayoutData(gridData);
-//	    this.txtIpBox.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
-//	    		true, false));
-//	    this.txtIpBox.gridData.horizontalSpan = 2;
 	}
 
 	private void initBtnBack() {
@@ -78,37 +78,9 @@ public class ClientMenuGUI {
 
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
-		shells++;
-		this.shell.addDisposeListener(new DisposeListener() {
-			public void widgetDisposed(DisposeEvent d) {
-				shells--;
-			}
-		});
-		this.shell.addListener(SWT.Close, new Listener() {
-			public void handleEvent(Event event) {
-			}
-		});
 		this.shell.setText("Starte Spiel als Client");
 		this.shell.setLayout(new GridLayout(2, false));
 		this.shell.setSize(250, 85);
 	};
-
-
-	private static void keepOpen() {
-		while (!allShellsDisposed()) {
-			if (!display.readAndDispatch())
-				display.sleep();
-		}
-		display.dispose();
-	}
-
-	private static boolean allShellsDisposed() {
-		return shells == 0;
-	}
-
-	public static void main(String[] args) {
-		display = new Display();
-		new ClientMenuGUI();
-		keepOpen();
-	}
+	
 }

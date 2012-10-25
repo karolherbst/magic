@@ -23,6 +23,7 @@ public class GameMenuGUI {
 	
 	//Subviews
 	private HostMenuGUI hostMenuGUI;
+	private ClientMenuGUI clientMenuGUI;
 	
 	
 	public GameMenuGUI(Display parent) {
@@ -33,6 +34,7 @@ public class GameMenuGUI {
 		initBtnExit();
 		
 		this.hostMenuGUI = new HostMenuGUI(this.display);
+		this.clientMenuGUI = new ClientMenuGUI(this.display);
 	}
 	
 	public void open() {
@@ -58,6 +60,11 @@ public class GameMenuGUI {
 		this.btnStartClient.setToolTipText("An einem Spiel teilnehmen");
 		this.btnStartClient.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
+		this.btnStartClient.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				clientMenuGUI.open();
+			}
+		});
 	}
 
 
