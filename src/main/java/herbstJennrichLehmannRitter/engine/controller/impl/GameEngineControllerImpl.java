@@ -1,6 +1,7 @@
 package herbstJennrichLehmannRitter.engine.controller.impl;
 
 import herbstJennrichLehmannRitter.engine.controller.GameEngineController;
+import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
 import herbstJennrichLehmannRitter.engine.service.GameService;
 import herbstJennrichLehmannRitter.engine.service.impl.GameServiceImpl;
 import herbstJennrichLehmannRitter.server.GameServer;
@@ -15,7 +16,7 @@ public class GameEngineControllerImpl implements GameEngineController {
 	
 	public GameEngineControllerImpl() {
 		if (once) {
-			// TODO: exception here
+			throw new EngineCouldNotStartException("It is only one GameEngineController allowed");
 		}
 		this.gameService = new GameServiceImpl();
 		this.gameServer = new GameServerImpl(this.gameService);
