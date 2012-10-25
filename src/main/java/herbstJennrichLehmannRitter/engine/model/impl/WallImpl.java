@@ -3,6 +3,8 @@
  */
 package herbstJennrichLehmannRitter.engine.model.impl;
 
+import herbstJennrichLehmannRitter.engine.enums.BuildingType;
+
 
 /**
  * In der Implementierung der Mauer werden die aktuellen Punkte der Mauer für das jeweilige 
@@ -17,7 +19,7 @@ public class WallImpl extends AbstractDefenceBuilding {
 	
 	@Override
 	public String getName() {
-		return "Mauer";
+		return BuildingType.WALL.name();
 	}
 
 }

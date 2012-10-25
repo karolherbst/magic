@@ -1,6 +1,7 @@
 package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.*;
+import herbstJennrichLehmannRitter.engine.enums.BuildingType;
 import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
 import herbstJennrichLehmannRitter.engine.model.DefenceBuilding;
 import herbstJennrichLehmannRitter.engine.model.impl.WallImpl;
@@ -23,7 +24,7 @@ public class WallTests {
 	
 	@Test
 	public void testName() {
-		assertEquals(this.wall.getName(), "Mauer");
+		assertEquals(this.wall.getName(), BuildingType.WALL.name());
 	}
 
 	@Test

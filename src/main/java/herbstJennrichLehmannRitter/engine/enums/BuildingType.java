@@ -4,7 +4,7 @@ public enum BuildingType {
 	
 	TOWER("Turm"),
 	WALL("Mauer"),
-	MINE("Mine"),
+	MINE("Steinbruch"),
 	MAGIC_LAB("Zauberlabor"),
 	DUNGEON("Verlies");
 	
