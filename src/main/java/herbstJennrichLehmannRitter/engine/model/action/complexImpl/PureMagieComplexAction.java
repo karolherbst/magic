@@ -13,4 +13,14 @@ public class PureMagieComplexAction implements ComplexCardAction {
 		sourcePlayer.getDeck().discardAllCards();
 		sourcePlayer.getDeck().pickNumberOfCardsWithType(6, CardType.CARD_TYPE_MAGIC_LAB);
 	}
+
+	@Override
+	public String getOwnEffectDescription() {
+		return "Verwirf alle Karten, ziehe 6 zufällige Zauberlaborkarten";
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return "";
+	}
 }

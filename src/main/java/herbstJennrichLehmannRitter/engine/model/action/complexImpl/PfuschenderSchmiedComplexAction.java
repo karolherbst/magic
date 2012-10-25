@@ -12,4 +12,14 @@ public class PfuschenderSchmiedComplexAction implements ComplexCardAction {
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
 		targetPlayer.getDeck().discardAllCardsByType(CardType.CARD_TYPE_MINE);
 	}
+
+	@Override
+	public String getOwnEffectDescription() {
+		return "";
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return "Alle Steinbruchkarten aus der Hand ablegen";
+	}
 }

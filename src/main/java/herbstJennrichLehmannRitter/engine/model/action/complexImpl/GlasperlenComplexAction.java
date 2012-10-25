@@ -17,4 +17,14 @@ public class GlasperlenComplexAction implements ComplexCardAction {
 			
 	}
 
+	@Override
+	public String getOwnEffectDescription() {
+		return "Eigener Turm < gegnerischer Turm => +2 Turm sonst +1 Turm";
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return "";
+	}
+
 }

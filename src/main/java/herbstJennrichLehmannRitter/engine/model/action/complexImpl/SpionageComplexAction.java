@@ -13,4 +13,14 @@ public class SpionageComplexAction implements ComplexCardAction {
 			sourcePlayer.getMine().setLevel(targetPlayer.getMine().getLevel());
 		}
 	}
+
+	@Override
+	public String getOwnEffectDescription() {
+		return "Eigener Steinbruch < gegnerischer Steinbruch => eigener Steinbruch = gegnerischer Steinbruch";
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return "";
+	}
 }

@@ -13,4 +13,14 @@ public class BaumgeistComplexAction implements ComplexCardAction {
 			targetPlayer.getWall().applyDamage(11);
 		}
 	}
+
+	@Override
+	public String getOwnEffectDescription() {
+		return "";
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return "eigenes Verlies > gegnerische Mauer => -11 Turm";
+	}
 }

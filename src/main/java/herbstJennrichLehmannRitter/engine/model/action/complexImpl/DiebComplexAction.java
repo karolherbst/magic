@@ -25,4 +25,14 @@ public class DiebComplexAction implements ComplexCardAction {
 			targetPlayer.getMine().reduceStock(targetPlayer.getMine().getStock());
 		}
 	}
+
+	@Override
+	public String getOwnEffectDescription() {
+		return "Hälfte des gegnerischen Verlustes bekommen";
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return "-10 Kristall, -5 Ziegel";
+	}
 }

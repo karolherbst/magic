@@ -11,4 +11,14 @@ public class DemolierenComplexAction implements ComplexCardAction {
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
 		targetPlayer.getWall().setActualPoints(0);
 	}
+
+	@Override
+	public String getOwnEffectDescription() {
+		return "";
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return "zerstört Mauer";
+	}
 }

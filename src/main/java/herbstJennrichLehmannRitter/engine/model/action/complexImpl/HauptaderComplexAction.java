@@ -15,4 +15,14 @@ public class HauptaderComplexAction implements ComplexCardAction {
 			sourcePlayer.getMine().addLevel(1);
 		}
 	}
+
+	@Override
+	public String getOwnEffectDescription() {
+		return "Eigener Steinbruch < gegnerischer Steinbruch => +2 Steinbruch sonst +1 Steinbruch";
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return "";
+	}
 }

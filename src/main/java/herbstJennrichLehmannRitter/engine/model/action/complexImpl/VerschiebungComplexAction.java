@@ -13,4 +13,14 @@ public class VerschiebungComplexAction implements ComplexCardAction {
 		targetPlayer.getWall().setActualPoints(sourcePlayer.getWall().getActualPoints());
 		sourcePlayer.getWall().setActualPoints(targetWall);
 	}
+
+	@Override
+	public String getOwnEffectDescription() {
+		return "Eigene Mauer = gegnerische Mauer";
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return "Gegnerische Mauer = eigene Mauer";
+	}
 }

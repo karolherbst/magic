@@ -16,4 +16,14 @@ public class ParitaetComplexAction implements ComplexCardAction {
 		}
 	}
 
+	@Override
+	public String getOwnEffectDescription() {
+		return "Zauberlabor auf höchste Zauberlaborstufe im Spiel setzen";
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return "Zauberlabor auf höchste Zauberlaborstufe im Spiel setzen";
+	}
+
 }

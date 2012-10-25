@@ -15,4 +15,7 @@ public interface ComplexCardAction {
 	
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer);
 	
+	public String getOwnEffectDescription();
+	public String getEnemyEffectDescription();
+	
 }

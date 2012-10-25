@@ -12,4 +12,14 @@ public class WeihnachtsmannComplexAction implements ComplexCardAction {
 		sourcePlayer.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(14);
 	}
 
+	@Override
+	public String getOwnEffectDescription() {
+		return "Zufällige Karte mit Kosten>14 vom Vorratsstapel oder Friedhof auf die Hand";
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return "";
+	}
+
 }

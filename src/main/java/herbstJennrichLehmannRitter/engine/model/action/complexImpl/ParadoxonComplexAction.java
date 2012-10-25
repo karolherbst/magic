@@ -12,4 +12,14 @@ public class ParadoxonComplexAction implements ComplexCardAction {
 		sourcePlayer.getDeck().exchangeCardsWithHandDeck(targetPlayer.getDeck());
 	}
 
+	@Override
+	public String getOwnEffectDescription() {
+		return "Tausche Kartenhand mit dem Gegner";
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return "";
+	}
+
 }

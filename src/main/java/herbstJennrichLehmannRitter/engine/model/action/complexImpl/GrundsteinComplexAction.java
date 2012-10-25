@@ -15,4 +15,14 @@ public class GrundsteinComplexAction implements ComplexCardAction {
 			sourcePlayer.getWall().addPoints(3);
 		}
 	}
+
+	@Override
+	public String getOwnEffectDescription() {
+		return "Eigene Mauer == 0 => +6 Mauer sonst +3 Mauer";
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return "";
+	}
 }

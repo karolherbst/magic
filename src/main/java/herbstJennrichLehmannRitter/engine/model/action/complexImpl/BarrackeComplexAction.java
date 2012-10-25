@@ -13,4 +13,14 @@ public class BarrackeComplexAction implements ComplexCardAction {
 			sourcePlayer.getDungeon().setLevel(sourcePlayer.getDungeon().getLevel() + 1);
 		}
 	}
+
+	@Override
+	public String getOwnEffectDescription() {
+		return "eigenes Verlies < gegnerisches Verlies => +1 Verlies";
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return "";
+	}
 }

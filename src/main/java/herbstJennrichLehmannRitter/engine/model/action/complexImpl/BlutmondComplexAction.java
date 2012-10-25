@@ -14,4 +14,14 @@ public class BlutmondComplexAction implements ComplexCardAction {
 		sourcePlayer.getDeck().discardAllCards();
 		sourcePlayer.getDeck().pickNumberOfCardsWithType(6, CardType.CARD_TYPE_DUNGEON);
 	}
+
+	@Override
+	public String getOwnEffectDescription() {
+		return "verwirf alle Karten, ziehe 6 zufällige Verlies-Karten";
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return "";
+	}
 }

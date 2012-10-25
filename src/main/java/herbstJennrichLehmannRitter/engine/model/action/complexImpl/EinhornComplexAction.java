@@ -14,4 +14,14 @@ public class EinhornComplexAction implements ComplexCardAction {
 		}
 		
 	}
+
+	@Override
+	public String getOwnEffectDescription() {
+		return "";
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return "Eigenes Zauberlabor > gegnerisches Zauberlabor => 12 Schaden sonst 8 Schaden";
+	}
 }
