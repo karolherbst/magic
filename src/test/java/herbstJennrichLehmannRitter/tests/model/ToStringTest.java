@@ -31,7 +31,6 @@ public class ToStringTest {
 	public void testBarrackeComplextAction() {
 		Card barracke = this.gameCardFactory.createCard("Barracke");
 		assertNotNull(barracke);
-		System.out.println(barracke);
-		assertEquals("Barracke[Kosten: 10 Ziegel; Selbst: +30% Turm]", barracke.toString());
+		assertEquals("Barracke[Kosten: 10 Ziegel; Selbst: +6 Mauer, +6 Monster, eigenes Verlies < gegnerisches Verlies => +1 Verlies]", barracke.toString());
 	}
 }
