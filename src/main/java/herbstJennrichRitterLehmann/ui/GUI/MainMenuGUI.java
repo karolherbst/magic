@@ -3,8 +3,6 @@ package herbstJennrichRitterLehmann.ui.GUI;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -12,12 +10,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
 public class MainMenuGUI {
 
 	/**
@@ -25,37 +19,32 @@ public class MainMenuGUI {
 	 * TODO: Event neues Fenster anderer Klasse öffnen!
 	 */
 	
-	private static int shells = 0;
+	private static MainMenuGUI mainMenuGUI;
+	
+	private int shells = 0;
 	private Shell shell;
-	private static Display display;
+	private Display display;
 	private Button btnStartGame;
 	private Button btnSartDemo;
-	private Button btnNewWindow;
 	private Button btnExit;
 	
+	// subviews
+	private GameMenuGUI gameMenuGUI;
+	
 	public MainMenuGUI() {
+		this.display = new Display();
 		initShell();
 		initBtnStartGame();
 		initBtnSartDemo();
-		initBtnNewWindow();
 		initBtnExit();
-		shell.open();
-	}
-
-	private void initBtnNewWindow() {
-		this.btnNewWindow = new Button(shell, SWT.NONE);
-		this.btnNewWindow.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
-				true, false));
-		this.btnNewWindow.setText("(*) (.)");
-		this.btnNewWindow.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent e) {
-				new MainMenuGUI();
-			}
-		});
+		
+		this.gameMenuGUI = new GameMenuGUI(this.display);
+		
+		this.shell.open();
 	}
 
 	private void initBtnExit() {
-		this.btnExit = new Button(shell, SWT.NONE);
+		this.btnExit = new Button(this.shell, SWT.NONE);
 		this.btnExit.setText("Beenden");
 		this.btnExit.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
@@ -63,29 +52,24 @@ public class MainMenuGUI {
 			public void widgetSelected(SelectionEvent e) {
 				shell.dispose();
 			}
-			});
-	}
-
-	private void initBtnSartDemo() {
-		this.btnSartDemo = new Button(shell, SWT.NONE);
-		this.btnSartDemo.setText("Starte Demo");
-		this.btnSartDemo.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
-				true, false));
-		this.btnSartDemo.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent e) {
-			}
 		});
 	}
 
+	private void initBtnSartDemo() {
+		this.btnSartDemo = new Button(this.shell, SWT.NONE);
+		this.btnSartDemo.setText("Starte Demo");
+		this.btnSartDemo.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
+				true, false));
+	}
+
 	private void initBtnStartGame() {
-		this.btnStartGame = new Button(shell, SWT.NONE);
+		this.btnStartGame = new Button(this.shell, SWT.NONE);
 		this.btnStartGame.setText("Starte Spiel");
 		this.btnStartGame.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
 		this.btnStartGame.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent e) {
-				GameMenuGUI.main();
-				
+				gameMenuGUI.open();
 			}
 		});
 
@@ -94,7 +78,7 @@ public class MainMenuGUI {
 
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
-		shells++;
+		this.shells++;
 		this.shell.addDisposeListener(new DisposeListener() {
 			public void widgetDisposed(DisposeEvent d) {
 				shells--;
@@ -110,21 +94,20 @@ public class MainMenuGUI {
 	};
 
 
-	private static void keepOpen() {
+	private void keepOpen() {
 		while (!allShellsDisposed()) {
-			if (!display.readAndDispatch())
-				display.sleep();
+			if (!this.display.readAndDispatch())
+				this.display.sleep();
 		}
-		display.dispose();
+		this.display.dispose();
 	}
 
-	private static boolean allShellsDisposed() {
-		return shells == 0;
+	private boolean allShellsDisposed() {
+		return this.shells == 0;
 	}
 
 	public static void main(String[] args) {
-		display = new Display();
-		new MainMenuGUI();
-		keepOpen();
+		mainMenuGUI = new MainMenuGUI();
+		mainMenuGUI.keepOpen();
 	}
 }
