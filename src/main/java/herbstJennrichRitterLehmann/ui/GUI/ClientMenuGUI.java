@@ -54,7 +54,6 @@ public class ClientMenuGUI {
 	}
 
 
-
 	private void initBtnEntryCorrect() {
 		this.btnEntryCorrect = new Button(shell, SWT.NONE);
 		this.btnEntryCorrect.setText("OK");

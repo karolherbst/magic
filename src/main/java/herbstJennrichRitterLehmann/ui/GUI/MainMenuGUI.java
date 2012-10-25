@@ -26,10 +26,12 @@ public class MainMenuGUI {
 	private Display display;
 	private Button btnStartGame;
 	private Button btnSartDemo;
+	private Button btnChooseDeck;
 	private Button btnExit;
 	
 	// subviews
 	private GameMenuGUI gameMenuGUI;
+	private ChooseDeckGUI chooseDeckGUI;
 	
 	
 	public MainMenuGUI() {
@@ -37,12 +39,27 @@ public class MainMenuGUI {
 		initShell();
 		initBtnStartGame();
 		initBtnSartDemo();
+		initBtnChooseDeck();
 		initBtnExit();
 		
 		this.gameMenuGUI = new GameMenuGUI(this.display);
+		this.chooseDeckGUI = new ChooseDeckGUI(this.display);
 
 		
 		this.shell.open();
+	}
+
+	private void initBtnChooseDeck() {
+		this.btnChooseDeck = new Button(this.shell, SWT.NONE);
+		this.btnChooseDeck.setText("Deck erstellen");
+		this.btnChooseDeck.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
+				true, false));
+		this.btnChooseDeck.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				chooseDeckGUI.open();
+			}
+		});
+		
 	}
 
 	private void initBtnExit() {
