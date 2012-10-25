@@ -313,6 +313,7 @@
   <Card name="Baukoloss">
     <CardType>Zauberlabor</CardType>
     <CostCrystal>5</CostCrystal>
+    <CanBeDiscarded>false</CanBeDiscarded>
     <OwnResourceAction>
       <TowerEffect>3</TowerEffect>
     </OwnResourceAction>
