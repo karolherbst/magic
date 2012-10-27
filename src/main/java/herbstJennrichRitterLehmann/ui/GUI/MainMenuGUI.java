@@ -25,25 +25,27 @@ public class MainMenuGUI {
 	private Shell shell;
 	private Display display;
 	private Button btnStartGame;
-	private Button btnSartDemo;
+	private Button btnStartDemo;
 	private Button btnChooseDeck;
 	private Button btnExit;
 	
 	// subviews
 	private GameMenuGUI gameMenuGUI;
 	private ChooseDeckGUI chooseDeckGUI;
+	private PlayGameGUI playGameGUI;
 	
 	
 	public MainMenuGUI() {
 		this.display = new Display();
 		initShell();
 		initBtnStartGame();
-		initBtnSartDemo();
+		initBtnStartDemo();
 		initBtnChooseDeck();
 		initBtnExit();
 		
 		this.gameMenuGUI = new GameMenuGUI(this.display);
 		this.chooseDeckGUI = new ChooseDeckGUI(this.display);
+		this.playGameGUI = new PlayGameGUI(this.display);
 
 		
 		this.shell.open();
@@ -76,11 +78,17 @@ public class MainMenuGUI {
 		});
 	}
 
-	private void initBtnSartDemo() {
-		this.btnSartDemo = new Button(this.shell, SWT.NONE);
-		this.btnSartDemo.setText("Starte Demo");
-		this.btnSartDemo.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
+	private void initBtnStartDemo() {
+		this.btnStartDemo = new Button(this.shell, SWT.NONE);
+		this.btnStartDemo.setText("Starte Demo");
+		this.btnStartDemo.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
+		this.btnStartDemo.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				MainMenuGUI.this.playGameGUI.open();
+			}
+		});
 	}
 
 	private void initBtnStartGame() {
