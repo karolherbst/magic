@@ -18,9 +18,15 @@ public class GameEngineControllerImpl implements GameEngineController {
 		if (once) {
 			throw new EngineCouldNotStartException("It is only one GameEngineController allowed");
 		}
-		this.gameService = new GameServiceImpl();
+		this.gameService = new GameServiceImpl(this);
 		this.gameServer = new GameServerImpl(this.gameService);
 		once = true;
+	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+		once = false;
 	}
 	
 	@Override

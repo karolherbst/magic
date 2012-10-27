@@ -14,7 +14,7 @@ public final class Globals {
 		started = true;
 	}
 	
-	public static GameServer getGameServer() {
+	public static GameServer getLocalGameServer() {
 		if (!started) {
 			buildUpEngine();
 		}
