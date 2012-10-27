@@ -9,7 +9,6 @@ public class NetworkUInterface implements UserInterface {
 	@Override
 	public void setData(Data data) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -46,6 +45,12 @@ public class NetworkUInterface implements UserInterface {
 	public void abort() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

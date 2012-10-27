@@ -24,4 +24,6 @@ public interface UserInterface {
 
 	public void abort();
 	
+	public String getName();
+	
 }

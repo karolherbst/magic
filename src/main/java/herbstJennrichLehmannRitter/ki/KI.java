@@ -2,7 +2,6 @@ package herbstJennrichLehmannRitter.ki;
 
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
-import herbstJennrichLehmannRitter.ki.KI;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
 public class KI implements UserInterface {
@@ -45,6 +44,11 @@ public class KI implements UserInterface {
 	public void abort() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getName() {
+		return "super KI3000";
 	}
 
 }

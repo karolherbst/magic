@@ -154,4 +154,9 @@ public class CLIUserInterface implements UserInterface {
 
 	}
 
+	@Override
+	public String getName() {
+		return "";
+	}
+
 }
