@@ -47,36 +47,39 @@ public class GameMenuGUI {
 		this.btnExit.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
 		this.btnExit.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
-				shell.setVisible(false);
+				GameMenuGUI.this.shell.setVisible(false);
 			}
 		});
 	}
 
 
 	private void initBtnStartClient() {
-		this.btnStartClient= new Button(shell, SWT.NONE);
+		this.btnStartClient= new Button(this.shell, SWT.NONE);
 		this.btnStartClient.setText("Starte als Client");
 		this.btnStartClient.setToolTipText("An einem Spiel teilnehmen");
 		this.btnStartClient.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
 		this.btnStartClient.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
-				clientMenuGUI.open();
+				GameMenuGUI.this.clientMenuGUI.open();
 			}
 		});
 	}
 
 
 	private void initBtnStartHost() {
-		this.btnStartHost = new Button(shell, SWT.NONE);
+		this.btnStartHost = new Button(this.shell, SWT.NONE);
 		this.btnStartHost.setText("Starte als Host");
 		this.btnStartHost.setToolTipText("Ein Spiel als Server starten");
 		this.btnStartHost.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
 		this.btnStartHost.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
-				hostMenuGUI.open();
+				GameMenuGUI.this.hostMenuGUI.open();
 			}
 		});
 	}

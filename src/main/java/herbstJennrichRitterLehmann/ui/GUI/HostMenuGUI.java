@@ -7,8 +7,8 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 
 public class HostMenuGUI {
 
@@ -51,8 +51,9 @@ public class HostMenuGUI {
 		this.btnExit.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
 		this.btnExit.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
-				shell.setVisible(false);
+				HostMenuGUI.this.shell.setVisible(false);
 			}
 		});
 	}

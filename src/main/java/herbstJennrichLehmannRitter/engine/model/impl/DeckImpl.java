@@ -43,13 +43,13 @@ public class DeckImpl implements Deck {
 			}
 			
 			for (Card card : cardToRemove) {
-				this.discardCard(card);
+				discardCard(card);
 			}
 		}
 		
 		public boolean pickCard() {
 			if (this.handDeck.size() <= 6) {
-				this.handDeck.add(deckStack.pickCard());
+				this.handDeck.add(DeckImpl.this.deckStack.pickCard());
 				return true;
 			} else {
 				return false;
@@ -62,7 +62,7 @@ public class DeckImpl implements Deck {
 					if (this.handDeck.size() > 6) {
 						break;
 					}
-					this.handDeck.add(deckStack.pickCard());
+					this.handDeck.add(DeckImpl.this.deckStack.pickCard());
 				}
 				return true;
 			} else {
@@ -89,8 +89,8 @@ public class DeckImpl implements Deck {
 				}
 					
 				if( card != null ) {
-					if (cemeteryDeck.getAllCards().contains(card)) {
-						cemeteryDeck.removeCard(card);
+					if (DeckImpl.this.cemeteryDeck.getAllCards().contains(card)) {
+						DeckImpl.this.cemeteryDeck.removeCard(card);
 					} else {
 						DeckImpl.this.deckStack.removeCard(card);
 					}
@@ -110,7 +110,7 @@ public class DeckImpl implements Deck {
 				Card card;
 				
 				do {
-					card = deckStack.pickCard();
+					card = DeckImpl.this.deckStack.pickCard();
 					if (card.getCardType() == cardType) {
 						cards.add(card);
 					}
@@ -167,12 +167,12 @@ public class DeckImpl implements Deck {
 		private List<Card> deckStack = new ArrayList<Card>();
 		
 		public void shuffle() {
-			Collections.shuffle(deckStack);
+			Collections.shuffle(this.deckStack);
 		}
 		
 		public Card pickCard() {
-			if (deckStack.isEmpty()) {
-				this.refill();
+			if (this.deckStack.isEmpty()) {
+				refill();
 			}
 			
 			Card result = this.deckStack.get(0);
@@ -185,8 +185,8 @@ public class DeckImpl implements Deck {
 		}
 		
 		private void refill() {
-			deckStack.addAll(cemeteryDeck.getAllCards());
-			cemeteryDeck.clear();
+			this.deckStack.addAll(DeckImpl.this.cemeteryDeck.getAllCards());
+			DeckImpl.this.cemeteryDeck.clear();
 		}
 		
 		public Collection<Card> getAllCards() {

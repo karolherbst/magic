@@ -34,7 +34,7 @@ public class ClientMenuGUI {
 	}
 	
 	private void initIpBox() {
-	    this.txtIpBox = new Text(shell, SWT.FILL);
+	    this.txtIpBox = new Text(this.shell, SWT.FILL);
 	    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.grabExcessHorizontalSpace = true;
 		gridData.horizontalSpan = 3;
@@ -42,22 +42,24 @@ public class ClientMenuGUI {
 	}
 
 	private void initBtnBack() {
-		this.btnBack = new Button(shell, SWT.NONE);
+		this.btnBack = new Button(this.shell, SWT.NONE);
 		this.btnBack.setText("Zurück");
 		this.btnBack.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
 		this.btnBack.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
-				shell.setVisible(false);
+				ClientMenuGUI.this.shell.setVisible(false);
 			}
 			});
 	}
 
 
 	private void initBtnEntryCorrect() {
-		this.btnEntryCorrect = new Button(shell, SWT.NONE);
+		this.btnEntryCorrect = new Button(this.shell, SWT.NONE);
 		this.btnEntryCorrect.setText("OK");
 		this.btnEntryCorrect.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 			}
 		});

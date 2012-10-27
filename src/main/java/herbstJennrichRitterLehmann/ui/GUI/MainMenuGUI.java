@@ -55,8 +55,9 @@ public class MainMenuGUI {
 		this.btnChooseDeck.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
 		this.btnChooseDeck.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
-				chooseDeckGUI.open();
+				MainMenuGUI.this.chooseDeckGUI.open();
 			}
 		});
 		
@@ -68,8 +69,9 @@ public class MainMenuGUI {
 		this.btnExit.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
 		this.btnExit.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
-				shell.dispose();
+				MainMenuGUI.this.shell.dispose();
 			}
 		});
 	}
@@ -87,8 +89,9 @@ public class MainMenuGUI {
 		this.btnStartGame.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
 		this.btnStartGame.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
-				gameMenuGUI.open();
+				MainMenuGUI.this.gameMenuGUI.open();
 			}
 		});
 
@@ -99,11 +102,13 @@ public class MainMenuGUI {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
 		this.shells++;
 		this.shell.addDisposeListener(new DisposeListener() {
+			@Override
 			public void widgetDisposed(DisposeEvent d) {
-				shells--;
+				MainMenuGUI.this.shells--;
 			}
 		});
 		this.shell.addListener(SWT.Close, new Listener() {
+			@Override
 			public void handleEvent(Event event) {
 			}
 		});
@@ -115,8 +120,9 @@ public class MainMenuGUI {
 
 	private void keepOpen() {
 		while (!allShellsDisposed()) {
-			if (!this.display.readAndDispatch())
+			if (!this.display.readAndDispatch()) {
 				this.display.sleep();
+			}
 		}
 		this.display.dispose();
 	}

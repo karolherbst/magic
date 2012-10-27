@@ -32,22 +32,23 @@ public class ChooseDeckGUI {
 	}
 
 	private void initlstUser() {
-		this.lstUser = new List(shell, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL);
-		lstUser.setItems(new String[] { "Muff", "(.) (.)"});
+		this.lstUser = new List(this.shell, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL);
+		this.lstUser.setItems(new String[] { "Muff", "(.) (.)"});
 		GridData gridData = new GridData(GridData.FILL, GridData.FILL, true, true);
 		gridData.verticalSpan = 4;
-		int listHeight = lstUser.getItemHeight() * 12;
-		Rectangle trim = lstUser.computeTrim(0, 0, 0, listHeight);
+		int listHeight = this.lstUser.getItemHeight() * 12;
+		Rectangle trim = this.lstUser.computeTrim(0, 0, 0, listHeight);
 		gridData.heightHint = trim.height;
-		lstUser.setLayoutData(gridData);
+		this.lstUser.setLayoutData(gridData);
 	}
 
 	private void initBtnBack() {
-		this.btnBack = new Button(shell, SWT.NONE);
+		this.btnBack = new Button(this.shell, SWT.NONE);
 		this.btnBack.setText("Zurück");
 		this.btnBack.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
-				shell.setVisible(false);
+				ChooseDeckGUI.this.shell.setVisible(false);
 			}
 			});
 		
@@ -62,6 +63,6 @@ public class ChooseDeckGUI {
 		this.shell.setText("Starte Spiel als Client");
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 3;
-		shell.setLayout(gridLayout);
+		this.shell.setLayout(gridLayout);
 	}
 }
