@@ -103,7 +103,5 @@ public class CardTests {
 			e.printStackTrace();
 			fail(e.getLocalizedMessage());
 		}
-		
 	}
-
 }
