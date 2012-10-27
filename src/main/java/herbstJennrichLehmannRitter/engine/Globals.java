@@ -26,4 +26,5 @@ public final class Globals {
 		return localGameServer;
 	}
 	
+	private Globals() {}
 }
