@@ -59,5 +59,6 @@ Test: GameMenuGUI
 Test: HostMenuGUI
 Test: MainMenuGUI
 Test: PlayMenuGUI
+JavaDoc
 
 
