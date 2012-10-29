@@ -5,6 +5,8 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.service.GameService;
 
+import java.util.Collection;
+
 public class GameServiceImpl implements GameService {
 
 	private final GameEngineController gameEngineController;
@@ -32,9 +34,8 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public void getAllPossibleCards() {
-		// TODO Auto-generated method stub
-
+	public Collection<Card> getAllPossibleCards() {
+		return this.gameEngineController.getGameCardFactory().createDefaultDeck();
 	}
 
 }

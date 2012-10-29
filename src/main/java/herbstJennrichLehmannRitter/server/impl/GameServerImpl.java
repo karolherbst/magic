@@ -1,15 +1,20 @@
 package herbstJennrichLehmannRitter.server.impl;
 
 import herbstJennrichLehmannRitter.engine.model.Card;
-import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.service.GameService;
 import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.ui.UserInterface;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameServerImpl implements GameServer {
 
 	private UserInterface userInterface1 = null;
 	private UserInterface userInterface2 = null;
+	
+	private volatile Map<Thread, UserInterface> uiFromThread = new HashMap<Thread, UserInterface>();
 	
 	private final GameService gameService;
 	
@@ -23,18 +28,18 @@ public class GameServerImpl implements GameServer {
 	}
 
 	@Override
-	public void playCard(Player player, Card card) {
-		this.gameService.playCard(player, card);
+	public void playCard(Card card) {
+		this.gameService.playCard(null, card);
 	}
 
 	@Override
-	public void discardCard(Player player, Card card) {
-		this.gameService.discardCard(player,card);
+	public void discardCard(Card card) {
+		this.gameService.discardCard(null, card);
 	}
 
 	@Override
-	public void getAllPossibleCards() {
-		this.gameService.getAllPossibleCards();
+	public Collection<Card> getAllPossibleCards() {
+		return this.gameService.getAllPossibleCards();
 	}
 
 	@Override
