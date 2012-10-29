@@ -4,16 +4,19 @@
 package herbstJennrichLehmannRitter.engine.factory.impl;
 
 import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
-import herbstJennrichLehmannRitter.engine.model.Deck;
+import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.DefenceBuilding;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
+import herbstJennrichLehmannRitter.engine.model.impl.DeckImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.DungeonImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.MagicLabImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.MineImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.PlayerImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.TowerImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.WallImpl;
+
+import java.util.Collection;
 
 /**
  * 
@@ -24,8 +27,9 @@ import herbstJennrichLehmannRitter.engine.model.impl.WallImpl;
 public class PlayerFactoryImpl implements PlayerFactory {
 
 	@Override
-	public Player createPlayer(String name, Deck deck, int pointsTower, int pointsWall, int resourceBuildingLvl, 
+	public Player createPlayer(String name, Collection<Card> cards, int pointsTower, int pointsWall, int resourceBuildingLvl, 
 			int resourceBuildingStock) {
+		
 		ResourceBuilding dungeon = new DungeonImpl();
 		dungeon.setLevel(resourceBuildingLvl);
 		dungeon.setStock(resourceBuildingStock);
@@ -43,7 +47,7 @@ public class PlayerFactoryImpl implements PlayerFactory {
 		
 		PlayerImpl newPlayer = new PlayerImpl();
 		newPlayer.setName(name);
-		newPlayer.setDeck(deck);
+		newPlayer.setDeck(new DeckImpl(cards));
 		newPlayer.setDungeon(dungeon);
 		newPlayer.setMagiclab(magicLab);
 		newPlayer.setMine(mine);

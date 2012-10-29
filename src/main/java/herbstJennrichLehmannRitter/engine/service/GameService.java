@@ -14,6 +14,8 @@ public interface GameService {
 	
 	public void start();
 
+	public Player createPlayer(String name, Collection<String> cardNames);
+	
 	public void playCard(Player player, Card card);
 	public void discardCard(Player player, Card card);
 

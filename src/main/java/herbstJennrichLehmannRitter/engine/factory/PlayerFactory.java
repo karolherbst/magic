@@ -1,7 +1,9 @@
 package herbstJennrichLehmannRitter.engine.factory;
 
-import herbstJennrichLehmannRitter.engine.model.Deck;
+import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Player;
+
+import java.util.Collection;
 
 /**
  * 
@@ -10,7 +12,7 @@ import herbstJennrichLehmannRitter.engine.model.Player;
  */
 public interface PlayerFactory {
 	
-	public Player createPlayer(String name, Deck deck, int pointsTower, int pointsWall, int resourceBuildingLvl,
+	public Player createPlayer(String name, Collection<Card> cards, int pointsTower, int pointsWall, int resourceBuildingLvl,
 			int resourceBuildingStock);
 
 }

@@ -1,8 +1,8 @@
 package herbstJennrichLehmannRitter.engine.factory;
 
-import java.util.Collection;
-
 import herbstJennrichLehmannRitter.engine.model.Card;
+
+import java.util.Collection;
 
 /**
  * 
@@ -14,4 +14,6 @@ public interface GameCardFactory {
 	public Card createCard(String card);
 
 	public Collection<Card> createDefaultDeck();
+	
+	public Collection<Card> getAllPossibleCards();
 }

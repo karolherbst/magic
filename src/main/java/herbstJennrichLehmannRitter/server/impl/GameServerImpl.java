@@ -1,6 +1,7 @@
 package herbstJennrichLehmannRitter.server.impl;
 
 import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.service.GameService;
 import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.ui.UserInterface;
@@ -15,6 +16,7 @@ public class GameServerImpl implements GameServer {
 	private UserInterface userInterface2 = null;
 	
 	private volatile Map<Thread, UserInterface> uiFromThread = new HashMap<Thread, UserInterface>();
+	private volatile Map<UserInterface, Player> playerFromUI = new HashMap<UserInterface, Player>();
 	
 	private final GameService gameService;
 	

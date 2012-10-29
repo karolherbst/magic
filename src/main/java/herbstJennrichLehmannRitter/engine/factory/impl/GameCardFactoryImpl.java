@@ -95,8 +95,9 @@ public class GameCardFactoryImpl implements GameCardFactory {
 			XmlCards xmlCards = (XmlCards)this.unmarshaller.unmarshal(is);
 			is.close();
 			
-			if (xmlCards.getCards() == null || xmlCards.getCards().isEmpty())
+			if (xmlCards.getCards() == null || xmlCards.getCards().isEmpty()) {
 				throw new EngineCouldNotStartException("the cards.xml provides no cards");
+			}
 			
 			// store all cards in a map to improve performance (getting a card from a HashMap is less expensive than from
 			// a list even if the list is sorted
@@ -136,13 +137,18 @@ public class GameCardFactoryImpl implements GameCardFactory {
 
 	@Override
 	public Collection<Card> createDefaultDeck() {
-		Collection<Card> defaultDeck = new ArrayList<Card>();
+		return getAllPossibleCards();
+	}
+
+	@Override
+	public Collection<Card> getAllPossibleCards() {
+		Collection<Card> allPossibleCards = new ArrayList<Card>();
 		
 		for (String cardName : this.cards.keySet()) {
-			defaultDeck.add(createCard(cardName));
+			allPossibleCards.add(createCard(cardName));
 		}
 		
-		return defaultDeck;
+		return allPossibleCards;	
 	}
 
 }

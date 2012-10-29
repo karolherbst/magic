@@ -35,7 +35,12 @@ public class GameServiceImpl implements GameService {
 
 	@Override
 	public Collection<Card> getAllPossibleCards() {
-		return this.gameEngineController.getGameCardFactory().createDefaultDeck();
+		return this.gameEngineController.getGameCardFactory().getAllPossibleCards();
 	}
 
+	@Override
+	public Player createPlayer(String name, Collection<String> cardNames) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

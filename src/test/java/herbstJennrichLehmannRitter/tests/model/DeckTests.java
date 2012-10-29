@@ -1,6 +1,9 @@
 package herbstJennrichLehmannRitter.tests.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
@@ -8,9 +11,7 @@ import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
 import herbstJennrichLehmannRitter.engine.factory.impl.PlayerFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Card;
-import herbstJennrichLehmannRitter.engine.model.Deck;
 import herbstJennrichLehmannRitter.engine.model.Player;
-import herbstJennrichLehmannRitter.engine.model.impl.DeckImpl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,7 +25,6 @@ public class DeckTests {
 	private PlayerFactory playerFactory = new PlayerFactoryImpl();
 	private GameCardFactory gameCardFactory = new GameCardFactoryImpl();
 	private Collection<Card> cardsOnHand = new ArrayList<Card>();
-	private Deck globalDeck = null;
 	private Player globalPlayer = null;
 	
 	@Before
@@ -43,8 +43,8 @@ public class DeckTests {
 	
 	@Test
 	public void testGetAllCards() {
-		this.globalDeck = new DeckImpl(this.cardsOnHand);
-		this.globalPlayer = this.playerFactory.createPlayer("Player", this.globalDeck, 0, 0, 0, 0);
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand,
+				0, 0, 0, 0);
 		
 		assertTrue(this.cardsOnHand.containsAll(this.globalPlayer.getDeck().getAllCards()));
 	}
@@ -61,8 +61,7 @@ public class DeckTests {
 		cards.add(this.gameCardFactory.createCard("Oger"));
 		cards.add(this.gameCardFactory.createCard("Rinderwahnsinn"));
 
-		Deck deck = new DeckImpl(cards);
-		Player player = this.playerFactory.createPlayer("Player", deck, 0, 0, 0, 0);
+		Player player = this.playerFactory.createPlayer("Player", cards, 0, 0, 0, 0);
 		
 		player.getDeck().discardCard(cardOne);
 		
@@ -72,8 +71,7 @@ public class DeckTests {
 
 	@Test
 	public void testDiscardAllCards() {
-		this.globalDeck = new DeckImpl(this.cardsOnHand);
-		this.globalPlayer = this.playerFactory.createPlayer("Player", this.globalDeck, 0, 0, 0, 0);
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
 		
 		this.globalPlayer.getDeck().discardAllCards();
 		
@@ -98,8 +96,7 @@ public class DeckTests {
 		cards.add(cardOger);
 		cards.add(cardRinderwahnsinn);
 
-		Deck deck = new DeckImpl(cards);
-		Player player = this.playerFactory.createPlayer("Player", deck, 0, 0, 0, 0);
+		Player player = this.playerFactory.createPlayer("Player", cards, 0, 0, 0, 0);
 
 		player.getDeck().discardAllCardsByType(CardType.CARD_TYPE_MAGIC_LAB);
 		assertTrue(player.getDeck().getAllCards().contains(cardArchitektur));
@@ -114,8 +111,7 @@ public class DeckTests {
 	public void testPickCard() {
 		this.cardsOnHand.add(this.gameCardFactory.createCard("Schäfchen"));
 		
-		this.globalDeck = new DeckImpl(this.cardsOnHand);
-		this.globalPlayer = this.playerFactory.createPlayer("Player", this.globalDeck, 0, 0, 0, 0);
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
 
 		this.globalPlayer.getDeck().discardAllCards();
 		
@@ -130,8 +126,7 @@ public class DeckTests {
 		this.cardsOnHand.add(this.gameCardFactory.createCard("Rauchquarz"));
 		this.cardsOnHand.add(this.gameCardFactory.createCard("Zaubersprüche"));
 		
-		this.globalDeck = new DeckImpl(this.cardsOnHand);
-		this.globalPlayer = this.playerFactory.createPlayer("Player", this.globalDeck, 0, 0, 0, 0);
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
 
 		this.globalPlayer.getDeck().discardAllCards();
 		
@@ -158,8 +153,7 @@ public class DeckTests {
 		cards.add(cardEisdrache);
 		cards.add(cardVulkanausbruch);
 		
-		this.globalDeck = new DeckImpl(this.cardsOnHand);
-		this.globalPlayer = this.playerFactory.createPlayer("Player", this.globalDeck, 0, 0, 0, 0);
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
 
 		this.globalPlayer.getDeck().discardAllCards();
 		
@@ -171,8 +165,7 @@ public class DeckTests {
 	@Test
 	public void testPickCardFromDeckStackOrCemeteryDeckWithCostAbout() {
 		Collection<Card> cards = this.gameCardFactory.createDefaultDeck();
-		Deck deck = new DeckImpl(cards);
-		Player player = this.playerFactory.createPlayer("Player", deck, 0, 0, 0, 0);
+		Player player = this.playerFactory.createPlayer("Player", cards, 0, 0, 0, 0);
 		
 		player.getDeck().discardAllCards();
 		assertTrue(player.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(14));
@@ -183,11 +176,8 @@ public class DeckTests {
 		Collection<Card> cardsPlayerOne = this.gameCardFactory.createDefaultDeck();
 		Collection<Card> cardsPlayerTwo = this.gameCardFactory.createDefaultDeck();
 		
-		Deck deckPlayerOne = new DeckImpl(cardsPlayerOne);
-		Deck deckPlayerTwo = new DeckImpl(cardsPlayerTwo);
-		
-		Player playerOne = this.playerFactory.createPlayer("Player One", deckPlayerOne, 0, 0, 0, 0);
-		Player playerTwo = this.playerFactory.createPlayer("Player Two", deckPlayerTwo, 0, 0, 0, 0);
+		Player playerOne = this.playerFactory.createPlayer("Player One", cardsPlayerOne, 0, 0, 0, 0);
+		Player playerTwo = this.playerFactory.createPlayer("Player Two", cardsPlayerTwo, 0, 0, 0, 0);
 		
 		List<Card> orginalCardsPlayerOne = new ArrayList<Card>(playerOne.getDeck().getAllCards());
 		List<Card> orginalCardsPlayerTwo = new ArrayList<Card>(playerTwo.getDeck().getAllCards());

@@ -2,13 +2,16 @@ package herbstJennrichLehmannRitter.engine.controller.impl;
 
 import herbstJennrichLehmannRitter.engine.controller.GameEngineController;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
+import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
+import herbstJennrichLehmannRitter.engine.factory.impl.PlayerFactoryImpl;
 
 public class GameEngineControllerImpl implements GameEngineController {
 
 	private static boolean once = false;
 	
 	private GameCardFactory gameCardFactory = new GameCardFactoryImpl();
+	private PlayerFactory playerFactory = new PlayerFactoryImpl();
 	
 	public GameEngineControllerImpl() {
 		if (once) {
@@ -27,4 +30,5 @@ public class GameEngineControllerImpl implements GameEngineController {
 	public GameCardFactory getGameCardFactory() {
 		return this.gameCardFactory;
 	}
+
 }
