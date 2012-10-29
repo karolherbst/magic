@@ -38,7 +38,10 @@ public class CardTests {
 	
 	@Test
 	public void testCardTypeEnum() {
-		assertEquals(CardType.CARD_TYPE_MINE.toString(), "Steinbruchkarte");getClass();
+		assertEquals(CardType.CARD_TYPE_DUNGEON.toString(), "Verlieskarte");
+		assertEquals(CardType.CARD_TYPE_MAGIC_LAB.toString(), "Zauberlaborkarte");
+		assertEquals(CardType.CARD_TYPE_MINE.toString(), "Steinbruchkarte");
+		assertEquals(CardType.CARD_TYPE_SPECIAL.toString(), "Spezialkarte");
 	}
 	
 	@Test

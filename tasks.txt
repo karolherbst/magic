@@ -1,7 +1,63 @@
-Deck: Sebastian
-GUI: Soenke, Daniel
-complexCards: soenke
-netzwerk: karol
-Ki: ???
-CLIInterface: karol
-toString Card: karol
+Karol
+---------------------
+netzwerk
+CLIInterface
+toString Card
+
+Sönke, Daniel
+---------------------
+GUI
+
+Sönke
+---------------------
+complexCards
+
+Sebastian
+---------------------
+Deck
+Test: CardImpl ---> nicht vollständig
+
+
+Not assigned
+--------------------
+Ki
+Test: GameClient
+Test: Globals ---> nötig?
+Test: GameEngineControllerImpl
+Test: ENUM->BuildingType
+Test: ENUM->GameType
+Test: ENUM->RessourceType ---> falsch geschrieben? Refactor?
+Test: EngineCouldNotStartException ---> nötig?
+Test: GameCardFactoryImpl
+Test: PlayerFactoryImpl
+Test: CardActionImpl
+Test: ComplexCardAction
+Test: ResourceActionImpl
+Test: DeckImpl
+Test: DungeonImpl
+Test: MagicLabImpl
+Test: MineImpl
+Test: PlayerImpl
+Test: TowerImpl
+Test: WallImpl
+Test: XmlCard ---> nötig?
+Test: XmlCardAction ---> nötig?
+Test: XmlCards ---> nötig? Wieso gibt es XmlCard und XmlCards?
+Test: XmlResourceAction
+Test: GameServiceImpl
+Test: MagicUtils
+Test: MagicException ---> nötig?
+Test: KI
+Test: Main
+Test: GameServerImpl
+Test: UserInterface
+Test: CLIUserInterface
+Test: NetworkUInterface ---> falsch geschrieben? Refactor?
+Test: ChooseDeckGUI
+Test: ClientMenuGUI
+Test: GameMenuGUI
+Test: HostMenuGUI
+Test: MainMenuGUI
+Test: PlayMenuGUI
+
+
