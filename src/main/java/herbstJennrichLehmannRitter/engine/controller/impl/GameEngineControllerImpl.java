@@ -1,7 +1,6 @@
 package herbstJennrichLehmannRitter.engine.controller.impl;
 
 import herbstJennrichLehmannRitter.engine.controller.GameEngineController;
-import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
 
@@ -13,7 +12,7 @@ public class GameEngineControllerImpl implements GameEngineController {
 	
 	public GameEngineControllerImpl() {
 		if (once) {
-			throw new EngineCouldNotStartException("It is only one GameEngineController allowed");
+			System.out.println("WARNING: a second GameEngineController has started. In tests this is okay");
 		}
 		once = true;
 	}
