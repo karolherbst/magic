@@ -22,13 +22,13 @@ public class DataTests {
 	@Test
 	public void testOwnPlayer() {
 		this.data.setOwnPlayer(this.player);
-		assertEquals(data.getOwnPlayer(), this.player);
+		assertEquals(this.data.getOwnPlayer(), this.player);
 	}
 	
 	@Test
 	public void testEnemyPlayer() {
-		data.setEnemyPlayer(this.player);
-		assertEquals(data.getEnemyPlayer(), this.player);
+		this.data.setEnemyPlayer(this.player);
+		assertEquals(this.data.getEnemyPlayer(), this.player);
 	}
 
 }
