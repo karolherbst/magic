@@ -60,7 +60,7 @@ public class ChooseDeckGUI {
 	
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
-		this.shell.setText("Starte Spiel als Client");
+		this.shell.setText("Deck erstellen");
 		GridLayout gridLayout = new GridLayout();
 		gridLayout.numColumns = 3;
 		this.shell.setLayout(gridLayout);
