@@ -14,8 +14,6 @@ complexCards
 
 Sebastian
 ---------------------
-Deck
-Test: CardImpl ---> nicht vollständig
 
 
 Not assigned
@@ -33,6 +31,7 @@ Test: PlayerFactoryImpl
 Test: CardActionImpl
 Test: ComplexCardAction
 Test: ResourceActionImpl
+Test: CardImpl ---> nicht vollständig
 Test: DeckImpl
 Test: DungeonImpl
 Test: MagicLabImpl

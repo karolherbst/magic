@@ -75,9 +75,8 @@ public class CardTests {
 		
 	}
 	
-	@SuppressWarnings("static-method")
 	@Test
-	public void testCard2() {
+	public void testCardXml() {
 		XmlCard xmlCard = new XmlCard();
 		xmlCard.setName("changeableCard");
 		
