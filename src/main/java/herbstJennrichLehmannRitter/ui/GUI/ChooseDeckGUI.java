@@ -1,5 +1,12 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
+import java.util.Collection;
+import java.util.HashSet;
+
+import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
+import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
+import herbstJennrichLehmannRitter.engine.model.Card;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -133,6 +140,20 @@ public class ChooseDeckGUI {
 		this.lstSystem = new List(this.shell, SWT.NONE);
 		this.lstSystem.setLayoutData(lstSystemData);
 		
+<<<<<<< Upstream, based on origin/master
+=======
+		
+		Collection CardCol = new HashSet();
+		CardCol.add("Muff");
+		CardCol.add("Mief");
+		CardCol.add("Wau");
+		
+		for(Object object : CardCol) {
+			this.lstSystem.add((String) object);
+			}
+		// Funktion getAllPossibleCards einbinden
+		
+>>>>>>> 85bed1a Some GUI Stuff, Test ListSwitch
 		//Collection<Card> CardCollection = GameCardFactoryImpl.this.getAllPossibleCards();
 
 		
@@ -147,7 +168,25 @@ public class ChooseDeckGUI {
 		button_RLData.height = 28;
 		this.button_RL.setLayoutData(button_RLData);
 		this.button_RL.setText("<");
-		
+		this.button_RL.addSelectionListener(new SelectionAdapter() {
+		@Override
+		public void widgetSelected(SelectionEvent e) {
+			try{
+				
+				//evtl ausgliedern dieser Funktion, da identisch mit Button darunter - nur In und Ourtput verdreht
+				String[] selectedItem = lstUser.getSelection();
+				int[] selectedItem2 = lstUser.getSelectionIndices();
+				String SelectString = "";
+				for (int i = 0; i < selectedItem.length; i++)
+					SelectString += selectedItem[i] + " ";
+					lstSystem.add(SelectString);
+					lstUser.remove(selectedItem2);
+			}
+			catch(Exception ex){
+			}
+			
+		}
+		});
 	}
 
 	private void initButtonLR() {
@@ -159,6 +198,23 @@ public class ChooseDeckGUI {
 		button_LRData.height = 28;
 		this.button_LR.setLayoutData(button_LRData);
 		this.button_LR.setText(">");
+		this.button_LR.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				try{
+					String[] selectedItem = lstSystem.getSelection();
+					int[] selectedItem2 = lstSystem.getSelectionIndices();
+					String SelectString = "";
+					for (int i = 0; i < selectedItem.length; i++)
+						SelectString += selectedItem[i] + " ";
+						lstUser.add(SelectString);
+						lstSystem.remove(selectedItem2);
+				}
+				catch(Exception ex){
+					
+				}
+			}
+			});
 	}
 	
 	public void open() {
@@ -173,4 +229,5 @@ public class ChooseDeckGUI {
 		this.shell.pack();			
 		this.shell.setSize(761, 547);
 	}
+
 }
