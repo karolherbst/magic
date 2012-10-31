@@ -140,9 +140,6 @@ public class ChooseDeckGUI {
 		this.lstSystem = new List(this.shell, SWT.NONE);
 		this.lstSystem.setLayoutData(lstSystemData);
 		
-<<<<<<< Upstream, based on origin/master
-=======
-		
 		Collection CardCol = new HashSet();
 		CardCol.add("Muff");
 		CardCol.add("Mief");
@@ -152,10 +149,7 @@ public class ChooseDeckGUI {
 			this.lstSystem.add((String) object);
 			}
 		// Funktion getAllPossibleCards einbinden
-		
->>>>>>> 85bed1a Some GUI Stuff, Test ListSwitch
-		//Collection<Card> CardCollection = GameCardFactoryImpl.this.getAllPossibleCards();
-
+		//Collection<Card> CardCollection = GameCardFactoryImpl.this.getAllPossibleCards()
 		
 	}
 
