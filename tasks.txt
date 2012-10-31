@@ -52,7 +52,7 @@ Test: GameServerImpl
 Test: UserInterface
 Test: CLIUserInterface
 Test: NetworkUInterface ---> falsch geschrieben? Refactor?
-Test: ChooseDeckGUI
+Test: ChooseDeckGUI --> Zugriff auf getAllPossibleCards?
 Test: ClientMenuGUI
 Test: GameMenuGUI
 Test: HostMenuGUI
