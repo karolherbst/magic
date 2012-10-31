@@ -1,11 +1,5 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
-import java.util.Collection;
-
-import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
-import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
-import herbstJennrichLehmannRitter.engine.model.Card;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -139,7 +133,7 @@ public class ChooseDeckGUI {
 		this.lstSystem = new List(this.shell, SWT.NONE);
 		this.lstSystem.setLayoutData(lstSystemData);
 		
-		Collection<Card> CardCollection = GameCardFactoryImpl.this.getAllPossibleCards();
+		//Collection<Card> CardCollection = GameCardFactoryImpl.this.getAllPossibleCards();
 
 		
 	}
