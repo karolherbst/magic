@@ -151,4 +151,16 @@ public class GameCardFactoryImpl implements GameCardFactory {
 		return allPossibleCards;	
 	}
 
+	@Override
+	public void saveToXml(Collection<String> cardNames, String path) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Collection<Card> loadFromXml(String path) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

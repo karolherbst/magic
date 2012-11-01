@@ -16,4 +16,8 @@ public interface GameCardFactory {
 	public Collection<Card> createDefaultDeck();
 	
 	public Collection<Card> getAllPossibleCards();
+	
+	public void saveToXml(Collection<String> cardNames, String path);
+	
+	public Collection<Card> loadFromXml(String path);
 }
