@@ -65,7 +65,7 @@ public class ShowCardDetailGUI {
 		cardTable.setLayoutData(cardTableData);
 	}
 	
-	public void open() {
+	public void open(String card) {
 		this.shell.open();
 	}
 
