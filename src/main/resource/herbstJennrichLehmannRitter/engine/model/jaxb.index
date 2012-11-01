@@ -1,4 +1,5 @@
 xml.XmlCard
 xml.XmlCards
 xml.XmlCardAction
+xml.XmlCardNames
 xml.XmlResourceAction

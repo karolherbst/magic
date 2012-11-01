@@ -1,6 +1,7 @@
 package herbstJennrichLehmannRitter.engine.factory.impl;
 
 import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
+import herbstJennrichLehmannRitter.engine.exception.CardFactoryFileException;
 import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.model.Card;
@@ -13,6 +14,8 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
+import java.io.Writer;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -22,11 +25,13 @@ import java.util.Map;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 public class GameCardFactoryImpl implements GameCardFactory {
 
 	private Unmarshaller unmarshaller;
+	private Marshaller marshaller;
 	private Map<String, Card> cards;
 	private Map<String, Class<?>> complexCardActions;
 	
@@ -90,6 +95,7 @@ public class GameCardFactoryImpl implements GameCardFactory {
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance("herbstJennrichLehmannRitter.engine.model");
 			this.unmarshaller = jaxbContext.createUnmarshaller();
+			this.marshaller = jaxbContext.createMarshaller();
 			
 			InputStream is = this.getClass().getResourceAsStream("/herbstJennrichLehmannRitter/engine/model/cards.xml");
 			XmlCards xmlCards = (XmlCards)this.unmarshaller.unmarshal(is);
@@ -152,15 +158,21 @@ public class GameCardFactoryImpl implements GameCardFactory {
 	}
 
 	@Override
-	public void saveToXml(Collection<String> cardNames, String path) {
-		// TODO Auto-generated method stub
-		
+	public void saveToXml(Collection<String> cardNames, Writer destination) {
+		try {
+			this.marshaller.marshal(cardNames, destination);
+		} catch (JAXBException e) {
+			throw new CardFactoryFileException("couldn't write objects to file", e);
+		}
 	}
 
 	@Override
-	public Collection<Card> loadFromXml(String path) {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<Card> loadFromXml(Reader source) {
+		try {
+			return (Collection<Card>)this.unmarshaller.unmarshal(source);
+		} catch (JAXBException e) {
+			throw new CardFactoryFileException("couldn't read objects from file", e);
+		}
 	}
 
 }
