@@ -1,8 +1,12 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 
+import herbstJennrichLehmannRitter.engine.Globals;
+import herbstJennrichLehmannRitter.engine.controller.GameEngineController;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Card;
@@ -25,19 +29,14 @@ public class ChooseDeckGUI {
 	 */
 	private Shell shell;
 	private final Display display;
-	private Button button_LR;
-	private Button button_RL;
-	private Button button_new;
-	private Button button_open;
-	private Button button_save;
-	private Button button_reset;
-	private Button button_exit;
-	private List lstUser;
+	private Button buttonLR;
+	private Button buttonRL;
+	private Button buttonNew;
+	private Button buttonOpen;
+	private Button buttonSave;
+	private Button buttonExit;
 	private List lstSystem;
-	
-	
-
-	
+	private List lstUser;
 	
 	public ChooseDeckGUI(Display parent){
 		this.display = parent;
@@ -45,79 +44,81 @@ public class ChooseDeckGUI {
 		initButtonNew();
 		initButtonOpen();
 		initButtonSave();
-		initButtonReset();
 		initButtonExit();
 		initButtonLR();
 		initButtonRL();
 		initlstSystem();
 		initlstUser();
-		
-		
-		
 	}
 
 	private void initButtonOpen() {
-		this.button_open = new Button(this.shell, SWT.PUSH | SWT.CENTER);
-		FormData button_openData = new FormData();
-		button_openData.left =  new FormAttachment(0, 1000, 112);
-		button_openData.top =  new FormAttachment(0, 1000, 12);
-		button_openData.width = 90;
-		button_openData.height = 28;
-		this.button_open.setLayoutData(button_openData);
-		this.button_open.setText("Öffnen");	
+		this.buttonOpen = new Button(this.shell, SWT.PUSH | SWT.CENTER);
+		FormData buttonOpenData = new FormData();
+		buttonOpenData.left =  new FormAttachment(0, 1000, 112);
+		buttonOpenData.top =  new FormAttachment(0, 1000, 12);
+		buttonOpenData.width = 90;
+		buttonOpenData.height = 28;
+		this.buttonOpen.setLayoutData(buttonOpenData);
+		this.buttonOpen.setText("Öffnen");	
+		this.buttonOpen.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				//TODO Deck aus Datei öffnen und anzeigen
+			}
+		});
 	}
 
 	private void initButtonExit() {
-		this.button_exit = new Button(this.shell, SWT.PUSH | SWT.CENTER);
-		FormData button_exitData = new FormData();
-		button_exitData.left =  new FormAttachment(0, 1000, 660);
-		button_exitData.top =  new FormAttachment(0, 1000, 490);
-		button_exitData.width = 90;
-		button_exitData.height = 28;
-		this.button_exit.setLayoutData(button_exitData);
-		this.button_exit.setText("Beenden");
-		this.button_exit.addSelectionListener(new SelectionAdapter() {
+		this.buttonExit = new Button(this.shell, SWT.PUSH | SWT.CENTER);
+		FormData buttonExitData = new FormData();
+		buttonExitData.left =  new FormAttachment(0, 1000, 660);
+		buttonExitData.top =  new FormAttachment(0, 1000, 490);
+		buttonExitData.width = 90;
+		buttonExitData.height = 28;
+		this.buttonExit.setLayoutData(buttonExitData);
+		this.buttonExit.setText("Beenden");
+		this.buttonExit.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				ChooseDeckGUI.this.shell.setVisible(false);
 			}
-			});
-		
-	}
-
-	private void initButtonReset() {
-		this.button_reset = new Button(this.shell, SWT.PUSH | SWT.CENTER);
-		FormData button_resetData = new FormData();
-		button_resetData.left =  new FormAttachment(0, 1000, 340);
-		button_resetData.top =  new FormAttachment(0, 1000, 490);
-		button_resetData.width = 90;
-		button_resetData.height = 28;
-		this.button_reset.setLayoutData(button_resetData);
-		this.button_reset.setText("Reset");
+		});
 	}
 
 	private void initButtonSave() {
-		this.button_save = new Button(this.shell, SWT.PUSH | SWT.CENTER);
-		FormData button_SaveData = new FormData();
-		button_SaveData.left =  new FormAttachment(0, 1000, 12);
-		button_SaveData.top =  new FormAttachment(0, 1000, 490);
-		button_SaveData.width = 90;
-		button_SaveData.height = 28;
-		this.button_save.setLayoutData(button_SaveData);
-		this.button_save.setText("Speichern");
-		
+		this.buttonSave = new Button(this.shell, SWT.PUSH | SWT.CENTER);
+		FormData buttonSaveData = new FormData();
+		buttonSaveData.left =  new FormAttachment(0, 1000, 12);
+		buttonSaveData.top =  new FormAttachment(0, 1000, 490);
+		buttonSaveData.width = 90;
+		buttonSaveData.height = 28;
+		this.buttonSave.setLayoutData(buttonSaveData);
+		this.buttonSave.setText("Speichern");
+		this.buttonSave.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				//TODO Deck speichern
+			}
+		});
 	}
 
 	private void initButtonNew() {
-		this.button_new = new Button(this.shell, SWT.PUSH | SWT.CENTER);
-		FormData button_newData = new FormData();
-		button_newData.left =  new FormAttachment(0, 1000, 12);
-		button_newData.top =  new FormAttachment(0, 1000, 12);
-		button_newData.width = 90;
-		button_newData.height = 28;
-		this.button_new.setLayoutData(button_newData);
-		this.button_new.setText("Neu");
-		
+		this.buttonNew = new Button(this.shell, SWT.PUSH | SWT.CENTER);
+		FormData buttonNewData = new FormData();
+		buttonNewData.left =  new FormAttachment(0, 1000, 12);
+		buttonNewData.top =  new FormAttachment(0, 1000, 12);
+		buttonNewData.width = 90;
+		buttonNewData.height = 28;
+		this.buttonNew.setLayoutData(buttonNewData);
+		this.buttonNew.setText("Neu");
+		this.buttonNew.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				lstSystem.removeAll();
+				lstUser.removeAll();
+				loadSystemDeck();
+			}
+		});
 	}
 
 	private void initlstUser() {
@@ -126,7 +127,7 @@ public class ChooseDeckGUI {
 		lstUserData.top =  new FormAttachment(0, 1000, 50);
 		lstUserData.width = 335;
 		lstUserData.height = 420;
-		this.lstUser = new List(this.shell, SWT.NONE);
+		this.lstUser = new List(this.shell, SWT.NONE | SWT.MULTI | SWT.V_SCROLL);
 		this.lstUser.setLayoutData(lstUserData);
 		
 	}
@@ -137,78 +138,51 @@ public class ChooseDeckGUI {
 		lstSystemData.top =  new FormAttachment(0, 1000, 50);
 		lstSystemData.width = 335;
 		lstSystemData.height = 420;
-		this.lstSystem = new List(this.shell, SWT.NONE);
+		this.lstSystem = new List(this.shell, SWT.NONE | SWT.MULTI | SWT.V_SCROLL);
 		this.lstSystem.setLayoutData(lstSystemData);
-		
-		Collection CardCol = new HashSet();
-		CardCol.add("Muff");
-		CardCol.add("Mief");
-		CardCol.add("Wau");
-		
-		for(Object object : CardCol) {
-			this.lstSystem.add((String) object);
-			}
-		// Funktion getAllPossibleCards einbinden
-		//Collection<Card> CardCollection = GameCardFactoryImpl.this.getAllPossibleCards()
-		
+	}
+	
+	private void loadSystemDeck() {
+		Collection<Card> cards = Globals.getLocalGameServer().getAllPossibleCards();
+		for(Card card : cards) {
+			this.lstSystem.add(card.getName().toString());
+		}
 	}
 
 	private void initButtonRL() {
-		this.button_RL = new Button(this.shell, SWT.PUSH | SWT.CENTER);
-		FormData button_RLData = new FormData();
-		button_RLData.left =  new FormAttachment(0, 1000, 358);
-		button_RLData.top =  new FormAttachment(0, 1000, 164);
-		button_RLData.width = 41;
-		button_RLData.height = 28;
-		this.button_RL.setLayoutData(button_RLData);
-		this.button_RL.setText("<");
-		this.button_RL.addSelectionListener(new SelectionAdapter() {
-		@Override
-		public void widgetSelected(SelectionEvent e) {
-			try{
-				
-				//evtl ausgliedern dieser Funktion, da identisch mit Button darunter - nur In und Ourtput verdreht
-				String[] selectedItem = lstUser.getSelection();
-				int[] selectedItem2 = lstUser.getSelectionIndices();
-				String SelectString = "";
-				for (int i = 0; i < selectedItem.length; i++)
-					SelectString += selectedItem[i] + " ";
-					lstSystem.add(SelectString);
-					lstUser.remove(selectedItem2);
+		this.buttonRL = new Button(this.shell, SWT.PUSH | SWT.CENTER);
+		FormData buttonRLData = new FormData();
+		buttonRLData.left =  new FormAttachment(0, 1000, 358);
+		buttonRLData.top =  new FormAttachment(0, 1000, 164);
+		buttonRLData.width = 41;
+		buttonRLData.height = 28;
+		this.buttonRL.setLayoutData(buttonRLData);
+		this.buttonRL.setText("<");
+		this.buttonRL.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				moveCardsToOtherList(lstUser, lstSystem);
+				sortLists();
 			}
-			catch(Exception ex){
-			}
-			
-		}
 		});
 	}
 
 	private void initButtonLR() {
-		this.button_LR = new Button(this.shell, SWT.PUSH | SWT.CENTER);
-		FormData button_LRData = new FormData();
-		button_LRData.left =  new FormAttachment(0, 1000, 358);
-		button_LRData.top =  new FormAttachment(0, 1000, 259);
-		button_LRData.width = 41;
-		button_LRData.height = 28;
-		this.button_LR.setLayoutData(button_LRData);
-		this.button_LR.setText(">");
-		this.button_LR.addSelectionListener(new SelectionAdapter() {
+		this.buttonLR = new Button(this.shell, SWT.PUSH | SWT.CENTER);
+		FormData buttonLRData = new FormData();
+		buttonLRData.left =  new FormAttachment(0, 1000, 358);
+		buttonLRData.top =  new FormAttachment(0, 1000, 259);
+		buttonLRData.width = 41;
+		buttonLRData.height = 28;
+		this.buttonLR.setLayoutData(buttonLRData);
+		this.buttonLR.setText(">");
+		this.buttonLR.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				try{
-					String[] selectedItem = lstSystem.getSelection();
-					int[] selectedItem2 = lstSystem.getSelectionIndices();
-					String SelectString = "";
-					for (int i = 0; i < selectedItem.length; i++)
-						SelectString += selectedItem[i] + " ";
-						lstUser.add(SelectString);
-						lstSystem.remove(selectedItem2);
-				}
-				catch(Exception ex){
-					
-				}
+				moveCardsToOtherList(lstSystem, lstUser);
+				sortLists();
 			}
-			});
+		});
 	}
 	
 	public void open() {
@@ -222,6 +196,27 @@ public class ChooseDeckGUI {
 		this.shell.layout();
 		this.shell.pack();			
 		this.shell.setSize(761, 547);
+	}
+
+	private void sortLists() {
+		sortList(lstSystem);
+		sortList(lstUser);
+	}
+	
+	private void sortList(List list) {
+		String[] items = list.getItems();
+		Arrays.sort(items);
+		list.setItems(items);
+	}
+
+	private void moveCardsToOtherList(List sourceList, List targetList) {
+		if (!sourceList.getSelection().toString().isEmpty()) {
+			String[] selectedCard = sourceList.getSelection();
+			for (int i=0;i< selectedCard.length; i++) {
+				targetList.add(selectedCard[i]);
+				sourceList.remove(selectedCard[i]);
+			}
+		}
 	}
 
 }
