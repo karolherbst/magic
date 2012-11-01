@@ -150,11 +150,16 @@ public class GameCardFactoryImpl implements GameCardFactory {
 	public Collection<Card> getAllPossibleCards() {
 		Collection<Card> allPossibleCards = new ArrayList<Card>();
 		
-		for (String cardName : this.cards.keySet()) {
+		for (String cardName : getAllPossibleCardNames()) {
 			allPossibleCards.add(createCard(cardName));
 		}
 		
 		return allPossibleCards;	
+	}
+	
+	@Override
+	public Collection<String> getAllPossibleCardNames() {
+		return this.cards.keySet();
 	}
 
 	@Override

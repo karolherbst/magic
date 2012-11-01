@@ -1,7 +1,6 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
-import herbstJennrichLehmannRitter.engine.model.Card;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -9,10 +8,9 @@ import java.util.Collection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.MouseAdapter;
-import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -29,7 +27,6 @@ public class ChooseDeckGUI {
 	 */
 	private Shell shell;
 	private final Display display;
-	private ShowCardDetailGUI showCardDetailGUI; 
 	private Button btnSystemToUser;
 	private Button btnUserToSystem;
 	private Button btnNew;
@@ -54,7 +51,6 @@ public class ChooseDeckGUI {
 		initlstUser();
 		initButtonSystemToUser();
 		initButtonUserToSystem();
-		this.showCardDetailGUI = new ShowCardDetailGUI(this.display, false);
 	}
 	
 
@@ -79,9 +75,10 @@ public class ChooseDeckGUI {
 		this.btnNew.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				lstSystem.removeAll();
-				lstUser.removeAll();
+				ChooseDeckGUI.this.lstSystem.removeAll();
+				ChooseDeckGUI.this.lstUser.removeAll();
 				loadSystemDeck();
+				sortLists();
 			}
 		});
 	}
@@ -145,6 +142,26 @@ public class ChooseDeckGUI {
 		this.labelSystem.setText("Alle Karten:");
 		this.labelSystem.setLayoutData(systemLabelData);
 	}
+	
+	private void initCardList(final List list) {
+		list.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// nothing to do here
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				String[] selectedItems = list.getSelection();
+				if (selectedItems.length == 1) {
+					ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(ChooseDeckGUI.this.display, false,
+							Globals.getGameCardFactory().createCard(selectedItems[0]));
+					showCardDetailGUI.open();
+				}
+			}
+		});
+	}
 
 	private void initlstSystem() {
 		FormData lstSystemData = new FormData();
@@ -155,18 +172,15 @@ public class ChooseDeckGUI {
 		this.lstSystem = new List(this.shell, SWT.NONE | SWT.MULTI | SWT.V_SCROLL);
 		this.lstSystem.setLayoutData(lstSystemData);
 		this.lstSystem.addKeyListener(new KeyAdapter() {
+			@Override
 			public void keyPressed(KeyEvent event) {
 				if (event.keyCode == SWT.CR) {
-					moveCardsToOtherList(lstSystem, lstUser);
+					moveCardsToOtherList(ChooseDeckGUI.this.lstSystem, ChooseDeckGUI.this.lstUser);
 					sortLists();
 				}
 			}
 		});
-		this.lstSystem.addMouseListener(new MouseAdapter() {
-			public void mouseDoubleClick(MouseEvent event) {
-				showCardDetails(lstSystem);
-			}
-		});
+		initCardList(this.lstSystem);
 	}
 
 	private void initUserLabel() {
@@ -187,19 +201,15 @@ public class ChooseDeckGUI {
 		this.lstUser = new List(this.shell, SWT.NONE | SWT.MULTI | SWT.V_SCROLL);
 		this.lstUser.setLayoutData(lstUserData);
 		this.lstUser.addKeyListener(new KeyAdapter() {
+			@Override
 			public void keyPressed(KeyEvent event) {
 				if (event.keyCode == SWT.CR) {
-					moveCardsToOtherList(lstUser, lstSystem);
+					moveCardsToOtherList(ChooseDeckGUI.this.lstUser, ChooseDeckGUI.this.lstSystem);
 					sortLists();
 				}
 			}
 		});
-		this.lstUser.addMouseListener(new MouseAdapter() {
-			public void mouseDoubleClick(MouseEvent event) {
-				showCardDetails(lstUser);
-			}
-		});
-
+		initCardList(this.lstUser);
 	}
 	
 	private void initButtonUserToSystem() {
@@ -214,7 +224,7 @@ public class ChooseDeckGUI {
 		this.btnUserToSystem.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				moveCardsToOtherList(lstUser, lstSystem);
+				moveCardsToOtherList(ChooseDeckGUI.this.lstUser, ChooseDeckGUI.this.lstSystem);
 				sortLists();
 			}
 		});
@@ -232,16 +242,16 @@ public class ChooseDeckGUI {
 		this.btnSystemToUser.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				moveCardsToOtherList(lstSystem, lstUser);
+				moveCardsToOtherList(ChooseDeckGUI.this.lstSystem, ChooseDeckGUI.this.lstUser);
 				sortLists();
 			}
 		});
 	}
 	
 	private void loadSystemDeck() {
-		Collection<Card> cards = Globals.getLocalGameServer().getAllPossibleCards();
-		for(Card card : cards) {
-			this.lstSystem.add(card.getName().toString());
+		Collection<String> cardNames = Globals.getGameCardFactory().getAllPossibleCardNames();
+		for(String cardName : cardNames) {
+			this.lstSystem.add(cardName);
 		}
 	}
 	
@@ -264,8 +274,8 @@ public class ChooseDeckGUI {
 	}
 	
 	private void sortLists() {
-		sortList(lstSystem);
-		sortList(lstUser);
+		sortList(this.lstSystem);
+		sortList(this.lstUser);
 	}
 	
 	private void sortList(List list) {
@@ -281,14 +291,6 @@ public class ChooseDeckGUI {
 				targetList.add(selectedCard[i]);
 				sourceList.remove(selectedCard[i]);
 			}
-		}
-	}
-	
-	private void showCardDetails(List sourceList) {
-		String[] selectedCards = sourceList.getSelection();
-		if (selectedCards.length == 1) {
-			this.showCardDetailGUI.open();
-			this.showCardDetailGUI.setSelectedCard(sourceList.getSelection().toString());
 		}
 	}
 }

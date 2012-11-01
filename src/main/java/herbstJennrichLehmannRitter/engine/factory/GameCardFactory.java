@@ -20,6 +20,8 @@ public interface GameCardFactory {
 	
 	public Collection<Card> getAllPossibleCards();
 	
+	public Collection<String> getAllPossibleCardNames();
+	
 	public void saveToXml(Collection<String> cardNames, Writer destination) throws CardFactoryFileException;
 	
 	public Collection<Card> loadFromXml(Reader source) throws CardFactoryFileException;

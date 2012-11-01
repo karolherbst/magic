@@ -1,8 +1,5 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
-import herbstJennrichLehmannRitter.engine.Globals;
-import herbstJennrichLehmannRitter.engine.enums.CardType;
-import herbstJennrichLehmannRitter.engine.enums.RessourceType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 
 import org.eclipse.swt.SWT;
@@ -15,7 +12,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Table;
 
 
 /**
@@ -37,11 +33,12 @@ public class ShowCardDetailGUI {
 	private Button btnExit;
 	private Button btnDiscard;
 	private Button btnUse;
-	private Card card;
+	private final Card card;
 	
-	public ShowCardDetailGUI(Display parent, boolean isUsedDuringGamePlay) {
+	public ShowCardDetailGUI(Display parent, boolean isUsedDuringGamePlay, Card card) {
 		this.display = parent;
 		this.isUsedDuringGamePlay = isUsedDuringGamePlay;
+		this.card = card;
 		initShell();
 		initLabelCardName();
 		initLabelCardTypeName();
@@ -103,20 +100,7 @@ public class ShowCardDetailGUI {
 		LabelData.left = new FormAttachment(0, 1000, 110);
 		LabelData.top =  new FormAttachment(0, 1000, 65);
 		this.lblCardCosts = new Label(this.shell, SWT.LEFT);
-		String costText = new String();
-		costText = "";
-		//TODO Karol, bitte hier mal richtig machen! Danke Sebastian & Sönke
-		if( this.card.getCostBrick() != 0 ) {
-			costText += this.card.getCostBrick() + " " + RessourceType.BRICK + "\n";  
-		}
-		if( this.card.getCostCrystal() != 0 ) {
-			costText += this.card.getCostCrystal() + " " + RessourceType.CRYSTAL + "\n";  
-		}
-		if( this.card.getCostMonsters() != 0 ) {
-			costText += this.card.getCostMonsters() + " " + RessourceType.MONSTER + "\n";  
-		}
-		
-		this.lblCardCosts.setText(costText);
+		this.lblCardCosts.setText(this.card.getCostDescription());
 		this.lblCardCosts.setLayoutData(LabelData);
 	}
 	private void initLabelCardEffectsName() {
@@ -194,8 +178,4 @@ public class ShowCardDetailGUI {
 		this.shell.open();
 	}
 	
-	public void setSelectedCard(String card) {
-		//TODO: Karol, wir müssen irgendwie an ein einzelnes Kartenobjekt kommen!
-	}
-
 }
