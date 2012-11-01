@@ -1,5 +1,6 @@
 package herbstJennrichLehmannRitter.server.impl;
 
+import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.service.GameService;
@@ -25,8 +26,8 @@ public class GameServerImpl implements GameServer {
 	}
 
 	@Override
-	public void start() {
-		this.gameService.start();
+	public void start(GameType gameType) {
+		this.gameService.start(gameType);
 	}
 
 	@Override

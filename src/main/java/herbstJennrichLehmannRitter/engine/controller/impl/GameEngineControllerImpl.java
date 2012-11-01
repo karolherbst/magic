@@ -1,6 +1,7 @@
 package herbstJennrichLehmannRitter.engine.controller.impl;
 
 import herbstJennrichLehmannRitter.engine.controller.GameEngineController;
+import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
@@ -9,6 +10,8 @@ import herbstJennrichLehmannRitter.engine.factory.impl.PlayerFactoryImpl;
 public class GameEngineControllerImpl implements GameEngineController {
 
 	private static boolean once = false;
+
+	private GameType gameType;
 	
 	private GameCardFactory gameCardFactory = new GameCardFactoryImpl();
 	private PlayerFactory playerFactory = new PlayerFactoryImpl();
@@ -29,6 +32,12 @@ public class GameEngineControllerImpl implements GameEngineController {
 	@Override
 	public GameCardFactory getGameCardFactory() {
 		return this.gameCardFactory;
+	}
+
+	@Override
+	public void start(GameType gameType) {
+		// TODO: add class for win and lose checks
+		this.gameType = gameType;
 	}
 
 }

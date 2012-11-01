@@ -1,6 +1,7 @@
 package herbstJennrichLehmannRitter.engine.service.impl;
 
 import herbstJennrichLehmannRitter.engine.controller.GameEngineController;
+import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.service.GameService;
@@ -16,9 +17,8 @@ public class GameServiceImpl implements GameService {
 	}
 	
 	@Override
-	public void start() {
-		// TODO Auto-generated method stub
-
+	public void start(GameType gameType) {
+		this.gameEngineController.start(gameType);
 	}
 
 	@Override

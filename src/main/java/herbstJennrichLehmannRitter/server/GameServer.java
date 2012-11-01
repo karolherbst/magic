@@ -1,5 +1,6 @@
 package herbstJennrichLehmannRitter.server;
 
+import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
@@ -15,7 +16,7 @@ public interface GameServer {
 	public void register(UserInterface userInterface);
 	public void unregister(UserInterface userInterface);
 	
-	public void start();
+	public void start(GameType gameType);
 	
 	public void playCard(Card card);
 	public void discardCard(Card card);
