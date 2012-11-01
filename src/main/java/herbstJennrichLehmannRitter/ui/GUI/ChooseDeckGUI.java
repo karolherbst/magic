@@ -54,7 +54,7 @@ public class ChooseDeckGUI {
 		initlstUser();
 		initButtonSystemToUser();
 		initButtonUserToSystem();
-		this.showCardDetailGUI = new ShowCardDetailGUI(this.display);
+		this.showCardDetailGUI = new ShowCardDetailGUI(this.display, false);
 	}
 	
 
@@ -287,7 +287,8 @@ public class ChooseDeckGUI {
 	private void showCardDetails(List sourceList) {
 		String[] selectedCards = sourceList.getSelection();
 		if (selectedCards.length == 1) {
-			showCardDetailGUI.open(sourceList.getSelection().toString());
+			this.showCardDetailGUI.open();
+			this.showCardDetailGUI.setSelectedCard(sourceList.getSelection().toString());
 		}
 	}
 }
