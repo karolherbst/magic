@@ -16,11 +16,13 @@ public class GameEngineControllerImpl implements GameEngineController {
 	private GameCardFactory gameCardFactory = new GameCardFactoryImpl();
 	private PlayerFactory playerFactory = new PlayerFactoryImpl();
 	
-	public GameEngineControllerImpl() {
+	public GameEngineControllerImpl(GameCardFactory gameCardFactory) {
 		if (once) {
 			System.out.println("WARNING: a second GameEngineController has started. In tests this is okay");
 		}
 		once = true;
+		
+		this.gameCardFactory = gameCardFactory;
 	}
 	
 	@Override
