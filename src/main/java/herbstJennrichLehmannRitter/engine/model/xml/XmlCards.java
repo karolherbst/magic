@@ -11,7 +11,7 @@ public class XmlCards {
 	
 	private Collection<XmlCard> cards;
 
-	@XmlElements(value={
+	@XmlElements({
 		@XmlElement(name="Card", type=XmlCard.class)	
 	})
 	public Collection<XmlCard> getCards() {
