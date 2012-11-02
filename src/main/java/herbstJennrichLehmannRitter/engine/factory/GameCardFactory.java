@@ -18,6 +18,8 @@ public interface GameCardFactory {
 
 	public Collection<Card> createDefaultDeck();
 	
+	public Collection<Card> createCardsFromNames(Collection<String> names);
+	
 	public Collection<Card> getAllPossibleCards();
 	
 	public Collection<String> getAllPossibleCardNames();

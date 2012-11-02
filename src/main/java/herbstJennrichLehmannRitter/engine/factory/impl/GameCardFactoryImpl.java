@@ -8,6 +8,7 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
 import herbstJennrichLehmannRitter.engine.model.xml.XmlCard;
+import herbstJennrichLehmannRitter.engine.model.xml.XmlCardNames;
 import herbstJennrichLehmannRitter.engine.model.xml.XmlCards;
 
 import java.io.File;
@@ -96,6 +97,7 @@ public class GameCardFactoryImpl implements GameCardFactory {
 			JAXBContext jaxbContext = JAXBContext.newInstance("herbstJennrichLehmannRitter.engine.model");
 			this.unmarshaller = jaxbContext.createUnmarshaller();
 			this.marshaller = jaxbContext.createMarshaller();
+			this.marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			
 			InputStream is = this.getClass().getResourceAsStream("/herbstJennrichLehmannRitter/engine/model/cards.xml");
 			XmlCards xmlCards = (XmlCards)this.unmarshaller.unmarshal(is);
@@ -145,6 +147,15 @@ public class GameCardFactoryImpl implements GameCardFactory {
 	public Collection<Card> createDefaultDeck() {
 		return getAllPossibleCards();
 	}
+	
+	@Override
+	public Collection<Card> createCardsFromNames(Collection<String> cardNames) {
+		Collection<Card> cards = new ArrayList<Card>();
+		for (String cardName : cardNames) {
+			cards.add(createCard(cardName));
+		}
+		return cards;
+	}
 
 	@Override
 	public Collection<Card> getAllPossibleCards() {
@@ -164,8 +175,10 @@ public class GameCardFactoryImpl implements GameCardFactory {
 
 	@Override
 	public void saveToXml(Collection<String> cardNames, Writer destination) {
+		// TODO: check all names
 		try {
-			this.marshaller.marshal(cardNames, destination);
+			XmlCardNames xmlCardNames = new XmlCardNames(cardNames);
+			this.marshaller.marshal(xmlCardNames, destination);
 		} catch (JAXBException e) {
 			throw new CardFactoryFileException("couldn't write objects to file", e);
 		}
@@ -174,7 +187,12 @@ public class GameCardFactoryImpl implements GameCardFactory {
 	@Override
 	public Collection<Card> loadFromXml(Reader source) {
 		try {
-			return (Collection<Card>)this.unmarshaller.unmarshal(source);
+			Object o = this.unmarshaller.unmarshal(source);
+			if (o instanceof XmlCardNames) {
+				XmlCardNames xmlCardNames = (XmlCardNames)o;
+				return createCardsFromNames(xmlCardNames.getCardNames());
+			}
+			throw new CardFactoryFileException("file has the wrong format", null);
 		} catch (JAXBException e) {
 			throw new CardFactoryFileException("couldn't read objects from file", e);
 		}

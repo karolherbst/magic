@@ -11,6 +11,14 @@ public class XmlCardNames {
 	
 	private Collection<String> cardNames;
 	
+	public XmlCardNames() {
+		// JaxB needs a default contructor;
+	}
+	
+	public XmlCardNames(Collection<String> cardNames) {
+		this.cardNames = cardNames;
+	}
+	
 	@XmlElements({
 		@XmlElement(name="Card", type=String.class)
 	})

@@ -13,6 +13,13 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.impl.PlayerImpl;
 
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -59,5 +66,32 @@ public class GameCardFactoryTest {
 	public void testBaukoloss() {
 		Card baukoloss = this.gameCardFactory.createCard("Baukoloss");
 		assertFalse(baukoloss.getCanBeDiscarded());
+	}
+	
+	@Test
+	public void testSaveToXml() {
+		Writer writer = new OutputStreamWriter(System.out);
+		Collection<String> cardNames = new ArrayList<String>();
+		
+		cardNames.add("Architektur");
+		cardNames.add("Ausbeutung");
+		cardNames.add("Barracke");
+		
+		this.gameCardFactory.saveToXml(cardNames, writer);
+	}
+	
+	@Test
+	public void testLoadFromXml() {
+		String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
+		             "<CardNames>" +
+		             	"<Card>Architektur</Card>" +
+		             	"<Card>Geheimraum</Card>" +
+		             "</CardNames>";
+		Reader reader = new StringReader(xml);
+		Collection<Card> cards = this.gameCardFactory.loadFromXml(reader);
+		
+		for (Card card : cards) {
+			System.out.println(card);
+		}
 	}
 }
