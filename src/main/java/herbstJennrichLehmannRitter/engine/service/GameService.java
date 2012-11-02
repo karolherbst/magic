@@ -20,8 +20,6 @@ public interface GameService {
 	public void register(Thread thread, UserInterface userInterface);
 	public void unregister(UserInterface userInterface);
 
-	public Player createPlayer(String name, Collection<String> cardNames);
-	
 	public void playCard(Player player, Card card);
 	public void discardCard(Player player, Card card);
 

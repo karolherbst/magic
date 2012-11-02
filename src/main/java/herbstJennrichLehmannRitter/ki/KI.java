@@ -5,6 +5,8 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
+import java.util.Collection;
+
 public class KI implements UserInterface {
 
 	static KI ki = new KI();
@@ -71,7 +73,7 @@ public class KI implements UserInterface {
 	}
 
 	@Override
-	public void abort() {
+	public void abort(String reason) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -79,6 +81,11 @@ public class KI implements UserInterface {
 	@Override
 	public String getName() {
 		return "super KI3000";
+	}
+
+	@Override
+	public Collection<String> getCards() {
+		return Globals.getGameCardFactory().getAllPossibleCardNames();
 	}
 
 }

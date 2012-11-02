@@ -9,6 +9,7 @@ import herbstJennrichLehmannRitter.ui.UserInterface;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Collection;
 
 public class CLIUserInterface implements UserInterface {
 
@@ -150,7 +151,7 @@ public class CLIUserInterface implements UserInterface {
 	}
 
 	@Override
-	public void abort() {
+	public void abort(String reason) {
 		// TODO Auto-generated method stub
 
 	}
@@ -158,6 +159,11 @@ public class CLIUserInterface implements UserInterface {
 	@Override
 	public String getName() {
 		return "";
+	}
+
+	@Override
+	public Collection<String> getCards() {
+		return Globals.getGameCardFactory().getAllPossibleCardNames();
 	}
 
 }

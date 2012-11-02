@@ -45,6 +45,11 @@ public class GameServiceImpl implements GameService {
 		this.isRunning = false;
 	}
 	
+	private Player createPlayer(String name, Collection<String> cardNames) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	static private Semaphore lockRegister = new Semaphore(1);
 	@Override
 	public void register(Thread thread, UserInterface userInterface) {
@@ -74,6 +79,8 @@ public class GameServiceImpl implements GameService {
 					}
 				}
 				
+				newUIHolder.player = createPlayer(userInterface.getName(), userInterface.getCards());
+				
 				return;
 			}
 		} catch (InterruptedException e) {
@@ -92,6 +99,8 @@ public class GameServiceImpl implements GameService {
 					this.threadToUi.wait();
 				}
 				
+				newUIHolder.player = createPlayer(userInterface.getName(), userInterface.getCards());
+				
 				return;
 			}
 		} catch (InterruptedException e) {
@@ -104,8 +113,19 @@ public class GameServiceImpl implements GameService {
 	}
 	
 	@Override
-	public void unregister(UserInterface userInterface) {
-		
+	public synchronized void unregister(UserInterface userInterface) {
+		for (UIHolder uiHolder : this.threadToUi.values()) {
+			if (uiHolder.userInterface == userInterface) {
+				
+				UserInterface userInterface1 = userInterface;
+				UserInterface userInterface2 = uiHolder.enemy.userInterface;
+				
+				userInterface1.abort("Game aborted!");
+				userInterface2.abort("Player " + uiHolder.player.getName() + " left the game");
+				
+				this.threadToUi = new HashMap<Thread, GameServiceImpl.UIHolder>();
+			}
+		}
 	}
 
 	@Override
@@ -123,11 +143,5 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public Collection<Card> getAllPossibleCards() {
 		return this.gameEngineController.getGameCardFactory().getAllPossibleCards();
-	}
-
-	@Override
-	public Player createPlayer(String name, Collection<String> cardNames) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
