@@ -5,6 +5,9 @@ import herbstJennrichLehmannRitter.engine.enums.BuildingType;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+//TODO: We have to implement the text of the special cards, like Baumgeist, where no data is in xml. Maybe we add an extra xml field like <text>			Unknown	Task
+
+
 @ComplexCard("Auferstehung")
 public class AuferstehungComplexAction implements ComplexCardAction {
 
