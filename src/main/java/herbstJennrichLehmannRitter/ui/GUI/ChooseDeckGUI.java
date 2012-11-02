@@ -183,7 +183,7 @@ public class ChooseDeckGUI {
 		FormData lstSystemData = new FormData();
 		lstSystemData.left =  new FormAttachment(0, 1000, 12);
 		lstSystemData.top =  new FormAttachment(0, 1000, 60);
-		lstSystemData.width = 335;
+		lstSystemData.width = 320;
 		lstSystemData.height = 420;
 		this.lstSystem = new List(this.shell, SWT.NONE | SWT.MULTI | SWT.V_SCROLL);
 		this.lstSystem.setLayoutData(lstSystemData);
@@ -210,7 +210,7 @@ public class ChooseDeckGUI {
 
 	private void initlstUser() {
 		FormData lstUserData = new FormData();
-		lstUserData.left =  new FormAttachment(0, 1000, 414);
+		lstUserData.left =  new FormAttachment(0, 1000, 430);
 		lstUserData.top =  new FormAttachment(0, 1000, 60);
 		lstUserData.width = 335;
 		lstUserData.height = 420;
