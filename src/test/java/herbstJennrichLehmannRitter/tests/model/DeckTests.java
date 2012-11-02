@@ -98,7 +98,7 @@ public class DeckTests {
 
 		Player player = this.playerFactory.createPlayer("Player", cards, 0, 0, 0, 0);
 
-		player.getDeck().discardAllCardsByType(CardType.CARD_TYPE_MAGIC_LAB);
+		player.getDeck().discardAllCardsByType(CardType.MAGIC_LAB);
 		assertTrue(player.getDeck().getAllCards().contains(cardArchitektur));
 		assertTrue(player.getDeck().getAllCards().contains(cardAugeDesKoloss));
 		assertFalse(player.getDeck().getAllCards().contains(cardDiamant));
@@ -157,7 +157,7 @@ public class DeckTests {
 
 		this.globalPlayer.getDeck().discardAllCards();
 		
-		assertTrue(this.globalPlayer.getDeck().pickNumberOfCardsWithType(3, CardType.CARD_TYPE_SPECIAL));
+		assertTrue(this.globalPlayer.getDeck().pickNumberOfCardsWithType(3, CardType.SPECIAL));
 		assertEquals(this.globalPlayer.getDeck().getAllCards().size(), 3);
 		assertTrue(this.globalPlayer.getDeck().getAllCards().containsAll(cards));
 	}

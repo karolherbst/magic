@@ -41,7 +41,7 @@ public class GameCardFactoryTest {
 		Card card = this.gameCardFactory.createCard("Architektur");
 		assertNotNull(card);
 		assertEquals(card.getName(), "Architektur");
-		assertEquals(card.getCardType(), CardType.CARD_TYPE_MINE);
+		assertEquals(card.getCardType(), CardType.MINE);
 		assertEquals(card.getOwnResourceAction().getWallEffect(), 8);
 		assertEquals(card.getOwnResourceAction().getTowerEffect(), 5);
 		assertEquals(card.getCostBrick(), 15);

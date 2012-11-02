@@ -38,10 +38,10 @@ public class CardTests {
 	
 	@Test
 	public void testCardTypeEnum() {
-		assertEquals(CardType.CARD_TYPE_DUNGEON.toString(), "Verlieskarte");
-		assertEquals(CardType.CARD_TYPE_MAGIC_LAB.toString(), "Zauberlaborkarte");
-		assertEquals(CardType.CARD_TYPE_MINE.toString(), "Steinbruchkarte");
-		assertEquals(CardType.CARD_TYPE_SPECIAL.toString(), "Spezialkarte");
+		assertEquals(CardType.DUNGEON.toString(), "Verlieskarte");
+		assertEquals(CardType.MAGIC_LAB.toString(), "Zauberlaborkarte");
+		assertEquals(CardType.MINE.toString(), "Steinbruchkarte");
+		assertEquals(CardType.SPECIAL.toString(), "Spezialkarte");
 	}
 	
 	@Test
@@ -49,7 +49,7 @@ public class CardTests {
 		XmlCard card = new XmlCard();
 		card.setOwnResourceAction(new XmlResourceAction());
 		card.setEnemyResourceAction(new XmlResourceAction());
-		card.setCardType(CardType.CARD_TYPE_DUNGEON);
+		card.setCardType(CardType.DUNGEON);
 		card.setName("Karte");
 		
 		try {
@@ -68,7 +68,7 @@ public class CardTests {
 			assertEquals(card2.getCostBrick(), 2);
 			assertEquals(card2.getCostCrystal(), 4);
 			assertEquals(card2.getCostMonsters(), 6);
-			assertEquals(card2.getCardType(), CardType.CARD_TYPE_MINE);
+			assertEquals(card2.getCardType(), CardType.MINE);
 		} catch (JAXBException e) {
 			fail(e.getLocalizedMessage());
 		}

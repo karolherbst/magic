@@ -12,7 +12,7 @@ public class BlutmondComplexAction implements ComplexCardAction {
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
 		sourcePlayer.getDeck().discardAllCards();
-		sourcePlayer.getDeck().pickNumberOfCardsWithType(6, CardType.CARD_TYPE_DUNGEON);
+		sourcePlayer.getDeck().pickNumberOfCardsWithType(6, CardType.DUNGEON);
 	}
 
 	@Override
