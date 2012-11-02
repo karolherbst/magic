@@ -3,6 +3,7 @@ package herbstJennrichLehmannRitter.engine.service;
 import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Player;
+import herbstJennrichLehmannRitter.ui.UserInterface;
 
 import java.util.Collection;
 
@@ -14,6 +15,10 @@ import java.util.Collection;
 public interface GameService {
 	
 	public void start(GameType gameType);
+	public void stop();
+	
+	public void register(Thread thread, UserInterface userInterface);
+	public void unregister(UserInterface userInterface);
 
 	public Player createPlayer(String name, Collection<String> cardNames);
 	

@@ -17,6 +17,7 @@ public interface GameServer {
 	public void unregister(UserInterface userInterface);
 	
 	public void start(GameType gameType);
+	public void stop();
 	
 	public void playCard(Card card);
 	public void discardCard(Card card);

@@ -22,7 +22,7 @@ public final class Globals {
 		started = true;
 	}
 	
-	public static GameServer getLocalGameServer() {
+	public synchronized static GameServer getLocalGameServer() {
 		if (!started) {
 			buildUpLocalEngine();
 		}

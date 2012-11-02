@@ -1,11 +1,43 @@
 package herbstJennrichLehmannRitter.ki;
 
+import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
 public class KI implements UserInterface {
 
+	static KI ki = new KI();
+	
+	private Object mutex = new Object();
+	
+	static public void startKIOnLocal() {
+		Thread thread = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				Globals.getLocalGameServer().register(ki);
+				
+				while (true) {
+					try {
+						synchronized (ki.mutex) {
+							ki.mutex.wait();
+						}
+						ki.runKILogic();
+					} catch (InterruptedException e) {
+						break;
+					}
+				}
+			}
+		});
+		
+		thread.start();
+	}
+	
+	private void runKILogic() {
+		
+	}
+	
 	@Override
 	public void setData(Data data) {
 		// TODO Auto-generated method stub
@@ -13,15 +45,13 @@ public class KI implements UserInterface {
 	}
 
 	@Override
-	public void nextTurn() {
-		// TODO Auto-generated method stub
-		
+	public synchronized void nextTurn() {
+		this.mutex.notify();
 	}
 
 	@Override
-	public void playAnotherCard() {
-		// TODO Auto-generated method stub
-		
+	public synchronized void playAnotherCard() {
+		this.mutex.notify();
 	}
 
 	@Override

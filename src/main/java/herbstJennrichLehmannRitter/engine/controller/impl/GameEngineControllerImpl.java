@@ -41,5 +41,10 @@ public class GameEngineControllerImpl implements GameEngineController {
 		// TODO: add class for win and lose checks
 		this.gameType = gameType;
 	}
+	
+	@Override
+	public void stop() {
+		
+	}
 
 }

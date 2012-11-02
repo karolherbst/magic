@@ -82,6 +82,7 @@ public class CLIUserInterface implements UserInterface {
 		case LOCALGAME:
 			if (command.startsWith("quit")) {
 				this.cliState = CLIState.MAINMENU;
+				Globals.getLocalGameServer().stop();
 				System.out.println("returned back to main menu");
 				return true;
 			} else if (command.startsWith("help")) {
@@ -90,8 +91,8 @@ public class CLIUserInterface implements UserInterface {
 				System.out.println("start - will start the game!");
 				return true;
 			} else if (command.startsWith("start")) {
+				KI.startKIOnLocal();
 				Globals.getLocalGameServer().register(this);
-				Globals.getLocalGameServer().register(new KI());
 				this.cliState = CLIState.LOCALGAME_STARTED;
 				return true;
 			}

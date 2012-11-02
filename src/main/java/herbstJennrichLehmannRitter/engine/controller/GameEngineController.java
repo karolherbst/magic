@@ -8,5 +8,6 @@ public interface GameEngineController {
 
 	public GameCardFactory getGameCardFactory();
 	public void start(GameType gameType);
+	public void stop();
 	
 }
