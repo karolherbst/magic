@@ -1,11 +1,15 @@
 package herbstJennrichLehmannRitter.engine.controller.impl;
 
+import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.engine.controller.GameEngineController;
 import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
 import herbstJennrichLehmannRitter.engine.factory.impl.PlayerFactoryImpl;
+import herbstJennrichLehmannRitter.engine.model.action.GameAction;
+import herbstJennrichLehmannRitter.engine.model.action.impl.GameActionImpl;
+import herbstJennrichLehmannRitter.server.GameServer;
 
 public class GameEngineControllerImpl implements GameEngineController {
 
@@ -39,6 +43,8 @@ public class GameEngineControllerImpl implements GameEngineController {
 	@Override
 	public void start(GameType gameType) {
 		// TODO: add class for win and lose checks
+		// FIXME: From where do I get the sourcePlayer and TargetPlayer? (Sebastian)
+//		GameAction gameAction = new GameActionImpl(sourcePlayer, targetPlayer);
 		this.gameType = gameType;
 	}
 	
