@@ -14,6 +14,8 @@ import java.util.concurrent.Semaphore;
 
 public class GameServiceImpl implements GameService {
 
+	private static long DEFAULT_TIMEOUT = 1000 * 30;
+	
 	private class UIHolder {
 		
 		public UIHolder(UserInterface userInterface) {
@@ -63,7 +65,7 @@ public class GameServiceImpl implements GameService {
 				synchronized (this.threadToUi) {
 					this.threadToUi.put(thread, newUIHolder);
 					lockRegister.release();
-					this.threadToUi.wait();
+					this.threadToUi.wait(DEFAULT_TIMEOUT);
 				
 					if (this.threadToUi.size() != 2) {
 						this.threadToUi.remove(newUIHolder);
@@ -96,7 +98,7 @@ public class GameServiceImpl implements GameService {
 					this.threadToUi.put(thread, newUIHolder);
 					lockRegister.release();
 					this.threadToUi.notify();
-					this.threadToUi.wait();
+					this.threadToUi.wait(DEFAULT_TIMEOUT);
 				}
 				
 				newUIHolder.player = createPlayer(userInterface.getName(), userInterface.getCards());
