@@ -48,8 +48,7 @@ public class GameServiceImpl implements GameService {
 	}
 	
 	private Player createPlayer(String name, Collection<String> cardNames) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.gameEngineController.createPlayer(name, cardNames);
 	}
 	
 	static private Semaphore lockRegister = new Semaphore(1);

@@ -9,12 +9,14 @@ import java.util.Collection;
 
 public class KI implements UserInterface {
 
-	static KI ki = new KI();
+	private Thread thread = null;
 	
 	private Object mutex = new Object();
 	
 	static public void startKIOnLocal() {
-		Thread thread = new Thread(new Runnable() {
+		final KI ki = new KI();
+		
+		ki.thread = new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
@@ -33,7 +35,7 @@ public class KI implements UserInterface {
 			}
 		});
 		
-		thread.start();
+		ki.thread.start();
 	}
 	
 	private void runKILogic() {
@@ -74,8 +76,9 @@ public class KI implements UserInterface {
 
 	@Override
 	public void abort(String reason) {
-		// TODO Auto-generated method stub
-		
+		System.out.println("KI: :( the game was aborted!");
+		this.thread.interrupt();
+		this.thread = null;
 	}
 
 	@Override

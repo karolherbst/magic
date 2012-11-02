@@ -1,6 +1,7 @@
 package herbstJennrichLehmannRitter.ui.impl;
 
 import herbstJennrichLehmannRitter.engine.Globals;
+import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.ki.KI;
@@ -94,6 +95,7 @@ public class CLIUserInterface implements UserInterface {
 			} else if (command.startsWith("start")) {
 				KI.startKIOnLocal();
 				Globals.getLocalGameServer().register(this);
+				Globals.getLocalGameServer().start(GameType.COLLECTION_RAGE);
 				this.cliState = CLIState.LOCALGAME_STARTED;
 				return true;
 			}
