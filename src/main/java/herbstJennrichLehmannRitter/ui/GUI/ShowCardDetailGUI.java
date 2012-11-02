@@ -45,8 +45,10 @@ public class ShowCardDetailGUI {
 		initLabelCardType();
 		initLabelCardCostsName();
 		initLabelCardCosts();
-		initLabelCardEffectsName();
-		initLabelCardEffects();
+		initLabelCardOwnEffectsName();
+		initLabelCardOwnEffects();
+		initLabelCardEnemyEffectsName();
+		initLabelCardEnemyEffects();
 		initBtnExit();
 		if (this.isUsedDuringGamePlay == true) {
 			initBtnDiscard();
@@ -100,10 +102,10 @@ public class ShowCardDetailGUI {
 		LabelData.left = new FormAttachment(0, 1000, 110);
 		LabelData.top =  new FormAttachment(0, 1000, 65);
 		this.lblCardCosts = new Label(this.shell, SWT.LEFT);
-		this.lblCardCosts.setText(this.card.getCostDescription());
+		this.lblCardCosts.setText(this.card.getCostDescription().replace(", ", "\n"));
 		this.lblCardCosts.setLayoutData(LabelData);
 	}
-	private void initLabelCardEffectsName() {
+	private void initLabelCardOwnEffectsName() {
 		FormData LabelData = new FormData();
 		LabelData.left = new FormAttachment(0, 1000, 27);
 		LabelData.top =  new FormAttachment(0, 1000, 130);
@@ -111,17 +113,36 @@ public class ShowCardDetailGUI {
 		this.lblCardEffectsName.setText("Effekte:");
 		this.lblCardEffectsName.setLayoutData(LabelData);
 	}
-	private void initLabelCardEffects() {
+	private void initLabelCardOwnEffects() {
 		FormData LabelData = new FormData();
 		LabelData.left = new FormAttachment(0, 1000, 110);
 		LabelData.top =  new FormAttachment(0, 1000, 130);
 		LabelData.width = 180;
 		this.lblCardEffects = new Label(this.shell, SWT.WRAP | SWT.BORDER);
 		//TODO Karol, bitte hier mal richtig machen! Danke Sebastian & Sönke
-		this.lblCardEffects.setText(this.card.getOwnEffectDescription() + this.card.getEnemyEffectDescription());
+		this.lblCardEffects.setText(this.card.getOwnEffectDescription());
 		this.lblCardEffects.setLayoutData(LabelData);
 	}
-	
+
+	private void initLabelCardEnemyEffectsName() {
+		FormData LabelData = new FormData();
+		LabelData.left = new FormAttachment(0, 1000, 27);
+		LabelData.top =  new FormAttachment(0, 1000, 160);
+		this.lblCardEffectsName = new Label(this.shell, SWT.LEFT);
+		this.lblCardEffectsName.setText("Gegner Effekte:");
+		this.lblCardEffectsName.setLayoutData(LabelData);
+	}
+	private void initLabelCardEnemyEffects() {
+		FormData LabelData = new FormData();
+		LabelData.left = new FormAttachment(0, 1000, 110);
+		LabelData.top =  new FormAttachment(0, 1000, 160);
+		LabelData.width = 180;
+		this.lblCardEffects = new Label(this.shell, SWT.WRAP | SWT.BORDER);
+		//TODO Karol, bitte hier mal richtig machen! Danke Sebastian & Sönke
+		this.lblCardEffects.setText(this.card.getEnemyEffectDescription());
+		this.lblCardEffects.setLayoutData(LabelData);
+	}
+
 	
 	private void initBtnExit() {
 		this.btnExit = new Button(this.shell, SWT.PUSH | SWT.CENTER);

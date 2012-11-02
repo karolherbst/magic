@@ -1,9 +1,16 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
+import herbstJennrichLehmannRitter.engine.model.Card;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
@@ -16,8 +23,10 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 
 public class ChooseDeckGUI {
@@ -129,6 +138,13 @@ public class ChooseDeckGUI {
 		this.btnExit.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				ArrayList<String> cardNames = new ArrayList<String>();
+				Collections.addAll(cardNames, lstUser.getItems());
+				if (cardNames.isEmpty()) {
+					Globals.getGameCardFactory().createDefaultDeck();
+				} else {
+					Globals.getGameCardFactory().createCardsFromNames(cardNames);
+				}
 				ChooseDeckGUI.this.shell.setVisible(false);
 			}
 		});
@@ -256,16 +272,46 @@ public class ChooseDeckGUI {
 	}
 	
 	private void loadUserDeck() {
-		//TODO: Warten bis Karol: Laden der lokalen XML und alle Userkarten bekommen
-//		Collection<Card> cards = Globals.
-//		for(Card card : cards) {
-//			this.lstUser.add(card.getName().toString());
-//		}
+		FileDialog fileDialog = new FileDialog(this.shell, SWT.OPEN);
+		String[] fileExtNames = { "XML-Dateien", "Alle Dateien (*.*)" };
+		String[] fileExt = { "*.xml", "*.*" };
+		fileDialog.setFilterNames(fileExtNames);
+		fileDialog.setFilterExtensions(fileExt);
+		String fileName = fileDialog.open();
+		if (fileName != null) {
+			try {
+				InputStreamReader source = new InputStreamReader(new FileInputStream(fileName));
+				Collection<Card> cards = Globals.getGameCardFactory().loadFromXml(source);
+				for(Card card : cards) {
+					this.lstUser.add(card.getName());
+				}
+			} catch (Exception e) {
+				MessageBox msgBox = new MessageBox(shell, SWT.ICON_ERROR);
+				msgBox.setMessage(e.getLocalizedMessage());
+				msgBox.open();
+			}
+		}
 	}
 	
 	private void saveUserDeck() {
-		//TODO: Warten bis Karol: Speichern der Karten auf dem Rechner des Benutzers
-//		Globals.getLocalGameEngine.saveUserCardsAsXML(this.lstUser)
+		FileDialog fileDialog = new FileDialog(this.shell, SWT.SAVE);
+		String[] fileExtNames = { "XML-Dateien", "Alle Dateien (*.*)" };
+		String[] fileExt = { "*.xml", "*.*" };
+		fileDialog.setFilterNames(fileExtNames);
+		fileDialog.setFilterExtensions(fileExt);
+		String fileName = fileDialog.open();
+		if (fileName != null) {
+			try {
+				FileWriter fileWriter = new FileWriter(new File(fileName));
+				ArrayList<String> cardNames = new ArrayList<String>();
+				Collections.addAll(cardNames, lstUser.getItems());
+				Globals.getGameCardFactory().saveToXml(cardNames, fileWriter);
+			} catch (Exception e) {
+				MessageBox msgBox = new MessageBox(shell, SWT.ICON_ERROR);
+				msgBox.setMessage(e.getLocalizedMessage());
+				msgBox.open();
+			}
+		}
 	}
 
 	
