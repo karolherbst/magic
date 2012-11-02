@@ -3,6 +3,8 @@ package herbstJennrichLehmannRitter.ui.GUI;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.FormAttachment;
+import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -18,6 +20,7 @@ public class PlayDemoGUI {
 	private Shell shell;
 	private final Display display;
 	private Button btnExit;
+	private Button btnEnemyOne;
 	
 	
 	
@@ -25,6 +28,7 @@ public class PlayDemoGUI {
 		this.display = parent;
 		initShell();
 		initBtnExit();
+		initBtnEnemyOne();
 	}
 	
 	public void open() {
@@ -42,6 +46,16 @@ public class PlayDemoGUI {
 				PlayDemoGUI.this.shell.setVisible(false);
 			}
 		});
+	}
+	
+	private void initBtnEnemyOne() {
+		this.btnEnemyOne = new Button(this.shell, SWT.PUSH | SWT.CENTER);
+		FormData btnEnemyOneData = new FormData();
+		btnEnemyOneData.left =  new FormAttachment(0, 1000, 12);
+		btnEnemyOneData.top =  new FormAttachment(0, 1000, 12);
+		btnEnemyOneData.width = 90;
+		btnEnemyOneData.height = 28;
+	
 	}
 
 	private void initShell() {
