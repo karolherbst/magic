@@ -273,8 +273,8 @@ public class ChooseDeckGUI {
 	
 	private void loadUserDeck() {
 		FileDialog fileDialog = new FileDialog(this.shell, SWT.OPEN);
-		String[] fileExtNames = { "XML-Dateien", "Alle Dateien (*.*)" };
-		String[] fileExt = { "*.xml", "*.*" };
+		String[] fileExtNames = { "XML-Dateien" };
+		String[] fileExt = { "*.xml" };
 		fileDialog.setFilterNames(fileExtNames);
 		fileDialog.setFilterExtensions(fileExt);
 		String fileName = fileDialog.open();
@@ -295,8 +295,8 @@ public class ChooseDeckGUI {
 	
 	private void saveUserDeck() {
 		FileDialog fileDialog = new FileDialog(this.shell, SWT.SAVE);
-		String[] fileExtNames = { "XML-Dateien", "Alle Dateien (*.*)" };
-		String[] fileExt = { "*.xml", "*.*" };
+		String[] fileExtNames = { "XML-Dateien" };
+		String[] fileExt = { "*.xml" };
 		fileDialog.setFilterNames(fileExtNames);
 		fileDialog.setFilterExtensions(fileExt);
 		String fileName = fileDialog.open();
