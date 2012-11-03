@@ -48,7 +48,7 @@ public class DeckImpl implements Deck {
 		}
 		
 		public boolean pickCard() {
-			if (this.handDeck.size() <= 6) {
+			if (this.handDeck.size() < 6) {
 				this.handDeck.add(DeckImpl.this.deckStack.pickCard());
 				return true;
 			} else {
@@ -57,9 +57,9 @@ public class DeckImpl implements Deck {
 		}
 
 		public boolean pickCards(int numberOfCards) {
-			if (this.handDeck.size() <= 6) {
+			if (this.handDeck.size() < 6) {
 				for (int i = 0; i < numberOfCards; i++) {
-					if (this.handDeck.size() > 6) {
+					if (this.handDeck.size() >= 6) {
 						break;
 					}
 					this.handDeck.add(DeckImpl.this.deckStack.pickCard());
@@ -71,7 +71,7 @@ public class DeckImpl implements Deck {
 		}
 		
 		public boolean pickCardFromDeckStackOrCemeteryDeckWithCostAbout(int cost) {
-			if( this.handDeck.size() <= 6) {
+			if( this.handDeck.size() < 6) {
 				List<Card> cards = new ArrayList<Card>();
 				Card card = null;
 					
@@ -105,7 +105,7 @@ public class DeckImpl implements Deck {
 		}
 
 		public boolean pickNumberOfCardsWithType(int numberOfCards, CardType cardType) {
-			if (this.handDeck.size() <= 6) {
+			if (this.handDeck.size() < 6) {
 				List<Card> cards = new ArrayList<Card>();
 				Card card;
 				
@@ -119,7 +119,7 @@ public class DeckImpl implements Deck {
 				Collections.shuffle(cards);
 				
 				for (int i = 0; i < numberOfCards; i++) {
-					if (this.handDeck.size() == 6) {
+					if (this.handDeck.size() >= 6) {
 						break;
 					}
 					this.handDeck.add(cards.get(i));

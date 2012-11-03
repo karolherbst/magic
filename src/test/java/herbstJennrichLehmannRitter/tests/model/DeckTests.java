@@ -30,12 +30,12 @@ public class DeckTests {
 	@Before
 	public void before() {
 		try {
-			this.cardsOnHand.add(this.gameCardFactory.createCard("Architektur"));
-			this.cardsOnHand.add(this.gameCardFactory.createCard("Auge des Koloss"));
-			this.cardsOnHand.add(this.gameCardFactory.createCard("Diamant"));
-			this.cardsOnHand.add(this.gameCardFactory.createCard("Drachenauge"));
-			this.cardsOnHand.add(this.gameCardFactory.createCard("Oger"));
-			this.cardsOnHand.add(this.gameCardFactory.createCard("Rinderwahnsinn"));
+			this.cardsOnHand.add(this.gameCardFactory.createCard("Geheimraum"));
+			this.cardsOnHand.add(this.gameCardFactory.createCard("Neues Werkzeug"));
+			this.cardsOnHand.add(this.gameCardFactory.createCard("Magische Quelle"));
+			this.cardsOnHand.add(this.gameCardFactory.createCard("Smaragd"));
+			this.cardsOnHand.add(this.gameCardFactory.createCard("Blutmond"));
+			this.cardsOnHand.add(this.gameCardFactory.createCard("Tollwütiges Schaf"));
 		} catch (EngineCouldNotStartException e) {
 			fail(e.getLocalizedMessage());
 		}
@@ -108,11 +108,18 @@ public class DeckTests {
 	}
 
 	@Test
-	public void testPickCard() {
+	public void testPickCardWithFullHand() {
 		this.cardsOnHand.add(this.gameCardFactory.createCard("Schäfchen"));
 		
 		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
-
+		assertFalse(this.globalPlayer.getDeck().pickCard());
+	}
+	
+	@Test
+	public void testPickCardAfterDiscardAllCards() {
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Schäfchen"));
+		
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
 		this.globalPlayer.getDeck().discardAllCards();
 		
 		assertTrue(this.globalPlayer.getDeck().pickCard());
@@ -121,30 +128,107 @@ public class DeckTests {
 
 	@Test
 	public void testPickCardsWith3Cards() {
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
+		this.globalPlayer.getDeck().discardAllCards();
+		
+		assertTrue(this.globalPlayer.getDeck().pickCards(3));
+		assertEquals(this.globalPlayer.getDeck().getAllCards().size(),3);
+	}
+	
+	@Test
+	public void testPickCardsWith8Cards() {
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Schäfchen"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Prisma"));
+		
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
+		this.globalPlayer.getDeck().discardAllCards();
+		
+		assertTrue(this.globalPlayer.getDeck().pickCards(8));
+		assertEquals(this.globalPlayer.getDeck().getAllCards().size(),6);
+	}
+	
+	@Test
+	public void testPickCardsWith2CardsWithoutDiscardingCards() {
 		this.cardsOnHand.add(this.gameCardFactory.createCard("Schäfchen"));
 		this.cardsOnHand.add(this.gameCardFactory.createCard("Prisma"));
 		this.cardsOnHand.add(this.gameCardFactory.createCard("Rauchquarz"));
 		this.cardsOnHand.add(this.gameCardFactory.createCard("Zaubersprüche"));
 		
 		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
-
-		this.globalPlayer.getDeck().discardAllCards();
 		
-		assertTrue(this.globalPlayer.getDeck().pickCards(3));
-		assertEquals(this.globalPlayer.getDeck().getAllCards().size(),3);
+		assertFalse(this.globalPlayer.getDeck().pickCards(2));
 	}
+	
+	@Test
+	public void testPickCardFromDeckStackOrCemeteryDeckWithCostAbout() {
+		Collection<Card> cards = this.gameCardFactory.createDefaultDeck();
+		Player player = this.playerFactory.createPlayer("Player", cards, 0, 0, 0, 0);
+		
+		player.getDeck().discardAllCards();
+		assertTrue(player.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(14));
+	}
+	
+	@Test
+	public void testPickCardFromDeckStackOrCemeteryDeckWithCostAbout100() {
+		Collection<Card> cards = this.gameCardFactory.createDefaultDeck();
+		Player player = this.playerFactory.createPlayer("Player", cards, 0, 0, 0, 0);
+		
+		player.getDeck().discardAllCards();
+		assertFalse(player.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(100));
+	}
+	
+	@Test
+	public void testPickCardFromDeckStackOrCemeteryDeckWithCostAboutWithBrick() {
+		Card card = this.gameCardFactory.createCard("Katapult");
+		this.cardsOnHand.add(card);
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
+		
+		this.globalPlayer.getDeck().discardAllCards();
+		assertTrue(this.globalPlayer.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(14));
+		assertTrue(this.globalPlayer.getDeck().getAllCards().contains(card));
+	}	
+
+	@Test
+	public void testPickCardFromDeckStackOrCemeteryDeckWithCostAboutWithCrystal() {
+		Card card = this.gameCardFactory.createCard("Drachenauge");
+		this.cardsOnHand.add(card);
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
+		
+		this.globalPlayer.getDeck().discardAllCards();
+		assertTrue(this.globalPlayer.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(20));
+		assertTrue(this.globalPlayer.getDeck().getAllCards().contains(card));
+	}
+	
+	@Test
+	public void testPickCardFromDeckStackOrCemeteryDeckWithCostAboutWithMonsters() {
+		Card card = this.gameCardFactory.createCard("Drache");
+		this.cardsOnHand.add(card);
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
+		
+		this.globalPlayer.getDeck().discardAllCards();
+		assertTrue(this.globalPlayer.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(24));
+		assertTrue(this.globalPlayer.getDeck().getAllCards().contains(card));
+	}	
+	
+	@Test
+	public void testPickCardFromDeckStackOrCemeteryDeckWithCostAboutAndWithoutDiscardingCards() {
+		Collection<Card> cards = this.gameCardFactory.createDefaultDeck();
+		Player player = this.playerFactory.createPlayer("Player", cards, 0, 0, 0, 0);
+		
+		assertFalse(player.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(14));
+	}	
 
 	@Test
 	public void testPickNumberOfCardsWithType() {
 		Collection<Card> cards = new ArrayList<Card>();
 		
-		Card cardKaravane = this.gameCardFactory.createCard("Karavane");
 		Card cardEisdrache = this.gameCardFactory.createCard("Eisdrache");
+		Card cardKaravane = this.gameCardFactory.createCard("Karavane");
 		Card cardVulkanausbruch = this.gameCardFactory.createCard("Vulkanausbruch");
 		
-		this.cardsOnHand.add(this.gameCardFactory.createCard("Schäfchen"));
 		this.cardsOnHand.add(this.gameCardFactory.createCard("Prisma"));
 		this.cardsOnHand.add(this.gameCardFactory.createCard("Rauchquarz"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Schäfchen"));
 		this.cardsOnHand.add(cardKaravane);
 		this.cardsOnHand.add(cardEisdrache);
 		this.cardsOnHand.add(cardVulkanausbruch);
@@ -163,14 +247,35 @@ public class DeckTests {
 	}
 
 	@Test
-	public void testPickCardFromDeckStackOrCemeteryDeckWithCostAbout() {
-		Collection<Card> cards = this.gameCardFactory.createDefaultDeck();
-		Player player = this.playerFactory.createPlayer("Player", cards, 0, 0, 0, 0);
+	public void testPickNumberOfCardsWithTypeWithoutDiscardingCards() {
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Paradoxon"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Vulkanausbruch"));
 		
-		player.getDeck().discardAllCards();
-		assertTrue(player.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(14));
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
+		
+		assertFalse(this.globalPlayer.getDeck().pickNumberOfCardsWithType(2, CardType.SPECIAL));
+		assertEquals(this.globalPlayer.getDeck().getAllCards().size(), 6);
 	}
+	
+	@Test
+	public void testPickNumberOfCardsWithTypeWithNumber8() {
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Auferstehung"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Baumgeist"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Dämonin"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Eisdrache"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Karavane"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Kometenschweif"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Paradoxon"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Vulkanausbruch"));
+		
+		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
 
+		this.globalPlayer.getDeck().discardAllCards();
+		
+		assertTrue(this.globalPlayer.getDeck().pickNumberOfCardsWithType(8, CardType.SPECIAL));
+		assertEquals(this.globalPlayer.getDeck().getAllCards().size(), 6);
+	}	
+	
 	@Test
 	public void testExchangeCardsWithHandDeck() {
 		Collection<Card> cardsPlayerOne = this.gameCardFactory.createDefaultDeck();
@@ -191,3 +296,4 @@ public class DeckTests {
 		assertEquals(orginalCardsPlayerTwo,  changedCardsPlayerOne);
 	}
 }
+
