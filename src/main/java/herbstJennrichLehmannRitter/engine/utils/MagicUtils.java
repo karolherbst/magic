@@ -3,10 +3,10 @@ package herbstJennrichLehmannRitter.engine.utils;
 
 public abstract class MagicUtils {
 
-	private MagicUtils() {
-		//TODO Kommentar muss entfernt werden! Wir dürfen keine INLINE Kommentare verwenden, das gibt Punktabzug (Sebastian)
-		// Utils should never be instanciated
-	}	
+	/**
+	 * MagicUtils should never be instantiated
+	 */
+	private MagicUtils() {}	
 	
 	public static void addValueToStringBuilder(Object value, StringBuilder stringBuilder) {
 		

@@ -16,6 +16,11 @@ public final class Globals {
 	
 	private static boolean started = false;
 	
+	/**
+	 * The Class Globals should never be instantiated
+	 */
+	private Globals() {}
+	
 	private static void buildUpLocalEngine() {
 		gameService = new GameServiceImpl(new GameEngineControllerImpl(getGameCardFactory()));
 		localGameServer = new GameServerImpl(gameService);
@@ -35,6 +40,4 @@ public final class Globals {
 		}
 		return gameCardFactory;
 	}
-	
-	private Globals() {}
 }
