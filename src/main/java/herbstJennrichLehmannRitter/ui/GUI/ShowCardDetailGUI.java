@@ -212,6 +212,7 @@ public class ShowCardDetailGUI {
 		field = new StyledText(this.shell, SWT.LEFT);
 		field.setText(text);
 		field.setBackground(this.shell.getBackground());
+		field.setWordWrap(true);
 		field.setLayoutData(formData);
 	}	
 }
