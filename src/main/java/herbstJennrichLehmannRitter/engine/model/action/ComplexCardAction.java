@@ -2,6 +2,7 @@ package herbstJennrichLehmannRitter.engine.model.action;
 
 import herbstJennrichLehmannRitter.engine.model.Player;
 
+//TODO: We have to implement the Baukoloss-Card, which can not discarded
 
 /**
  * 
