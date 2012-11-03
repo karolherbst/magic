@@ -7,6 +7,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 public class ClientMenuGUI {
@@ -18,62 +19,99 @@ public class ClientMenuGUI {
 	private Shell shell;
 	//FIXME: We never use the display, why is it implemented? See also the other GUI classes (Sebastian)
 	private final Display display;
-	private Button btnEntryCorrect;
-	private Button btnBack;
-	private Text txtIpBox;
+	private Text ipTextField;
+	private Label ipTextLabel;
+	private Text nameTextField;
+	private Label nameTextLabel;
+	private Button connectButton;
+	private Button backButton;
 	
 	public ClientMenuGUI(Display parent) {
 		this.display = parent;
 		initShell();
-		initIpBox();
-		initBtnEntryCorrect();
-		initBtnBack();
+		initNameTextLabel();
+		initNameTextField();
+		initIpTextLabel();
+		initIpTextField();
+		initConnectButton();
+		initBackButton();
 	}
 	
 	public void open() {
 		this.shell.open();
 	}
 	
-	private void initIpBox() {
-	    this.txtIpBox = new Text(this.shell, SWT.FILL);
-	    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-		gridData.grabExcessHorizontalSpace = true;
-		gridData.horizontalSpan = 3;
-		this.txtIpBox.setLayoutData(gridData);
-	}
-
-	private void initBtnBack() {
-		this.btnBack = new Button(this.shell, SWT.NONE);
-		this.btnBack.setText("Zurück");
-		this.btnBack.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
-				true, false));
-		this.btnBack.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				ClientMenuGUI.this.shell.setVisible(false);
-			}
-			});
-	}
-
-
-	private void initBtnEntryCorrect() {
-		this.btnEntryCorrect = new Button(this.shell, SWT.NONE);
-		this.btnEntryCorrect.setText("OK");
-		this.btnEntryCorrect.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-			}
-		});
-		this.btnEntryCorrect.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
-				true, false));
-	}
-
-
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
 		this.shell.setText("Starte Spiel als Client");
 		this.shell.setLayout(new GridLayout(2, false));
-		this.shell.setSize(250, 85);
+		this.shell.setSize(250, 150);
+	}
+
+	private void initNameTextLabel() {
+	    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.horizontalSpan = 3;
+		
+		this.nameTextLabel = new Label(this.shell, SWT.FILL);
+		this.nameTextLabel.setText("Bitte geben Sie ihren Namen an:");
+		this.nameTextLabel.setBackground(this.shell.getBackground());
+		this.nameTextLabel.setLayoutData(gridData);
 	}
 	
+	private void initNameTextField() {
+	    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.horizontalSpan = 3;
+		
+		this.nameTextField = new Text(this.shell, SWT.FILL);
+		this.nameTextField.setLayoutData(gridData);
+	}	
+	
+	private void initIpTextLabel() {
+	    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.horizontalSpan = 3;
+		
+		this.ipTextLabel = new Label(this.shell, SWT.FILL);
+		this.ipTextLabel.setText("Bitte geben Sie die IP vom Server an:");
+		this.ipTextLabel.setBackground(this.shell.getBackground());
+		this.ipTextLabel.setLayoutData(gridData);
+	}	
+	
+	private void initIpTextField() {
+	    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.horizontalSpan = 3;
+		
+		this.ipTextField = new Text(this.shell, SWT.FILL);
+		this.ipTextField.setLayoutData(gridData);
+	}
+
+	private void initBackButton() {
+		this.backButton = new Button(this.shell, SWT.NONE);
+		this.backButton.setText("Zurück");
+		this.backButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
+		
+		this.backButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				ClientMenuGUI.this.shell.setVisible(false);
+			}
+		});
+	}
+
+
+	private void initConnectButton() {
+		this.connectButton = new Button(this.shell, SWT.NONE);
+		this.connectButton.setText("Verbinden");
+		this.connectButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
+		
+		this.connectButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				//TODO: We have to implement the networkinterface connect to host method
+			}
+		});
+	}	
 }
