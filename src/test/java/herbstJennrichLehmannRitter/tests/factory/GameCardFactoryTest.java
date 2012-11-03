@@ -35,7 +35,7 @@ public class GameCardFactoryTest {
 			fail(e.getLocalizedMessage());
 		}
 	}
-	
+		
 	@Test
 	public void testArchitektur() {
 		Card card = this.gameCardFactory.createCard("Architektur");

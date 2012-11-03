@@ -27,7 +27,7 @@ public class XmlCardAction implements CardAction {
 		return this.ownAmountCardDiscard;
 	}
 
-	public void setOwnAmountCarddiscard(int ownAmountCardDiscard) {
+	public void setOwnAmountCardDiscard(int ownAmountCardDiscard) {
 		this.ownAmountCardDiscard = ownAmountCardDiscard;
 	}
 	
@@ -37,7 +37,7 @@ public class XmlCardAction implements CardAction {
 		return this.enemyAmountCardDiscard;
 	}
 
-	public void setEnemyAmountCarddiscard(int enemyAmountCardDiscard) {
+	public void setEnemyAmountCardDiscard(int enemyAmountCardDiscard) {
 		this.enemyAmountCardDiscard = enemyAmountCardDiscard;
 	}
 
@@ -51,14 +51,14 @@ public class XmlCardAction implements CardAction {
 		this.playCards = playCards;
 	}
 
-	//TODO: return null oder empty String? What is the better solution? (Sebastian)
+	//TODO: muss ich hier implementieren, Karol richtig so? (Sebastian)
 	@Override
 	public String getOwnEffectDescription() {
-		return null;
+		return "";
 	}
 
 	@Override
 	public String getEnemyEffectDescription() {
-		return null;
+		return "";
 	}
 }

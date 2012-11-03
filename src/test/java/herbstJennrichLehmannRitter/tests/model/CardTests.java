@@ -4,9 +4,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
+import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
 import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.action.CardAction;
+import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
+import herbstJennrichLehmannRitter.engine.model.action.impl.CardActionImpl;
+import herbstJennrichLehmannRitter.engine.model.action.impl.ResourceActionImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.CardImpl;
 import herbstJennrichLehmannRitter.engine.model.xml.XmlCard;
+import herbstJennrichLehmannRitter.engine.model.xml.XmlCardAction;
 import herbstJennrichLehmannRitter.engine.model.xml.XmlCards;
 import herbstJennrichLehmannRitter.engine.model.xml.XmlResourceAction;
 
@@ -36,6 +42,11 @@ public class CardTests {
 		}
 	}
 	
+	@Test (expected=EngineCouldNotStartException.class)
+	public void testCardIsNullException() throws EngineCouldNotStartException {
+		new CardImpl(null);
+	}
+	
 	@Test
 	public void testCardTypeEnum() {
 		assertEquals(CardType.DUNGEON.toString(), "Verlieskarte");
@@ -60,7 +71,9 @@ public class CardTests {
 			Unmarshaller unmarshaller = this.jaxbContext.createUnmarshaller();
 			String xmlTree = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><Card name=\"dahsjdhaks\">" +
 					"<CardType>Steinbruch</CardType><CostBrick>2</CostBrick><CostCrystal>4</CostCrystal>" +
-					"<CostMonster>6</CostMonster></Card>";
+					"<CostMonster>6</CostMonster><CanBeDiscarded>false</CanBeDiscarded><CardEffect>" +
+					"<DrawCard>3</DrawCard><OwnDiscardCard>2</OwnDiscardCard><EnemyDiscardCard>4</EnemyDiscardCard>" +
+					"<PlayAnotherCard>true</PlayAnotherCard></CardEffect></Card>";
 			StringReader stringReader = new StringReader(xmlTree);
 			XmlCard card2 = (XmlCard)unmarshaller.unmarshal(stringReader);
 			
@@ -69,10 +82,15 @@ public class CardTests {
 			assertEquals(card2.getCostCrystal(), 4);
 			assertEquals(card2.getCostMonsters(), 6);
 			assertEquals(card2.getCardType(), CardType.MINE);
+			assertEquals(card2.getCanBeDiscarded(), false);
+			assertEquals(card2.getCardAction().getAmountCardDraw(), 3);
+			assertEquals(card2.getCardAction().getOwnAmountCardDiscard(), 2);
+			System.out.println(card2.getCardAction().getEnemyAmountCardDiscard());
+			assertEquals(card2.getCardAction().getEnemyAmountCardDiscard(), 4);
+			assertEquals(card2.getCardAction().getPlayCards(), true);
 		} catch (JAXBException e) {
 			fail(e.getLocalizedMessage());
 		}
-		
 	}
 	
 	@Test
@@ -106,4 +124,36 @@ public class CardTests {
 			fail(e.getLocalizedMessage());
 		}
 	}
+	
+	@Test
+	public void testEffectDescription() {
+		XmlCardAction xmlCard = new XmlCardAction();
+		assertEquals(xmlCard.getOwnEffectDescription(), "");
+		assertEquals(xmlCard.getEnemyEffectDescription(), "");
+	}
+	
+	@Test
+	public void testRessourceActionWithoutACard() {
+		ResourceAction resourceAction = new ResourceActionImpl(null);
+		assertEquals(resourceAction.getBrickEffect(), 0);
+		assertEquals(resourceAction.getCrystalEffect(), 0);
+		assertEquals(resourceAction.getMonsterEffect(), 0);
+		assertEquals(resourceAction.getDungeonLvlEffect(), 0);
+		assertEquals(resourceAction.getMagicLabLvlEffect(), 0);
+		assertEquals(resourceAction.getMineLvlEffect(), 0);
+		assertEquals(resourceAction.getTowerEffect(), 0);
+		assertEquals(resourceAction.getWallEffect(), 0);
+		assertEquals(resourceAction.getDamage(), 0);
+		
+	}
+	
+	@Test
+	public void testCardActionWithoutACard() {
+		CardAction cardAction = new CardActionImpl(null);
+		assertEquals(cardAction.getAmountCardDraw(), 0);
+		assertEquals(cardAction.getOwnAmountCardDiscard(), 0);
+		assertEquals(cardAction.getEnemyAmountCardDiscard(), 0);
+		assertEquals(cardAction.getPlayCards(), false);
+	}
+
 }
