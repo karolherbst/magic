@@ -36,7 +36,7 @@ public class GameActionImpl implements GameAction {
 	}
 
 	private boolean wonLooseDicision(Player player) {
-		if (player.getTower().getActualPoints() < 0) {
+		if (player.getTower().getActualPoints() == 0) {
 			return true;
 		} else {
 			return false;
