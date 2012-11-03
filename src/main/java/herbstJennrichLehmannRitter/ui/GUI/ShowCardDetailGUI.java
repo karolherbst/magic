@@ -107,18 +107,18 @@ public class ShowCardDetailGUI {
 	}
 	
 	private void initCardOwnEffectsLabel() {
-		this.createCategorieText(this.cardOwnEffectsLabel, "Eigene:", false, 150, 50);
+		this.createCategorieText(this.cardOwnEffectsLabel, "Eigene:", false, 150, 90);
 	}
 	
 	private void initCardOwnEffectsText() {
-		this.createCardText(this.cardOwnEffects, this.card.getOwnEffectDescription(), 150, 50);
+		this.createCardText(this.cardOwnEffects, this.card.getOwnEffectDescription(), 150, 90);
 	}
 
 	private void initCardEnemyEffectsLabel() {
-		this.createCategorieText(this.cardEnemyEffectsLabel, "Gegner:", false, 210, 50);
+		this.createCategorieText(this.cardEnemyEffectsLabel, "Gegner:", false, 250, 90);
 	}
 	private void initCardEnemyEffectsText() {
-		this.createCardText(this.cardEnemyEffects, this.card.getEnemyEffectDescription(), 210, 50);
+		this.createCardText(this.cardEnemyEffects, this.card.getEnemyEffectDescription(), 250, 90);
 	}
 
 	private void initExitButton() {
