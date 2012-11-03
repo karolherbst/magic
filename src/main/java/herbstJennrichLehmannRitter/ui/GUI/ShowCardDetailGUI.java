@@ -20,7 +20,6 @@ import org.eclipse.swt.widgets.Shell;
 /**
  * Karten Details aus dem Deck-Creator
  */
-
 public class ShowCardDetailGUI {
 	
 	private Shell shell;
@@ -28,38 +27,38 @@ public class ShowCardDetailGUI {
 	private boolean isUsedDuringGamePlay;
 	private final Card card;
 	private Label lblCardName;
-	private StyledText cardTypeName;
-	private StyledText lblCardType;
-	private StyledText cardCostsName;
-	private StyledText lblCardCosts;
-	private StyledText cardEffectsName;
-	private StyledText cardEnemyEffectsName;
-	private StyledText lblCardEnemyEffects;
-	private StyledText cardOwnEffectsName;
-	private StyledText lblCardOwnEffects;
-	private Button btnExit;
-	private Button btnDiscard;
-	private Button btnUse;
+	private StyledText cardTypeLabel;
+	private StyledText cardType;
+	private StyledText cardCostsLabel;
+	private StyledText cardCosts;
+	private StyledText cardEffectsLabel;
+	private StyledText cardOwnEffectsLabel;
+	private StyledText cardOwnEffects;
+	private StyledText cardEnemyEffects;
+	private StyledText cardEnemyEffectsLabel;
+	private Button exitButton;
+	private Button discardButton;
+	private Button playCardButton;
 	
 	public ShowCardDetailGUI(Display parent, boolean isUsedDuringGamePlay, Card card) {
 		this.display = parent;
 		this.isUsedDuringGamePlay = isUsedDuringGamePlay;
 		this.card = card;
 		initShell();
-		initLabelCardName();
-		initLabelCardTypeName();
-		initLabelCardType();
-		initLabelCardCostsName();
-		initLabelCardCosts();
-		initLabelCardEffectsName();
-		initLabelCardOwnEffectsName();
-		initLabelCardOwnEffects();
-		initLabelCardEnemyEffectsName();
-		initLabelCardEnemyEffects();
-		initBtnExit();
+		initCardNameText();
+		initCardTypeLabel();
+		initCardTypeText();
+		initCardCostsLabel();
+		initCardCostsText();
+		initCardEffectsLabel();
+		initCardOwnEffectsLabel();
+		initCardOwnEffectsText();
+		initCardEnemyEffectsLabel();
+		initCardEnemyEffectsText();
+		initExitButton();
 		if (this.isUsedDuringGamePlay == true) {
-			initBtnDiscard();
-			initBtnUse();
+			initDiscardButton();
+			initPlayCardButton();
 		}
 	}
 	
@@ -74,63 +73,66 @@ public class ShowCardDetailGUI {
 		this.shell.setSize(400, 450);
 	}
 	
-	private void initLabelCardName() {		
+	private void initCardNameText() {		
 		FormData LabelData = new FormData();
 		LabelData.left = new FormAttachment(0, 1000, 100);
 		LabelData.top =  new FormAttachment(0, 1000, 15);
 		LabelData.width = 200;
+		Font font = new Font(this.display, "Arial", 14, SWT.BOLD);
+		
 		this.lblCardName = new Label(this.shell, SWT.CENTER);
 		this.lblCardName.setText(this.card.getName().toString());
-		Font font = new Font(this.display, "Arial", 14, SWT.BOLD);
 		this.lblCardName.setFont(font);
 		this.lblCardName.setLayoutData(LabelData);
 	}
 
-	private void initLabelCardTypeName() {
-		this.createCategorieText(this.cardTypeName, "Kartentyp:", true, 40, 0);
+	private void initCardTypeLabel() {
+		this.createCategorieText(this.cardTypeLabel, "Kartentyp:", true, 40, 0);
 	}
 
-	private void initLabelCardType() {
-		this.createCardText(this.lblCardType, this.card.getCardType().toString(), 40, 0);
+	private void initCardTypeText() {
+		this.createCardText(this.cardType, this.card.getCardType().toString(), 40, 0);
 	}
 	
-	private void initLabelCardCostsName() {
-		this.createCategorieText(this.cardCostsName, "Kosten:", true, 65, 0);
+	private void initCardCostsLabel() {
+		this.createCategorieText(this.cardCostsLabel, "Kosten:", true, 65, 0);
 	}
 	
-	private void initLabelCardCosts() {
-		this.createCardText(this.lblCardCosts, this.card.getCostDescription().replace(", ", "\n"), 65, 0);
+	private void initCardCostsText() {
+		this.createCardText(this.cardCosts, this.card.getCostDescription().replace(", ", "\n"), 65, 0);
 	}
 	
-	private void initLabelCardEffectsName() {
-		this.createCategorieText(this.cardEffectsName, "Effekte:", true, 130, 0);
+	private void initCardEffectsLabel() {
+		this.createCategorieText(this.cardEffectsLabel, "Effekte:", true, 130, 0);
 	}
 	
-	private void initLabelCardOwnEffectsName() {
-		this.createCategorieText(this.cardOwnEffectsName, "Eigene:", false, 150, 50);
+	private void initCardOwnEffectsLabel() {
+		this.createCategorieText(this.cardOwnEffectsLabel, "Eigene:", false, 150, 50);
 	}
 	
-	private void initLabelCardOwnEffects() {
-		this.createCardText(this.lblCardOwnEffects, this.card.getOwnEffectDescription(), 150, 50);
+	private void initCardOwnEffectsText() {
+		this.createCardText(this.cardOwnEffects, this.card.getOwnEffectDescription(), 150, 50);
 	}
 
-	private void initLabelCardEnemyEffectsName() {
-		this.createCategorieText(this.cardEnemyEffectsName, "Gegner:", false, 210, 50);
+	private void initCardEnemyEffectsLabel() {
+		this.createCategorieText(this.cardEnemyEffectsLabel, "Gegner:", false, 210, 50);
 	}
-	private void initLabelCardEnemyEffects() {
-		this.createCardText(this.lblCardEnemyEffects, this.card.getEnemyEffectDescription(), 210, 50);
+	private void initCardEnemyEffectsText() {
+		this.createCardText(this.cardEnemyEffects, this.card.getEnemyEffectDescription(), 210, 50);
 	}
 
-	private void initBtnExit() {
-		this.btnExit = new Button(this.shell, SWT.PUSH | SWT.CENTER);
+	private void initExitButton() {
 		FormData btnExitData = new FormData();
 		btnExitData.top =  new FormAttachment(0, 1000, 390);
 		btnExitData.left =  new FormAttachment(0, 1000, 275);
 		btnExitData.width = 100;
 		btnExitData.height = 30;
-		this.btnExit.setLayoutData(btnExitData);
-		this.btnExit.setText("Zurück");
-		this.btnExit.addSelectionListener(new SelectionAdapter() {
+		
+		this.exitButton = new Button(this.shell, SWT.PUSH | SWT.CENTER);
+		this.exitButton.setLayoutData(btnExitData);
+		this.exitButton.setText("Zurück");
+		
+		this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				ShowCardDetailGUI.this.shell.setVisible(false);
@@ -138,16 +140,18 @@ public class ShowCardDetailGUI {
 		});
 	}
 	
-	private void initBtnDiscard() {
-		this.btnDiscard = new Button(this.shell, SWT.PUSH | SWT.CENTER);
+	private void initDiscardButton() {
 		FormData btnData = new FormData();
 		btnData.top =  new FormAttachment(0, 1000, 390);
 		btnData.left =  new FormAttachment(0, 1000, 25);
 		btnData.width = 100;
 		btnData.height = 28;
-		this.btnDiscard.setLayoutData(btnData);
-		this.btnDiscard.setText("Verwerfen");
-		this.btnDiscard.addSelectionListener(new SelectionAdapter() {
+		
+		this.discardButton = new Button(this.shell, SWT.PUSH | SWT.CENTER);
+		this.discardButton.setLayoutData(btnData);
+		this.discardButton.setText("Verwerfen");
+		
+		this.discardButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				//TODO Was hier?
@@ -155,16 +159,18 @@ public class ShowCardDetailGUI {
 		});
 	}
 	
-	private void initBtnUse() {
-		this.btnUse = new Button(this.shell, SWT.PUSH | SWT.CENTER);
+	private void initPlayCardButton() {
 		FormData btnData = new FormData();
 		btnData.top =  new FormAttachment(0, 1000, 390);
 		btnData.left =  new FormAttachment(0, 1000, 150);
 		btnData.width = 100;
 		btnData.height = 28;
-		this.btnUse.setLayoutData(btnData);
-		this.btnUse.setText("Spielen");
-		this.btnUse.addSelectionListener(new SelectionAdapter() {
+		
+		this.playCardButton = new Button(this.shell, SWT.PUSH | SWT.CENTER);
+		this.playCardButton.setLayoutData(btnData);
+		this.playCardButton.setText("Spielen");
+		
+		this.playCardButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				//TODO Was hier?
