@@ -19,6 +19,6 @@ public class DemolierenComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getEnemyEffectDescription() {
-		return "zerstört Mauer";
+		return "Die Mauer wird zerstört";
 	}
 }

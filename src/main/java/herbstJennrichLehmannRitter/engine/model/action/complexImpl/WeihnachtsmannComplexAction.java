@@ -14,7 +14,7 @@ public class WeihnachtsmannComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getOwnEffectDescription() {
-		return "Zufällige Karte mit Kosten>14 vom Vorratsstapel oder Friedhof auf die Hand";
+		return "Zufällige Karte mit Kosten>14 vom Vorratsstapel oder Friedhof ziehen";
 	}
 
 	@Override

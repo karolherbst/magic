@@ -18,7 +18,8 @@ public class HauptaderComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getOwnEffectDescription() {
-		return "Eigener Steinbruch < gegnerischer Steinbruch => +2 Steinbruch sonst +1 Steinbruch";
+		return "Wenn der eigene Steinbruch kleiner als der des Gegners ist, " +
+				"wird es um 2 erhöht, sonst nur um 1";
 	}
 
 	@Override

@@ -19,7 +19,7 @@ public class ParadoxonComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getEnemyEffectDescription() {
-		return "";
+		return "Tausche Kartenhand mit dem Gegner";
 	}
 
 }

@@ -28,11 +28,11 @@ public class DiebComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getOwnEffectDescription() {
-		return "Hälfte des gegnerischen Verlustes bekommen";
+		return "Man erhält die Hälfte des gegnerischen Verlustes";
 	}
 
 	@Override
 	public String getEnemyEffectDescription() {
-		return "-10 Kristall, -5 Ziegel";
+		return "Es werden maximal -10 Kristall und -5 Ziegel abgezogen";
 	}
 }

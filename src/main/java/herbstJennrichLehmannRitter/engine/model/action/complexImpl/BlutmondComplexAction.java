@@ -17,7 +17,7 @@ public class BlutmondComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getOwnEffectDescription() {
-		return "verwirf alle Karten, ziehe 6 zufällige Verlies-Karten";
+		return "Es werden alle Karten auf der Hand verworfen und 6 zufällige Verlieskarten gezogen";
 	}
 
 	@Override

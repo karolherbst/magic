@@ -16,11 +16,11 @@ public class VerschiebungComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getOwnEffectDescription() {
-		return "Eigene Mauer = gegnerische Mauer";
+		return "Tausche deine Mauer mit der des Gegners";
 	}
 
 	@Override
 	public String getEnemyEffectDescription() {
-		return "Gegnerische Mauer = eigene Mauer";
+		return "";
 	}
 }

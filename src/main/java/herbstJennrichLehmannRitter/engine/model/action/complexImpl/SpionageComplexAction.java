@@ -16,7 +16,8 @@ public class SpionageComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getOwnEffectDescription() {
-		return "Eigener Steinbruch < gegnerischer Steinbruch => eigener Steinbruch = gegnerischer Steinbruch";
+		return "Wenn dein Steinbruchlevel niedriger als das des Gegners ist, " +
+				"wird es auf die Stufe des Gegners angehoben";
 	}
 
 	@Override

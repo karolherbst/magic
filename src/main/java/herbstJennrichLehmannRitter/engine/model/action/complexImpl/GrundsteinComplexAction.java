@@ -18,7 +18,7 @@ public class GrundsteinComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getOwnEffectDescription() {
-		return "Eigene Mauer == 0 => +6 Mauer sonst +3 Mauer";
+		return "Wenn die eigene Mauer zerstört wurde, wird die Mauer um 6 erhöht, sonst nur um 3";
 	}
 
 	@Override

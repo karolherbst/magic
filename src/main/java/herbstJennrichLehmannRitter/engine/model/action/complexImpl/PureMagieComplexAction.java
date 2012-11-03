@@ -16,7 +16,7 @@ public class PureMagieComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getOwnEffectDescription() {
-		return "Verwirf alle Karten, ziehe 6 zufällige Zauberlaborkarten";
+		return "Verwirf alle Karten und ziehe 6 zufällige Zauberlaborkarten";
 	}
 
 	@Override

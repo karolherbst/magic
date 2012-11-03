@@ -16,7 +16,7 @@ public class BarrackeComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getOwnEffectDescription() {
-		return "eigenes Verlies < gegnerisches Verlies => +1 Verlies";
+		return "Wenn das eigene Verlies größer als das des Gegners ist, wird es um 1 erhöht";
 	}
 
 	@Override
