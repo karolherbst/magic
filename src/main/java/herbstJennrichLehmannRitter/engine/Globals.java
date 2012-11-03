@@ -40,4 +40,8 @@ public final class Globals {
 		}
 		return gameCardFactory;
 	}
+	
+	public static void getRemoteServer(String ipAddress) {
+		//TODO: und weiter?
+	}
 }
