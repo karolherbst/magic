@@ -9,6 +9,7 @@ package herbstJennrichLehmannRitter.engine.model;
 public interface Player {
 	
 	public String getName();
+	public void setName(String name);
 	
 	public Deck getDeck();
 	

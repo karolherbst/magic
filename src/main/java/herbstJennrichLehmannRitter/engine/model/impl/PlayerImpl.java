@@ -32,6 +32,7 @@ public class PlayerImpl implements Player {
 		return this.name;
 	}
 
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}

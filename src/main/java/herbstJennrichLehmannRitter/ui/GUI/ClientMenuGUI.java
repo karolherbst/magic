@@ -1,5 +1,10 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
+import herbstJennrichLehmannRitter.engine.Globals;
+import herbstJennrichLehmannRitter.engine.model.Data;
+import herbstJennrichLehmannRitter.engine.model.impl.DataImpl;
+import herbstJennrichLehmannRitter.ui.UserInterface;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -110,7 +115,11 @@ public class ClientMenuGUI {
 		this.connectButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				//TODO: We have to implement the networkinterface connect to host method
+				//FIXME: Ich (Sebastian) bin zu blöd um mir das Data zu holen... wo zum Teufel bekomme ich das her...
+				Data data = new DataImpl();
+				data.getOwnPlayer().setName(nameTextField.getText());
+				//FIXME: no enclosing => weil UserInterface nicht statisch... also wo bekomme ich nun schon wieder userInterface her... 
+//				UserInterface.this.setData(data);
 			}
 		});
 	}	
