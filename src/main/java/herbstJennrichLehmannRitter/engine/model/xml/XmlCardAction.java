@@ -50,4 +50,15 @@ public class XmlCardAction implements CardAction {
 	public void setPlayCards(boolean playCards) {
 		this.playCards = playCards;
 	}
+
+	//TODO: return null oder empty String? What is the better solution? (Sebastian)
+	@Override
+	public String getOwnEffectDescription() {
+		return null;
+	}
+
+	@Override
+	public String getEnemyEffectDescription() {
+		return null;
+	}
 }

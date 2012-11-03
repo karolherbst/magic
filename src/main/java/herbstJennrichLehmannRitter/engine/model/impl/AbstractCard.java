@@ -25,6 +25,10 @@ public abstract class AbstractCard implements Card {
 			MagicUtils.addValueToStringBuilder(getOwnResourceAction(), stringBuilder);
 		}
 		
+		if (getCardAction() != null) {
+			MagicUtils.addValueToStringBuilder(getCardAction().getOwnEffectDescription(), stringBuilder);
+		}
+
 		if (getComplexCardAction() != null && getComplexCardAction().getOwnEffectDescription() != null
 				&& getComplexCardAction().getOwnEffectDescription().length() > 0) {
 			MagicUtils.addValueToStringBuilder(getComplexCardAction().getOwnEffectDescription(), stringBuilder);
@@ -41,8 +45,12 @@ public abstract class AbstractCard implements Card {
 			MagicUtils.addValueToStringBuilder(getEnemyResourceAction(), stringBuilder);
 		}
 		
+		if (getCardAction() != null) {
+			MagicUtils.addValueToStringBuilder(getCardAction().getEnemyEffectDescription(), stringBuilder);
+		}
+		
 		if (getComplexCardAction() != null && getComplexCardAction().getEnemyEffectDescription() != null
-				&& getComplexCardAction().getOwnEffectDescription().length() > 0) {
+				&& getComplexCardAction().getEnemyEffectDescription().length() > 0) {
 			MagicUtils.addValueToStringBuilder(getComplexCardAction().getEnemyEffectDescription(), stringBuilder);
 		}
 		

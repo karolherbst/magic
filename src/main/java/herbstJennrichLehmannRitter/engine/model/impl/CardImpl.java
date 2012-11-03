@@ -6,6 +6,7 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.action.CardAction;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
+import herbstJennrichLehmannRitter.engine.model.action.impl.CardActionImpl;
 import herbstJennrichLehmannRitter.engine.model.action.impl.ResourceActionImpl;
 
 public class CardImpl extends AbstractCard {
@@ -34,7 +35,7 @@ public class CardImpl extends AbstractCard {
 		this.costCrystal = card.getCostCrystal();
 		
 		if (card.getCardAction() != null) {
-			this.cardAction = card.getCardAction();
+			this.cardAction = new CardActionImpl(card.getCardAction());
 		} else {
 			this.cardAction = null;
 		}

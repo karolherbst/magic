@@ -1,6 +1,7 @@
 package herbstJennrichLehmannRitter.engine.model.action.impl;
 
 import herbstJennrichLehmannRitter.engine.model.action.CardAction;
+import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 
 public class CardActionImpl implements CardAction {
 
@@ -42,4 +43,24 @@ public class CardActionImpl implements CardAction {
 	public boolean getPlayCards() {
 		return this.playCards;
 	}
+	
+	@Override
+	public String getOwnEffectDescription() {
+		StringBuilder stringBuilder = new StringBuilder();
+		
+		MagicUtils.addValueToStringBuilder("Karte spielen", stringBuilder);
+		MagicUtils.addValueToStringBuilder("Karte ablegen", Integer.valueOf(getOwnAmountCardDiscard()), stringBuilder);
+		MagicUtils.addValueToStringBuilder("Karte ziehen", Integer.valueOf(getAmountCardDraw()), stringBuilder);
+		
+		return stringBuilder.toString();
+	}
+	
+	@Override
+	public String getEnemyEffectDescription() {
+		StringBuilder stringBuilder = new StringBuilder();
+		
+		MagicUtils.addValueToStringBuilder("Karte ablegen", Integer.valueOf(getEnemyAmountCardDiscard()), stringBuilder);
+		
+		return stringBuilder.toString();
+	}	
 }
