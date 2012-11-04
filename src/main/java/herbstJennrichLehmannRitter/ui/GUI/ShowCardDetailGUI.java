@@ -26,7 +26,7 @@ public class ShowCardDetailGUI {
 	private final Display display;
 	private boolean isUsedDuringGamePlay;
 	private final Card card;
-	private Label lblCardName;
+	private Label cardNameLabel;
 	private StyledText cardTypeLabel;
 	private StyledText cardType;
 	private StyledText cardCostsLabel;
@@ -80,10 +80,10 @@ public class ShowCardDetailGUI {
 		LabelData.width = 200;
 		Font font = new Font(this.display, "Arial", 14, SWT.BOLD);
 		
-		this.lblCardName = new Label(this.shell, SWT.CENTER);
-		this.lblCardName.setText(this.card.getName().toString());
-		this.lblCardName.setFont(font);
-		this.lblCardName.setLayoutData(LabelData);
+		this.cardNameLabel = new Label(this.shell, SWT.CENTER);
+		this.cardNameLabel.setText(this.card.getName().toString());
+		this.cardNameLabel.setFont(font);
+		this.cardNameLabel.setLayoutData(LabelData);
 	}
 
 	private void initCardTypeLabel() {

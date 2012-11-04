@@ -17,9 +17,9 @@ public class GameMenuGUI {
 	
 	private Shell shell;
 	private final Display display;
-	private Button btnStartHost;
-	private Button btnStartClient;
-	private Button btnExit;
+	private Button startHostButton;
+	private Button startClientButton;
+	private Button exitButton;
 	
 	//Subviews
 	private HostMenuGUI hostMenuGUI;
@@ -29,9 +29,9 @@ public class GameMenuGUI {
 	public GameMenuGUI(Display parent) {
 		this.display = parent;
 		initShell();
-		initBtnStartHost();
-		initBtnStartClient();
-		initBtnExit();
+		initStartHostButton();
+		initStartClientButton();
+		initExitButton();
 		
 		this.hostMenuGUI = new HostMenuGUI(this.display);
 		this.clientMenuGUI = new ClientMenuGUI(this.display);
@@ -41,12 +41,12 @@ public class GameMenuGUI {
 		this.shell.open();
 	}
 	
-	private void initBtnExit() {
-		this.btnExit = new Button(this.shell, SWT.NONE);
-		this.btnExit.setText("Zurück");
-		this.btnExit.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
+	private void initExitButton() {
+		this.exitButton = new Button(this.shell, SWT.NONE);
+		this.exitButton.setText("Zurück");
+		this.exitButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
-		this.btnExit.addSelectionListener(new SelectionAdapter() {
+		this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				GameMenuGUI.this.shell.setVisible(false);
@@ -55,13 +55,13 @@ public class GameMenuGUI {
 	}
 
 
-	private void initBtnStartClient() {
-		this.btnStartClient= new Button(this.shell, SWT.NONE);
-		this.btnStartClient.setText("Starte als Client");
-		this.btnStartClient.setToolTipText("An einem Spiel teilnehmen");
-		this.btnStartClient.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
+	private void initStartClientButton() {
+		this.startClientButton= new Button(this.shell, SWT.NONE);
+		this.startClientButton.setText("Starte als Client");
+		this.startClientButton.setToolTipText("An einem Spiel teilnehmen");
+		this.startClientButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
-		this.btnStartClient.addSelectionListener(new SelectionAdapter() {
+		this.startClientButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				GameMenuGUI.this.clientMenuGUI.open();
@@ -70,13 +70,13 @@ public class GameMenuGUI {
 	}
 
 
-	private void initBtnStartHost() {
-		this.btnStartHost = new Button(this.shell, SWT.NONE);
-		this.btnStartHost.setText("Starte als Host");
-		this.btnStartHost.setToolTipText("Ein Spiel als Server starten");
-		this.btnStartHost.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
+	private void initStartHostButton() {
+		this.startHostButton = new Button(this.shell, SWT.NONE);
+		this.startHostButton.setText("Starte als Host");
+		this.startHostButton.setToolTipText("Ein Spiel als Server starten");
+		this.startHostButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
 				true, false));
-		this.btnStartHost.addSelectionListener(new SelectionAdapter() {
+		this.startHostButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				GameMenuGUI.this.hostMenuGUI.open();
