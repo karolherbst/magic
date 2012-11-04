@@ -65,6 +65,7 @@ public class PlayGameGUI {
 		this.shell.layout();
 		this.shell.pack();
 		this.shell.setSize(1024, 600);
+		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 	
 	private void initBtnExit() {

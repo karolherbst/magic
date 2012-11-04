@@ -63,6 +63,7 @@ public class PlayDemoGUI {
 		this.shell.setText("Spiel");
 		this.shell.setLayout(new GridLayout(1, false));
 		this.shell.setSize(1024, 600);
+		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 
 }

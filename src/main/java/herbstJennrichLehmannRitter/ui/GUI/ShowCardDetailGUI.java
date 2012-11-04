@@ -71,6 +71,7 @@ public class ShowCardDetailGUI {
 		this.shell.setText("Kartendetails");
 		this.shell.setLayout(new FormLayout());
 		this.shell.setSize(400, 450);
+		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 	
 	private void initCardNameText() {		

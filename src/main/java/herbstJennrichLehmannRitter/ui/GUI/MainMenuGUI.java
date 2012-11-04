@@ -5,12 +5,14 @@ import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 public class MainMenuGUI {
 
@@ -52,13 +54,16 @@ public class MainMenuGUI {
 		mainMenuGUI = new MainMenuGUI();
 		mainMenuGUI.keepOpen();
 	}
-
+	
 	private void initShell() {
+		
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
 		this.shells++;
 		this.shell.setText("Hauptmenü");
 		this.shell.setLayout(new GridLayout(1, false));
 		this.shell.setSize(220, 180);
+		setShellLocationCenteredToScreen(this.display, this.shell);
+		
 		this.shell.addDisposeListener(new DisposeListener() {
 			@Override
 			public void widgetDisposed(DisposeEvent d) {
@@ -133,6 +138,16 @@ public class MainMenuGUI {
 
 	private boolean allShellsDisposed() {
 		return this.shells == 0;
+	}
+	
+	public static void setShellLocationCenteredToScreen(Display display, Shell shell) {
+		Monitor monitor = display.getPrimaryMonitor();
+		Rectangle monitorBounds = monitor.getBounds();
+		Rectangle shellBounds = shell.getBounds();
+		
+		int posX = monitorBounds.x + ((monitorBounds.width - shellBounds.width)/2);
+		int posY = monitorBounds.y + ((monitorBounds.height - shellBounds.height)/2);
+		shell.setLocation(posX, posY);
 	}
 
 }

@@ -48,6 +48,7 @@ public class ClientMenuGUI {
 		this.shell.setText("Starte Spiel als Client");
 		this.shell.setLayout(new GridLayout(2, false));
 		this.shell.setSize(250, 150);
+		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 
 	private void initNameTextLabel() {

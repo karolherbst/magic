@@ -70,6 +70,7 @@ public class ChooseDeckGUI {
 		this.shell.layout();
 		this.shell.pack();			
 		this.shell.setSize(761, 547);
+		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 
 	private void initNewButton() {
