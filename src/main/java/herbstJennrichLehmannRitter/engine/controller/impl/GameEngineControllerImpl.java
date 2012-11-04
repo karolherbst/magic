@@ -63,7 +63,11 @@ public class GameEngineControllerImpl implements GameEngineController {
 	
 	@Override
 	public void stop() {
-		
+		this.gameType = null;
+	}
+	
+	private boolean isRunning() {
+		return this.gameType != null;
 	}
 
 }
