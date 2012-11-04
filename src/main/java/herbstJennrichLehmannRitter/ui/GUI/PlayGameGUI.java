@@ -90,6 +90,22 @@ public class PlayGameGUI {
 		initEnemyLabel();
 		initEnemyDeckLabel();
 		initEnemyCemeteryLabel();
+		initEnemyDungeonLevelLabel();
+		initEnemyDungeonRessourcesLabel();
+		initEnemyMineLevelLabel();
+		initEnemyMineRessourcesLabel();
+		initEnemyLabLevelLabel();
+		initEnemyLabRessourcesLabel();
+		initEnemyTowerLevelLabel();
+		initEnemyWallLevelLabel();
+		initEnemyCardOneLabel();
+		initEnemyCardTwoLabel();
+		initEnemyCardThreeLabel();
+		initEnemyCardFourLabel();
+		initEnemyCardFiveLabel();
+		initEnemyCardSixLabel();
+		initEnemyPlayingCardOneLabel();
+		initEnemyPlayingCardTwoLabel();
 //		initExitButton();
 	}	
 
@@ -144,6 +160,10 @@ public class PlayGameGUI {
 		this.playerLabel.setText("Spieler:");
 		this.playerLabel.setLayoutData(formData);
 	}
+	
+	
+// Karten des Spielers
+	
 	
 	private void initPlayerPlayingCardOneButton() {
 		this.playerPlayingCardOneButton = new Button(this.shell, SWT.PUSH | SWT.CENTER);
@@ -290,7 +310,155 @@ public class PlayGameGUI {
 	}
 	
 
-//	Spieler Label
+//	Karten des Gegners
+	
+	
+	private void initEnemyPlayingCardOneLabel() {
+		FormData formData = new FormData();
+		formData.left =  new FormAttachment(0, 1000, 195);
+		formData.top =  new FormAttachment(0, 1000, 150);
+		formData.width = 90;
+		formData.height = 28;
+		this.enemyPlayingCardOneLabel = new Label(this.shell, SWT.CENTER);
+		this.enemyPlayingCardOneLabel.setText("1. gespielte Karte");
+		this.enemyPlayingCardOneLabel.setLayoutData(formData);
+//		this.playerPlayingCardOneButton.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent e) {
+//				ChooseDeckGUI.this.systemList.removeAll();
+//				ChooseDeckGUI.this.userList.removeAll();
+//				loadSystemDeck();
+//				sortLists();
+	}
+	
+	private void initEnemyPlayingCardTwoLabel() {
+		FormData formData = new FormData();
+		formData.left =  new FormAttachment(0, 1000, 290);
+		formData.top =  new FormAttachment(0, 1000, 150);
+		formData.width = 90;
+		formData.height = 28;
+		this.enemyPlayingCardTwoLabel = new Label(this.shell, SWT.CENTER);
+		this.enemyPlayingCardTwoLabel.setText("2. gespielte Karte");
+		this.enemyPlayingCardTwoLabel.setLayoutData(formData);
+//		this.playerPlayingCardTwoButton.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent e) {
+//				ChooseDeckGUI.this.systemList.removeAll();
+//				ChooseDeckGUI.this.userList.removeAll();
+//				loadSystemDeck();
+//				sortLists();
+	}
+	
+	private void initEnemyCardOneLabel() {
+		FormData formData = new FormData();
+		formData.left =  new FormAttachment(0, 1000, 2);
+		formData.top =  new FormAttachment(0, 1000, 25);
+		formData.width = 90;
+		formData.height = 28;
+		this.enemyCardOneLabel = new Label(this.shell, SWT.CENTER);
+		this.enemyCardOneLabel.setText("1. Gegnerkarte");
+		this.enemyCardOneLabel.setLayoutData(formData);
+//		this.playerCardOneButton.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent e) {
+//				ChooseDeckGUI.this.systemList.removeAll();
+//				ChooseDeckGUI.this.userList.removeAll();
+//				loadSystemDeck();
+//				sortLists();
+	}
+	
+	private void initEnemyCardTwoLabel() {
+		FormData formData = new FormData();
+		formData.left =  new FormAttachment(0, 1000, 100);
+		formData.top =  new FormAttachment(0, 1000, 25);
+		formData.width = 90;
+		formData.height = 28;
+		this.enemyCardTwoLabel = new Label(this.shell, SWT.CENTER);
+		this.enemyCardTwoLabel.setText("2. Gegnerkarte");
+		this.enemyCardTwoLabel.setLayoutData(formData);
+//		this.playerCardTwoButton.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent e) {
+//				ChooseDeckGUI.this.systemList.removeAll();
+//				ChooseDeckGUI.this.userList.removeAll();
+//				loadSystemDeck();
+//				sortLists();
+	}
+	
+	private void initEnemyCardThreeLabel() {
+		FormData formData = new FormData();
+		formData.left =  new FormAttachment(0, 1000, 195);
+		formData.top =  new FormAttachment(0, 1000, 25);
+		formData.width = 90;
+		formData.height = 28;
+		this.enemyCardThreeLabel = new Label(this.shell, SWT.CENTER);
+		this.enemyCardThreeLabel.setText("3. Gegnerkarte");
+		this.enemyCardThreeLabel.setLayoutData(formData);
+//		this.playerCardThreeButton.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent e) {
+//				ChooseDeckGUI.this.systemList.removeAll();
+//				ChooseDeckGUI.this.userList.removeAll();
+//				loadSystemDeck();
+//				sortLists();
+	}
+	
+	private void initEnemyCardFourLabel() {
+		FormData formData = new FormData();
+		formData.left =  new FormAttachment(0, 1000, 290);
+		formData.top =  new FormAttachment(0, 1000, 25);
+		formData.width = 90;
+		formData.height = 28;
+		this.enemyCardFourLabel = new Label(this.shell, SWT.CENTER);
+		this.enemyCardFourLabel.setText("4. Gegnerkarte");
+		this.enemyCardFourLabel.setLayoutData(formData);
+//		this.playerCardFourButton.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent e) {
+//				ChooseDeckGUI.this.systemList.removeAll();
+//				ChooseDeckGUI.this.userList.removeAll();
+//				loadSystemDeck();
+//				sortLists();
+	}
+	
+	private void initEnemyCardFiveLabel() {
+		FormData formData = new FormData();
+		formData.left =  new FormAttachment(0, 1000, 385);
+		formData.top =  new FormAttachment(0, 1000, 25);
+		formData.width = 90;
+		formData.height = 28;
+		this.enemyCardFiveLabel = new Label(this.shell, SWT.CENTER);
+		this.enemyCardFiveLabel.setText("5. Gegnerkarte");
+		this.enemyCardFiveLabel.setLayoutData(formData);
+//		this.playerCardFiveButton.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent e) {
+//				ChooseDeckGUI.this.systemList.removeAll();
+//				ChooseDeckGUI.this.userList.removeAll();
+//				loadSystemDeck();
+//				sortLists();
+	}
+	
+	private void initEnemyCardSixLabel() {
+		FormData formData = new FormData();
+		formData.left =  new FormAttachment(0, 1000, 480);
+		formData.top =  new FormAttachment(0, 1000, 25);
+		formData.width = 90;
+		formData.height = 28;
+		this.enemyCardSixLabel = new Label(this.shell, SWT.CENTER);
+		this.enemyCardSixLabel.setText("6. Gegnerkarte");
+		this.enemyCardSixLabel.setLayoutData(formData);
+//		this.playerCardSixButton.addSelectionListener(new SelectionAdapter() {
+//			@Override
+//			public void widgetSelected(SelectionEvent e) {
+//				ChooseDeckGUI.this.systemList.removeAll();
+//				ChooseDeckGUI.this.userList.removeAll();
+//				loadSystemDeck();
+//				sortLists();
+	}
+	
+	
+//	Spieler Ressourcen und Level Label
 	
 	
 	private void initPlayerDeckLabel() {
@@ -404,7 +572,8 @@ public class PlayGameGUI {
 		this.playerWallLevelLabel.setLayoutData(formData);		
 	}
 	
-// Gegner Label
+	
+// Gegner Ressourcen und Level Label
 	
 	
 	private void initEnemyDeckLabel() {
@@ -427,6 +596,94 @@ public class PlayGameGUI {
 		this.enemyCemeteryLabel = new Label(this.shell, SWT.CENTER);
 		this.enemyCemeteryLabel.setText("Kartenfriedhof des Gegners");
 		this.enemyCemeteryLabel.setLayoutData(formData);
+	}
+	
+	private void initEnemyDungeonLevelLabel() {
+		FormData formData = new FormData();
+		formData.left = new FormAttachment(0, 1000, 2);
+		formData.top =  new FormAttachment(0, 1000, 650);
+		formData.width = 150;
+		formData.height = 25;
+		this.enemyDungeonLevelLabel = new Label(this.shell, SWT.LEFT);
+		this.enemyDungeonLevelLabel.setText("Dungeonlevel: ");
+		this.enemyDungeonLevelLabel.setLayoutData(formData);
+	}
+	
+	private void initEnemyDungeonRessourcesLabel() {
+		FormData formData = new FormData();
+		formData.left = new FormAttachment(0, 1000, 2);
+		formData.top =  new FormAttachment(0, 1000, 700);
+		formData.width = 150;
+		formData.height = 25;
+		this.enemyDungeonRessourcesLabel = new Label(this.shell, SWT.LEFT);
+		this.enemyDungeonRessourcesLabel.setText("Dungeonressourcen: ");
+		this.enemyDungeonRessourcesLabel.setLayoutData(formData);
+	}
+	
+	private void initEnemyMineLevelLabel() {
+		FormData formData = new FormData();
+		formData.left = new FormAttachment(0, 1000, 160);
+		formData.top =  new FormAttachment(0, 1000, 650);
+		formData.width = 150;
+		formData.height = 25;
+		this.enemyMineLevelLabel = new Label(this.shell, SWT.LEFT);
+		this.enemyMineLevelLabel.setText("Steinbruchlevel: ");
+		this.enemyMineLevelLabel.setLayoutData(formData);
+	}
+	
+	private void initEnemyMineRessourcesLabel() {
+		FormData formData = new FormData();
+		formData.left = new FormAttachment(0, 1000, 160);
+		formData.top =  new FormAttachment(0, 1000, 700);
+		formData.width = 150;
+		formData.height = 25;
+		this.enemyMineRessourcesLabel = new Label(this.shell, SWT.LEFT);
+		this.enemyMineRessourcesLabel.setText("Steinbruchressourcen: ");
+		this.enemyMineRessourcesLabel.setLayoutData(formData);
+	}
+	
+	private void initEnemyLabLevelLabel() {
+		FormData formData = new FormData();
+		formData.left = new FormAttachment(0, 1000, 320);
+		formData.top =  new FormAttachment(0, 1000, 650);
+		formData.width = 150;
+		formData.height = 25;
+		this.enemyLabLevelLabel = new Label(this.shell, SWT.LEFT);
+		this.enemyLabLevelLabel.setText("Zauberlaborlevel: ");
+		this.enemyLabLevelLabel.setLayoutData(formData);
+	}
+
+	private void initEnemyLabRessourcesLabel() {
+		FormData formData = new FormData();
+		formData.left = new FormAttachment(0, 1000, 320);
+		formData.top =  new FormAttachment(0, 1000, 700);
+		formData.width = 150;
+		formData.height = 25;
+		this.enemyLabRessourcesLabel = new Label(this.shell, SWT.LEFT);
+		this.enemyLabRessourcesLabel.setText("Zauberlaborressourcen: ");
+		this.enemyLabRessourcesLabel.setLayoutData(formData);
+	}
+	
+	private void initEnemyTowerLevelLabel() {
+		FormData formData = new FormData();
+		formData.left = new FormAttachment(0, 1000, 480);
+		formData.top =  new FormAttachment(0, 1000, 650);
+		formData.width = 150;
+		formData.height = 25;
+		this.enemyTowerLevelLabel = new Label(this.shell, SWT.LEFT);
+		this.enemyTowerLevelLabel.setText("Level des Turmes: ");
+		this.enemyTowerLevelLabel.setLayoutData(formData);		
+	}
+
+	private void initEnemyWallLevelLabel() {
+		FormData formData = new FormData();
+		formData.left = new FormAttachment(0, 1000, 480);
+		formData.top =  new FormAttachment(0, 1000, 700);
+		formData.width = 150;
+		formData.height = 25;
+		this.enemyWallLevelLabel = new Label(this.shell, SWT.LEFT);
+		this.enemyWallLevelLabel.setText("Level der Mauer: ");
+		this.enemyWallLevelLabel.setLayoutData(formData);		
 	}
 
 	public void open() {
