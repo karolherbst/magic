@@ -32,7 +32,7 @@ public class MainMenuGUI {
 	// subviews
 	private GameMenuGUI gameMenuGUI;
 	private ChooseDeckGUI chooseDeckGUI;
-	private PlayDemoGUI playDemoGUI;
+	private PlayGameGUI playGameGUI;
 	
 	public MainMenuGUI() {
 		this.display = new Display();
@@ -44,8 +44,7 @@ public class MainMenuGUI {
 		
 		this.gameMenuGUI = new GameMenuGUI(this.display);
 		this.chooseDeckGUI = new ChooseDeckGUI(this.display);
-		this.playDemoGUI = new PlayDemoGUI(this.display);
-		
+		this.playGameGUI = new PlayGameGUI(this.display);
 		this.shell.open();
 	}
 	
@@ -53,7 +52,7 @@ public class MainMenuGUI {
 		mainMenuGUI = new MainMenuGUI();
 		mainMenuGUI.keepOpen();
 	}
-	
+
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
 		this.shells++;
@@ -105,7 +104,7 @@ public class MainMenuGUI {
 		this.startDemoButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				MainMenuGUI.this.playDemoGUI.open();
+				MainMenuGUI.this.playGameGUI.open();
 			}
 		});
 	}

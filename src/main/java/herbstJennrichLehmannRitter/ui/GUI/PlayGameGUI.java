@@ -33,7 +33,7 @@ public class PlayGameGUI {
 	
 	private void initBtnExit() {
 		this.btnExit = new Button(this.shell, SWT.NONE);
-		this.btnExit.setText("Zurück");
+		this.btnExit.setText("Schließen");
 		this.btnExit.setLayoutData(new GridData(GridData.FILL, GridData.END,
 				true, true));
 		this.btnExit.addSelectionListener(new SelectionAdapter() {
@@ -47,7 +47,7 @@ public class PlayGameGUI {
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
 		this.shell.setText("Spiel");
-		this.shell.setLayout(new GridLayout(1, false));
+		this.shell.setLayout(new GridLayout(6, false));
 		this.shell.setSize(1024, 600);
 	}
 
