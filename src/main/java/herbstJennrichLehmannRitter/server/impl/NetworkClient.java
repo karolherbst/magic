@@ -14,12 +14,12 @@ import herbstJennrichLehmannRitter.ui.UserInterface;
 
 public class NetworkClient implements GameServer {
 	
-	private GameService gameService;
+	private GameService remoteGameService;
 
 	public NetworkClient(String ipAddress) {
 		try {
 			Registry registry = LocateRegistry.getRegistry(ipAddress, Registry.REGISTRY_PORT);
-			this.gameService = (GameService) registry.lookup("GameService");
+			this.remoteGameService = (GameService) registry.lookup("GameService");
 		} catch (RemoteException e) {
 			e.getLocalizedMessage();
 		} catch (NotBoundException e) {
@@ -27,40 +27,44 @@ public class NetworkClient implements GameServer {
 		}
 			
 	}
+	
+	public GameService getRemoteGameService() {
+		return this.remoteGameService;
+	}
 
 	@Override
 	public void register(UserInterface userInterface) {
-		this.gameService.register(Thread.currentThread(), userInterface);
+		this.remoteGameService.register(Thread.currentThread(), userInterface);
 
 	}
 
 	@Override
 	public void unregister(UserInterface userInterface) {
-		this.gameService.unregister(userInterface);
+		this.remoteGameService.unregister(userInterface);
 	}
 
 	@Override
 	public void start(GameType gameType) {
-		this.gameService.start(gameType);
+		this.remoteGameService.start(gameType);
 	}
 
 	@Override
 	public void stop() {
-		this.gameService.stop();
+		this.remoteGameService.stop();
 	}
 
 	@Override
 	public void playCard(Card card) {
-		this.gameService.playCard(null, card);
+		this.remoteGameService.playCard(null, card);
 	}
 
 	@Override
 	public void discardCard(Card card) {
-		this.gameService.discardCard(null, card);
+		this.remoteGameService.discardCard(null, card);
 	}
 
 	@Override
 	public Collection<Card> getAllPossibleCards() {
-		return this.gameService.getAllPossibleCards();
+		return this.remoteGameService.getAllPossibleCards();
 	}
 }

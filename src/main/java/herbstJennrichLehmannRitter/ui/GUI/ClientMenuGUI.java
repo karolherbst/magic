@@ -1,8 +1,6 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
-import herbstJennrichLehmannRitter.engine.model.Data;
-import herbstJennrichLehmannRitter.engine.model.impl.DataImpl;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -114,7 +112,8 @@ public class ClientMenuGUI {
 		this.connectButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Globals.getRemoteServer(nameTextField.getText());
+				Globals.getRemoteServer(ipTextField.getText());
+				//TODO set Players name 
 			}
 		});
 	}	
