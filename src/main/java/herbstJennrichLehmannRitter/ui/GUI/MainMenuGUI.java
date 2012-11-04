@@ -32,7 +32,7 @@ public class MainMenuGUI {
 	// subviews
 	private GameMenuGUI gameMenuGUI;
 	private ChooseDeckGUI chooseDeckGUI;
-	private PlayDemoGUI playDemoGUI;
+	private PlayGameGUI playGameGUI;
 	
 	
 	public MainMenuGUI() {
@@ -45,7 +45,7 @@ public class MainMenuGUI {
 		
 		this.gameMenuGUI = new GameMenuGUI(this.display);
 		this.chooseDeckGUI = new ChooseDeckGUI(this.display);
-		this.playDemoGUI = new PlayDemoGUI(this.display);
+		this.playGameGUI = new PlayGameGUI(this.display);
 
 		
 		this.shell.open();
@@ -86,7 +86,7 @@ public class MainMenuGUI {
 		this.btnStartDemo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				MainMenuGUI.this.playDemoGUI.open();
+				MainMenuGUI.this.playGameGUI.open();
 			}
 		});
 	}
