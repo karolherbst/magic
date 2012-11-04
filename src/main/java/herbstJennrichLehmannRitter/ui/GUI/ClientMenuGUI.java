@@ -27,8 +27,8 @@ public class ClientMenuGUI {
 	private Label ipTextLabel;
 	private Text nameTextField;
 	private Label nameTextLabel;
-	private Button connectButton;
-	private Button backButton;
+	private Button btnConnect;
+	private Button btnExit;
 	
 	public ClientMenuGUI(Display parent) {
 		this.display = parent;
@@ -93,11 +93,11 @@ public class ClientMenuGUI {
 	}
 
 	private void initBackButton() {
-		this.backButton = new Button(this.shell, SWT.NONE);
-		this.backButton.setText("Zurück");
-		this.backButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
+		this.btnExit = new Button(this.shell, SWT.NONE);
+		this.btnExit.setText("Zurück");
+		this.btnExit.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
 		
-		this.backButton.addSelectionListener(new SelectionAdapter() {
+		this.btnExit.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				ClientMenuGUI.this.shell.setVisible(false);
@@ -107,11 +107,11 @@ public class ClientMenuGUI {
 
 
 	private void initConnectButton() {
-		this.connectButton = new Button(this.shell, SWT.NONE);
-		this.connectButton.setText("Verbinden");
-		this.connectButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
+		this.btnConnect = new Button(this.shell, SWT.NONE);
+		this.btnConnect.setText("Verbinden");
+		this.btnConnect.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
 		
-		this.connectButton.addSelectionListener(new SelectionAdapter() {
+		this.btnConnect.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Globals.getRemoteServer(nameTextField.getText());
