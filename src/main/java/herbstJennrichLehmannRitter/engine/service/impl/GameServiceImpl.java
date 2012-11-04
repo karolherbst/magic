@@ -4,6 +4,7 @@ import herbstJennrichLehmannRitter.engine.controller.GameEngineController;
 import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Player;
+import herbstJennrichLehmannRitter.engine.model.impl.DataImpl;
 import herbstJennrichLehmannRitter.engine.service.GameService;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
@@ -30,7 +31,6 @@ public class GameServiceImpl implements GameService {
 	private Map<Thread, UIHolder> threadToUi = new HashMap<Thread, GameServiceImpl.UIHolder>();
 	
 	private final GameEngineController gameEngineController;
-	private boolean isRunning = false;
 	
 	public GameServiceImpl(GameEngineController gameEngineController) {
 		this.gameEngineController = gameEngineController;
@@ -39,12 +39,11 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public void start(GameType gameType) {
 		this.gameEngineController.start(gameType);
-		this.isRunning = true;
 	}
 	
 	@Override
 	public void stop() {
-		this.isRunning = false;
+		//this.isRunning = false;
 	}
 	
 	private Player createPlayer(String name, Collection<String> cardNames) {
@@ -54,12 +53,10 @@ public class GameServiceImpl implements GameService {
 	static private Semaphore lockRegister = new Semaphore(1);
 	@Override
 	public void register(Thread thread, UserInterface userInterface) {
-		UIHolder newUIHolder = null;
+		final UIHolder newUIHolder = new UIHolder(userInterface);
 		try {
 			lockRegister.acquire();
 			if (this.threadToUi.size() == 0) {
-				
-				newUIHolder = new UIHolder(userInterface);
 				
 				synchronized (this.threadToUi) {
 					this.threadToUi.put(thread, newUIHolder);
@@ -75,12 +72,15 @@ public class GameServiceImpl implements GameService {
 						if (uiHolder != newUIHolder) {
 							newUIHolder.enemy = uiHolder;
 							uiHolder.enemy = newUIHolder;
+							newUIHolder.player = createPlayer(userInterface.getName(), userInterface.getCards());
 							this.threadToUi.notify();
 						}
 					}
 				}
 				
-				newUIHolder.player = createPlayer(userInterface.getName(), userInterface.getCards());
+				newUIHolder.userInterface.setData(new DataImpl(newUIHolder.player, newUIHolder.enemy.player));
+				newUIHolder.enemy.userInterface.setData(new DataImpl(newUIHolder.enemy.player, newUIHolder.player));
+				newUIHolder.userInterface.nextTurn();
 				
 				return;
 			}
@@ -91,7 +91,7 @@ public class GameServiceImpl implements GameService {
 		
 		try {
 			if (this.threadToUi.size() == 1) {
-				newUIHolder = new UIHolder(userInterface);
+				newUIHolder.player = createPlayer(userInterface.getName(), userInterface.getCards());
 				
 				synchronized (this.threadToUi) {
 					this.threadToUi.put(thread, newUIHolder);
@@ -99,8 +99,6 @@ public class GameServiceImpl implements GameService {
 					this.threadToUi.notify();
 					this.threadToUi.wait(DEFAULT_TIMEOUT);
 				}
-				
-				newUIHolder.player = createPlayer(userInterface.getName(), userInterface.getCards());
 				
 				return;
 			}

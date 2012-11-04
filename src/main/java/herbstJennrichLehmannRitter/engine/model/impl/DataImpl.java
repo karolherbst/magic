@@ -12,8 +12,17 @@ import herbstJennrichLehmannRitter.engine.model.Player;
  */
 public class DataImpl implements Data {
 
-	private Player ownPlayer;
-	private Player enemyPlayer;
+	private Player ownPlayer = null;
+	private Player enemyPlayer = null;
+	
+	public DataImpl() {
+		
+	}
+	
+	public DataImpl(Player own, Player enemy) {
+		this.ownPlayer = own;
+		this.enemyPlayer = enemy;
+	}
 	
 	@Override
 	public Player getOwnPlayer() {

@@ -93,7 +93,7 @@ public class CLIUserInterface implements UserInterface {
 				System.out.println("start - will start the game!");
 				return true;
 			} else if (command.startsWith("start")) {
-				KI.startKIOnLocal();
+				KI.startKIOnLocal("KI3000");
 				Globals.getLocalGameServer().register(this);
 				Globals.getLocalGameServer().start(GameType.COLLECTION_RAGE);
 				this.cliState = CLIState.LOCALGAME_STARTED;
