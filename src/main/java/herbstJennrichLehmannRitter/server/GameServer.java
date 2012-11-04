@@ -4,7 +4,6 @@ import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
-import java.rmi.RemoteException;
 import java.util.Collection;
 
 /**
@@ -14,14 +13,14 @@ import java.util.Collection;
  */
 public interface GameServer {
 	
-	public void register(UserInterface userInterface) throws RemoteException;
-	public void unregister(UserInterface userInterface) throws RemoteException;
+	public void register(UserInterface userInterface);
+	public void unregister(UserInterface userInterface);
 	
-	public void start(GameType gameType) throws RemoteException;
-	public void stop() throws RemoteException;
+	public void start(GameType gameType);
+	public void stop();
 	
-	public void playCard(Card card) throws RemoteException;
-	public void discardCard(Card card) throws RemoteException;
+	public void playCard(Card card);
+	public void discardCard(Card card);
 	
-	public Collection<Card> getAllPossibleCards() throws RemoteException;
+	public Collection<Card> getAllPossibleCards();
 }

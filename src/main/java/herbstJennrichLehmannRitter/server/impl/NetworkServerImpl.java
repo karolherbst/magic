@@ -14,13 +14,12 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Collection;
 
-public class NetworkGameServerImpl extends UnicastRemoteObject implements GameServer, Remote {
+public class NetworkServerImpl extends UnicastRemoteObject implements GameServer, Remote {
 
 	private static final long serialVersionUID = 1L;
-	private UserInterface userInterface;
 	private GameService gameService;
 
-	public NetworkGameServerImpl(GameService gameService, String ipAddress) throws RemoteException {
+	public NetworkServerImpl(GameService gameService) throws RemoteException {
 		this.gameService = gameService;
 		
 		try {
@@ -30,52 +29,49 @@ public class NetworkGameServerImpl extends UnicastRemoteObject implements GameSe
 		}
 		
 		try {
-			//TODO: Muss wirklich das Binding auf NetworkGameServerImpl lauten, oder auf GameServer? (Sebastian)
-			Naming.rebind("//" + ipAddress + "/NetworkGameServerImpl" , this);
+			Naming.rebind("GameService", this);
 		} catch (Exception e) {
 			e.getLocalizedMessage();
 		}
 	}
-	
-	@Override
-	public synchronized void register(UserInterface userInterface) {
-		if (userInterface != null) {
-			this.userInterface = userInterface;
-		}
 
+	@Override
+	public void register(UserInterface userInterface) {
+		this.gameService.register(Thread.currentThread(), userInterface);
 	}
 
 	@Override
 	public void unregister(UserInterface userInterface) {
-		if (userInterface != null) {
-			this.userInterface = null;
-		}
-
+		this.gameService.unregister(userInterface);
 	}
 
 	@Override
-	public void start(GameType gameType) throws RemoteException {
-			this.gameService.start(gameType);
+	public void start(GameType gameType) {
+		this.gameService.start(gameType);
 	}
 
 	@Override
-	public void stop() throws RemoteException {
+	public void stop() {
 		this.gameService.stop();
 		this.gameService = null;
 	}
 
 	@Override
-	public void playCard(Card card) throws RemoteException {
+	public void playCard(Card card) {
+		//TODO: We have to include the Player object here
 		this.gameService.playCard(null, card);
+
 	}
 
 	@Override
-	public void discardCard(Card card) throws RemoteException {
+	public void discardCard(Card card) {
+		//TODO: We have to include the Player object here
 		this.gameService.discardCard(null, card);
 	}
 
 	@Override
-	public Collection<Card> getAllPossibleCards() throws RemoteException {
+	public Collection<Card> getAllPossibleCards() {
 		return this.gameService.getAllPossibleCards();
 	}
+
 }
