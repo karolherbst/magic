@@ -3,14 +3,15 @@ package herbstJennrichLehmannRitter.ui.GUI;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 public class PlayGameGUI {
 
@@ -21,7 +22,7 @@ public class PlayGameGUI {
 	
 	private Shell shell;
 	private final Display display;
-	private Button btnExit;
+	private Button exitButton;
 	private Button btnCardOne;
 	private Button btnCardTwo;
 	private Button btnCardThree;
@@ -54,7 +55,8 @@ public class PlayGameGUI {
 	public PlayGameGUI(Display parent) {
 		this.display = parent;
 		initShell();
-		initBtnExit();
+		initMenuBar();
+		initExitButton();
 	}
 	
 
@@ -68,16 +70,37 @@ public class PlayGameGUI {
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 	
-	private void initBtnExit() {
-		this.btnExit = new Button(this.shell, SWT.PUSH | SWT.NONE);
+	private void initMenuBar() {
+		Menu menuBar = new Menu(this.shell, SWT.BAR);
+		MenuItem fileMenuHead = new MenuItem(menuBar, SWT.CASCADE);
+		fileMenuHead.setText("Menü");
+		
+		Menu menuMenu = new Menu(this.shell, SWT.DROP_DOWN);
+		fileMenuHead.setMenu(menuMenu);
+		MenuItem menuItemExit = new MenuItem(menuMenu, SWT.PUSH);
+		menuItemExit.setText("Beenden");
+		menuItemExit.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				//TODO: Exit Game hier einbauen
+				shell.close();
+			}
+		});
+		
+		this.shell.setMenuBar(menuBar);
+		
+	}
+	
+	private void initExitButton() {
+		this.exitButton = new Button(this.shell, SWT.PUSH | SWT.NONE);
 		FormData btnExitData = new FormData();
 		btnExitData.left =  new FormAttachment(0, 2, 2);
 		btnExitData.top =  new FormAttachment(0, 1000, 540);
 		btnExitData.width = 1010;
 		btnExitData.height = 30;
-		this.btnExit.setLayoutData(btnExitData);
-		this.btnExit.setText("Spiel beenden");
-		this.btnExit.addSelectionListener(new SelectionAdapter() {
+		this.exitButton.setLayoutData(btnExitData);
+		this.exitButton.setText("Spiel beenden");
+		this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				PlayGameGUI.this.shell.setVisible(false);
