@@ -168,10 +168,10 @@ public class PlayGameGUI {
 	private void initPlayerPlayingCardOneButton() {
 		this.playerPlayingCardOneButton = new Button(this.shell, SWT.PUSH | SWT.CENTER);
 		FormData formData = new FormData();
-		formData.left =  new FormAttachment(0, 1000, 195);
+		formData.left =  new FormAttachment(0, 1000, 307);
 		formData.top =  new FormAttachment(0, 1000, 370);
-		formData.width = 90;
-		formData.height = 28;
+		formData.width = 146;
+		formData.height = 150;
 		this.playerPlayingCardOneButton.setLayoutData(formData);
 		this.playerPlayingCardOneButton.setText("Spielkarte 1");
 //		this.playerPlayingCardOneButton.addSelectionListener(new SelectionAdapter() {
@@ -186,10 +186,10 @@ public class PlayGameGUI {
 	private void initPlayerPlayingCardTwoButton() {
 		this.playerPlayingCardTwoButton = new Button(this.shell, SWT.PUSH | SWT.CENTER);
 		FormData formData = new FormData();
-		formData.left =  new FormAttachment(0, 1000, 290);
+		formData.left =  new FormAttachment(0, 1000, 458);
 		formData.top =  new FormAttachment(0, 1000, 370);
-		formData.width = 90;
-		formData.height = 28;
+		formData.width = 146;
+		formData.height = 150;
 		this.playerPlayingCardTwoButton.setLayoutData(formData);
 		this.playerPlayingCardTwoButton.setText("Spielkarte 2");
 //		this.playerPlayingCardTwoButton.addSelectionListener(new SelectionAdapter() {
@@ -205,9 +205,9 @@ public class PlayGameGUI {
 		this.playerCardOneButton = new Button(this.shell, SWT.PUSH | SWT.CENTER);
 		FormData formData = new FormData();
 		formData.left =  new FormAttachment(0, 1000, 5);
-		formData.top =  new FormAttachment(0, 1000, 400);
-		formData.width = 90;
-		formData.height = 28;
+		formData.top =  new FormAttachment(0, 1000, 525);
+		formData.width = 146;
+		formData.height = 150;
 		this.playerCardOneButton.setLayoutData(formData);
 		this.playerCardOneButton.setText("Karte 1");
 //		this.playerCardOneButton.addSelectionListener(new SelectionAdapter() {
@@ -222,10 +222,10 @@ public class PlayGameGUI {
 	private void initPlayerCardTwoButton() {
 		this.playerCardTwoButton = new Button(this.shell, SWT.PUSH | SWT.CENTER);
 		FormData formData = new FormData();
-		formData.left =  new FormAttachment(0, 1000, 100);
-		formData.top =  new FormAttachment(0, 1000, 400);
-		formData.width = 90;
-		formData.height = 28;
+		formData.left =  new FormAttachment(0, 1000, 156);
+		formData.top =  new FormAttachment(0, 1000, 525);
+		formData.width = 146;
+		formData.height = 150;
 		this.playerCardTwoButton.setLayoutData(formData);
 		this.playerCardTwoButton.setText("Karte 2");
 //		this.playerCardTwoButton.addSelectionListener(new SelectionAdapter() {
@@ -240,10 +240,10 @@ public class PlayGameGUI {
 	private void initPlayerCardThreeButton() {
 		this.playerCardThreeButton = new Button(this.shell, SWT.PUSH | SWT.CENTER);
 		FormData formData = new FormData();
-		formData.left =  new FormAttachment(0, 1000, 195);
-		formData.top =  new FormAttachment(0, 1000, 400);
-		formData.width = 90;
-		formData.height = 28;
+		formData.left =  new FormAttachment(0, 1000, 307);
+		formData.top =  new FormAttachment(0, 1000, 525);
+		formData.width = 146;
+		formData.height = 150;
 		this.playerCardThreeButton.setLayoutData(formData);
 		this.playerCardThreeButton.setText("Karte 3");
 //		this.playerCardThreeButton.addSelectionListener(new SelectionAdapter() {
@@ -258,10 +258,10 @@ public class PlayGameGUI {
 	private void initPlayerCardFourButton() {
 		this.playerCardFourButton = new Button(this.shell, SWT.PUSH | SWT.CENTER);
 		FormData formData = new FormData();
-		formData.left =  new FormAttachment(0, 1000, 290);
-		formData.top =  new FormAttachment(0, 1000, 400);
-		formData.width = 90;
-		formData.height = 28;
+		formData.left =  new FormAttachment(0, 1000, 458);
+		formData.top =  new FormAttachment(0, 1000, 525);
+		formData.width = 146;
+		formData.height = 150;
 		this.playerCardFourButton.setLayoutData(formData);
 		this.playerCardFourButton.setText("Karte 4");
 //		this.playerCardFourButton.addSelectionListener(new SelectionAdapter() {
@@ -276,10 +276,10 @@ public class PlayGameGUI {
 	private void initPlayerCardFiveButton() {
 		this.playerCardFiveButton = new Button(this.shell, SWT.PUSH | SWT.CENTER);
 		FormData formData = new FormData();
-		formData.left =  new FormAttachment(0, 1000, 385);
-		formData.top =  new FormAttachment(0, 1000, 400);
-		formData.width = 90;
-		formData.height = 28;
+		formData.left =  new FormAttachment(0, 1000, 609);
+		formData.top =  new FormAttachment(0, 1000, 525);
+		formData.width = 146;
+		formData.height = 150;
 		this.playerCardFiveButton.setLayoutData(formData);
 		this.playerCardFiveButton.setText("Karte 5");
 //		this.playerCardFiveButton.addSelectionListener(new SelectionAdapter() {
@@ -294,10 +294,10 @@ public class PlayGameGUI {
 	private void initPlayerCardSixButton() {
 		this.playerCardSixButton = new Button(this.shell, SWT.PUSH | SWT.CENTER);
 		FormData formData = new FormData();
-		formData.left =  new FormAttachment(0, 1000, 480);
-		formData.top =  new FormAttachment(0, 1000, 400);
-		formData.width = 90;
-		formData.height = 28;
+		formData.left =  new FormAttachment(0, 1000, 760);
+		formData.top =  new FormAttachment(0, 1000, 525);
+		formData.width = 146;
+		formData.height = 150;
 		this.playerCardSixButton.setLayoutData(formData);
 		this.playerCardSixButton.setText("Karte 6");
 //		this.playerCardSixButton.addSelectionListener(new SelectionAdapter() {
@@ -315,10 +315,10 @@ public class PlayGameGUI {
 	
 	private void initEnemyPlayingCardOneLabel() {
 		FormData formData = new FormData();
-		formData.left =  new FormAttachment(0, 1000, 195);
-		formData.top =  new FormAttachment(0, 1000, 175);
-		formData.width = 90;
-		formData.height = 28;
+		formData.left =  new FormAttachment(0, 1000, 307);
+		formData.top =  new FormAttachment(0, 1000, 205);
+		formData.width = 146;
+		formData.height = 150;
 		this.enemyPlayingCardOneLabel = new Label(this.shell, SWT.CENTER | SWT.BORDER);
 		this.enemyPlayingCardOneLabel.setText("1. gespielte Karte");
 		this.enemyPlayingCardOneLabel.setLayoutData(formData);
@@ -333,10 +333,10 @@ public class PlayGameGUI {
 	
 	private void initEnemyPlayingCardTwoLabel() {
 		FormData formData = new FormData();
-		formData.left =  new FormAttachment(0, 1000, 290);
-		formData.top =  new FormAttachment(0, 1000, 175);
-		formData.width = 90;
-		formData.height = 28;
+		formData.left =  new FormAttachment(0, 1000, 458);
+		formData.top =  new FormAttachment(0, 1000, 205);
+		formData.width = 146;
+		formData.height = 150;
 		this.enemyPlayingCardTwoLabel = new Label(this.shell, SWT.CENTER | SWT.BORDER);
 		this.enemyPlayingCardTwoLabel.setText("2. gespielte Karte");
 		this.enemyPlayingCardTwoLabel.setLayoutData(formData);
@@ -352,9 +352,9 @@ public class PlayGameGUI {
 	private void initEnemyCardOneLabel() {
 		FormData formData = new FormData();
 		formData.left =  new FormAttachment(0, 1000, 5);
-		formData.top =  new FormAttachment(0, 1000, 50);
-		formData.width = 90;
-		formData.height = 28;
+		formData.top =  new FormAttachment(0, 1000, 45);
+		formData.width = 146;
+		formData.height = 150;
 		this.enemyCardOneLabel = new Label(this.shell, SWT.CENTER | SWT.BORDER);
 		this.enemyCardOneLabel.setText("1. Gegnerkarte");
 		this.enemyCardOneLabel.setLayoutData(formData);
@@ -369,10 +369,10 @@ public class PlayGameGUI {
 	
 	private void initEnemyCardTwoLabel() {
 		FormData formData = new FormData();
-		formData.left =  new FormAttachment(0, 1000, 100);
-		formData.top =  new FormAttachment(0, 1000, 50);
-		formData.width = 90;
-		formData.height = 28;
+		formData.left =  new FormAttachment(0, 1000, 156);
+		formData.top =  new FormAttachment(0, 1000, 45);
+		formData.width = 146;
+		formData.height = 150;
 		this.enemyCardTwoLabel = new Label(this.shell, SWT.CENTER | SWT.BORDER);
 		this.enemyCardTwoLabel.setText("2. Gegnerkarte");
 		this.enemyCardTwoLabel.setLayoutData(formData);
@@ -387,10 +387,10 @@ public class PlayGameGUI {
 	
 	private void initEnemyCardThreeLabel() {
 		FormData formData = new FormData();
-		formData.left =  new FormAttachment(0, 1000, 195);
-		formData.top =  new FormAttachment(0, 1000, 50);
-		formData.width = 90;
-		formData.height = 28;
+		formData.left =  new FormAttachment(0, 1000, 307);
+		formData.top =  new FormAttachment(0, 1000, 45);
+		formData.width = 146;
+		formData.height = 150;
 		this.enemyCardThreeLabel = new Label(this.shell, SWT.CENTER | SWT.BORDER);
 		this.enemyCardThreeLabel.setText("3. Gegnerkarte");
 		this.enemyCardThreeLabel.setLayoutData(formData);
@@ -405,10 +405,10 @@ public class PlayGameGUI {
 	
 	private void initEnemyCardFourLabel() {
 		FormData formData = new FormData();
-		formData.left =  new FormAttachment(0, 1000, 290);
-		formData.top =  new FormAttachment(0, 1000, 50);
-		formData.width = 90;
-		formData.height = 28;
+		formData.left =  new FormAttachment(0, 1000, 458);
+		formData.top =  new FormAttachment(0, 1000, 45);
+		formData.width = 146;
+		formData.height = 150;
 		this.enemyCardFourLabel = new Label(this.shell, SWT.CENTER | SWT.BORDER);
 		this.enemyCardFourLabel.setText("4. Gegnerkarte");
 		this.enemyCardFourLabel.setLayoutData(formData);
@@ -423,10 +423,10 @@ public class PlayGameGUI {
 	
 	private void initEnemyCardFiveLabel() {
 		FormData formData = new FormData();
-		formData.left =  new FormAttachment(0, 1000, 385);
-		formData.top =  new FormAttachment(0, 1000, 50);
-		formData.width = 90;
-		formData.height = 28;
+		formData.left =  new FormAttachment(0, 1000, 609);
+		formData.top =  new FormAttachment(0, 1000, 45);
+		formData.width = 146;
+		formData.height = 150;
 		this.enemyCardFiveLabel = new Label(this.shell, SWT.CENTER | SWT.BORDER);
 		this.enemyCardFiveLabel.setText("5. Gegnerkarte");
 		this.enemyCardFiveLabel.setLayoutData(formData);
@@ -441,10 +441,10 @@ public class PlayGameGUI {
 	
 	private void initEnemyCardSixLabel() {
 		FormData formData = new FormData();
-		formData.left =  new FormAttachment(0, 1000, 480);
-		formData.top =  new FormAttachment(0, 1000, 50);
-		formData.width = 90;
-		formData.height = 28;
+		formData.left =  new FormAttachment(0, 1000, 760);
+		formData.top =  new FormAttachment(0, 1000, 45);
+		formData.width = 146;
+		formData.height = 150;
 		this.enemyCardSixLabel = new Label(this.shell, SWT.CENTER | SWT.BORDER);
 		this.enemyCardSixLabel.setText("6. Gegnerkarte");
 		this.enemyCardSixLabel.setLayoutData(formData);
