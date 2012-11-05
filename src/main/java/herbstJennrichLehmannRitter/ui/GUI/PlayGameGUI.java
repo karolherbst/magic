@@ -31,8 +31,8 @@ public class PlayGameGUI {
 	private Button playerCardSixButton;
 	private Button playerPlayingCardOneButton;
 	private Button playerPlayingCardTwoButton;
-	private Label enemyLabel;
-	private Label playerLabel;
+//	private Label enemyLabel;
+//	private Label playerLabel;
 	private Label enemyDungeonLevelLabel;
 	private Label enemyDungeonRessourcesLabel;
 	private Label enemyLabLevelLabel;
@@ -68,7 +68,7 @@ public class PlayGameGUI {
 		this.display = parent;
 		initShell();
 		initMenuBar();
-		initPlayerLabel();
+//		initPlayerLabel();
 		initPlayerDeckLabel();
 		initPlayerCemeteryLabel();
 		initPlayerDungeonLevelLabel();
@@ -87,7 +87,7 @@ public class PlayGameGUI {
 		initPlayerCardSixButton();
 		initPlayerPlayingCardOneButton();
 		initPlayerPlayingCardTwoButton();
-		initEnemyLabel();
+//		initEnemyLabel();
 		initEnemyDeckLabel();
 		initEnemyCemeteryLabel();
 		initEnemyDungeonLevelLabel();
@@ -143,23 +143,23 @@ public class PlayGameGUI {
 		
 	}
 	
-	private void initEnemyLabel() {
-		FormData formData = new FormData();
-		formData.left = new FormAttachment(0, 1000, 5);
-		formData.top =  new FormAttachment(0, 1000, 2);
-		this.enemyLabel = new Label(this.shell, SWT.CENTER);
-		this.enemyLabel.setText("Gegner:");
-		this.enemyLabel.setLayoutData(formData);
-	}
+//	private void initEnemyLabel() {
+//		FormData formData = new FormData();
+//		formData.left = new FormAttachment(0, 1000, 5);
+//		formData.top =  new FormAttachment(0, 1000, 2);
+//		this.enemyLabel = new Label(this.shell, SWT.CENTER);
+//		this.enemyLabel.setText("Gegner:");
+//		this.enemyLabel.setLayoutData(formData);
+//	}
 	
-	private void initPlayerLabel() {
-		FormData formData = new FormData();
-		formData.left = new FormAttachment(0, 1000, 5);
-		formData.top =  new FormAttachment(0, 1000, 350);
-		this.playerLabel = new Label(this.shell, SWT.CENTER);
-		this.playerLabel.setText("Spieler:");
-		this.playerLabel.setLayoutData(formData);
-	}
+//	private void initPlayerLabel() {
+//		FormData formData = new FormData();
+//		formData.left = new FormAttachment(0, 1000, 5);
+//		formData.top =  new FormAttachment(0, 1000, 350);
+//		this.playerLabel = new Label(this.shell, SWT.CENTER);
+//		this.playerLabel.setText("Spieler:");
+//		this.playerLabel.setLayoutData(formData);
+//	}
 	
 	
 // Karten des Spielers
@@ -316,7 +316,7 @@ public class PlayGameGUI {
 	private void initEnemyPlayingCardOneLabel() {
 		FormData formData = new FormData();
 		formData.left =  new FormAttachment(0, 1000, 195);
-		formData.top =  new FormAttachment(0, 1000, 150);
+		formData.top =  new FormAttachment(0, 1000, 175);
 		formData.width = 90;
 		formData.height = 28;
 		this.enemyPlayingCardOneLabel = new Label(this.shell, SWT.CENTER);
@@ -334,7 +334,7 @@ public class PlayGameGUI {
 	private void initEnemyPlayingCardTwoLabel() {
 		FormData formData = new FormData();
 		formData.left =  new FormAttachment(0, 1000, 290);
-		formData.top =  new FormAttachment(0, 1000, 150);
+		formData.top =  new FormAttachment(0, 1000, 175);
 		formData.width = 90;
 		formData.height = 28;
 		this.enemyPlayingCardTwoLabel = new Label(this.shell, SWT.CENTER);
@@ -351,8 +351,8 @@ public class PlayGameGUI {
 	
 	private void initEnemyCardOneLabel() {
 		FormData formData = new FormData();
-		formData.left =  new FormAttachment(0, 1000, 2);
-		formData.top =  new FormAttachment(0, 1000, 25);
+		formData.left =  new FormAttachment(0, 1000, 5);
+		formData.top =  new FormAttachment(0, 1000, 50);
 		formData.width = 90;
 		formData.height = 28;
 		this.enemyCardOneLabel = new Label(this.shell, SWT.CENTER);
@@ -370,7 +370,7 @@ public class PlayGameGUI {
 	private void initEnemyCardTwoLabel() {
 		FormData formData = new FormData();
 		formData.left =  new FormAttachment(0, 1000, 100);
-		formData.top =  new FormAttachment(0, 1000, 25);
+		formData.top =  new FormAttachment(0, 1000, 50);
 		formData.width = 90;
 		formData.height = 28;
 		this.enemyCardTwoLabel = new Label(this.shell, SWT.CENTER);
@@ -388,7 +388,7 @@ public class PlayGameGUI {
 	private void initEnemyCardThreeLabel() {
 		FormData formData = new FormData();
 		formData.left =  new FormAttachment(0, 1000, 195);
-		formData.top =  new FormAttachment(0, 1000, 25);
+		formData.top =  new FormAttachment(0, 1000, 50);
 		formData.width = 90;
 		formData.height = 28;
 		this.enemyCardThreeLabel = new Label(this.shell, SWT.CENTER);
@@ -406,7 +406,7 @@ public class PlayGameGUI {
 	private void initEnemyCardFourLabel() {
 		FormData formData = new FormData();
 		formData.left =  new FormAttachment(0, 1000, 290);
-		formData.top =  new FormAttachment(0, 1000, 25);
+		formData.top =  new FormAttachment(0, 1000, 50);
 		formData.width = 90;
 		formData.height = 28;
 		this.enemyCardFourLabel = new Label(this.shell, SWT.CENTER);
@@ -424,7 +424,7 @@ public class PlayGameGUI {
 	private void initEnemyCardFiveLabel() {
 		FormData formData = new FormData();
 		formData.left =  new FormAttachment(0, 1000, 385);
-		formData.top =  new FormAttachment(0, 1000, 25);
+		formData.top =  new FormAttachment(0, 1000, 50);
 		formData.width = 90;
 		formData.height = 28;
 		this.enemyCardFiveLabel = new Label(this.shell, SWT.CENTER);
@@ -442,7 +442,7 @@ public class PlayGameGUI {
 	private void initEnemyCardSixLabel() {
 		FormData formData = new FormData();
 		formData.left =  new FormAttachment(0, 1000, 480);
-		formData.top =  new FormAttachment(0, 1000, 25);
+		formData.top =  new FormAttachment(0, 1000, 50);
 		formData.width = 90;
 		formData.height = 28;
 		this.enemyCardSixLabel = new Label(this.shell, SWT.CENTER);
@@ -486,10 +486,10 @@ public class PlayGameGUI {
 	
 	private void initPlayerDungeonLevelLabel() {
 		FormData formData = new FormData();
-		formData.left = new FormAttachment(0, 1000, 2);
-		formData.top =  new FormAttachment(0, 1000, 650);
+		formData.left = new FormAttachment(0, 1000, 5);
+		formData.top =  new FormAttachment(0, 1000, 680);
 		formData.width = 150;
-		formData.height = 25;
+		formData.height = 20;
 		this.playerDungeonLevelLabel = new Label(this.shell, SWT.LEFT);
 		this.playerDungeonLevelLabel.setText("Dungeonlevel: ");
 		this.playerDungeonLevelLabel.setLayoutData(formData);
@@ -497,10 +497,10 @@ public class PlayGameGUI {
 	
 	private void initPlayerDungeonRessourcesLabel() {
 		FormData formData = new FormData();
-		formData.left = new FormAttachment(0, 1000, 2);
+		formData.left = new FormAttachment(0, 1000, 5);
 		formData.top =  new FormAttachment(0, 1000, 700);
 		formData.width = 150;
-		formData.height = 25;
+		formData.height = 20;
 		this.playerDungeonRessourcesLabel = new Label(this.shell, SWT.LEFT);
 		this.playerDungeonRessourcesLabel.setText("Dungeonressourcen: ");
 		this.playerDungeonRessourcesLabel.setLayoutData(formData);
@@ -509,9 +509,9 @@ public class PlayGameGUI {
 	private void initPlayerMineLevelLabel() {
 		FormData formData = new FormData();
 		formData.left = new FormAttachment(0, 1000, 160);
-		formData.top =  new FormAttachment(0, 1000, 650);
+		formData.top =  new FormAttachment(0, 1000, 680);
 		formData.width = 150;
-		formData.height = 25;
+		formData.height = 20;
 		this.playerMineLevelLabel = new Label(this.shell, SWT.LEFT);
 		this.playerMineLevelLabel.setText("Steinbruchlevel: ");
 		this.playerMineLevelLabel.setLayoutData(formData);
@@ -522,7 +522,7 @@ public class PlayGameGUI {
 		formData.left = new FormAttachment(0, 1000, 160);
 		formData.top =  new FormAttachment(0, 1000, 700);
 		formData.width = 150;
-		formData.height = 25;
+		formData.height = 20;
 		this.playerMineRessourcesLabel = new Label(this.shell, SWT.LEFT);
 		this.playerMineRessourcesLabel.setText("Steinbruchressourcen: ");
 		this.playerMineRessourcesLabel.setLayoutData(formData);
@@ -531,9 +531,9 @@ public class PlayGameGUI {
 	private void initPlayerLabLevelLabel() {
 		FormData formData = new FormData();
 		formData.left = new FormAttachment(0, 1000, 320);
-		formData.top =  new FormAttachment(0, 1000, 650);
+		formData.top =  new FormAttachment(0, 1000, 680);
 		formData.width = 150;
-		formData.height = 25;
+		formData.height = 20;
 		this.playerLabLevelLabel = new Label(this.shell, SWT.LEFT);
 		this.playerLabLevelLabel.setText("Zauberlaborlevel: ");
 		this.playerLabLevelLabel.setLayoutData(formData);
@@ -544,7 +544,7 @@ public class PlayGameGUI {
 		formData.left = new FormAttachment(0, 1000, 320);
 		formData.top =  new FormAttachment(0, 1000, 700);
 		formData.width = 150;
-		formData.height = 25;
+		formData.height = 20;
 		this.playerLabRessourcesLabel = new Label(this.shell, SWT.LEFT);
 		this.playerLabRessourcesLabel.setText("Zauberlaborressourcen: ");
 		this.playerLabRessourcesLabel.setLayoutData(formData);
@@ -553,9 +553,9 @@ public class PlayGameGUI {
 	private void initPlayerTowerLevelLabel() {
 		FormData formData = new FormData();
 		formData.left = new FormAttachment(0, 1000, 480);
-		formData.top =  new FormAttachment(0, 1000, 650);
+		formData.top =  new FormAttachment(0, 1000, 680);
 		formData.width = 150;
-		formData.height = 25;
+		formData.height = 20;
 		this.playerTowerLevelLabel = new Label(this.shell, SWT.LEFT);
 		this.playerTowerLevelLabel.setText("Level des Turmes: ");
 		this.playerTowerLevelLabel.setLayoutData(formData);		
@@ -566,7 +566,7 @@ public class PlayGameGUI {
 		formData.left = new FormAttachment(0, 1000, 480);
 		formData.top =  new FormAttachment(0, 1000, 700);
 		formData.width = 150;
-		formData.height = 25;
+		formData.height = 20;
 		this.playerWallLevelLabel = new Label(this.shell, SWT.LEFT);
 		this.playerWallLevelLabel.setText("Level der Mauer: ");
 		this.playerWallLevelLabel.setLayoutData(formData);		
@@ -600,10 +600,10 @@ public class PlayGameGUI {
 	
 	private void initEnemyDungeonLevelLabel() {
 		FormData formData = new FormData();
-		formData.left = new FormAttachment(0, 1000, 2);
-		formData.top =  new FormAttachment(0, 1000, 650);
+		formData.left = new FormAttachment(0, 1000, 5);
+		formData.top =  new FormAttachment(0, 1000, 2);
 		formData.width = 150;
-		formData.height = 25;
+		formData.height = 20;
 		this.enemyDungeonLevelLabel = new Label(this.shell, SWT.LEFT);
 		this.enemyDungeonLevelLabel.setText("Dungeonlevel: ");
 		this.enemyDungeonLevelLabel.setLayoutData(formData);
@@ -611,10 +611,10 @@ public class PlayGameGUI {
 	
 	private void initEnemyDungeonRessourcesLabel() {
 		FormData formData = new FormData();
-		formData.left = new FormAttachment(0, 1000, 2);
-		formData.top =  new FormAttachment(0, 1000, 700);
+		formData.left = new FormAttachment(0, 1000, 5);
+		formData.top =  new FormAttachment(0, 1000, 25);
 		formData.width = 150;
-		formData.height = 25;
+		formData.height = 20;
 		this.enemyDungeonRessourcesLabel = new Label(this.shell, SWT.LEFT);
 		this.enemyDungeonRessourcesLabel.setText("Dungeonressourcen: ");
 		this.enemyDungeonRessourcesLabel.setLayoutData(formData);
@@ -623,9 +623,9 @@ public class PlayGameGUI {
 	private void initEnemyMineLevelLabel() {
 		FormData formData = new FormData();
 		formData.left = new FormAttachment(0, 1000, 160);
-		formData.top =  new FormAttachment(0, 1000, 650);
+		formData.top =  new FormAttachment(0, 1000, 2);
 		formData.width = 150;
-		formData.height = 25;
+		formData.height = 20;
 		this.enemyMineLevelLabel = new Label(this.shell, SWT.LEFT);
 		this.enemyMineLevelLabel.setText("Steinbruchlevel: ");
 		this.enemyMineLevelLabel.setLayoutData(formData);
@@ -634,9 +634,9 @@ public class PlayGameGUI {
 	private void initEnemyMineRessourcesLabel() {
 		FormData formData = new FormData();
 		formData.left = new FormAttachment(0, 1000, 160);
-		formData.top =  new FormAttachment(0, 1000, 700);
+		formData.top =  new FormAttachment(0, 1000, 25);
 		formData.width = 150;
-		formData.height = 25;
+		formData.height = 20;
 		this.enemyMineRessourcesLabel = new Label(this.shell, SWT.LEFT);
 		this.enemyMineRessourcesLabel.setText("Steinbruchressourcen: ");
 		this.enemyMineRessourcesLabel.setLayoutData(formData);
@@ -645,9 +645,9 @@ public class PlayGameGUI {
 	private void initEnemyLabLevelLabel() {
 		FormData formData = new FormData();
 		formData.left = new FormAttachment(0, 1000, 320);
-		formData.top =  new FormAttachment(0, 1000, 650);
+		formData.top =  new FormAttachment(0, 1000, 2);
 		formData.width = 150;
-		formData.height = 25;
+		formData.height = 20;
 		this.enemyLabLevelLabel = new Label(this.shell, SWT.LEFT);
 		this.enemyLabLevelLabel.setText("Zauberlaborlevel: ");
 		this.enemyLabLevelLabel.setLayoutData(formData);
@@ -656,9 +656,9 @@ public class PlayGameGUI {
 	private void initEnemyLabRessourcesLabel() {
 		FormData formData = new FormData();
 		formData.left = new FormAttachment(0, 1000, 320);
-		formData.top =  new FormAttachment(0, 1000, 700);
+		formData.top =  new FormAttachment(0, 1000, 25);
 		formData.width = 150;
-		formData.height = 25;
+		formData.height = 20;
 		this.enemyLabRessourcesLabel = new Label(this.shell, SWT.LEFT);
 		this.enemyLabRessourcesLabel.setText("Zauberlaborressourcen: ");
 		this.enemyLabRessourcesLabel.setLayoutData(formData);
@@ -667,9 +667,9 @@ public class PlayGameGUI {
 	private void initEnemyTowerLevelLabel() {
 		FormData formData = new FormData();
 		formData.left = new FormAttachment(0, 1000, 480);
-		formData.top =  new FormAttachment(0, 1000, 650);
+		formData.top =  new FormAttachment(0, 1000, 2);
 		formData.width = 150;
-		formData.height = 25;
+		formData.height = 20;
 		this.enemyTowerLevelLabel = new Label(this.shell, SWT.LEFT);
 		this.enemyTowerLevelLabel.setText("Level des Turmes: ");
 		this.enemyTowerLevelLabel.setLayoutData(formData);		
@@ -678,9 +678,9 @@ public class PlayGameGUI {
 	private void initEnemyWallLevelLabel() {
 		FormData formData = new FormData();
 		formData.left = new FormAttachment(0, 1000, 480);
-		formData.top =  new FormAttachment(0, 1000, 700);
+		formData.top =  new FormAttachment(0, 1000, 25);
 		formData.width = 150;
-		formData.height = 25;
+		formData.height = 20;
 		this.enemyWallLevelLabel = new Label(this.shell, SWT.LEFT);
 		this.enemyWallLevelLabel.setText("Level der Mauer: ");
 		this.enemyWallLevelLabel.setLayoutData(formData);		
