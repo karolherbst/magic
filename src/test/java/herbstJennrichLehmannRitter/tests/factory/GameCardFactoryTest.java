@@ -49,24 +49,10 @@ public class GameCardFactoryTest {
 	}
 	
 	@Test
-	public void testDieb() {
-		Card dieb = this.gameCardFactory.createCard("Dieb");
-		Player player1 = new PlayerImpl();
-		Player player2 = new PlayerImpl();
-		
-		dieb.getComplexCardAction().applyActionOnPlayer(player1, player2);
-		
-		assertEquals(20, player1.getMagicLab().getStock());
-		assertEquals(18, player1.getMine().getStock());
-		assertEquals(5, player2.getMagicLab().getStock());
-		assertEquals(10, player2.getMine().getStock());
-	}
-	
-	@Test
 	public void testBaukoloss() {
 		Card baukoloss = this.gameCardFactory.createCard("Baukoloss");
 		assertFalse(baukoloss.getCanBeDiscarded());
-	}
+	}	
 	
 	@Test
 	public void testSaveToXml() {
@@ -94,4 +80,6 @@ public class GameCardFactoryTest {
 			System.out.println(card);
 		}
 	}
+	
+	
 }
