@@ -144,7 +144,6 @@ public class MainMenuGUI {
 		Monitor monitor = display.getPrimaryMonitor();
 		Rectangle monitorBounds = monitor.getBounds();
 		Rectangle shellBounds = shell.getBounds();
-		
 		int posX = monitorBounds.x + ((monitorBounds.width - shellBounds.width)/2);
 		int posY = monitorBounds.y + ((monitorBounds.height - shellBounds.height)/2);
 		shell.setLocation(posX, posY);
