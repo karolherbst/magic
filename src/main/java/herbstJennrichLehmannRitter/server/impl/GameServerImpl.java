@@ -24,7 +24,6 @@ public class GameServerImpl implements GameServer {
 	@Override
 	public void stop() {
 		this.gameService.stop();
-		this.gameService = null;
 	}
 
 	@Override
