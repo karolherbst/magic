@@ -39,6 +39,7 @@ public class KI implements UserInterface, Runnable {
 				this.semaphore.release();
 				this.mutex.wait();
 			}
+			runKILogic();
 			
 			while (true) {
 				synchronized (this.mutex) {

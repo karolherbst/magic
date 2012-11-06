@@ -121,7 +121,7 @@ public class CLIUserInterface implements UserInterface {
 	
 	@Override
 	public void setData(Data data) {
-		// TODO Auto-generated method stub
+		System.out.println(data);
 	}
 
 	@Override

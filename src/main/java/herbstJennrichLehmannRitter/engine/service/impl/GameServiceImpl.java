@@ -132,6 +132,7 @@ public class GameServiceImpl implements GameService {
 	public void playCard(Thread thread, Card card) {
 		UIHolder uiHolder = this.threadToUi.get(thread);
 		System.out.println("service: player " + uiHolder.player.getName() + " played card " + card.getName());
+		uiHolder.enemy.userInterface.enemeyPlayedCard(card);
 	}
 
 	@Override
