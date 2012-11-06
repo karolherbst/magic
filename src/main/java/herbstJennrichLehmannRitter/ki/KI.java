@@ -8,67 +8,71 @@ import herbstJennrichLehmannRitter.ui.UserInterface;
 
 import java.util.Collection;
 
-public class KI implements UserInterface {
+public class KI implements UserInterface, Runnable {
 
 	private Thread thread = null;
 	private Data data = null;
 	private final String name;
+	private final GameServer gameServer;
 	private Object mutex = new Object();
 	
 	static private KI newKiOnServer(final GameServer gameServer, String name) {
-		final KI ki = new KI(name);
+		final KI ki = new KI(name, gameServer);
 		
-		ki.thread = new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				gameServer.register(ki);
-				
-				while (true) {
-					try {
-						System.out.println(ki.getName() + ": I'm ready!");
-						synchronized (ki.mutex) {
-							ki.mutex.wait();
-						}
-						ki.runKILogic();
-					} catch (InterruptedException e) {
-						break;
-					}
-				}
-			}
-		});
+		ki.thread = new Thread(ki);
 		ki.thread.start();
 		
 		return ki;
+	}
+	
+	@Override
+	public void run() {
+		this.gameServer.register(this);
+		
+		while (true) {
+			try {
+				System.out.println(getName() + ": I'm ready!");
+				synchronized (this.mutex) {
+					this.mutex.wait();
+				}
+				runKILogic();
+			} catch (InterruptedException e) {
+				break;
+			}
+		}
 	}
 	
 	static public void startKIOnLocal(String name) {
 		newKiOnServer(Globals.getLocalGameServer(), name);
 	}
 	
-	public KI(String name) {
+	public KI(String name, GameServer gameServer) {
 		this.name = name;
+		this.gameServer = gameServer;
 	}
 	
 	private void runKILogic() {
 		System.out.println(getName() + ": my next turn, now you will die!");
+		//this.gameServer.playCard();
 	}
 	
 	@Override
 	public void setData(Data data) {
-		synchronized (this.data) {
-			this.data = data;
+		this.data = data;
+	}
+
+	@Override
+	public void nextTurn() {
+		synchronized (this.mutex) {
+			this.mutex.notify();
 		}
 	}
 
 	@Override
-	public synchronized void nextTurn() {
-		this.mutex.notify();
-	}
-
-	@Override
-	public synchronized void playAnotherCard() {
-		this.mutex.notify();
+	public void playAnotherCard() {
+		synchronized (this.mutex) {
+			this.mutex.notify();
+		}
 	}
 
 	@Override
