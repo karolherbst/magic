@@ -56,4 +56,19 @@ public class PlayerFactoryImpl implements PlayerFactory {
 		
 		return newPlayer;
 	}
+	
+	@Override
+	public Player createCopyForEnemy(Player player) {
+		PlayerImpl copy = new PlayerImpl();
+		
+		copy.setName(player.getName());
+		copy.setDeck(null);
+		copy.setDungeon(player.getDungeon());
+		copy.setMagiclab(player.getMagicLab());
+		copy.setMine(player.getMine());
+		copy.setTower(player.getTower());
+		copy.setWall(player.getWall());
+		
+		return copy;
+	}
 }

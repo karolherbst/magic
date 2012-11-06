@@ -7,7 +7,9 @@ import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
 import herbstJennrichLehmannRitter.engine.factory.impl.PlayerFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.engine.model.Player;
+import herbstJennrichLehmannRitter.engine.model.impl.DataImpl;
 
 import java.util.Collection;
 
@@ -68,6 +70,16 @@ public class GameEngineControllerImpl implements GameEngineController {
 	
 	private boolean isRunning() {
 		return this.gameType != null;
+	}
+	
+	@Override
+	public Data createDataForPlayer(Player player, Player enemy) {
+		DataImpl data = new DataImpl();
+		
+		data.setOwnPlayer(player);
+		data.setEnemyPlayer(this.playerFactory.createCopyForEnemy(enemy));
+		
+		return data;
 	}
 
 }

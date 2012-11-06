@@ -4,7 +4,6 @@ import herbstJennrichLehmannRitter.engine.controller.GameEngineController;
 import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Player;
-import herbstJennrichLehmannRitter.engine.model.impl.DataImpl;
 import herbstJennrichLehmannRitter.engine.service.GameService;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
@@ -78,8 +77,10 @@ public class GameServiceImpl implements GameService {
 					}
 				}
 				
-				newUIHolder.userInterface.setData(new DataImpl(newUIHolder.player, newUIHolder.enemy.player));
-				newUIHolder.enemy.userInterface.setData(new DataImpl(newUIHolder.enemy.player, newUIHolder.player));
+				newUIHolder.userInterface.setData(this.gameEngineController.createDataForPlayer(newUIHolder.player,
+						newUIHolder.enemy.player));
+				newUIHolder.enemy.userInterface.setData(this.gameEngineController.createDataForPlayer(
+						newUIHolder.enemy.player, newUIHolder.player));
 				newUIHolder.userInterface.nextTurn();
 				
 				return;

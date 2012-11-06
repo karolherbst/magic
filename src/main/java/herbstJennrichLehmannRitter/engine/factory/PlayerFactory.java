@@ -14,5 +14,7 @@ public interface PlayerFactory {
 	
 	public Player createPlayer(String name, Collection<Card> cards, int pointsTower, int pointsWall, int resourceBuildingLvl,
 			int resourceBuildingStock);
+	
+	public Player createCopyForEnemy(Player player);
 
 }
