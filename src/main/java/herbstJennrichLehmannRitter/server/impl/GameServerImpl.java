@@ -35,7 +35,7 @@ public class GameServerImpl implements GameServer {
 			public void run() {
 				GameServerImpl.this.gameService.playCard(thread, card);
 			}
-		}).run();
+		}).start();
 	}
 
 	@Override
