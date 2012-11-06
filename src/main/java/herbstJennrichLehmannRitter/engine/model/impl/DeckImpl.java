@@ -202,7 +202,7 @@ public class DeckImpl implements Deck {
 
 	@Override
 	public Collection<Card> getAllCards() {
-		return this.handDeck.getCards();
+		return Collections.unmodifiableCollection(this.handDeck.getCards());
 	}
 
 	@Override
