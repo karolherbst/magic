@@ -3,6 +3,7 @@ package herbstJennrichLehmannRitter.ki;
 import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
+import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
@@ -27,11 +28,15 @@ public class KI implements UserInterface, Runnable {
 	
 	@Override
 	public void run() {
-		this.gameServer.register(this);
+		boolean first = this.gameServer.register(this);
+		System.out.println(getName() + ": I'm ready!");
+		
+		if (first) {
+			runKILogic();
+		}
 		
 		while (true) {
 			try {
-				System.out.println(getName() + ": I'm ready!");
 				synchronized (this.mutex) {
 					this.mutex.wait();
 				}
@@ -53,7 +58,22 @@ public class KI implements UserInterface, Runnable {
 	
 	private void runKILogic() {
 		System.out.println(getName() + ": my next turn, now you will die!");
-		//this.gameServer.playCard();
+		
+		Card cardToPlay = null;
+		Card lastCard = null;
+		for (Card card : this.data.getOwnPlayer().getDeck().getAllCards()) {
+			lastCard = card;
+			if (MagicUtils.canPlayerEffortCard(this.data.getOwnPlayer(), card)) {
+				cardToPlay = card;
+				break;
+			}
+		}
+		
+		if (cardToPlay != null) {
+			this.gameServer.playCard(cardToPlay);
+		} else {
+			this.gameServer.discardCard(lastCard);
+		}
 	}
 	
 	@Override

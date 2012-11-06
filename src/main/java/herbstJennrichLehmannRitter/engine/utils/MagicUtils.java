@@ -1,5 +1,8 @@
 package herbstJennrichLehmannRitter.engine.utils;
 
+import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.Player;
+
 
 public abstract class MagicUtils {
 
@@ -35,5 +38,9 @@ public abstract class MagicUtils {
 	
 	public static void addValueToStringBuilder(Object key, Number value, StringBuilder stringBuilder) {
 		addValueToStringBuilder(key, value, stringBuilder, false);
+	}
+	
+	public static boolean canPlayerEffortCard(Player player, Card card) {
+		return true;
 	}
 }

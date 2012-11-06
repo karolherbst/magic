@@ -31,7 +31,7 @@ public class ComplexCardTests {
 		Player player1 = new PlayerImpl();
 		Player player2 = new PlayerImpl();
 		
-		//auferstehung.getComplexCardAction().applyActionOnPlayer(player1, player2);
+		auferstehung.getComplexCardAction().applyActionOnPlayer(player1, player2);
 		
 		assertEquals(9, player1.getMagicLab().getStock());
 		assertEquals(9, player1.getMine().getStock());
@@ -45,7 +45,7 @@ public class ComplexCardTests {
 		Player player1 = new PlayerImpl();
 		Player player2 = new PlayerImpl();
 		
-		//dieb.getComplexCardAction().applyActionOnPlayer(player1, player2);
+		dieb.getComplexCardAction().applyActionOnPlayer(player1, player2);
 		
 		assertEquals(20, player1.getMagicLab().getStock());
 		assertEquals(18, player1.getMine().getStock());

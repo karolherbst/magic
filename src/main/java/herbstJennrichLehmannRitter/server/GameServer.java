@@ -13,7 +13,7 @@ import java.util.Collection;
  */
 public interface GameServer {
 	
-	public void register(UserInterface userInterface);
+	public boolean register(UserInterface userInterface);
 	public void unregister(UserInterface userInterface);
 	
 	public void start(GameType gameType);

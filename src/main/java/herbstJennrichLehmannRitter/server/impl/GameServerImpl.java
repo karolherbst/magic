@@ -29,12 +29,12 @@ public class GameServerImpl implements GameServer {
 
 	@Override
 	public void playCard(Card card) {
-		this.gameService.playCard(null, card);
+		this.gameService.playCard(Thread.currentThread(), card);
 	}
 
 	@Override
 	public void discardCard(Card card) {
-		this.gameService.discardCard(null, card);
+		this.gameService.discardCard(Thread.currentThread(), card);
 	}
 
 	@Override
@@ -43,8 +43,8 @@ public class GameServerImpl implements GameServer {
 	}
 
 	@Override
-	public void register(UserInterface userInterface) {
-		this.gameService.register(Thread.currentThread(), userInterface);
+	public boolean register(UserInterface userInterface) {
+		return this.gameService.register(Thread.currentThread(), userInterface);
 	}
 
 	@Override

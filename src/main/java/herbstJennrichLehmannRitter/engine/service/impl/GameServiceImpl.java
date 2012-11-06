@@ -52,7 +52,7 @@ public class GameServiceImpl implements GameService {
 	
 	static private Semaphore lockRegister = new Semaphore(1);
 	@Override
-	public void register(Thread thread, UserInterface userInterface) {
+	public boolean register(Thread thread, UserInterface userInterface) {
 		final UIHolder newUIHolder = new UIHolder(userInterface);
 		try {
 			lockRegister.acquire();
@@ -80,9 +80,7 @@ public class GameServiceImpl implements GameService {
 				
 				newUIHolder.userInterface.setData(new DataImpl(newUIHolder.player, newUIHolder.enemy.player));
 				newUIHolder.enemy.userInterface.setData(new DataImpl(newUIHolder.enemy.player, newUIHolder.player));
-				newUIHolder.userInterface.nextTurn();
-				
-				return;
+				return true;
 			}
 		} catch (InterruptedException e) {
 			this.threadToUi.remove(newUIHolder);
@@ -100,7 +98,7 @@ public class GameServiceImpl implements GameService {
 					this.threadToUi.wait(DEFAULT_TIMEOUT);
 				}
 				
-				return;
+				return false;
 			}
 		} catch (InterruptedException e) {
 			throw new IllegalArgumentException("wait timedout", e);
@@ -109,6 +107,7 @@ public class GameServiceImpl implements GameService {
 		if (this.threadToUi.size() > 2) {
 			throw new IllegalArgumentException("there are already 2 players registered");
 		}
+		throw new IllegalStateException("this should never happen!");
 	}
 	
 	@Override
@@ -128,15 +127,15 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
-	public void playCard(Player player, Card card) {
-		// TODO Auto-generated method stub
-
+	public void playCard(Thread thread, Card card) {
+		UIHolder uiHolder = this.threadToUi.get(thread);
+		System.out.println("service: player " + uiHolder.player.getName() + " played card " + card.getName());
 	}
 
 	@Override
-	public void discardCard(Player player, Card card) {
-		// TODO Auto-generated method stub
-
+	public void discardCard(Thread thread, Card card) {
+		UIHolder uiHolder = this.threadToUi.get(thread);
+		System.out.println("service: player " + uiHolder.player.getName() + " discard card " + card.getName());
 	}
 
 	@Override

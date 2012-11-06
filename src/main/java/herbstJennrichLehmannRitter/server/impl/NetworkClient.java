@@ -1,16 +1,16 @@
 package herbstJennrichLehmannRitter.server.impl;
 
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.util.Collection;
-
 import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.service.GameService;
 import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.ui.UserInterface;
+
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.util.Collection;
 
 public class NetworkClient implements GameServer {
 	
@@ -33,9 +33,8 @@ public class NetworkClient implements GameServer {
 	}
 
 	@Override
-	public void register(UserInterface userInterface) {
-		this.remoteGameService.register(Thread.currentThread(), userInterface);
-
+	public boolean register(UserInterface userInterface) {
+		return this.remoteGameService.register(Thread.currentThread(), userInterface);
 	}
 
 	@Override
