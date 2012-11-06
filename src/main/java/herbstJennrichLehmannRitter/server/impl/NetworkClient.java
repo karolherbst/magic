@@ -33,8 +33,8 @@ public class NetworkClient implements GameServer {
 	}
 
 	@Override
-	public boolean register(UserInterface userInterface) {
-		return this.remoteGameService.register(Thread.currentThread(), userInterface);
+	public void register(UserInterface userInterface) {
+		this.remoteGameService.register(Thread.currentThread(), userInterface);
 	}
 
 	@Override

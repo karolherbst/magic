@@ -36,8 +36,8 @@ public class NetworkServerImpl extends UnicastRemoteObject implements GameServer
 	}
 
 	@Override
-	public boolean register(UserInterface userInterface) {
-		return this.gameService.register(Thread.currentThread(), userInterface);
+	public void register(UserInterface userInterface) {
+		this.gameService.register(Thread.currentThread(), userInterface);
 	}
 
 	@Override

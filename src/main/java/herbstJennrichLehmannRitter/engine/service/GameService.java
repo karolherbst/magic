@@ -16,7 +16,7 @@ public interface GameService {
 	public void start(GameType gameType);
 	public void stop();
 	
-	public boolean register(Thread thread, UserInterface userInterface);
+	public void register(Thread thread, UserInterface userInterface);
 	public void unregister(UserInterface userInterface);
 
 	public void playCard(Thread thread, Card card);

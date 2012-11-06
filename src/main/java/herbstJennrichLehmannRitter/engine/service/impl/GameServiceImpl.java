@@ -52,7 +52,7 @@ public class GameServiceImpl implements GameService {
 	
 	static private Semaphore lockRegister = new Semaphore(1);
 	@Override
-	public boolean register(Thread thread, UserInterface userInterface) {
+	public void register(Thread thread, UserInterface userInterface) {
 		final UIHolder newUIHolder = new UIHolder(userInterface);
 		try {
 			lockRegister.acquire();
@@ -80,7 +80,9 @@ public class GameServiceImpl implements GameService {
 				
 				newUIHolder.userInterface.setData(new DataImpl(newUIHolder.player, newUIHolder.enemy.player));
 				newUIHolder.enemy.userInterface.setData(new DataImpl(newUIHolder.enemy.player, newUIHolder.player));
-				return true;
+				newUIHolder.userInterface.nextTurn();
+				
+				return;
 			}
 		} catch (InterruptedException e) {
 			this.threadToUi.remove(newUIHolder);
@@ -98,7 +100,7 @@ public class GameServiceImpl implements GameService {
 					this.threadToUi.wait(DEFAULT_TIMEOUT);
 				}
 				
-				return false;
+				return;
 			}
 		} catch (InterruptedException e) {
 			throw new IllegalArgumentException("wait timedout", e);

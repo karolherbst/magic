@@ -28,13 +28,26 @@ public class GameServerImpl implements GameServer {
 	}
 
 	@Override
-	public void playCard(Card card) {
-		this.gameService.playCard(Thread.currentThread(), card);
+	public void playCard(final Card card) {
+		final Thread thread = Thread.currentThread();
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				GameServerImpl.this.gameService.playCard(thread, card);
+			}
+		}).run();
 	}
 
 	@Override
-	public void discardCard(Card card) {
-		this.gameService.discardCard(Thread.currentThread(), card);
+	public void discardCard(final Card card) {
+		final Thread thread = Thread.currentThread();
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				GameServerImpl.this.gameService.discardCard(thread, card);
+			}
+		}).start();
 	}
 
 	@Override
@@ -43,8 +56,14 @@ public class GameServerImpl implements GameServer {
 	}
 
 	@Override
-	public boolean register(UserInterface userInterface) {
-		return this.gameService.register(Thread.currentThread(), userInterface);
+	public void register(final UserInterface userInterface) {
+		final Thread thread = Thread.currentThread();
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				GameServerImpl.this.gameService.register(thread, userInterface);
+			}
+		}).start();
 	}
 
 	@Override

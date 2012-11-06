@@ -8,6 +8,7 @@ import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
 import java.util.Collection;
+import java.util.concurrent.Semaphore;
 
 public class KI implements UserInterface, Runnable {
 
@@ -16,6 +17,7 @@ public class KI implements UserInterface, Runnable {
 	private final String name;
 	private final GameServer gameServer;
 	private Object mutex = new Object();
+	private Semaphore semaphore = new Semaphore(1);
 	
 	static private KI newKiOnServer(final GameServer gameServer, String name) {
 		final KI ki = new KI(name, gameServer);
@@ -28,22 +30,20 @@ public class KI implements UserInterface, Runnable {
 	
 	@Override
 	public void run() {
-		boolean first = this.gameServer.register(this);
-		System.out.println(getName() + ": I'm ready!");
+		try {
+			this.semaphore.acquire();
+			this.gameServer.register(this);
+			System.out.println(getName() + ": I'm ready!");
 		
-		if (first) {
-			runKILogic();
-		}
-		
-		while (true) {
-			try {
+			while (true) {
 				synchronized (this.mutex) {
+					this.semaphore.release();
 					this.mutex.wait();
 				}
 				runKILogic();
-			} catch (InterruptedException e) {
-				break;
 			}
+		} catch (InterruptedException e) {
+			System.out.println("KI " + getName() + " failed!");
 		}
 	}
 	
@@ -83,16 +83,20 @@ public class KI implements UserInterface, Runnable {
 
 	@Override
 	public void nextTurn() {
-		synchronized (this.mutex) {
-			this.mutex.notify();
-		}
+		playAnotherCard();
 	}
 
 	@Override
 	public void playAnotherCard() {
+		try {
+			this.semaphore.acquire();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		synchronized (this.mutex) {
 			this.mutex.notify();
 		}
+		this.semaphore.release();
 	}
 
 	@Override
