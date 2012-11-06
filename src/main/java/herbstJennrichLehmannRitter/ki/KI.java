@@ -34,10 +34,14 @@ public class KI implements UserInterface, Runnable {
 			this.semaphore.acquire();
 			this.gameServer.register(this);
 			System.out.println(getName() + ": I'm ready!");
-		
+			
+			synchronized (this.mutex) {
+				this.semaphore.release();
+				this.mutex.wait();
+			}
+			
 			while (true) {
 				synchronized (this.mutex) {
-					this.semaphore.release();
 					this.mutex.wait();
 				}
 				runKILogic();
