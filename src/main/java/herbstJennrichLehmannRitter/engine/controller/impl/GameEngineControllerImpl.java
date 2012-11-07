@@ -79,14 +79,16 @@ public class GameEngineControllerImpl implements GameEngineController {
 
 	@Override
 	public void playCard(Card card, Player player, Player enePlayer) {
-		// TODO Auto-generated method stub
 		
+		// we can simply call this method here
+		discardCard(card, player);
 	}
 
 	@Override
 	public void discardCard(Card card, Player player) {
-		// TODO Auto-generated method stub
-		
+		player.getDeck().discardCard(card);
+		// this will refill to an amount of max 6 cards
+		player.getDeck().pickCards(6);
 	}
 
 }
