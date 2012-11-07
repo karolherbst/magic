@@ -135,19 +135,42 @@ public class GameServiceImpl implements GameService {
 
 	@Override
 	public void playCard(Thread thread, Card card) {
+		// sleep a bit to take away stress from the process
+		try {
+			Thread.sleep(1);
+		} catch (InterruptedException e) {
+			// do nothing here
+		}
+		
 		UIHolder uiHolder = this.threadToUi.get(thread);
 		System.out.println("service: player " + uiHolder.player.getName() + " played card " + card.getName());
+		
 		this.gameEngineController.playCard(card, uiHolder.player, uiHolder.enemy.player);
 		uiHolder.enemy.userInterface.enemeyPlayedCard(card);
+		
+		if (card.getCardAction().getPlayCards()) {
+			uiHolder.userInterface.playAnotherCard();
+		} else {
+			uiHolder.enemy.userInterface.nextTurn();
+		}
 		
 		updatePlayerDatas(uiHolder);
 	}
 
 	@Override
 	public void discardCard(Thread thread, Card card) {
+		// sleep a bit to take away stress from the process
+		try {
+			Thread.sleep(1);
+		} catch (InterruptedException e) {
+			// do nothing here
+		}
+				
 		UIHolder uiHolder = this.threadToUi.get(thread);
 		System.out.println("service: player " + uiHolder.player.getName() + " discard card " + card.getName());
+		
 		this.gameEngineController.discardCard(card, uiHolder.player);
+		uiHolder.enemy.userInterface.nextTurn();
 		
 		updatePlayerDatas(uiHolder);
 	}
