@@ -74,12 +74,7 @@ public class GameEngineControllerImpl implements GameEngineController {
 	
 	@Override
 	public Data createDataForPlayer(Player player, Player enemy) {
-		DataImpl data = new DataImpl();
-		
-		data.setOwnPlayer(player);
-		data.setEnemyPlayer(this.playerFactory.createCopyForEnemy(enemy));
-		
-		return data;
+		return new DataImpl(player, this.playerFactory.createCopyForEnemy(enemy));
 	}
 
 	@Override

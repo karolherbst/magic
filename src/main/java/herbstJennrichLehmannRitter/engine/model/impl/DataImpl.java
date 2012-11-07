@@ -15,10 +15,6 @@ public class DataImpl implements Data {
 	private Player ownPlayer = null;
 	private Player enemyPlayer = null;
 	
-	public DataImpl() {
-		
-	}
-	
 	public DataImpl(Player own, Player enemy) {
 		this.ownPlayer = own;
 		this.enemyPlayer = enemy;
@@ -40,6 +36,11 @@ public class DataImpl implements Data {
 
 	public void setEnemyPlayer(Player enemyPlayer) {
 		this.enemyPlayer = enemyPlayer;
+	}
+	
+	@Override
+	public String toString() {
+		return this.ownPlayer.getName() + "\n" + this.enemyPlayer.toString();
 	}
 
 }
