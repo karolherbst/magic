@@ -133,8 +133,11 @@ public class GameServiceImpl implements GameService {
 		}
 	}
 
+	// for debugging
+	static int round = 0;
 	@Override
 	public void playCard(Thread thread, Card card) {
+		System.out.println("round: " + ++round);
 		// sleep a bit to take away stress from the process
 		try {
 			Thread.sleep(1);
@@ -159,6 +162,7 @@ public class GameServiceImpl implements GameService {
 
 	@Override
 	public void discardCard(Thread thread, Card card) {
+		System.out.println("round: " + ++round);
 		// sleep a bit to take away stress from the process
 		try {
 			Thread.sleep(1);
