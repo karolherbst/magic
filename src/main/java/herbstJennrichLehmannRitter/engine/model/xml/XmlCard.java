@@ -20,9 +20,9 @@ public class XmlCard extends AbstractCard {
 	private int costBrick;
 	private int costMonster;
 	private int costCrystal;
-	private CardAction cardAction;
-	private ResourceAction ownResourceAction;
-	private ResourceAction enemyResourceAction;
+	private CardAction cardAction = new XmlCardAction();
+	private ResourceAction ownResourceAction = new XmlResourceAction();
+	private ResourceAction enemyResourceAction = new XmlResourceAction();
 	private ComplexCardAction complexCardAction;
 	private boolean canBeDiscarded = true;
 	
