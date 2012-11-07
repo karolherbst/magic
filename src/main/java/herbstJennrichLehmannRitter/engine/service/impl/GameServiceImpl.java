@@ -49,6 +49,13 @@ public class GameServiceImpl implements GameService {
 		return this.gameEngineController.createPlayer(name, cardNames);
 	}
 	
+	private void updatePlayerDatas(UIHolder uiHolder) {
+		uiHolder.userInterface.setData(this.gameEngineController.createDataForPlayer(uiHolder.player,
+				uiHolder.enemy.player));
+		uiHolder.enemy.userInterface.setData(this.gameEngineController.createDataForPlayer(
+				uiHolder.enemy.player, uiHolder.player));
+	}
+	
 	static private Semaphore lockRegister = new Semaphore(1);
 	@Override
 	public void register(Thread thread, UserInterface userInterface) {
@@ -77,10 +84,7 @@ public class GameServiceImpl implements GameService {
 					}
 				}
 				
-				newUIHolder.userInterface.setData(this.gameEngineController.createDataForPlayer(newUIHolder.player,
-						newUIHolder.enemy.player));
-				newUIHolder.enemy.userInterface.setData(this.gameEngineController.createDataForPlayer(
-						newUIHolder.enemy.player, newUIHolder.player));
+				updatePlayerDatas(newUIHolder);
 				newUIHolder.userInterface.nextTurn();
 				
 				return;
@@ -133,13 +137,19 @@ public class GameServiceImpl implements GameService {
 	public void playCard(Thread thread, Card card) {
 		UIHolder uiHolder = this.threadToUi.get(thread);
 		System.out.println("service: player " + uiHolder.player.getName() + " played card " + card.getName());
+		this.gameEngineController.playCard(card, uiHolder.player, uiHolder.enemy.player);
 		uiHolder.enemy.userInterface.enemeyPlayedCard(card);
+		
+		updatePlayerDatas(uiHolder);
 	}
 
 	@Override
 	public void discardCard(Thread thread, Card card) {
 		UIHolder uiHolder = this.threadToUi.get(thread);
 		System.out.println("service: player " + uiHolder.player.getName() + " discard card " + card.getName());
+		this.gameEngineController.discardCard(card, uiHolder.player);
+		
+		updatePlayerDatas(uiHolder);
 	}
 
 	@Override

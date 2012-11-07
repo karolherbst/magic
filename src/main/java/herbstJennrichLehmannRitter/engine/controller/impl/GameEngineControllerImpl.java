@@ -82,4 +82,16 @@ public class GameEngineControllerImpl implements GameEngineController {
 		return data;
 	}
 
+	@Override
+	public void playCard(Card card, Player player, Player enePlayer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void discardCard(Card card, Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
