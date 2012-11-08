@@ -3,6 +3,7 @@ package herbstJennrichLehmannRitter.engine.service.impl;
 import herbstJennrichLehmannRitter.engine.controller.GameEngineController;
 import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.service.GameService;
 import herbstJennrichLehmannRitter.ui.UserInterface;
@@ -50,10 +51,13 @@ public class GameServiceImpl implements GameService {
 	}
 	
 	private void updatePlayerDatas(UIHolder uiHolder) {
-		uiHolder.userInterface.setData(this.gameEngineController.createDataForPlayer(uiHolder.player,
-				uiHolder.enemy.player));
-		uiHolder.enemy.userInterface.setData(this.gameEngineController.createDataForPlayer(
-				uiHolder.enemy.player, uiHolder.player));
+		Data ownData = this.gameEngineController.createDataForPlayer(uiHolder.player, uiHolder.enemy.player);
+		System.out.println("new data for player " + uiHolder.player.getName() + ":\n" + ownData);
+		uiHolder.userInterface.setData(ownData);
+		
+		Data enemyData = this.gameEngineController.createDataForPlayer( uiHolder.enemy.player, uiHolder.player);
+		System.out.println("new data for player " + uiHolder.enemy.player.getName() + ":\n" + enemyData);
+		uiHolder.enemy.userInterface.setData(enemyData);
 	}
 	
 	static private Semaphore lockRegister = new Semaphore(1);

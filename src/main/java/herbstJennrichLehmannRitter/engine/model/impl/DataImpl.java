@@ -40,7 +40,7 @@ public class DataImpl implements Data {
 	
 	@Override
 	public String toString() {
-		return this.ownPlayer.getName() + "\n" + this.enemyPlayer.toString();
+		return "Data{" + this.ownPlayer + '\n' + this.enemyPlayer + '}';
 	}
 
 }
