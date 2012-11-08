@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Shell;
 public class PlayGameGUI {
 
 	/**
-	 * Implementation des Spiels
+	 * Implementation der SpielGUI
 	 */
 	
 	private Shell shell;
