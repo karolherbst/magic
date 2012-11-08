@@ -20,7 +20,7 @@ public class MainMenuGUI {
 	 * Implementation Hauptmenü
 	 * TODO: Event neues Fenster anderer Klasse öffnen!
 	 */
-	
+
 	private static MainMenuGUI mainMenuGUI;
 	
 	private int shells = 0;
@@ -43,6 +43,8 @@ public class MainMenuGUI {
 		initStartDemoButton();
 		initChooseDeckButton();
 		initExitButton();
+		this.shell.pack();
+		setShellLocationCenteredToScreen(this.display, this.shell);
 		
 		this.gameMenuGUI = new GameMenuGUI(this.display);
 		this.chooseDeckGUI = new ChooseDeckGUI(this.display);
@@ -51,18 +53,15 @@ public class MainMenuGUI {
 	}
 	
 	public static void main(String[] args) {
-		mainMenuGUI = new MainMenuGUI();
+		MainMenuGUI mainMenuGUI = new MainMenuGUI();
 		mainMenuGUI.keepOpen();
 	}
 	
 	private void initShell() {
-		
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
 		this.shells++;
 		this.shell.setText("Hauptmenü");
 		this.shell.setLayout(new GridLayout(1, false));
-		this.shell.setSize(220, 180);
-		setShellLocationCenteredToScreen(this.display, this.shell);
 		
 		this.shell.addDisposeListener(new DisposeListener() {
 			@Override
@@ -146,6 +145,7 @@ public class MainMenuGUI {
 		Rectangle shellBounds = shell.getBounds();
 		int posX = monitorBounds.x + ((monitorBounds.width - shellBounds.width)/2);
 		int posY = monitorBounds.y + ((monitorBounds.height - shellBounds.height)/2);
+		
 		shell.setLocation(posX, posY);
 	}
 
