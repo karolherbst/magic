@@ -60,6 +60,7 @@ public class ShowCardDetailGUI {
 			initDiscardButton();
 			initPlayCardButton();
 		}
+		this.shell.pack();
 	}
 	
 	public void open() {
@@ -70,7 +71,6 @@ public class ShowCardDetailGUI {
 		this.shell = new Shell(SWT.TITLE);
 		this.shell.setText("Kartendetails");
 		this.shell.setLayout(new FormLayout());
-		this.shell.setSize(400, 450);
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 	
