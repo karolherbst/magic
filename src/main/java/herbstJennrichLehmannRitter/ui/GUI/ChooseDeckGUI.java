@@ -60,6 +60,8 @@ public class ChooseDeckGUI {
 		initUserList();
 		initSystemToUserButton();
 		initUserToSystemButton();
+		this.shell.pack();			
+		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 	
 
@@ -68,9 +70,6 @@ public class ChooseDeckGUI {
 		this.shell.setText("Deck erstellen");
 		this.shell.setLayout(new FormLayout());
 		this.shell.layout();
-		this.shell.pack();			
-		this.shell.setSize(761, 547);
-		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 
 	private void initNewButton() {

@@ -29,6 +29,8 @@ public class HostMenuGUI {
 		initShell();
 		initWartenLabel();
 		initExitButton();
+		this.shell.pack();
+		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 	
 	public void open() {
@@ -39,8 +41,6 @@ public class HostMenuGUI {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
 		this.shell.setText("Spielauswahl");
 		this.shell.setLayout(new GridLayout(1, false));
-		this.shell.setSize(220, 140);
-		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 	
 	private void initWartenLabel() {

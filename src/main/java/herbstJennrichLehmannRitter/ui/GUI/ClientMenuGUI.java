@@ -23,20 +23,18 @@ public class ClientMenuGUI {
 	private final Display display;
 	private Text ipTextField;
 	private Label ipTextLabel;
-	private Text nameTextField;
-	private Label nameTextLabel;
 	private Button connectButton;
 	private Button backButton;
 	
 	public ClientMenuGUI(Display parent) {
 		this.display = parent;
 		initShell();
-		initNameTextLabel();
-		initNameTextField();
 		initIpTextLabel();
 		initIpTextField();
 		initConnectButton();
 		initBackButton();
+		this.shell.pack();
+		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 	
 	public void open() {
@@ -47,29 +45,7 @@ public class ClientMenuGUI {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
 		this.shell.setText("Starte Spiel als Client");
 		this.shell.setLayout(new GridLayout(2, false));
-		this.shell.setSize(250, 150);
-		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
-
-	private void initNameTextLabel() {
-	    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-		gridData.grabExcessHorizontalSpace = true;
-		gridData.horizontalSpan = 3;
-		
-		this.nameTextLabel = new Label(this.shell, SWT.FILL);
-		this.nameTextLabel.setText("Bitte geben Sie ihren Namen an:");
-		this.nameTextLabel.setBackground(this.shell.getBackground());
-		this.nameTextLabel.setLayoutData(gridData);
-	}
-	
-	private void initNameTextField() {
-	    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-		gridData.grabExcessHorizontalSpace = true;
-		gridData.horizontalSpan = 3;
-		
-		this.nameTextField = new Text(this.shell, SWT.FILL);
-		this.nameTextField.setLayoutData(gridData);
-	}	
 	
 	private void initIpTextLabel() {
 	    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
