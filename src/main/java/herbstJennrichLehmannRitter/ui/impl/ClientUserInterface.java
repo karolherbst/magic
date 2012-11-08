@@ -3,7 +3,6 @@ package herbstJennrichLehmannRitter.ui.impl;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.ui.UserInterface;
-import herbstJennrichLehmannRitter.ui.GUI.MainMenuGUI;
 import herbstJennrichLehmannRitter.ui.GUI.PlayGameGUI;
 
 import java.util.Collection;
