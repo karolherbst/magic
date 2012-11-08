@@ -1,6 +1,7 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
+import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
@@ -72,7 +73,6 @@ public class HostMenuGUI {
 		this.wartenLabel.setBounds(this.shell.getClientArea());
 		
 		//TODO Implementation GameServer
-		
 	}
 
 	private void initExitButton() {

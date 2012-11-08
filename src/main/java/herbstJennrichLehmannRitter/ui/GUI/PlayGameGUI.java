@@ -64,7 +64,7 @@ public class PlayGameGUI {
 
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
-		this.shell.setText("Spiel");
+		this.shell.setText("Magic");
 		this.shell.setLayout(new FormLayout());
 		this.shell.layout();
 		this.shell.pack();
@@ -281,7 +281,6 @@ public class PlayGameGUI {
 				this.cardComp.addMouseListener(new MouseAdapter() {
 						@Override
 					   public void mouseDown(MouseEvent e) {
-							System.out.println(getCardName());
 							if (!getCardName().isEmpty()) {
 								System.out.println(getCardName());
 								ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(display, true, 
