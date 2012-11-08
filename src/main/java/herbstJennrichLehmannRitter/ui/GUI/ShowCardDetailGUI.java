@@ -59,6 +59,7 @@ public class ShowCardDetailGUI {
 		initExitButton();
 		if (this.isUsedDuringGamePlay == true) {
 			initDiscardButton();
+			//TODO: Hier muss geprüft werden, ob Card Cost > Player Ressourcen ist, wie kann man auf Player zugreifen? 
 			initPlayCardButton();
 		}
 		this.shell.pack();

@@ -3,11 +3,16 @@ package herbstJennrichLehmannRitter.ui.impl;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.ui.UserInterface;
+import herbstJennrichLehmannRitter.ui.GUI.MainMenuGUI;
 
 import java.util.Collection;
 
 public class ClientUserInterface implements UserInterface {
 
+	public ClientUserInterface(MainMenuGUI mainMenuGUI) {
+		
+	}
+	
 	@Override
 	public void setData(Data data) {
 		// TODO Auto-generated method stub
