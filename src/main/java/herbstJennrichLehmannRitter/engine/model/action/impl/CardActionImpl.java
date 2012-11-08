@@ -48,7 +48,6 @@ public class CardActionImpl implements CardAction {
 	public String getOwnEffectDescription() {
 		StringBuilder stringBuilder = new StringBuilder();
 		
-		MagicUtils.addValueToStringBuilder("Karte spielen", stringBuilder);
 		MagicUtils.addValueToStringBuilder("Karte ablegen", Integer.valueOf(getOwnAmountCardDiscard()), stringBuilder);
 		MagicUtils.addValueToStringBuilder("Karte ziehen", Integer.valueOf(getAmountCardDraw()), stringBuilder);
 		
