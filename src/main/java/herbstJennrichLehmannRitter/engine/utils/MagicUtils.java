@@ -13,6 +13,16 @@ public abstract class MagicUtils {
 	
 	public static void addValueToStringBuilder(Object value, StringBuilder stringBuilder) {
 		
+		// return if value is null or empty string
+		if (value == null) {
+			return;
+		}
+		
+		String valueStr = value.toString();
+		if (valueStr.length() < 1) {
+			return;
+		}
+		
 		if (stringBuilder.length() > 0) {
 			stringBuilder.append(", ");
 		}
@@ -26,7 +36,7 @@ public abstract class MagicUtils {
 		}
 		
 		String valueStr = (displayPlus && value.doubleValue() > 0d ) ? "+" : "";
-		valueStr += value.toString();
+		valueStr += value;
 		String keyStr = key.toString();
 		
 		if (valueStr.length() > 0) {

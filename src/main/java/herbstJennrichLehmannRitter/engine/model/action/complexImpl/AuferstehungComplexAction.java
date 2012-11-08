@@ -18,7 +18,7 @@ public class AuferstehungComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getOwnEffectDescription() {
-		return "+30% " + BuildingType.TOWER.toString();
+		return "+30% " + BuildingType.TOWER;
 	}
 
 	@Override

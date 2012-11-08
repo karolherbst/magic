@@ -16,6 +16,7 @@ public class ToStringTest {
 	public void testArchitektur() {
 		Card architektur = this.gameCardFactory.createCard("Architektur");
 		assertNotNull(architektur);
+		System.out.println(architektur);
 		assertEquals("Architektur[Kosten: 15 Ziegel; Selbst: +8 Mauer, +5 Turm]", architektur.toString());
 	}
 	
@@ -31,7 +32,7 @@ public class ToStringTest {
 	public void testBarrackeComplextAction() {
 		Card barracke = this.gameCardFactory.createCard("Barracke");
 		assertNotNull(barracke);
-		System.out.println(barracke.toString());
+		System.out.println(barracke);
 		assertEquals("Barracke[Kosten: 10 Ziegel; Selbst: +6 Mauer, +6 Monster, Wenn das eigene Verlies größer als das des Gegners ist, wird es um 1 erhöht]", barracke.toString());
 	}
 }
