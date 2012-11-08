@@ -63,7 +63,6 @@ public class ChooseDeckGUI {
 		this.shell.pack();			
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
-	
 
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);

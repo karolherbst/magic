@@ -1,5 +1,6 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
+import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.engine.model.Card;
 
 import org.eclipse.swt.SWT;
@@ -155,7 +156,8 @@ public class ShowCardDetailGUI {
 		this.discardButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				//TODO Was hier?
+				//TODO: Karol, ist hier getLocalGameServer richtig, wenn ich das generell an dich übergeben möchte?
+				Globals.getLocalGameServer().discardCard(card);
 			}
 		});
 	}
@@ -174,12 +176,14 @@ public class ShowCardDetailGUI {
 		this.playCardButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				//TODO Was hier?
+				//TODO: Karol, ist hier getLocalGameServer richtig, wenn ich das generell an dich übergeben möchte?
+				Globals.getLocalGameServer().playCard(card);
 			}
 		});
 	}
 	
-	private void createCategorieText(StyledText field, String text, boolean underline, int positionFromTop, int fieldHeight) {
+	private void createCategorieText(StyledText field, String text, boolean underline, 
+			int positionFromTop, int fieldHeight) {
 		FormData formData = new FormData();
 		formData.left = new FormAttachment(0, 1000, 30);
 		formData.top =  new FormAttachment(0, 1000, positionFromTop);

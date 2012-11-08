@@ -2,18 +2,18 @@ package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
 
+import java.util.ArrayList;
+
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Canvas;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
@@ -24,9 +24,22 @@ public class PlayGameGUI {
 	 * Implementation des Spiels
 	 */
 	
-	
 	private Shell shell;
 	private final Display display;
+	private DefenceBuildingFields enemyTower;
+	private DefenceBuildingFields enemyWall;
+	private DefenceBuildingFields playerWall;
+	private DefenceBuildingFields playerTower;
+	private RessourceFields playerDungeon;
+	private RessourceFields playerMagicLab;
+	private RessourceFields playerMine;
+	private RessourceFields enemyDungeon;
+	private RessourceFields enemyMagicLab;
+	private RessourceFields enemyMine;
+	private ArrayList<CardFields> playerCards;
+	private ArrayList<CardFields> enemyCards;
+	private CardFields playerChoosenCard;
+	private CardFields enemyChoosenCards;
 	
 	public PlayGameGUI(Display parent) {
 		this.display = parent;
@@ -43,12 +56,11 @@ public class PlayGameGUI {
 		initEnemyWall();
 		initEnemyTower();
 		horizontalLine();
-		playerCardOne();
-		playerCardTwo();
-		
+		initPlayerCards();
+		initEnemyCards();
+		initPlayerChoosenCards();
+		initEnemyChoosenCards();
 	}
-
-	
 
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
@@ -75,7 +87,6 @@ public class PlayGameGUI {
 				PlayGameGUI.this.shell.setVisible(false);
 			}
 		});
-		
 		this.shell.setMenuBar(menuBar);
 		
 	}
@@ -83,138 +94,299 @@ public class PlayGameGUI {
 	private void horizontalLine() {
 		FormData formData = new FormData();
 		formData.left =  new FormAttachment(0, 1000, 10);
-		formData.top =  new FormAttachment(0, 1000, 374);
+		formData.top =  new FormAttachment(0, 1000, 370);
 		formData.width = 1004;
-		formData.height = 20;
 		Label line = new Label(this.shell, SWT.SEPARATOR | SWT.HORIZONTAL | SWT.SHADOW_OUT);
 		line.setLayoutData(formData);
 	}
 	
 	private void initPlayerDungeon() {
-		this.createRessourceFields("Verlies", 10, 676, 42, 41);
+		this.playerDungeon = new RessourceFields("Verlies", 10, 676, 42, 41);
+	}
+	
+	public void setPlayerDungeonLevel(int level) {
+		this.playerDungeon.setLevel(level);
+	}
+	
+	public void setPlayerDungeonStock(int stock) {
+		this.playerDungeon.setStock(stock);
 	}
 	
 	private void initPlayerMagicLab() {
-		this.createRessourceFields("Zauberlabor", 220, 676, 40, 39);
+		this.playerMagicLab = new RessourceFields("Zauberlabor", 220, 676, 40, 39);
 	}
 	
+	public void setPlayerMagicLabLevel(int level) {
+		this.playerMagicLab.setLevel(level);
+	}
+	
+	public void setPlayerMagicLabStock(int stock) {
+		this.playerMagicLab.setStock(stock);
+	}
+
 	private void initPlayerMine() {
-		this.createRessourceFields("Steinbruch", 430, 676, 17, 66);
+		this.playerMine = new RessourceFields("Steinbruch", 430, 676, 17, 66);
+	}
+
+	public void setPlayerMineLevel(int level) {
+		this.playerMine.setLevel(level);
+	}
+	
+	public void setPlayerMineStock(int stock) {
+		this.playerMine.setStock(stock);
 	}
 	
 	private void initPlayerWall() {
-		this.createDefenceFields("Mauer", 640, 676, 25);
+		this.playerWall = new DefenceBuildingFields("Mauer", 640, 676, 25);
+	}
+	
+	public void setPlayerWall(int level) {
+		this.playerWall.setLevel(level);
 	}
 	
 	private void initPlayerTower(){
-		this.createDefenceFields("Turm", 830, 676, 50);
+		this.playerTower = new DefenceBuildingFields("Turm", 830, 676, 50);
+	}
+
+	public void setPlayerTower(int level) {
+		this.playerTower.setLevel(level);
 	}
 	
 	private void initEnemyDungeon() {
-		this.createRessourceFields("Verlies", 10, 10, 42, 41);
+		this.enemyDungeon = new RessourceFields("Verlies", 10, 10, 42, 41);
 	}
 	
+	public void setEnemyDungeonLevel(int level) {
+		this.enemyDungeon.setLevel(level);
+	}
+	
+	public void setEnemyDungeonStock(int stock) {
+		this.enemyDungeon.setStock(stock);
+	}
+
 	private void initEnemyMagicLab() {
-		this.createRessourceFields("Zauberlabor", 220, 10, 40, 39);
+		this.enemyMagicLab = new RessourceFields("Zauberlabor", 220, 10, 40, 39);
+	}
+	
+	public void setEnemyMagicLabLevel(int level) {
+		this.enemyMagicLab.setLevel(level);
+	}
+	
+	public void setEnemyMagicLabStock(int stock) {
+		this.enemyMagicLab.setStock(stock);
 	}
 	
 	private void initEnemyMine() {
-		this.createRessourceFields("Steinbruch", 430, 10, 17, 66);
+		this.enemyMine = new RessourceFields("Steinbruch", 430, 10, 17, 66);
+	}
+	
+	public void setEnemyMineLevel(int level) {
+		this.enemyMine.setLevel(level);
+	}
+	
+	public void setEnemyMineStock(int stock) {
+		this.enemyMine.setStock(stock);
 	}
 	
 	private void initEnemyWall() {
-		this.createDefenceFields("Mauer", 640, 10, 25);
-		
+		this.enemyWall = new DefenceBuildingFields("Mauer", 640, 10, 25);
+	}
+	
+	public void setEnemyWall(int level) {
+		this.enemyWall.setLevel(level);
 	}
 	
 	private void initEnemyTower(){
-		this.createDefenceFields("Turm", 830, 10, 50);
+		this.enemyTower = new DefenceBuildingFields("Turm", 830, 10, 50);
 	}
 	
-	private void playerCardOne() {
-		this.createCard("Der gemeine Karol spielt Java", 10, 540);
+	public void setEnemyTower(int level) {
+		this.enemyTower.setLevel(level);
 	}
 	
-	private void playerCardTwo() {
-		this.createCard("Karte 2", 120, 540);
+	private void initPlayerCards() {
+		int x = 157;
+		int y = 540;
+		this.playerCards = new ArrayList<CardFields>();
+		for (int i=0; i<6; i++) {
+			this.playerCards.add(new CardFields((x+(120*i)), y, true, true));
+			this.setPlayerCardName(i, "Dieb");
+		}
 	}
 	
-	private void createCard(String cardName, int positionFromLeft, int positionFromTop) {
-		FormData cardData = new FormData();
-		cardData.left = new FormAttachment(0, 800, positionFromLeft);
-		cardData.top = new FormAttachment(0, 800, positionFromTop);
-		cardData.height = 130;
-		cardData.width = 100;
-		
-		Canvas cardCanvas = new Canvas(this.shell, SWT.BORDER);
-		cardCanvas.setLayoutData(cardData);
-		
-		Label nameLabel = new Label(cardCanvas, SWT.CENTER);
-		nameLabel.setText(cardName);
-		nameLabel.setBounds(0, 20, 130, 15);
+	public void setPlayerCardName(int index, String name) {
+		this.playerCards.get(index).setCardName(name);
 	}
 	
-	private void createDefenceFields(String headline,int positionFromLeft, int positionFromTop, int level){
-		FormData canvasData = new FormData();
-		canvasData.left =  new FormAttachment(0, 1000, positionFromLeft);
-		canvasData.top =  new FormAttachment(0, 1000, positionFromTop);
-		canvasData.width = 180;
-		canvasData.height = 60;
-		
-		Canvas playerCanvas = new Canvas(this.shell, SWT.BORDER);
-		playerCanvas.setLayoutData(canvasData);
-		{
-			Label headlineLabel = new Label(playerCanvas, SWT.CENTER);
-			headlineLabel.setText(headline);
-			headlineLabel.setBounds(10, 2, 160, 15);
+	private void initEnemyCards() {
+		int x = 157;
+		int y = 76;
+		this.enemyCards = new ArrayList<CardFields>();
+		for (int i=0; i<6; i++) {
+			this.enemyCards.add(new CardFields((x+(120*i)), y, true, true));
 		}
-		{
-			Label levelLabel = new Label(playerCanvas, SWT.NONE);
-			levelLabel.setText("Stufe");
-			levelLabel.setBounds(12, 20, 60, 15);
-		}
-		{	
-			Label levelValue = new Label(playerCanvas, SWT.NONE);
-			levelValue.setText(String.valueOf(level));
-			levelValue.setBounds(80, 20, 60, 15);
-		}
-		
+	}
+
+	private void initPlayerChoosenCards() {
+		this.playerChoosenCard = new CardFields(457, 390, false, false);
 	}
 	
-	private void createRessourceFields(String headline,int positionFromLeft, int positionFromTop, int level, int stock) {
-		FormData canvasData = new FormData();
-		canvasData.left =  new FormAttachment(0, 1000, positionFromLeft);
-		canvasData.top =  new FormAttachment(0, 1000, positionFromTop);
-		canvasData.width = 200;
-		canvasData.height = 60;
+	public void setPlayerChoosenCardName(String name) {
+		if (name != null) {
+			this.playerChoosenCard.setCardName(name);
+			this.playerChoosenCard.setVisible(true);
+		} else {
+			this.playerChoosenCard.setVisible(false);
+		}
+
+	}
+	
+	private void initEnemyChoosenCards() {
+		this.enemyChoosenCards = new CardFields(457, 215, false, false);
+	}
+	
+	
+	public void setEnemyChoosenCardName(String name) {
+		if (name != null) {
+			this.enemyChoosenCards.setCardName(name);
+			this.enemyChoosenCards.setVisible(true);
+		} else {
+			this.enemyChoosenCards.setVisible(false);
+		}
+	}
+	
+	private class CardFields {
+		private Label nameLabel;
+		private Composite cardComp;
 		
-		Canvas playerCanvas = new Canvas(this.shell, SWT.BORDER);
-		playerCanvas.setLayoutData(canvasData);
-		{
-			Label headlineLabel = new Label(playerCanvas, SWT.CENTER);
-			headlineLabel.setText(headline);
-			headlineLabel.setBounds(10, 2, 180, 15);
+		private CardFields(int positionFromLeft, int positionFromTop, boolean isVisible, boolean isClickable) {
+			FormData cardData = new FormData();
+			cardData.left = new FormAttachment(0, 800, positionFromLeft);
+			cardData.top = new FormAttachment(0, 800, positionFromTop);
+			cardData.height = 130;
+			cardData.width = 110;
+
+			this.cardComp = new Composite(shell, SWT.BORDER);
+			if (isVisible) {
+				this.cardComp.setVisible(true);
+			} else {
+				this.cardComp.setVisible(false);
+			}
+			this.cardComp.setLayoutData(cardData);
+			
+			this.nameLabel = new Label(this.cardComp, SWT.CENTER);
+			this.nameLabel.setBounds(0, 20, 110, 15);
+			
+			if (isClickable) {
+				this.cardComp.addMouseListener(new MouseAdapter() {
+						@Override
+					   public void mouseDown(MouseEvent e) {
+							System.out.println(getCardName());
+							if (!getCardName().isEmpty()) {
+								System.out.println(getCardName());
+								ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(display, true, 
+										Globals.getGameCardFactory().createCard(getCardName()));
+								showCardDetailGUI.open();
+							}
+					   }
+				});
+			}
 		}
-		{
-			Label levelLabel = new Label(playerCanvas, SWT.NONE);
-			levelLabel.setText("Stufe");
-			levelLabel.setBounds(12, 20, 60, 15);
+		
+		public void setCardName(String cardName) {
+			this.nameLabel.setText(cardName);
 		}
-		{	
-			Label levelValue = new Label(playerCanvas, SWT.NONE);
-			levelValue.setText(String.valueOf(level));
-			levelValue.setBounds(80, 20, 60, 15);
+		
+		private String getCardName() {
+			return this.nameLabel.getText();
 		}
-		{
-			Label stockLabel = new Label(playerCanvas, SWT.NONE);
-			stockLabel.setText("Ressource");
-			stockLabel.setSize(60, 30);
-			stockLabel.setBounds(12, 38, 60, 15);
+		
+		public void setVisible(boolean isVisible) {
+			this.cardComp.setVisible(isVisible);
 		}
-		{	
-			Label stockValue = new Label(playerCanvas, SWT.NONE);
-			stockValue.setText(String.valueOf(stock));
-			stockValue.setBounds(80, 38, 60, 15);
+	}
+	
+	private class DefenceBuildingFields {
+		private Label levelValue;
+		
+		public DefenceBuildingFields(String headline,int positionFromLeft, int positionFromTop, int level){
+			FormData canvasData = new FormData();
+			canvasData.left =  new FormAttachment(0, 1000, positionFromLeft);
+			canvasData.top =  new FormAttachment(0, 1000, positionFromTop);
+			canvasData.width = 180;
+			canvasData.height = 60;
+			
+			Composite defenceComp = new Composite(shell, SWT.BORDER);
+			defenceComp.setLayoutData(canvasData);
+			{
+				Label headlineLabel = new Label(defenceComp, SWT.CENTER);
+				headlineLabel.setText(headline);
+				headlineLabel.setBounds(10, 2, 160, 15);
+			}
+			{
+				Label levelLabel = new Label(defenceComp, SWT.NONE);
+				levelLabel.setText("Stufe");
+				levelLabel.setBounds(12, 20, 60, 15);
+			}
+			{	
+				this.levelValue = new Label(defenceComp, SWT.NONE);
+				this.levelValue.setText(String.valueOf(level));
+				this.levelValue.setBounds(80, 20, 60, 15);
+			}
+		}
+			
+		public void setLevel(int level) {
+			this.levelValue.setText(String.valueOf(level));
+		}
+	}
+	
+	private class RessourceFields {
+		private Label levelValue;
+		private Label stockValue;
+		
+		public RessourceFields(String headline,int positionFromLeft, int positionFromTop, int level, int stock) {
+			FormData canvasData = new FormData();
+			canvasData.left =  new FormAttachment(0, 1000, positionFromLeft);
+			canvasData.top =  new FormAttachment(0, 1000, positionFromTop);
+			canvasData.width = 200;
+			canvasData.height = 60;
+			
+			Composite ressourceComp = new Composite(shell, SWT.BORDER);
+			ressourceComp.setLayoutData(canvasData);
+			{
+				Label headlineLabel = new Label(ressourceComp, SWT.CENTER);
+				headlineLabel.setText(headline);
+				headlineLabel.setBounds(10, 2, 180, 15);
+			}
+			{
+				Label levelLabel = new Label(ressourceComp, SWT.NONE);
+				levelLabel.setText("Stufe");
+				levelLabel.setBounds(12, 20, 60, 15);
+			}
+			{	
+				this.levelValue = new Label(ressourceComp, SWT.NONE);
+				this.levelValue.setText(String.valueOf(level));
+				this.levelValue.setBounds(80, 20, 60, 15);
+			}
+			{
+				Label stockLabel = new Label(ressourceComp, SWT.NONE);
+				stockLabel.setText("Ressource");
+				stockLabel.setSize(60, 30);
+				stockLabel.setBounds(12, 38, 60, 15);
+			}
+			{	
+				this.stockValue = new Label(ressourceComp, SWT.NONE);
+				this.stockValue.setText(String.valueOf(stock));
+				this.stockValue.setBounds(80, 38, 60, 15);
+			}
+		}
+		
+		public void setLevel(int level) {
+			this.levelValue.setText(String.valueOf(level));
+		}
+		
+		public void setStock(int stock) {
+			this.stockValue.setText(String.valueOf(stock));
 		}
 	}
 
