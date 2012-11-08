@@ -90,5 +90,16 @@ public class PlayerImpl implements Player {
 	public void setWall(DefenceBuilding wall) {
 		this.wall = wall;
 	}
+	
+	@Override
+	public String toString() {
+		return "Player[name:" + getName()
+				+ " tower:" + getTower().getActualPoints()
+				+ " wall:" + getWall().getActualPoints()
+				+ " mine:{lvl:" + getMine().getLevel() + " stock:" + getMine().getStock() + '}'
+				+ " magicLab:{lvl:" + getMagicLab().getLevel() + " stock:" + getMagicLab().getStock() + '}'
+				+ " dungeon:{lvl:" + getDungeon().getLevel() + " stock:" + getDungeon().getStock() + '}'
+				+ ']';
+	}
 
 }
