@@ -1,7 +1,15 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
+import herbstJennrichLehmannRitter.engine.Globals;
+import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.Data;
+import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
+import herbstJennrichLehmannRitter.server.GameServer;
+import herbstJennrichLehmannRitter.ui.UserInterface;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.concurrent.Semaphore;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -23,6 +31,10 @@ public class HostMenuGUI {
 	private final Display display;
 	private Button exitButton;
 	private Label wartenLabel;
+
+	private GameServer gameServer;
+	private Object mutex = new Object();
+	private Semaphore semaphore = new Semaphore(1);
 	
 	public HostMenuGUI(Display parent){
 		this.display = parent;
@@ -50,7 +62,7 @@ public class HostMenuGUI {
 			text += InetAddress.getLocalHost().getHostAddress();
 			text += "\n";
 		} catch (UnknownHostException e) {
-			text += "Ihre IP-Adresse ist unbekannt. Bitte prüfen Sie, ob Sie mit dem Internet verbunden sind.\n";
+			text += "Ihre IP-Adresse ist unbekannt. Bitte prüfen Sie, ob Sie mit dem Netzwerk verbunden sind.\n";
 		}
 		text += "\nWarte auf Client...";
 		
@@ -58,6 +70,9 @@ public class HostMenuGUI {
 		this.wartenLabel.setText(text);
 		this.wartenLabel.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
 		this.wartenLabel.setBounds(this.shell.getClientArea());
+		
+		//TODO Implementation GameServer
+		
 	}
 
 	private void initExitButton() {
