@@ -79,6 +79,8 @@ public class PlayGameGUI {
 		initPlayerChoosenCards();
 		initEnemyChoosenCards();
 		horizontalLine();
+		
+		this.mainMenuGUI.getClientUserInterface().setPlayGameGUI(this);
 	}
 	
 	//TODO: Sichtbarmachen, wer gerade dran ist

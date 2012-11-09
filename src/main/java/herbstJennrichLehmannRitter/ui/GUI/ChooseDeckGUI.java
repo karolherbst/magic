@@ -47,9 +47,11 @@ public class ChooseDeckGUI {
 	private List systemList;
 	private List userList;
 	private Collection<String> playerCards;
+	private MainMenuGUI mainMenuGUI;
 	
-	public ChooseDeckGUI(Display parent){
+	public ChooseDeckGUI(Display parent, MainMenuGUI mainMenuGUI){
 		this.display = parent;
+		this.mainMenuGUI = mainMenuGUI;
 		initShell();
 		initNewButton();
 		initOpenButton();
@@ -64,6 +66,8 @@ public class ChooseDeckGUI {
 		this.shell.pack();
 		initPlayersDeck();
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
+		
+		this.mainMenuGUI.getClientUserInterface().setChoosenCardGUI(this);
 	}
 	
 	private void initPlayersDeck() {
@@ -97,8 +101,8 @@ public class ChooseDeckGUI {
 		this.newButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ChooseDeckGUI.this.systemList.removeAll();
-				ChooseDeckGUI.this.userList.removeAll();
+				systemList.removeAll();
+				userList.removeAll();
 				loadSystemDeck();
 				sortLists();
 			}
@@ -152,7 +156,7 @@ public class ChooseDeckGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Collections.addAll(playerCards, userList.getItems());
-				ChooseDeckGUI.this.shell.setVisible(false);
+				shell.setVisible(false);
 			}
 		});
 	}

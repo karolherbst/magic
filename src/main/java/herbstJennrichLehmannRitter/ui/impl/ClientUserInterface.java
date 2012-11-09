@@ -3,43 +3,62 @@ package herbstJennrichLehmannRitter.ui.impl;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.ui.UserInterface;
+import herbstJennrichLehmannRitter.ui.GUI.ChooseDeckGUI;
+import herbstJennrichLehmannRitter.ui.GUI.GameMenuGUI;
+import herbstJennrichLehmannRitter.ui.GUI.HostMenuGUI;
 import herbstJennrichLehmannRitter.ui.GUI.MainMenuGUI;
+import herbstJennrichLehmannRitter.ui.GUI.PlayGameGUI;
 
 import java.util.Collection;
 
 public class ClientUserInterface implements UserInterface {
 
-	private MainMenuGUI mainMenuGui;
+	private ChooseDeckGUI chooseDeckGUI;
+	private MainMenuGUI mainMenuGUI;
+	private PlayGameGUI playGameGUI;
+	private HostMenuGUI hostMenuGUI;
 
-	public ClientUserInterface(MainMenuGUI mainMenuGui) {
-		this.mainMenuGui = mainMenuGui;
+	public void setMainMenuGUI(MainMenuGUI mainMenuGUI) {
+		this.mainMenuGUI = mainMenuGUI;
+	}
+	
+	public void setPlayGameGUI(PlayGameGUI playGameGUI) {
+		this.playGameGUI = playGameGUI;
+	}
+	
+	public void setChoosenCardGUI(ChooseDeckGUI chooseDeckGUI) {
+		this.chooseDeckGUI = chooseDeckGUI; 
+	}
+	
+	public void setHostMenuGUI(HostMenuGUI hostMenuGUI) {
+		this.hostMenuGUI = hostMenuGUI;
 	}
 	
 	@Override
 	public void setData(Data data) {
-		this.mainMenuGui.getPlayGameGUI().setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
-		this.mainMenuGui.getPlayGameGUI().setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
-		this.mainMenuGui.getPlayGameGUI().setPlayerDungeonStock(data.getOwnPlayer().getDungeon().getStock());
-		this.mainMenuGui.getPlayGameGUI().setPlayerMagicLabLevel(data.getOwnPlayer().getMagicLab().getLevel());
-		this.mainMenuGui.getPlayGameGUI().setPlayerMagicLabStock(data.getOwnPlayer().getMagicLab().getStock());
-		this.mainMenuGui.getPlayGameGUI().setPlayerMineLevel(data.getOwnPlayer().getMine().getLevel());
-		this.mainMenuGui.getPlayGameGUI().setPlayerMineStock(data.getOwnPlayer().getMine().getStock());
-		this.mainMenuGui.getPlayGameGUI().setPlayerTower(data.getOwnPlayer().getTower().getActualPoints());
-		this.mainMenuGui.getPlayGameGUI().setPlayerWall(data.getOwnPlayer().getWall().getActualPoints());
+		this.playGameGUI.setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
+		this.playGameGUI.setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
+		this.playGameGUI.setPlayerDungeonStock(data.getOwnPlayer().getDungeon().getStock());
+		this.playGameGUI.setPlayerMagicLabLevel(data.getOwnPlayer().getMagicLab().getLevel());
+		this.playGameGUI.setPlayerMagicLabStock(data.getOwnPlayer().getMagicLab().getStock());
+		this.playGameGUI.setPlayerMineLevel(data.getOwnPlayer().getMine().getLevel());
+		this.playGameGUI.setPlayerMineStock(data.getOwnPlayer().getMine().getStock());
+		this.playGameGUI.setPlayerTower(data.getOwnPlayer().getTower().getActualPoints());
+		this.playGameGUI.setPlayerWall(data.getOwnPlayer().getWall().getActualPoints());
 		
-		this.mainMenuGui.getPlayGameGUI().setEnemyDungeonLevel(data.getEnemyPlayer().getDungeon().getLevel());
-		this.mainMenuGui.getPlayGameGUI().setEnemyDungeonStock(data.getEnemyPlayer().getDungeon().getStock());
-		this.mainMenuGui.getPlayGameGUI().setEnemyMagicLabLevel(data.getEnemyPlayer().getMagicLab().getLevel());
-		this.mainMenuGui.getPlayGameGUI().setEnemyMagicLabStock(data.getEnemyPlayer().getMagicLab().getStock());
-		this.mainMenuGui.getPlayGameGUI().setEnemyMineLevel(data.getEnemyPlayer().getMine().getLevel());
-		this.mainMenuGui.getPlayGameGUI().setEnemyMineStock(data.getEnemyPlayer().getMine().getStock());
-		this.mainMenuGui.getPlayGameGUI().setEnemyTower(data.getEnemyPlayer().getTower().getActualPoints());
-		this.mainMenuGui.getPlayGameGUI().setEnemyWall(data.getEnemyPlayer().getWall().getActualPoints());
+		this.playGameGUI.setEnemyDungeonLevel(data.getEnemyPlayer().getDungeon().getLevel());
+		this.playGameGUI.setEnemyDungeonStock(data.getEnemyPlayer().getDungeon().getStock());
+		this.playGameGUI.setEnemyMagicLabLevel(data.getEnemyPlayer().getMagicLab().getLevel());
+		this.playGameGUI.setEnemyMagicLabStock(data.getEnemyPlayer().getMagicLab().getStock());
+		this.playGameGUI.setEnemyMineLevel(data.getEnemyPlayer().getMine().getLevel());
+		this.playGameGUI.setEnemyMineStock(data.getEnemyPlayer().getMine().getStock());
+		this.playGameGUI.setEnemyTower(data.getEnemyPlayer().getTower().getActualPoints());
+		this.playGameGUI.setEnemyWall(data.getEnemyPlayer().getWall().getActualPoints());
 	}
 	
 	@Override
 	public void twoPlayerFound() {
-		this.mainMenuGui.getGameMenuGui().getHostMenuGUI().cancelTimerAndOpenPlayGameGUI();
+		this.hostMenuGUI.cancelTimerAndOpenPlayGameGUI();
 	}
 
 	@Override
@@ -56,36 +75,33 @@ public class ClientUserInterface implements UserInterface {
 
 	@Override
 	public void enemeyPlayedCard(Card card) {
-		this.mainMenuGui.getPlayGameGUI().setEnemyChoosenCardName(card.getName());
+		this.playGameGUI.setEnemyChoosenCardName(card.getName());
 	}
 
 	@Override
 	public void youLost() {
-		this.mainMenuGui.getPlayGameGUI().setGameStateToLoose();
+		this.playGameGUI.setGameStateToLoose();
 		
 	}
 
 	@Override
 	public void youWon() {
-		this.mainMenuGui.getPlayGameGUI().setGameStateToWon();
+		this.playGameGUI.setGameStateToWon();
 		
 	}
 
 	@Override
 	public void abort(String reason) {
-		this.mainMenuGui.getPlayGameGUI().setGameStateToAbort(reason);
+		this.playGameGUI.setGameStateToAbort(reason);
 	}
 
 	@Override
 	public String getName() {
-		return this.mainMenuGui.getPlayerName();
+		return this.mainMenuGUI.getPlayerName();
 	}
 
 	@Override
 	public Collection<String> getCards() {
-		//FIXME: Was muss hier hin, das Spieler Deck, das der Spieler erstellt, oder
-		return this.mainMenuGui.getChoosenCardGui().getPlayersCards();
-		// die Karten, das der Spieler aktuell auf der Hand hat?
-//		return this.mainMenuGui.getPlayGameGUI().getPlayerCards();
+		return this.chooseDeckGUI.getPlayersCards();
 	}
 }

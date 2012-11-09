@@ -1,6 +1,8 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
+import herbstJennrichLehmannRitter.ui.UserInterface;
+import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
@@ -26,12 +28,9 @@ public class MainMenuGUI {
 	private Button chooseDeckButton;
 	private Button exitButton;
 	
-	private GameMenuGUI gameMenuGUI;
-	private ChooseDeckGUI chooseDeckGUI;
-	private PlayGameGUI playGameGUI;
-	
 	private String playerName = "Spieler";
 	private String enemyName = "Computer";
+	private UserInterface clientUserInterface = new ClientUserInterface();
 	
 	public MainMenuGUI() {
 		this.display = new Display();
@@ -42,10 +41,8 @@ public class MainMenuGUI {
 		initExitButton();
 		this.shell.pack();
 		setShellLocationCenteredToScreen(this.display, this.shell);
-		
-		this.chooseDeckGUI = new ChooseDeckGUI(this.display);
-		this.gameMenuGUI = new GameMenuGUI(this.display, this);
 		this.shell.open();
+		this.getClientUserInterface().setMainMenuGUI(this);
 	}
 	
 	public static void main(String[] args) {
@@ -55,16 +52,8 @@ public class MainMenuGUI {
 		Globals.stopRemoteServer();
 	}
 	
-	public PlayGameGUI getPlayGameGUI() {
-		return this.playGameGUI;
-	}
-	
-	public GameMenuGUI getGameMenuGui() {
-		return this.gameMenuGUI;
-	}
-	
-	public ChooseDeckGUI getChoosenCardGui() {
-		return this.chooseDeckGUI;
+	public ClientUserInterface getClientUserInterface() {
+		return (ClientUserInterface)this.clientUserInterface;
 	}
 	
 	public String getPlayerName() {
@@ -107,7 +96,8 @@ public class MainMenuGUI {
 		this.chooseDeckButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				MainMenuGUI.this.chooseDeckGUI.open();
+				ChooseDeckGUI chooseDeckGUI = new ChooseDeckGUI(display, MainMenuGUI.this);
+				chooseDeckGUI.open();
 			}
 		});
 		
@@ -145,7 +135,8 @@ public class MainMenuGUI {
 		this.startGameButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				MainMenuGUI.this.gameMenuGUI.open();
+				GameMenuGUI gameMenuGUI = new GameMenuGUI(display, MainMenuGUI.this);
+				gameMenuGUI.open();
 			}
 		});
 

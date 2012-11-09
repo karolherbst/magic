@@ -41,12 +41,13 @@ public class HostMenuGUI {
 	private Combo gameModeBox;
 	private Label wartenLabel;
 	private Timer timer;
-	private PlayGameGUI playGameGUI;
+	
 	private GameServer gameServer;
-	private UserInterface clientUI;
+	private MainMenuGUI mainMenuGUI;
 
 	public HostMenuGUI(Display parent, MainMenuGUI mainMenuGUI){
 		this.display = parent;
+		this.mainMenuGUI = mainMenuGUI;
 		initShell();
 		initWartenLabel();
 		initModeLabel();
@@ -55,11 +56,11 @@ public class HostMenuGUI {
 		this.shell.pack();
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 		
+		this.mainMenuGUI.getClientUserInterface().setHostMenuGUI(this);
+		
 		this.gameServer = Globals.getLocalGameServer();
-		this.clientUI = new ClientUserInterface(mainMenuGUI);
-		this.playGameGUI = new PlayGameGUI(display, mainMenuGUI, this.gameServer);
 		try {
-			this.gameServer.register(clientUI);
+			this.gameServer.register(this.mainMenuGUI.getClientUserInterface());
 		} catch (RemoteException e) {
 			//FIXME: Karol, Catch Remote Exception richtig so?
 			System.out.println(e.getLocalizedMessage());
@@ -93,7 +94,7 @@ public class HostMenuGUI {
 			@Override
 			public void run() {
 				try {
-					gameServer.unregister(clientUI);
+					gameServer.unregister(mainMenuGUI.getClientUserInterface());
 				} catch (RemoteException e) {
 					//FIXME: Karol, RemoteException richtig so?
 					System.out.println(e.getLocalizedMessage());
@@ -135,7 +136,8 @@ public class HostMenuGUI {
 	
 	public void cancelTimerAndOpenPlayGameGUI() {
 		this.timer.cancel();
-		this.playGameGUI.open();
+		PlayGameGUI playGameGUI = new PlayGameGUI(display, this.mainMenuGUI, this.gameServer);
+		playGameGUI.open();
 	}
 	
 	private void msgBox(String text) {

@@ -75,7 +75,7 @@ public class ClientMenuGUI {
 		this.backButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ClientMenuGUI.this.shell.setVisible(false);
+				shell.setVisible(false);
 			}
 		});
 	}
@@ -90,7 +90,6 @@ public class ClientMenuGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Globals.getRemoteServer(ipTextField.getText());
-				
 				//TODO set Players name 
 			}
 		});

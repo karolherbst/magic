@@ -19,8 +19,6 @@ public class GameMenuGUI {
 	/**
 	 * Implementation Menü Spielauswahl
 	 */
-	
-	
 	private Shell shell;
 	private final Display display;
 	private Label nameTextLabel;
@@ -31,10 +29,7 @@ public class GameMenuGUI {
 	private Button startLocalButton;
 	private Button backButton;
 	
-	private HostMenuGUI hostMenuGUI;
-	private ClientMenuGUI clientMenuGUI;
 	private MainMenuGUI mainMenuGUI;
-	
 	
 	public GameMenuGUI(Display parent, MainMenuGUI mainMenuGUI) {
 		this.display = parent;
@@ -49,17 +44,10 @@ public class GameMenuGUI {
 		initBackButton();
 		this.shell.pack();
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
-		
-		this.clientMenuGUI = new ClientMenuGUI(this.display);
-		this.hostMenuGUI = new HostMenuGUI(this.display, this.mainMenuGUI);
 	}
 	
 	public void open() {
 		this.shell.open();
-	}
-	
-	public HostMenuGUI getHostMenuGUI() {
-		return this.hostMenuGUI;
 	}
 	
 	private void initShell() {
@@ -116,7 +104,8 @@ public class GameMenuGUI {
 		this.startHostButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				GameMenuGUI.this.hostMenuGUI.open();
+				HostMenuGUI hostMenuGUI = new HostMenuGUI(display, mainMenuGUI);
+				hostMenuGUI.open();
 			}
 		});
 	}
@@ -130,7 +119,8 @@ public class GameMenuGUI {
 		this.startClientButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				GameMenuGUI.this.clientMenuGUI.open();
+				ClientMenuGUI clientMenuGUI = new ClientMenuGUI(display);
+				clientMenuGUI.open();
 			}
 		});
 	}
