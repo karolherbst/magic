@@ -1,9 +1,11 @@
 package herbstJennrichLehmannRitter.tests.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
 import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
 import herbstJennrichLehmannRitter.engine.model.impl.MagicLabImpl;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -98,14 +100,14 @@ public class MagicLabTests {
 	public void testStockSetAndReduceNegativeStockTo25() {
 		this.magicLab.setStock(30);
 		this.magicLab.reduceStock(-5);
-		assertEquals(this.magicLab.getStock(), 25);
+		assertEquals(this.magicLab.getStock(), 35);
 	}
 	
 	@Test
 	public void testStockSetAndReduceNegativeStockTo0() {
 		this.magicLab.setStock(20);
 		this.magicLab.reduceStock(-25);
-		assertEquals(this.magicLab.getStock(), 0);
+		assertEquals(this.magicLab.getStock(), 45);
 	}
 	
 }
