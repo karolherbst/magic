@@ -51,8 +51,8 @@ public abstract class MagicUtils {
 	}
 	
 	public static boolean canPlayerEffortCard(Player player, Card card) {
-		return card.getCostBrick() < player.getMine().getStock()
-			&& card.getCostCrystal() < player.getMagicLab().getStock()
-			&& card.getCostMonsters() < player.getDungeon().getStock();
+		return card.getCostBrick() <= player.getMine().getStock()
+			&& card.getCostCrystal() <= player.getMagicLab().getStock()
+			&& card.getCostMonsters() <= player.getDungeon().getStock();
 	}
 }
