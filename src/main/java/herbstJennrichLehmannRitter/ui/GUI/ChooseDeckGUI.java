@@ -46,6 +46,7 @@ public class ChooseDeckGUI {
 	private Label systemLabel;
 	private List systemList;
 	private List userList;
+	private Collection<String> playerCards;
 	
 	public ChooseDeckGUI(Display parent){
 		this.display = parent;
@@ -60,8 +61,21 @@ public class ChooseDeckGUI {
 		initUserList();
 		initSystemToUserButton();
 		initUserToSystemButton();
-		this.shell.pack();			
+		this.shell.pack();
+		initPlayersDeck();
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
+	}
+	
+	private void initPlayersDeck() {
+		this.playerCards = new ArrayList<String>();
+		for (Card card: Globals.getGameCardFactory().createDefaultDeck()) {
+			this.playerCards.add(card.getName().toString());
+		}
+	}
+	
+	public Collection<String> getPlayersCards() {
+		return this.playerCards;
+
 	}
 
 	private void initShell() {
@@ -137,13 +151,7 @@ public class ChooseDeckGUI {
 		this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ArrayList<String> cardNames = new ArrayList<String>();
-				Collections.addAll(cardNames, userList.getItems());
-				if (cardNames.isEmpty()) {
-					Globals.getGameCardFactory().createDefaultDeck();
-				} else {
-					Globals.getGameCardFactory().createCardsFromNames(cardNames);
-				}
+				Collections.addAll(playerCards, userList.getItems());
 				ChooseDeckGUI.this.shell.setVisible(false);
 			}
 		});
@@ -285,9 +293,14 @@ public class ChooseDeckGUI {
 					this.userList.add(card.getName());
 				}
 			} catch (Exception e) {
-				MessageBox msgBox = new MessageBox(shell, SWT.ICON_ERROR);
-				msgBox.setMessage(e.getLocalizedMessage());
-				msgBox.open();
+					MessageBox msgBox = new MessageBox(shell, SWT.ICON_ERROR);
+					if (e.getLocalizedMessage() != null) {
+						msgBox.setMessage(e.getLocalizedMessage());
+					} else {
+						msgBox.setMessage("Die XML Datei ist leer!");
+					}
+					msgBox.open();
+					
 			}
 		}
 	}

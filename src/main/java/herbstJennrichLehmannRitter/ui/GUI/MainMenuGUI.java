@@ -26,10 +26,12 @@ public class MainMenuGUI {
 	private Button chooseDeckButton;
 	private Button exitButton;
 	
-	// subviews
 	private GameMenuGUI gameMenuGUI;
 	private ChooseDeckGUI chooseDeckGUI;
 	private PlayGameGUI playGameGUI;
+	
+	private String playerName = "Spieler";
+	private String enemyName = "Computer";
 	
 	public MainMenuGUI() {
 		this.display = new Display();
@@ -41,8 +43,8 @@ public class MainMenuGUI {
 		this.shell.pack();
 		setShellLocationCenteredToScreen(this.display, this.shell);
 		
-		this.gameMenuGUI = new GameMenuGUI(this.display);
 		this.chooseDeckGUI = new ChooseDeckGUI(this.display);
+		this.gameMenuGUI = new GameMenuGUI(this.display, this);
 		this.shell.open();
 	}
 	
@@ -59,6 +61,24 @@ public class MainMenuGUI {
 	
 	public GameMenuGUI getGameMenuGui() {
 		return this.gameMenuGUI;
+	}
+	
+	public ChooseDeckGUI getChoosenCardGui() {
+		return this.chooseDeckGUI;
+	}
+	
+	public String getPlayerName() {
+		return this.playerName;
+	}
+	public void setPlayerName(String name) {
+		this.playerName = name;
+	}
+	
+	public String getEnemyName() {
+		return this.enemyName;
+	}
+	public void setEnemyName(String name) {
+		this.enemyName = name;
 	}
 	
 	private void initShell() {
@@ -112,7 +132,7 @@ public class MainMenuGUI {
 		this.startDemoButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				PlayGameGUI playGameGUI = new PlayGameGUI(MainMenuGUI.this.display, Globals.getLocalGameServer());
+				PlayGameGUI playGameGUI = new PlayGameGUI(display, MainMenuGUI.this, Globals.getLocalGameServer());
 				playGameGUI.open();
 			}
 		});

@@ -1,6 +1,9 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
+import herbstJennrichLehmannRitter.server.GameServer;
+import herbstJennrichLehmannRitter.ui.UserInterface;
+import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -10,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -20,6 +25,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 
 public class HostMenuGUI {
@@ -34,8 +40,12 @@ public class HostMenuGUI {
 	private Label modeLabel;
 	private Combo gameModeBox;
 	private Label wartenLabel;
+	private Timer timer;
+	private PlayGameGUI playGameGUI;
+	private GameServer gameServer;
+	private UserInterface clientUI;
 
-	public HostMenuGUI(Display parent){
+	public HostMenuGUI(Display parent, MainMenuGUI mainMenuGUI){
 		this.display = parent;
 		initShell();
 		initWartenLabel();
@@ -44,6 +54,16 @@ public class HostMenuGUI {
 		initExitButton();
 		this.shell.pack();
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
+		
+		this.gameServer = Globals.getLocalGameServer();
+		this.clientUI = new ClientUserInterface(mainMenuGUI);
+		this.playGameGUI = new PlayGameGUI(display, mainMenuGUI, this.gameServer);
+		try {
+			this.gameServer.register(clientUI);
+		} catch (RemoteException e) {
+			//FIXME: Karol, Catch Remote Exception richtig so?
+			System.out.println(e.getLocalizedMessage());
+		}
 	}
 	
 	private void initModeLabel() {
@@ -59,12 +79,34 @@ public class HostMenuGUI {
 		this.gameModeBox = new Combo (this.shell , SWT.READ_ONLY);
 		String modes[] = { "Turmbau", "Sammelwut"};
 		this.gameModeBox.setItems(modes);
+		this.gameModeBox.select(0);
 		this.gameModeBox.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
 		
 	}
 
 	public void open() {
 		this.shell.open();
+		
+		this.timer = new Timer();
+		this.timer.schedule(new TimerTask() {
+			
+			@Override
+			public void run() {
+				try {
+					gameServer.unregister(clientUI);
+				} catch (RemoteException e) {
+					//FIXME: Karol, RemoteException richtig so?
+					System.out.println(e.getLocalizedMessage());
+				}
+				display.asyncExec(new Runnable() {
+					
+					@Override
+					public void run() {
+						msgBox("Es wurde kein weiterer Spieler innerhalb von 30 Sekunden gefunden");
+					}
+				});
+			}
+		}, 30000);
 	}
 	
 	private void initShell() {
@@ -78,7 +120,7 @@ public class HostMenuGUI {
 		
 		try {
 			text += "Ihre IP-Adresse ist:\n";
-			text += lookupIpAddress(); 
+			text += this.lookupIpAddress(); 
 			text += "\n";
 		} catch (SocketException e) {
 			text += "Ihre IP-Adresse ist unbekannt. Bitte prüfen Sie, ob Sie mit dem Netzwerk verbunden sind.\n";
@@ -89,15 +131,19 @@ public class HostMenuGUI {
 		this.wartenLabel.setText(text);
 		this.wartenLabel.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
 		this.wartenLabel.setBounds(this.shell.getClientArea());
-		
-		//TODO TODO wie erkenne ich, ob der andere Spieler sich verbunden hat?
-		//TODO Implementation GameServer
-		try {
-			Globals.startRemoteServer();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	}
+	
+	public void cancelTimerAndOpenPlayGameGUI() {
+		this.timer.cancel();
+		this.playGameGUI.open();
+	}
+	
+	private void msgBox(String text) {
+		MessageBox msgBox = new MessageBox(this.shell);
+		msgBox.setMessage(text);
+		msgBox.open();
+		this.timer.purge();
+		this.shell.setVisible(false);
 	}
 	
 	private String lookupIpAddress() throws SocketException {

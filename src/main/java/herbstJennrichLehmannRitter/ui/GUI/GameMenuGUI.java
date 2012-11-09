@@ -31,16 +31,14 @@ public class GameMenuGUI {
 	private Button startLocalButton;
 	private Button backButton;
 	
-	private String playerName;
-	
-	//Subviews
 	private HostMenuGUI hostMenuGUI;
 	private ClientMenuGUI clientMenuGUI;
-	private PlayGameGUI playGameGUI;
+	private MainMenuGUI mainMenuGUI;
 	
 	
-	public GameMenuGUI(Display parent) {
+	public GameMenuGUI(Display parent, MainMenuGUI mainMenuGUI) {
 		this.display = parent;
+		this.mainMenuGUI = mainMenuGUI;
 		initShell();
 		initNameTextLabel();
 		initNameTextField();
@@ -52,12 +50,16 @@ public class GameMenuGUI {
 		this.shell.pack();
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 		
-		this.hostMenuGUI = new HostMenuGUI(this.display);
 		this.clientMenuGUI = new ClientMenuGUI(this.display);
+		this.hostMenuGUI = new HostMenuGUI(this.display, this.mainMenuGUI);
 	}
 	
 	public void open() {
 		this.shell.open();
+	}
+	
+	public HostMenuGUI getHostMenuGUI() {
+		return this.hostMenuGUI;
 	}
 	
 	private void initShell() {
@@ -83,21 +85,17 @@ public class GameMenuGUI {
 		gridData.horizontalSpan = 3;
 		
 		this.nameTextField = new Text(this.shell, SWT.FILL);
-		this.nameTextField.setText("Spieler 1");
+		this.nameTextField.setText(this.mainMenuGUI.getPlayerName());
 		this.nameTextField.setLayoutData(gridData);
 		this.nameTextField.addModifyListener(new ModifyListener() {
 			@Override
 			public void modifyText(ModifyEvent e) {
 				Text changedText = (Text)e.widget;
-				playerName = changedText.getText();
+				mainMenuGUI.setPlayerName(changedText.getText());
 			}
 		});
 	}
 	
-	public String getPlayersName() {
-		return this.playerName;
-	}
-
 	private void initSelectionTextLabel() {
 	    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.grabExcessHorizontalSpace = true;
@@ -146,7 +144,7 @@ public class GameMenuGUI {
 		this.startLocalButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				PlayGameGUI playGameGUI = new PlayGameGUI(display, Globals.getLocalGameServer());
+				PlayGameGUI playGameGUI = new PlayGameGUI(display, mainMenuGUI, Globals.getLocalGameServer());
 				playGameGUI.open();
 			}
 		});

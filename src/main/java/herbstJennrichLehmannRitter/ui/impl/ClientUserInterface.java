@@ -13,7 +13,6 @@ public class ClientUserInterface implements UserInterface {
 
 	public ClientUserInterface(MainMenuGUI mainMenuGui) {
 		this.mainMenuGui = mainMenuGui;
-		setData(null);
 	}
 	
 	@Override
@@ -36,6 +35,11 @@ public class ClientUserInterface implements UserInterface {
 		this.mainMenuGui.getPlayGameGUI().setEnemyTower(data.getEnemyPlayer().getTower().getActualPoints());
 		this.mainMenuGui.getPlayGameGUI().setEnemyWall(data.getEnemyPlayer().getWall().getActualPoints());
 	}
+	
+	@Override
+	public void twoPlayerFound() {
+		this.mainMenuGui.getGameMenuGui().getHostMenuGUI().cancelTimerAndOpenPlayGameGUI();
+	}
 
 	@Override
 	public void nextTurn() {
@@ -56,34 +60,31 @@ public class ClientUserInterface implements UserInterface {
 
 	@Override
 	public void youLost() {
-		// TODO Auto-generated method stub
+		this.mainMenuGui.getPlayGameGUI().setGameStateToLoose();
 		
 	}
 
 	@Override
 	public void youWon() {
-		// TODO Auto-generated method stub
+		this.mainMenuGui.getPlayGameGUI().setGameStateToWon();
 		
 	}
 
 	@Override
 	public void abort(String reason) {
-		// TODO Auto-generated method stub
-		
+		this.mainMenuGui.getPlayGameGUI().setGameStateToAbort(reason);
 	}
 
 	@Override
 	public String getName() {
-		return this.mainMenuGui.getGameMenuGui().getPlayersName();
+		return this.mainMenuGui.getPlayerName();
 	}
 
 	@Override
 	public Collection<String> getCards() {
-		return this.mainMenuGui.getPlayGameGUI().getPlayerCards();
-	}
-
-	@Override
-	public void twoPlayerFound() {
-		// implement here a callback to notify the GUI, that another player was found
+		//FIXME: Was muss hier hin, das Spieler Deck, das der Spieler erstellt, oder
+		return this.mainMenuGui.getChoosenCardGui().getPlayersCards();
+		// die Karten, das der Spieler aktuell auf der Hand hat?
+//		return this.mainMenuGui.getPlayGameGUI().getPlayerCards();
 	}
 }

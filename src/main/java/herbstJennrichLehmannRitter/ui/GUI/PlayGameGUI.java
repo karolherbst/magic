@@ -13,6 +13,7 @@ import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FormAttachment;
@@ -48,22 +49,20 @@ public class PlayGameGUI {
 	private ArrayList<CardFields> enemyCards;
 	private CardFields playerChoosenCard;
 	private CardFields enemyChoosenCards;
-	private NameFields playersName;
-	private NameFields enemyName;
 	
 	private GameServer gameServer;
-	private Composite gameMessageCanv;
-	private Label gameMessage;
 	protected String text;
+	private GameMessage gameMessage;
+	private MainMenuGUI mainMenuGUI;
 	
-	public PlayGameGUI(Display parent, GameServer gameServer) {
+	public PlayGameGUI(Display parent, MainMenuGUI mainMenuGUI, GameServer gameServer) {
 		this.display = parent;
 		this.gameServer = gameServer;
+		this.mainMenuGUI = mainMenuGUI;
 		initShell();
-		//TODO: Aufruf hier sicherlich nicht richtig ;-)
-		initGameMessage(true);
+		this.gameMessage = new GameMessage();
 		initMenuBar();
-		initPlayersName();
+		initPlayerName();
 		initPlayerDungeon();
 		initPlayerMagicLab();
 		initPlayerMine();
@@ -82,49 +81,7 @@ public class PlayGameGUI {
 		horizontalLine();
 	}
 	
-	//TODO: Feld für den Spielernamen
-	//TODO: Gewonnen / Verloren / Gegner hat abgebrochen Nachricht
 	//TODO: Sichtbarmachen, wer gerade dran ist
-
-	private void initGameMessage(boolean isVisible) {
-		FormData gameMessageData = new FormData();
-		gameMessageData.left = new FormAttachment(0, 1, 260);
-		gameMessageData.top = new FormAttachment(0, 1, 150);
-		gameMessageData.height = 500;
-		gameMessageData.width = 500;
-
-		this.gameMessageCanv = new Canvas(this.shell, SWT.BORDER);
-		this.gameMessageCanv.setLayoutData(gameMessageData);
-		
-		//TODO: Abfrage youWon / youLost
-		if (isVisible) {
-			this.gameMessageCanv.setVisible(true);
-		} else {
-			this.gameMessageCanv.setVisible(false);
-		}
-		
-//		gameMessageCanv.addPaintListener(new PaintListener()  {
-//		      public void paintControl(PaintEvent e) {
-//		    	  Font font = new Font(display, "Verdana", 30, SWT.BOLD);
-//		    	  if (//TODO: You Won) {
-//			    	  e.gc.setFont(font);
-//			          e.gc.setForeground(display.getSystemColor(SWT.COLOR_GREEN));
-//			          e.gc.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
-//			    	  String text = "Du hast gewonnen!";
-//		    	  } else {
-//			    	  e.gc.setFont(font);
-//			          e.gc.setForeground(display.getSystemColor(SWT.COLOR_RED));
-//			          e.gc.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
-//			    	  String text = "Du hast verloren!";
-//		    	  }
-//		          Point textSize = e.gc.textExtent(text);
-//		          e.gc.drawText(text, (gameMessageCanv.getSize().x - textSize.x)/2, 
-//		        		  (gameMessageCanv.getSize().y - textSize.y)/2);
-//		          
-//		          font.dispose();
-//		      }
-//		});
-	}
 
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
@@ -274,7 +231,6 @@ public class PlayGameGUI {
 		this.playerCards = new ArrayList<CardFields>();
 		for (int i=0; i<6; i++) {
 			this.playerCards.add(new CardFields((x+(120*i)), y, true, true));
-			this.setPlayerCardName(i, "Dieb");
 		}
 	}
 	
@@ -310,7 +266,6 @@ public class PlayGameGUI {
 		for (CardFields cardfield : this.playerCards) {
 			cards.add(cardfield.getCardName());
 		}
-		
 		return cards;
 	}
 	
@@ -327,12 +282,24 @@ public class PlayGameGUI {
 		}
 	}
 	
-	private void initPlayersName() {
-		this.playersName = new NameFields("Spieler 1", 372);
+	private void initPlayerName() {
+		new NameFields(this.mainMenuGUI.getPlayerName(), 372);
 	}
 	
 	private void initEnemyName() {
-		this.enemyName = new NameFields("Gegner", 3);
+		new NameFields(this.mainMenuGUI.getEnemyName(), 3);
+	}
+	
+	public void setGameStateToWon() {
+		this.gameMessage.setTitleToWon();
+	}
+
+	public void setGameStateToLoose() {
+		this.gameMessage.setTitleToLoose();
+	}
+	
+	public void setGameStateToAbort(String reason) {
+		this.gameMessage.setTitleToAbort(reason);
 	}
 	
 	private class CardFields {
@@ -362,7 +329,6 @@ public class PlayGameGUI {
 						@Override
 					   public void mouseDown(MouseEvent e) {
 							if (!getCardName().isEmpty()) {
-								System.out.println(getCardName());
 								ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(display, true, 
 										Globals.getGameCardFactory().createCard(getCardName()));
 								showCardDetailGUI.open();
@@ -470,8 +436,6 @@ public class PlayGameGUI {
 	}
 	
 	private class NameFields {
-		private Label nameField;
-		
 		public NameFields(String name, int positionFromTop) {
 			FormData nameData = new FormData();
 			nameData.left =  new FormAttachment(0, 1000, 10);
@@ -484,13 +448,79 @@ public class PlayGameGUI {
 			nameLabel.setLayoutData(nameData);
 			nameLabel.pack();
 		}
-		
-		public void setPlayerName(String name) {
-			this.nameField.setText(name);
-		}
 	}
 
 	public void open() {
 		this.shell.open();
+	}
+	
+	private class GameMessage {
+		private Canvas gameMessageCanv;
+		private PaintEvent paintEvent;
+
+		public GameMessage() {
+			FormData gameMessageData = new FormData();
+			gameMessageData.left = new FormAttachment(0, 1, 260);
+			gameMessageData.top = new FormAttachment(0, 1, 150);
+			gameMessageData.height = 500;
+			gameMessageData.width = 500;
+			
+			this.gameMessageCanv = new Canvas(shell, SWT.BORDER);
+			this.gameMessageCanv.setLayoutData(gameMessageData);
+			this.gameMessageCanv.setVisible(false);
+			this.gameMessageCanv.setBackground(new Color(display, 255, 255, 255));
+		
+			this.gameMessageCanv.addPaintListener(new PaintListener()  {
+				public void paintControl(PaintEvent e) {
+					paintEvent = e;
+					
+					paintEvent.gc.setFont(new Font(display, "Verdana", 28, SWT.BOLD));
+				}
+			});
+		}
+		
+		public void setTitleToWon() {
+			this.gameMessageCanv.addPaintListener(new PaintListener()  {
+				public void paintControl(PaintEvent e) {
+					paintEvent = e;
+					
+					paintEvent.gc.setForeground(new Color(display, 0, 200, 0));
+					String text = "Sie haben gewonnen!";
+					Point textSize = paintEvent.gc.textExtent(text);
+					paintEvent.gc.drawText(text, (gameMessageCanv.getSize().x - textSize.x)/2, 
+							(gameMessageCanv.getSize().y - textSize.y)/2);
+				}
+			});
+			this.gameMessageCanv.setVisible(true);
+		}
+		
+		public void setTitleToLoose() {
+			this.gameMessageCanv.addPaintListener(new PaintListener()  {
+				public void paintControl(PaintEvent e) {
+					paintEvent = e;
+					
+					paintEvent.gc.setForeground(new Color(display, 200, 0, 0));
+					String text = "Sie haben verloren!";
+					Point textSize = paintEvent.gc.textExtent(text);
+					paintEvent.gc.drawText(text, (gameMessageCanv.getSize().x - textSize.x)/2, 
+							(gameMessageCanv.getSize().y - textSize.y)/2);
+				}
+			});
+			this.gameMessageCanv.setVisible(true);
+		}
+		
+		public void setTitleToAbort(final String text) {
+			this.gameMessageCanv.addPaintListener(new PaintListener()  {
+				public void paintControl(PaintEvent e) {
+					paintEvent = e;
+					
+					paintEvent.gc.setForeground(new Color(display, 0, 0, 0));
+					Point textSize = paintEvent.gc.textExtent(text);
+					paintEvent.gc.drawText(text, (gameMessageCanv.getSize().x - textSize.x)/2, 
+							(gameMessageCanv.getSize().y - textSize.y)/2);
+				}
+			});
+			this.gameMessageCanv.setVisible(true);
+		}
 	}
 }
