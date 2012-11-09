@@ -1,12 +1,10 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.server.GameServer;
-import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -22,7 +20,6 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
-import org.junit.internal.builders.AllDefaultPossibilitiesBuilder;
 
 public class HostMenuGUI {
 
