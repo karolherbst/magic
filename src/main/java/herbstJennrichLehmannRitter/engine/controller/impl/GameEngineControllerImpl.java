@@ -1,7 +1,9 @@
 package herbstJennrichLehmannRitter.engine.controller.impl;
 
 import herbstJennrichLehmannRitter.engine.controller.GameEngineController;
+import herbstJennrichLehmannRitter.engine.controller.WinAndLoseChecker;
 import herbstJennrichLehmannRitter.engine.enums.GameType;
+import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
 import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
@@ -26,7 +28,7 @@ public class GameEngineControllerImpl implements GameEngineController {
 	private static final int DEFAULT_RSC_BUILDING_LEVEL = 1;
 	private static final int DEFAULT_RSC_BUILDING_STOCK = 15;
 
-	private GameType gameType;
+	private WinAndLoseChecker winAndLoseChecker;
 	
 	private GameCardFactory gameCardFactory = new GameCardFactoryImpl();
 	private PlayerFactory playerFactory = new PlayerFactoryImpl();
@@ -62,19 +64,28 @@ public class GameEngineControllerImpl implements GameEngineController {
 
 	@Override
 	public void start(GameType gameType) {
-		// TODO: add class for win and lose checks
-		// FIXME: From where do I get the sourcePlayer and TargetPlayer? (Sebastian)
-//		GameAction gameAction = new GameActionImpl(sourcePlayer, targetPlayer);
-		this.gameType = gameType;
+		
+		switch (gameType) {
+		case TOWER_BUILDING:
+			this.winAndLoseChecker = new WinAndLoseTowerBuildingChecker();
+			break;
+
+		case COLLECTION_RAGE:
+			this.winAndLoseChecker = new WinAndLoseResourceRageChecker();
+			break;
+			
+		default:
+			throw new EngineCouldNotStartException("unknown game mode:" + gameType);
+		}
 	}
 	
 	@Override
 	public void stop() {
-		this.gameType = null;
+		this.winAndLoseChecker = null;
 	}
 	
 	private boolean isRunning() {
-		return this.gameType != null;
+		return this.winAndLoseChecker != null;
 	}
 	
 	@Override
