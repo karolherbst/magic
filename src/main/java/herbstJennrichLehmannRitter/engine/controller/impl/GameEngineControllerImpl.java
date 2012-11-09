@@ -2,6 +2,7 @@ package herbstJennrichLehmannRitter.engine.controller.impl;
 
 import herbstJennrichLehmannRitter.engine.controller.GameEngineController;
 import herbstJennrichLehmannRitter.engine.enums.GameType;
+import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
@@ -10,6 +11,7 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.impl.DataImpl;
+import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 
 import java.util.Collection;
 
@@ -78,10 +80,23 @@ public class GameEngineControllerImpl implements GameEngineController {
 	}
 
 	@Override
-	public void playCard(Card card, Player player, Player enePlayer) {
+	public void playCard(Card card, Player player, Player enemyPlayer) {
+		
+		if (!MagicUtils.canPlayerEffortCard(player, card)) {
+			throw new GameEngineException("player can't effort card");
+		}
+		
+		applyCostFromCardOnPlayer(card, player);
 		
 		// we can simply call this method here
 		discardCard(card, player);
+	}
+	
+	// playCard helper functions
+	private void applyCostFromCardOnPlayer(Card card, Player player) {
+		player.getDungeon().reduceStock(card.getCostMonsters());
+		player.getMagicLab().reduceStock(card.getCostCrystal());
+		player.getMine().reduceStock(card.getCostBrick());
 	}
 
 	@Override
