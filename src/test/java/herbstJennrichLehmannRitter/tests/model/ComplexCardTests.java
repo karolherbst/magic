@@ -33,9 +33,6 @@ public class ComplexCardTests {
 		
 		auferstehung.getComplexCardAction().applyActionOnPlayer(player1, player2);
 		
-		assertEquals(9, player1.getMagicLab().getStock());
-		assertEquals(9, player1.getMine().getStock());
-		assertEquals(9, player1.getDungeon().getStock());
 		assertEquals(32, player1.getTower().getActualPoints());
 	}
 	
@@ -49,7 +46,6 @@ public class ComplexCardTests {
 		
 		assertEquals(20, player1.getMagicLab().getStock());
 		assertEquals(18, player1.getMine().getStock());
-		assertEquals(3, player1.getDungeon().getStock());
 		assertEquals(5, player2.getMagicLab().getStock());
 		assertEquals(10, player2.getMine().getStock());
 	}
