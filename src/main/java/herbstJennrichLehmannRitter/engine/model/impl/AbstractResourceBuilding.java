@@ -60,7 +60,7 @@ public abstract class AbstractResourceBuilding implements ResourceBuilding {
 	@Override
 	public void reduceStock(int stocks){
 		if (stocks < 0) {
-			reduceStock(-stocks);
+			addStock(-stocks);
 		} else {
 			this.stock -= stocks;
 			if (this.stock < 0) {
