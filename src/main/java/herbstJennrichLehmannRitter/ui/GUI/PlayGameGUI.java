@@ -122,7 +122,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerDungeon() {
-		this.playerDungeon = new RessourceFields("Verlies", 10, 676, 42, 41);
+		this.playerDungeon = new RessourceFields("Verlies", 10, 676);
 	}
 	
 	public void setPlayerDungeonLevel(int level) {
@@ -134,7 +134,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerMagicLab() {
-		this.playerMagicLab = new RessourceFields("Zauberlabor", 220, 676, 40, 39);
+		this.playerMagicLab = new RessourceFields("Zauberlabor", 220, 676);
 	}
 	
 	public void setPlayerMagicLabLevel(int level) {
@@ -146,7 +146,7 @@ public class PlayGameGUI {
 	}
 
 	private void initPlayerMine() {
-		this.playerMine = new RessourceFields("Steinbruch", 430, 676, 17, 66);
+		this.playerMine = new RessourceFields("Steinbruch", 430, 676);
 	}
 
 	public void setPlayerMineLevel(int level) {
@@ -158,7 +158,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerWall() {
-		this.playerWall = new DefenceBuildingFields("Mauer", 640, 676, 25);
+		this.playerWall = new DefenceBuildingFields("Mauer", 640, 676);
 	}
 	
 	public void setPlayerWall(int level) {
@@ -166,7 +166,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerTower(){
-		this.playerTower = new DefenceBuildingFields("Turm", 830, 676, 50);
+		this.playerTower = new DefenceBuildingFields("Turm", 830, 676);
 	}
 
 	public void setPlayerTower(int level) {
@@ -174,7 +174,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initEnemyDungeon() {
-		this.enemyDungeon = new RessourceFields("Verlies", 10, 20, 42, 41);
+		this.enemyDungeon = new RessourceFields("Verlies", 10, 20);
 	}
 	
 	public void setEnemyDungeonLevel(int level) {
@@ -186,7 +186,7 @@ public class PlayGameGUI {
 	}
 
 	private void initEnemyMagicLab() {
-		this.enemyMagicLab = new RessourceFields("Zauberlabor", 220, 20, 40, 39);
+		this.enemyMagicLab = new RessourceFields("Zauberlabor", 220, 20);
 	}
 	
 	public void setEnemyMagicLabLevel(int level) {
@@ -198,7 +198,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initEnemyMine() {
-		this.enemyMine = new RessourceFields("Steinbruch", 430, 20, 17, 66);
+		this.enemyMine = new RessourceFields("Steinbruch", 430, 20);
 	}
 	
 	public void setEnemyMineLevel(int level) {
@@ -210,7 +210,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initEnemyWall() {
-		this.enemyWall = new DefenceBuildingFields("Mauer", 640, 20, 25);
+		this.enemyWall = new DefenceBuildingFields("Mauer", 640, 20);
 	}
 	
 	public void setEnemyWall(int level) {
@@ -218,7 +218,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initEnemyTower(){
-		this.enemyTower = new DefenceBuildingFields("Turm", 830, 20, 50);
+		this.enemyTower = new DefenceBuildingFields("Turm", 830, 20);
 	}
 	
 	public void setEnemyTower(int level) {
@@ -354,7 +354,7 @@ public class PlayGameGUI {
 	private class DefenceBuildingFields {
 		private Label levelValue;
 		
-		public DefenceBuildingFields(String headline,int positionFromLeft, int positionFromTop, int level){
+		public DefenceBuildingFields(String headline,int positionFromLeft, int positionFromTop){
 			FormData canvasData = new FormData();
 			canvasData.left =  new FormAttachment(0, 1000, positionFromLeft);
 			canvasData.top =  new FormAttachment(0, 1000, positionFromTop);
@@ -375,7 +375,7 @@ public class PlayGameGUI {
 			}
 			{	
 				this.levelValue = new Label(defenceComp, SWT.NONE);
-				this.levelValue.setText(String.valueOf(level));
+				this.levelValue.setText(String.valueOf(0));
 				this.levelValue.setBounds(80, 20, 60, 15);
 			}
 		}
@@ -389,7 +389,7 @@ public class PlayGameGUI {
 		private Label levelValue;
 		private Label stockValue;
 		
-		public RessourceFields(String headline,int positionFromLeft, int positionFromTop, int level, int stock) {
+		public RessourceFields(String headline,int positionFromLeft, int positionFromTop) {
 			FormData canvasData = new FormData();
 			canvasData.left =  new FormAttachment(0, 1000, positionFromLeft);
 			canvasData.top =  new FormAttachment(0, 1000, positionFromTop);
@@ -410,7 +410,7 @@ public class PlayGameGUI {
 			}
 			{	
 				this.levelValue = new Label(ressourceComp, SWT.NONE);
-				this.levelValue.setText(String.valueOf(level));
+				this.levelValue.setText(String.valueOf(0));
 				this.levelValue.setBounds(80, 20, 60, 15);
 			}
 			{
@@ -421,7 +421,7 @@ public class PlayGameGUI {
 			}
 			{	
 				this.stockValue = new Label(ressourceComp, SWT.NONE);
-				this.stockValue.setText(String.valueOf(stock));
+				this.stockValue.setText(String.valueOf(0));
 				this.stockValue.setBounds(80, 38, 60, 15);
 			}
 		}
