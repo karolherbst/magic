@@ -155,5 +155,11 @@ public class GameEngineControllerImpl implements GameEngineController {
 		// this will refill to an amount of max 6 cards
 		player.getDeck().pickCards(6);
 	}
+	
+	@Override
+	public boolean canPlayerPlayAnotherRound(Card card, Player player) {
+		// TODO: add check against hand deck
+		return card.getCardAction().getPlayCards();
+	}
 
 }

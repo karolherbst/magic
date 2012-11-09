@@ -156,13 +156,13 @@ public class GameServiceImpl implements GameService {
 		this.gameEngineController.playCard(card, uiHolder.player, uiHolder.enemy.player);
 		uiHolder.enemy.userInterface.enemeyPlayedCard(card);
 		
-		if (card.getCardAction().getPlayCards()) {
+		updatePlayerDatas(uiHolder);
+		if (this.gameEngineController.canPlayerPlayAnotherRound(card, uiHolder.player)) {
 			uiHolder.userInterface.playAnotherCard();
 		} else {
 			uiHolder.enemy.userInterface.nextTurn();
 		}
 		
-		updatePlayerDatas(uiHolder);
 	}
 
 	@Override
@@ -180,9 +180,9 @@ public class GameServiceImpl implements GameService {
 		
 		this.gameEngineController.addResourcesToPlayer(uiHolder.player);
 		this.gameEngineController.discardCard(card, uiHolder.player);
-		uiHolder.enemy.userInterface.nextTurn();
-		
+
 		updatePlayerDatas(uiHolder);
+		uiHolder.enemy.userInterface.nextTurn();
 	}
 
 	@Override
