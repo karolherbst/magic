@@ -81,4 +81,9 @@ public class ClientUserInterface implements UserInterface {
 	public Collection<String> getCards() {
 		return this.mainMenuGui.getPlayGameGUI().getPlayerCards();
 	}
+
+	@Override
+	public void twoPlayerFound() {
+		// implement here a callback to notify the GUI, that another player was found
+	}
 }

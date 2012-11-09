@@ -136,4 +136,9 @@ public class KI implements UserInterface, Runnable {
 		return Globals.getGameCardFactory().getAllPossibleCardNames();
 	}
 
+	@Override
+	public void twoPlayerFound() {
+		// TODO Auto-generated method stub
+	}
+
 }

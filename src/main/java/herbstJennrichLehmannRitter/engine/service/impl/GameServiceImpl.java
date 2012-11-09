@@ -11,7 +11,6 @@ import herbstJennrichLehmannRitter.ui.UserInterface;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Semaphore;
 
 public class GameServiceImpl implements GameService {
 
@@ -60,59 +59,37 @@ public class GameServiceImpl implements GameService {
 		uiHolder.enemy.userInterface.setData(enemyData);
 	}
 	
-	static private Semaphore lockRegister = new Semaphore(1);
 	@Override
-	public void register(Thread thread, UserInterface userInterface) {
+	public synchronized void register(Thread thread, UserInterface userInterface) {
+
 		final UIHolder newUIHolder = new UIHolder(userInterface);
-		try {
-			lockRegister.acquire();
-			if (this.threadToUi.size() == 0) {
-				
-				synchronized (this.threadToUi) {
-					this.threadToUi.put(thread, newUIHolder);
-					lockRegister.release();
-					this.threadToUi.wait(DEFAULT_TIMEOUT);
-				
-					if (this.threadToUi.size() != 2) {
-						this.threadToUi.remove(newUIHolder);
-						throw new IllegalArgumentException("something strange happend");
-					}
-					
-					for ( UIHolder uiHolder : this.threadToUi.values()) {
-						if (uiHolder != newUIHolder) {
-							newUIHolder.enemy = uiHolder;
-							uiHolder.enemy = newUIHolder;
-							newUIHolder.player = createPlayer(userInterface.getName(), userInterface.getCards());
-							this.threadToUi.notify();
-						}
-					}
-				}
-				
-				updatePlayerDatas(newUIHolder);
-				newUIHolder.userInterface.nextTurn();
-				
-				return;
-			}
-		} catch (InterruptedException e) {
-			this.threadToUi.remove(newUIHolder);
-			throw new IllegalArgumentException("wait timedout", e);
+
+		if (this.threadToUi.size() == 0) {
+			newUIHolder.player = createPlayer(userInterface.getName(), userInterface.getCards());
+			this.threadToUi.put(thread, newUIHolder);
+			return;
 		}
 		
-		try {
-			if (this.threadToUi.size() == 1) {
-				newUIHolder.player = createPlayer(userInterface.getName(), userInterface.getCards());
-				
-				synchronized (this.threadToUi) {
-					this.threadToUi.put(thread, newUIHolder);
-					lockRegister.release();
-					this.threadToUi.notify();
-					this.threadToUi.wait(DEFAULT_TIMEOUT);
+		if (this.threadToUi.size() == 1) {
+			newUIHolder.player = createPlayer(userInterface.getName(), userInterface.getCards());
+			
+			for (UIHolder uiHolder : this.threadToUi.values()) {
+				// connect players
+				if (uiHolder != newUIHolder) {
+					newUIHolder.enemy = uiHolder;
+					uiHolder.enemy = newUIHolder;
 				}
-				
-				return;
 			}
-		} catch (InterruptedException e) {
-			throw new IllegalArgumentException("wait timedout", e);
+			
+			this.threadToUi.put(thread, newUIHolder);
+			
+			updatePlayerDatas(newUIHolder);
+			
+			newUIHolder.userInterface.twoPlayerFound();
+			newUIHolder.enemy.userInterface.twoPlayerFound();
+			newUIHolder.userInterface.nextTurn();
+			
+			return;
 		}
 		
 		if (this.threadToUi.size() > 2) {

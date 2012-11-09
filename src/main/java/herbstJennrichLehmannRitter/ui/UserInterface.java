@@ -14,6 +14,8 @@ public interface UserInterface {
 	
 	public void setData(Data data);
 
+	public void twoPlayerFound();
+	
 	public void nextTurn();
 
 	public void playAnotherCard();
