@@ -2,6 +2,7 @@ package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.server.GameServer;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -47,8 +48,11 @@ public class ChooseDeckGUI {
 	private List systemList;
 	private List userList;
 	
-	public ChooseDeckGUI(Display parent){
+	private GameServer gameServer;
+	
+	public ChooseDeckGUI(Display parent, GameServer gameServer){
 		this.display = parent;
+		this.gameServer = gameServer;
 		initShell();
 		initNewButton();
 		initOpenButton();

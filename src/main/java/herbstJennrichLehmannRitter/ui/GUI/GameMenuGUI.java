@@ -1,5 +1,7 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
+import herbstJennrichLehmannRitter.server.GameServer;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -30,6 +32,7 @@ public class GameMenuGUI {
 	private Button backButton;
 	
 	private String playerName;
+	private GameServer gameServer;
 	
 	//Subviews
 	private HostMenuGUI hostMenuGUI;
@@ -37,8 +40,9 @@ public class GameMenuGUI {
 	private PlayGameGUI playGameGUI;
 	
 	
-	public GameMenuGUI(Display parent) {
+	public GameMenuGUI(Display parent, GameServer gameServer) {
 		this.display = parent;
+		this.gameServer = gameServer;
 		initShell();
 		initNameTextLabel();
 		initNameTextField();
@@ -50,9 +54,9 @@ public class GameMenuGUI {
 		this.shell.pack();
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 		
-		this.hostMenuGUI = new HostMenuGUI(this.display);
+		this.hostMenuGUI = new HostMenuGUI(this.display, this.gameServer);
 		this.clientMenuGUI = new ClientMenuGUI(this.display);
-		this.playGameGUI = new PlayGameGUI(this.display);
+		this.playGameGUI = new PlayGameGUI(this.display, this.gameServer);
 	}
 	
 	public void open() {

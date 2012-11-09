@@ -1,6 +1,7 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
+import herbstJennrichLehmannRitter.server.GameServer;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,26 +42,33 @@ public class PlayGameGUI {
 	private ArrayList<CardFields> enemyCards;
 	private CardFields playerChoosenCard;
 	private CardFields enemyChoosenCards;
+	private NameFields playersName;
+	private NameFields enemyName;
 	
-	public PlayGameGUI(Display parent) {
+	private GameServer gameServer;
+	
+	public PlayGameGUI(Display parent, GameServer gameServer) {
 		this.display = parent;
+		this.gameServer = gameServer;
 		initShell();
 		initMenuBar();
+		initPlayersName();
 		initPlayerDungeon();
 		initPlayerMagicLab();
 		initPlayerMine();
 		initEnemyDungeon();
 		initPlayerWall();
 		initPlayerTower();
+		initEnemyName();
 		initEnemyMagicLab();
 		initEnemyMine();
 		initEnemyWall();
 		initEnemyTower();
-		horizontalLine();
 		initPlayerCards();
 		initEnemyCards();
 		initPlayerChoosenCards();
 		initEnemyChoosenCards();
+		horizontalLine();
 	}
 	
 	//TODO: Feld für den Spielernamen
@@ -268,6 +276,14 @@ public class PlayGameGUI {
 		}
 	}
 	
+	private void initPlayersName() {
+		this.playersName = new NameFields("Spieler 1", 370);
+	}
+	
+	private void initEnemyName() {
+		this.enemyName = new NameFields("Gegner", 8);
+	}
+	
 	private class CardFields {
 		private Label nameLabel;
 		private Composite cardComp;
@@ -399,6 +415,27 @@ public class PlayGameGUI {
 		
 		public void setStock(int stock) {
 			this.stockValue.setText(String.valueOf(stock));
+		}
+	}
+	
+	private class NameFields {
+		private Label nameField;
+		
+		public NameFields(String name, int positionFromTop) {
+			FormData nameData = new FormData();
+			nameData.left =  new FormAttachment(0, 1000, 10);
+			nameData.top =  new FormAttachment(0, 1000, positionFromTop);
+			nameData.width = 1004;
+			nameData.height = 20;
+			
+			Label nameLabel = new Label(shell, SWT.CENTER);
+			nameLabel.setText(name);
+			nameLabel.setLayoutData(nameData);
+			nameLabel.pack();
+		}
+		
+		public void setPlayerName(String name) {
+			this.nameField.setText(name);
 		}
 	}
 

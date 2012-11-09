@@ -1,5 +1,7 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
+import herbstJennrichLehmannRitter.server.GameServer;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -16,13 +18,6 @@ import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 public class MainMenuGUI {
 
-	/**
-	 * Implementation Hauptmenü
-	 * TODO: Event neues Fenster anderer Klasse öffnen!
-	 */
-
-	private static MainMenuGUI mainMenuGUI;
-	
 	private int shells = 0;
 	private Shell shell;
 	private Display display;
@@ -30,6 +25,8 @@ public class MainMenuGUI {
 	private Button startDemoButton;
 	private Button chooseDeckButton;
 	private Button exitButton;
+	
+	private GameServer gameServer;
 	
 	// subviews
 	private GameMenuGUI gameMenuGUI;
@@ -46,9 +43,9 @@ public class MainMenuGUI {
 		this.shell.pack();
 		setShellLocationCenteredToScreen(this.display, this.shell);
 		
-		this.gameMenuGUI = new GameMenuGUI(this.display);
-		this.chooseDeckGUI = new ChooseDeckGUI(this.display);
-		this.playGameGUI = new PlayGameGUI(this.display);
+		this.gameMenuGUI = new GameMenuGUI(this.display, this.gameServer);
+		this.chooseDeckGUI = new ChooseDeckGUI(this.display, this.gameServer);
+		this.playGameGUI = new PlayGameGUI(this.display, this.gameServer);
 		this.shell.open();
 	}
 	

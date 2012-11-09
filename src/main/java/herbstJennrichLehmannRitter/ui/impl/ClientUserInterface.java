@@ -9,7 +9,6 @@ import java.util.Collection;
 
 public class ClientUserInterface implements UserInterface {
 
-//	private PlayGameGUI playGameGUI;
 	private MainMenuGUI mainMenuGui;
 
 	public ClientUserInterface(MainMenuGUI mainMenuGui) {
