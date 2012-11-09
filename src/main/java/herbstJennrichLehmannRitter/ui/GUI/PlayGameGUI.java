@@ -3,6 +3,7 @@ package herbstJennrichLehmannRitter.ui.GUI;
 import herbstJennrichLehmannRitter.engine.Globals;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
@@ -61,6 +62,10 @@ public class PlayGameGUI {
 		initPlayerChoosenCards();
 		initEnemyChoosenCards();
 	}
+	
+	//TODO: Feld für den Spielernamen
+	//TODO: Gewonnen / Verloren / Gegner hat abgebrochen Nachricht
+	//TODO: Sichtbarmachen, wer gerade dran ist
 
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
@@ -241,10 +246,18 @@ public class PlayGameGUI {
 
 	}
 	
+	public Collection<String> getPlayerCards() {
+		Collection<String> cards = new ArrayList<String>();
+		for (CardFields cardfield : this.playerCards) {
+			cards.add(cardfield.getCardName());
+		}
+		
+		return cards;
+	}
+	
 	private void initEnemyChoosenCards() {
 		this.enemyChoosenCards = new CardFields(457, 215, false, false);
 	}
-	
 	
 	public void setEnemyChoosenCardName(String name) {
 		if (name != null) {

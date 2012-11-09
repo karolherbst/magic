@@ -1,6 +1,8 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -26,6 +28,8 @@ public class GameMenuGUI {
 	private Button startClientButton;
 	private Button startLocalButton;
 	private Button backButton;
+	
+	private String playerName;
 	
 	//Subviews
 	private HostMenuGUI hostMenuGUI;
@@ -78,8 +82,20 @@ public class GameMenuGUI {
 		gridData.horizontalSpan = 3;
 		
 		this.nameTextField = new Text(this.shell, SWT.FILL);
+		this.nameTextField.setText("Spieler 1");
 		this.nameTextField.setLayoutData(gridData);
-	}	
+		this.nameTextField.addModifyListener(new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent e) {
+				Text changedText = (Text)e.widget;
+				playerName = changedText.getText();
+			}
+		});
+	}
+	
+	public String getPlayersName() {
+		return this.playerName;
+	}
 
 	private void initSelectionTextLabel() {
 	    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);

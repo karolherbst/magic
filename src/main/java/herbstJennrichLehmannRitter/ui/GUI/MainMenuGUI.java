@@ -57,6 +57,14 @@ public class MainMenuGUI {
 		mainMenuGUI.keepOpen();
 	}
 	
+	public PlayGameGUI getPlayGameGUI() {
+		return this.playGameGUI;
+	}
+	
+	public GameMenuGUI getGameMenuGui() {
+		return this.gameMenuGUI;
+	}
+	
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
 		this.shells++;

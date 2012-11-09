@@ -3,38 +3,39 @@ package herbstJennrichLehmannRitter.ui.impl;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.ui.UserInterface;
-import herbstJennrichLehmannRitter.ui.GUI.PlayGameGUI;
+import herbstJennrichLehmannRitter.ui.GUI.MainMenuGUI;
 
 import java.util.Collection;
 
 public class ClientUserInterface implements UserInterface {
 
-	private PlayGameGUI playGameGUI;
+//	private PlayGameGUI playGameGUI;
+	private MainMenuGUI mainMenuGui;
 
-	public ClientUserInterface(PlayGameGUI playGameGUI) {
-		//TODO: Was hier?
-	setData(null);
+	public ClientUserInterface(MainMenuGUI mainMenuGui) {
+		this.mainMenuGui = mainMenuGui;
+		setData(null);
 	}
 	
 	@Override
 	public void setData(Data data) {
-		// TODO: ist das von der Logik her so richtig?
-		playGameGUI.setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
-		playGameGUI.setPlayerDungeonStock(data.getOwnPlayer().getDungeon().getStock());
-		playGameGUI.setPlayerMagicLabLevel(data.getOwnPlayer().getMagicLab().getLevel());
-		playGameGUI.setPlayerMagicLabStock(data.getOwnPlayer().getMagicLab().getStock());
-		playGameGUI.setPlayerMineLevel(data.getOwnPlayer().getMine().getLevel());
-		playGameGUI.setPlayerMineStock(data.getOwnPlayer().getMine().getStock());
-		playGameGUI.setPlayerTower(data.getOwnPlayer().getTower().getActualPoints());
-		playGameGUI.setPlayerWall(data.getOwnPlayer().getWall().getActualPoints());
-		playGameGUI.setEnemyDungeonLevel(data.getEnemyPlayer().getDungeon().getLevel());
-		playGameGUI.setEnemyDungeonStock(data.getEnemyPlayer().getDungeon().getStock());
-		playGameGUI.setEnemyMagicLabLevel(data.getEnemyPlayer().getMagicLab().getLevel());
-		playGameGUI.setEnemyMagicLabStock(data.getEnemyPlayer().getMagicLab().getStock());
-		playGameGUI.setEnemyMineLevel(data.getEnemyPlayer().getMine().getLevel());
-		playGameGUI.setEnemyMineStock(data.getEnemyPlayer().getMine().getStock());
-		playGameGUI.setEnemyTower(data.getEnemyPlayer().getTower().getActualPoints());
-		playGameGUI.setEnemyWall(data.getEnemyPlayer().getWall().getActualPoints());
+		this.mainMenuGui.getPlayGameGUI().setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
+		this.mainMenuGui.getPlayGameGUI().setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
+		this.mainMenuGui.getPlayGameGUI().setPlayerDungeonStock(data.getOwnPlayer().getDungeon().getStock());
+		this.mainMenuGui.getPlayGameGUI().setPlayerMagicLabLevel(data.getOwnPlayer().getMagicLab().getLevel());
+		this.mainMenuGui.getPlayGameGUI().setPlayerMagicLabStock(data.getOwnPlayer().getMagicLab().getStock());
+		this.mainMenuGui.getPlayGameGUI().setPlayerMineLevel(data.getOwnPlayer().getMine().getLevel());
+		this.mainMenuGui.getPlayGameGUI().setPlayerMineStock(data.getOwnPlayer().getMine().getStock());
+		this.mainMenuGui.getPlayGameGUI().setPlayerTower(data.getOwnPlayer().getTower().getActualPoints());
+		this.mainMenuGui.getPlayGameGUI().setPlayerWall(data.getOwnPlayer().getWall().getActualPoints());
+		this.mainMenuGui.getPlayGameGUI().setEnemyDungeonLevel(data.getEnemyPlayer().getDungeon().getLevel());
+		this.mainMenuGui.getPlayGameGUI().setEnemyDungeonStock(data.getEnemyPlayer().getDungeon().getStock());
+		this.mainMenuGui.getPlayGameGUI().setEnemyMagicLabLevel(data.getEnemyPlayer().getMagicLab().getLevel());
+		this.mainMenuGui.getPlayGameGUI().setEnemyMagicLabStock(data.getEnemyPlayer().getMagicLab().getStock());
+		this.mainMenuGui.getPlayGameGUI().setEnemyMineLevel(data.getEnemyPlayer().getMine().getLevel());
+		this.mainMenuGui.getPlayGameGUI().setEnemyMineStock(data.getEnemyPlayer().getMine().getStock());
+		this.mainMenuGui.getPlayGameGUI().setEnemyTower(data.getEnemyPlayer().getTower().getActualPoints());
+		this.mainMenuGui.getPlayGameGUI().setEnemyWall(data.getEnemyPlayer().getWall().getActualPoints());
 	}
 
 	@Override
@@ -51,8 +52,7 @@ public class ClientUserInterface implements UserInterface {
 
 	@Override
 	public void enemeyPlayedCard(Card card) {
-		// TODO Auto-generated method stub
-		
+		this.mainMenuGui.getPlayGameGUI().setEnemyChoosenCardName(card.getName());
 	}
 
 	@Override
@@ -75,13 +75,11 @@ public class ClientUserInterface implements UserInterface {
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.mainMenuGui.getGameMenuGui().getPlayersName();
 	}
 
 	@Override
 	public Collection<String> getCards() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.mainMenuGui.getPlayGameGUI().getPlayerCards();
 	}
 }

@@ -1,12 +1,6 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
-import herbstJennrichLehmannRitter.engine.Globals;
-import herbstJennrichLehmannRitter.engine.enums.GameType;
-import herbstJennrichLehmannRitter.engine.model.Card;
-import herbstJennrichLehmannRitter.engine.model.Data;
-import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 import herbstJennrichLehmannRitter.server.GameServer;
-import herbstJennrichLehmannRitter.ui.UserInterface;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
