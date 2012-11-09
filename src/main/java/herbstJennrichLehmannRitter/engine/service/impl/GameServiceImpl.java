@@ -2,6 +2,7 @@ package herbstJennrichLehmannRitter.engine.service.impl;
 
 import herbstJennrichLehmannRitter.engine.controller.GameEngineController;
 import herbstJennrichLehmannRitter.engine.enums.GameType;
+import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.engine.model.Player;
@@ -37,12 +38,18 @@ public class GameServiceImpl implements GameService {
 	
 	@Override
 	public void start(GameType gameType) {
+		if (this.threadToUi.size() < 2) {
+			throw new EngineCouldNotStartException("there aren't two players at the moment");
+		}
+		
 		this.gameEngineController.start(gameType);
+		
+		this.threadToUi.values().iterator().next().userInterface.nextTurn();
 	}
 	
 	@Override
 	public void stop() {
-		//this.isRunning = false;
+		this.gameEngineController.stop();
 	}
 	
 	private Player createPlayer(String name, Collection<String> cardNames) {
@@ -87,7 +94,6 @@ public class GameServiceImpl implements GameService {
 			
 			newUIHolder.userInterface.twoPlayerFound();
 			newUIHolder.enemy.userInterface.twoPlayerFound();
-			newUIHolder.userInterface.nextTurn();
 			
 			return;
 		}

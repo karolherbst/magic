@@ -112,6 +112,10 @@ public class GameEngineControllerImpl implements GameEngineController {
 
 	@Override
 	public void playCard(Card card, Player player, Player enemyPlayer) {
+		if (!isRunning()) {
+			throw new GameEngineException("GameEngine is not Running");
+		}
+		
 		if (!MagicUtils.canPlayerEffortCard(player, card)) {
 			throw new GameEngineException("player can't effort card");
 		}
@@ -128,6 +132,10 @@ public class GameEngineControllerImpl implements GameEngineController {
 	
 	@Override
 	public void discardCard(Card card, Player player) {
+		if (!isRunning()) {
+			throw new GameEngineException("GameEngine is not Running");
+		}
+		
 		addResourcesToPlayer(player);
 		throwAwayCardAndRefillHandDeckIfNeeded(card, player);
 	}
