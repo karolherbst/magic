@@ -11,6 +11,7 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
+import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
 import herbstJennrichLehmannRitter.engine.model.impl.DataImpl;
 import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
@@ -109,6 +110,7 @@ public class GameEngineControllerImpl implements GameEngineController {
 		applyCostFromCardOnPlayer(card, player);
 		applyResourceAction(card.getOwnResourceAction(), player);
 		applyResourceAction(card.getEnemyResourceAction(), enemyPlayer);
+		applyComplexCardAction(card.getComplexCardAction(), player, enemyPlayer);
 		
 		// we can simply call this method here
 		discardCard(card, player);
@@ -137,6 +139,14 @@ public class GameEngineControllerImpl implements GameEngineController {
 		
 		// apply damage on Player
 		player.getTower().applyDamage(player.getWall().applyDamage(ra.getDamage()));
+	}
+	
+	private void applyComplexCardAction(ComplexCardAction cca, Player player, Player enemy) {
+		if (cca == null) {
+			return;
+		}
+		
+		cca.applyActionOnPlayer(player, enemy);
 	}
 	
 	@Override
