@@ -152,7 +152,6 @@ public class GameServiceImpl implements GameService {
 		UIHolder uiHolder = this.threadToUi.get(thread);
 		System.out.println("service: player " + uiHolder.player.getName() + " played card " + card.getName());
 		
-		this.gameEngineController.addResourcesToPlayer(uiHolder.player);
 		this.gameEngineController.playCard(card, uiHolder.player, uiHolder.enemy.player);
 		uiHolder.enemy.userInterface.enemeyPlayedCard(card);
 		
@@ -178,7 +177,6 @@ public class GameServiceImpl implements GameService {
 		UIHolder uiHolder = this.threadToUi.get(thread);
 		System.out.println("service: player " + uiHolder.player.getName() + " discard card " + card.getName());
 		
-		this.gameEngineController.addResourcesToPlayer(uiHolder.player);
 		this.gameEngineController.discardCard(card, uiHolder.player);
 
 		updatePlayerDatas(uiHolder);

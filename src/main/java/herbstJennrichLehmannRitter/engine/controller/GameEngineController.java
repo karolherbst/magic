@@ -20,8 +20,6 @@ public interface GameEngineController {
 	
 	public Data createDataForPlayer(Player player, Player enemy);
 	
-	public void addResourcesToPlayer(Player player);
-	
 	public void playCard(Card card, Player player, Player enePlayer);
 	public void discardCard(Card card, Player player);
 	public boolean canPlayerPlayAnotherRound(Card card, Player player);

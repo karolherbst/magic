@@ -83,8 +83,7 @@ public class GameEngineControllerImpl implements GameEngineController {
 	}
 	
 	private Player lastPlayerWhoGainedResources = null;
-	@Override
-	public void addResourcesToPlayer(Player player) {
+	private void addResourcesToPlayer(Player player) {
 		if (player == this.lastPlayerWhoGainedResources) {
 			return;
 		}
@@ -102,18 +101,32 @@ public class GameEngineControllerImpl implements GameEngineController {
 
 	@Override
 	public void playCard(Card card, Player player, Player enemyPlayer) {
-		
 		if (!MagicUtils.canPlayerEffortCard(player, card)) {
 			throw new GameEngineException("player can't effort card");
 		}
+		
+		addResourcesToPlayer(player);
 		
 		applyCostFromCardOnPlayer(card, player);
 		applyResourceAction(card.getOwnResourceAction(), player);
 		applyResourceAction(card.getEnemyResourceAction(), enemyPlayer);
 		applyComplexCardAction(card.getComplexCardAction(), player, enemyPlayer);
 		
-		// we can simply call this method here
-		discardCard(card, player);
+		throwAwayCardAndRefillHandDeckIfNeeded(card, player);
+	}
+	
+	@Override
+	public void discardCard(Card card, Player player) {
+		addResourcesToPlayer(player);
+		throwAwayCardAndRefillHandDeckIfNeeded(card, player);
+	}
+	
+	public void throwAwayCardAndRefillHandDeckIfNeeded(Card card, Player player) {
+		player.getDeck().discardCard(card);
+		
+		if (!card.getCardAction().getPlayCards()) {
+			player.getDeck().pickCards(6);
+		}
 	}
 	
 	// playCard helper functions
@@ -147,13 +160,6 @@ public class GameEngineControllerImpl implements GameEngineController {
 		}
 		
 		cca.applyActionOnPlayer(player, enemy);
-	}
-	
-	@Override
-	public void discardCard(Card card, Player player) {
-		player.getDeck().discardCard(card);
-		// this will refill to an amount of max 6 cards
-		player.getDeck().pickCards(6);
 	}
 	
 	@Override
