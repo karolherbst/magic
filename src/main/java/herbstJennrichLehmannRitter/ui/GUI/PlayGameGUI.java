@@ -9,17 +9,23 @@ import java.util.Collection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
+
 public class PlayGameGUI {
 
 	/**
@@ -46,11 +52,16 @@ public class PlayGameGUI {
 	private NameFields enemyName;
 	
 	private GameServer gameServer;
+	private Composite gameMessageCanv;
+	private Label gameMessage;
+	protected String text;
 	
 	public PlayGameGUI(Display parent, GameServer gameServer) {
 		this.display = parent;
 		this.gameServer = gameServer;
 		initShell();
+		//TODO: Aufruf hier sicherlich nicht richtig ;-)
+		initGameMessage(true);
 		initMenuBar();
 		initPlayersName();
 		initPlayerDungeon();
@@ -74,6 +85,46 @@ public class PlayGameGUI {
 	//TODO: Feld für den Spielernamen
 	//TODO: Gewonnen / Verloren / Gegner hat abgebrochen Nachricht
 	//TODO: Sichtbarmachen, wer gerade dran ist
+
+	private void initGameMessage(boolean isVisible) {
+		FormData gameMessageData = new FormData();
+		gameMessageData.left = new FormAttachment(0, 1, 260);
+		gameMessageData.top = new FormAttachment(0, 1, 150);
+		gameMessageData.height = 500;
+		gameMessageData.width = 500;
+
+		this.gameMessageCanv = new Canvas(this.shell, SWT.BORDER);
+		this.gameMessageCanv.setLayoutData(gameMessageData);
+		
+		//TODO: Abfrage youWon / youLost
+		if (isVisible) {
+			this.gameMessageCanv.setVisible(true);
+		} else {
+			this.gameMessageCanv.setVisible(false);
+		}
+		
+//		gameMessageCanv.addPaintListener(new PaintListener()  {
+//		      public void paintControl(PaintEvent e) {
+//		    	  Font font = new Font(display, "Verdana", 30, SWT.BOLD);
+//		    	  if (//TODO: You Won) {
+//			    	  e.gc.setFont(font);
+//			          e.gc.setForeground(display.getSystemColor(SWT.COLOR_GREEN));
+//			          e.gc.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
+//			    	  String text = "Du hast gewonnen!";
+//		    	  } else {
+//			    	  e.gc.setFont(font);
+//			          e.gc.setForeground(display.getSystemColor(SWT.COLOR_RED));
+//			          e.gc.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
+//			    	  String text = "Du hast verloren!";
+//		    	  }
+//		          Point textSize = e.gc.textExtent(text);
+//		          e.gc.drawText(text, (gameMessageCanv.getSize().x - textSize.x)/2, 
+//		        		  (gameMessageCanv.getSize().y - textSize.y)/2);
+//		          
+//		          font.dispose();
+//		      }
+//		});
+	}
 
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
@@ -166,7 +217,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initEnemyDungeon() {
-		this.enemyDungeon = new RessourceFields("Verlies", 10, 10, 42, 41);
+		this.enemyDungeon = new RessourceFields("Verlies", 10, 20, 42, 41);
 	}
 	
 	public void setEnemyDungeonLevel(int level) {
@@ -178,7 +229,7 @@ public class PlayGameGUI {
 	}
 
 	private void initEnemyMagicLab() {
-		this.enemyMagicLab = new RessourceFields("Zauberlabor", 220, 10, 40, 39);
+		this.enemyMagicLab = new RessourceFields("Zauberlabor", 220, 20, 40, 39);
 	}
 	
 	public void setEnemyMagicLabLevel(int level) {
@@ -190,7 +241,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initEnemyMine() {
-		this.enemyMine = new RessourceFields("Steinbruch", 430, 10, 17, 66);
+		this.enemyMine = new RessourceFields("Steinbruch", 430, 20, 17, 66);
 	}
 	
 	public void setEnemyMineLevel(int level) {
@@ -202,7 +253,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initEnemyWall() {
-		this.enemyWall = new DefenceBuildingFields("Mauer", 640, 10, 25);
+		this.enemyWall = new DefenceBuildingFields("Mauer", 640, 20, 25);
 	}
 	
 	public void setEnemyWall(int level) {
@@ -210,7 +261,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initEnemyTower(){
-		this.enemyTower = new DefenceBuildingFields("Turm", 830, 10, 50);
+		this.enemyTower = new DefenceBuildingFields("Turm", 830, 20, 50);
 	}
 	
 	public void setEnemyTower(int level) {
@@ -233,7 +284,7 @@ public class PlayGameGUI {
 	
 	private void initEnemyCards() {
 		int x = 157;
-		int y = 76;
+		int y = 86;
 		this.enemyCards = new ArrayList<CardFields>();
 		for (int i=0; i<6; i++) {
 			this.enemyCards.add(new CardFields((x+(120*i)), y, true, true));
@@ -264,7 +315,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initEnemyChoosenCards() {
-		this.enemyChoosenCards = new CardFields(457, 215, false, false);
+		this.enemyChoosenCards = new CardFields(457, 235, false, false);
 	}
 	
 	public void setEnemyChoosenCardName(String name) {
@@ -277,11 +328,11 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayersName() {
-		this.playersName = new NameFields("Spieler 1", 370);
+		this.playersName = new NameFields("Spieler 1", 372);
 	}
 	
 	private void initEnemyName() {
-		this.enemyName = new NameFields("Gegner", 8);
+		this.enemyName = new NameFields("Gegner", 3);
 	}
 	
 	private class CardFields {
