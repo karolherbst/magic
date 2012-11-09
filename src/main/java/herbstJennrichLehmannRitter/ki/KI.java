@@ -7,6 +7,7 @@ import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
+import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.concurrent.Semaphore;
 
@@ -49,6 +50,9 @@ public class KI implements UserInterface, Runnable {
 			}
 		} catch (InterruptedException e) {
 			System.out.println("KI " + getName() + " failed!");
+		} catch (RemoteException e) {
+			// TODO: exception
+			e.printStackTrace();
 		}
 	}
 	
@@ -61,7 +65,7 @@ public class KI implements UserInterface, Runnable {
 		this.gameServer = gameServer;
 	}
 	
-	private void runKILogic() {
+	private void runKILogic() throws RemoteException {
 		System.out.println(getName() + ": my next turn, now you will die!");
 		
 		Card cardToPlay = null;

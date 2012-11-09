@@ -1,8 +1,11 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
+import herbstJennrichLehmannRitter.engine.Globals;
+
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -75,7 +78,7 @@ public class HostMenuGUI {
 		
 		try {
 			text += "Ihre IP-Adresse ist:\n";
-			text += this.lookupIpAddress(); 
+			text += lookupIpAddress(); 
 			text += "\n";
 		} catch (SocketException e) {
 			text += "Ihre IP-Adresse ist unbekannt. Bitte prüfen Sie, ob Sie mit dem Netzwerk verbunden sind.\n";
@@ -89,6 +92,12 @@ public class HostMenuGUI {
 		
 		//TODO TODO wie erkenne ich, ob der andere Spieler sich verbunden hat?
 		//TODO Implementation GameServer
+		try {
+			Globals.startRemoteServer();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private String lookupIpAddress() throws SocketException {
@@ -113,6 +122,7 @@ public class HostMenuGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				HostMenuGUI.this.shell.setVisible(false);
+				Globals.stopRemoteServer();
 			}
 		});
 	}

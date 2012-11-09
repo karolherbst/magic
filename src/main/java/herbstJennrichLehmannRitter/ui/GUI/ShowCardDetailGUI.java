@@ -3,6 +3,8 @@ package herbstJennrichLehmannRitter.ui.GUI;
 import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.engine.model.Card;
 
+import java.rmi.RemoteException;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
@@ -90,38 +92,38 @@ public class ShowCardDetailGUI {
 	}
 
 	private void initCardTypeLabel() {
-		this.createCategorieText(this.cardTypeLabel, "Kartentyp:", true, 40, 0);
+		createCategorieText(this.cardTypeLabel, "Kartentyp:", true, 40, 0);
 	}
 
 	private void initCardTypeText() {
-		this.createCardText(this.cardType, this.card.getCardType().toString(), 40, 0);
+		createCardText(this.cardType, this.card.getCardType().toString(), 40, 0);
 	}
 	
 	private void initCardCostsLabel() {
-		this.createCategorieText(this.cardCostsLabel, "Kosten:", true, 65, 0);
+		createCategorieText(this.cardCostsLabel, "Kosten:", true, 65, 0);
 	}
 	
 	private void initCardCostsText() {
-		this.createCardText(this.cardCosts, this.card.getCostDescription().replace(", ", "\n"), 65, 0);
+		createCardText(this.cardCosts, this.card.getCostDescription().replace(", ", "\n"), 65, 0);
 	}
 	
 	private void initCardEffectsLabel() {
-		this.createCategorieText(this.cardEffectsLabel, "Effekte:", true, 130, 0);
+		createCategorieText(this.cardEffectsLabel, "Effekte:", true, 130, 0);
 	}
 	
 	private void initCardOwnEffectsLabel() {
-		this.createCategorieText(this.cardOwnEffectsLabel, "Eigene:", false, 150, 90);
+		createCategorieText(this.cardOwnEffectsLabel, "Eigene:", false, 150, 90);
 	}
 	
 	private void initCardOwnEffectsText() {
-		this.createCardText(this.cardOwnEffects, this.card.getOwnEffectDescription(), 150, 90);
+		createCardText(this.cardOwnEffects, this.card.getOwnEffectDescription(), 150, 90);
 	}
 
 	private void initCardEnemyEffectsLabel() {
-		this.createCategorieText(this.cardEnemyEffectsLabel, "Gegner:", false, 250, 90);
+		createCategorieText(this.cardEnemyEffectsLabel, "Gegner:", false, 250, 90);
 	}
 	private void initCardEnemyEffectsText() {
-		this.createCardText(this.cardEnemyEffects, this.card.getEnemyEffectDescription(), 250, 90);
+		createCardText(this.cardEnemyEffects, this.card.getEnemyEffectDescription(), 250, 90);
 	}
 
 	private void initExitButton() {
@@ -158,7 +160,11 @@ public class ShowCardDetailGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				//TODO: Karol, ist hier getLocalGameServer richtig, wenn ich das generell an dich übergeben möchte?
-				Globals.getLocalGameServer().discardCard(card);
+				try {
+					Globals.getLocalGameServer().discardCard(ShowCardDetailGUI.this.card);
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 	}
@@ -178,7 +184,12 @@ public class ShowCardDetailGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				//TODO: Karol, ist hier getLocalGameServer richtig, wenn ich das generell an dich übergeben möchte?
-				Globals.getLocalGameServer().playCard(card);
+				try {
+					Globals.getLocalGameServer().playCard(ShowCardDetailGUI.this.card);
+				} catch (RemoteException e1) {
+					// TODO: exception
+					e1.printStackTrace();
+				}
 			}
 		});
 	}

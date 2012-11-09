@@ -49,6 +49,8 @@ public class MainMenuGUI {
 	public static void main(String[] args) {
 		MainMenuGUI mainMenuGUI = new MainMenuGUI();
 		mainMenuGUI.keepOpen();
+		
+		Globals.stopRemoteServer();
 	}
 	
 	public PlayGameGUI getPlayGameGUI() {
@@ -110,7 +112,7 @@ public class MainMenuGUI {
 		this.startDemoButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				PlayGameGUI playGameGUI = new PlayGameGUI(display, Globals.getLocalGameServer());
+				PlayGameGUI playGameGUI = new PlayGameGUI(MainMenuGUI.this.display, Globals.getLocalGameServer());
 				playGameGUI.open();
 			}
 		});
