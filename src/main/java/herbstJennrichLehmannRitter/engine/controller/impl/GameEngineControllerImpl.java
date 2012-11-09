@@ -10,6 +10,7 @@ import herbstJennrichLehmannRitter.engine.factory.impl.PlayerFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.engine.model.Player;
+import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
 import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
 import herbstJennrichLehmannRitter.engine.model.impl.DataImpl;
 import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
@@ -78,6 +79,24 @@ public class GameEngineControllerImpl implements GameEngineController {
 	@Override
 	public Data createDataForPlayer(Player player, Player enemy) {
 		return new DataImpl(player, this.playerFactory.createCopyForEnemy(enemy));
+	}
+	
+	private Player lastPlayerWhoGainedResources = null;
+	@Override
+	public void addResourcesToPlayer(Player player) {
+		if (player == this.lastPlayerWhoGainedResources) {
+			return;
+		}
+		
+		addResourcesToResourceBuilding(player.getMine());
+		addResourcesToResourceBuilding(player.getMagicLab());
+		addResourcesToResourceBuilding(player.getDungeon());
+		
+		this.lastPlayerWhoGainedResources = player;
+	}
+	
+	private void addResourcesToResourceBuilding(ResourceBuilding rb) {
+		rb.addStock(rb.getLevel());
 	}
 
 	@Override
