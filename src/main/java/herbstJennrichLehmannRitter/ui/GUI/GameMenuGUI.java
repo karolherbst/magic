@@ -1,6 +1,6 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
-import herbstJennrichLehmannRitter.server.GameServer;
+import herbstJennrichLehmannRitter.engine.Globals;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -32,7 +32,6 @@ public class GameMenuGUI {
 	private Button backButton;
 	
 	private String playerName;
-	private GameServer gameServer;
 	
 	//Subviews
 	private HostMenuGUI hostMenuGUI;
@@ -40,9 +39,8 @@ public class GameMenuGUI {
 	private PlayGameGUI playGameGUI;
 	
 	
-	public GameMenuGUI(Display parent, GameServer gameServer) {
+	public GameMenuGUI(Display parent) {
 		this.display = parent;
-		this.gameServer = gameServer;
 		initShell();
 		initNameTextLabel();
 		initNameTextField();
@@ -54,9 +52,8 @@ public class GameMenuGUI {
 		this.shell.pack();
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 		
-		this.hostMenuGUI = new HostMenuGUI(this.display, this.gameServer);
+		this.hostMenuGUI = new HostMenuGUI(this.display);
 		this.clientMenuGUI = new ClientMenuGUI(this.display);
-		this.playGameGUI = new PlayGameGUI(this.display, this.gameServer);
 	}
 	
 	public void open() {
@@ -149,7 +146,8 @@ public class GameMenuGUI {
 		this.startLocalButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				GameMenuGUI.this.playGameGUI.open();
+				PlayGameGUI playGameGUI = new PlayGameGUI(display, Globals.getLocalGameServer());
+				playGameGUI.open();
 			}
 		});
 	}

@@ -1,7 +1,5 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
-import herbstJennrichLehmannRitter.server.GameServer;
-
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -33,11 +31,9 @@ public class HostMenuGUI {
 	private Label modeLabel;
 	private Combo gameModeBox;
 	private Label wartenLabel;
-	private GameServer gameServer;
 
-	public HostMenuGUI(Display parent, GameServer gameServer){
+	public HostMenuGUI(Display parent){
 		this.display = parent;
-		this.gameServer = gameServer;
 		initShell();
 		initWartenLabel();
 		initModeLabel();
@@ -91,6 +87,7 @@ public class HostMenuGUI {
 		this.wartenLabel.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
 		this.wartenLabel.setBounds(this.shell.getClientArea());
 		
+		//TODO TODO wie erkenne ich, ob der andere Spieler sich verbunden hat?
 		//TODO Implementation GameServer
 	}
 	

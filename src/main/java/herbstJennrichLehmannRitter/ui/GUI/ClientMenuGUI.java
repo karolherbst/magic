@@ -90,6 +90,7 @@ public class ClientMenuGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Globals.getRemoteServer(ipTextField.getText());
+				
 				//TODO set Players name 
 			}
 		});

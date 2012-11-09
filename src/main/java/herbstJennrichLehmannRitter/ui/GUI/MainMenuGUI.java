@@ -1,6 +1,6 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
-import herbstJennrichLehmannRitter.server.GameServer;
+import herbstJennrichLehmannRitter.engine.Globals;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
@@ -26,8 +26,6 @@ public class MainMenuGUI {
 	private Button chooseDeckButton;
 	private Button exitButton;
 	
-	private GameServer gameServer;
-	
 	// subviews
 	private GameMenuGUI gameMenuGUI;
 	private ChooseDeckGUI chooseDeckGUI;
@@ -43,9 +41,8 @@ public class MainMenuGUI {
 		this.shell.pack();
 		setShellLocationCenteredToScreen(this.display, this.shell);
 		
-		this.gameMenuGUI = new GameMenuGUI(this.display, this.gameServer);
-		this.chooseDeckGUI = new ChooseDeckGUI(this.display, this.gameServer);
-		this.playGameGUI = new PlayGameGUI(this.display, this.gameServer);
+		this.gameMenuGUI = new GameMenuGUI(this.display);
+		this.chooseDeckGUI = new ChooseDeckGUI(this.display);
 		this.shell.open();
 	}
 	
@@ -113,7 +110,8 @@ public class MainMenuGUI {
 		this.startDemoButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				MainMenuGUI.this.playGameGUI.open();
+				PlayGameGUI playGameGUI = new PlayGameGUI(display, Globals.getLocalGameServer());
+				playGameGUI.open();
 			}
 		});
 	}
