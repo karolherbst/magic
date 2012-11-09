@@ -93,11 +93,12 @@ public class HostMenuGUI {
 			
 			@Override
 			public void run() {
+				//FIXME: Muss hier ein unregister hin? Da bekomme ich immer eine Exception...
+				// dazu "Start Spiel" -> "Spiel als Host" und 3 Sekunden warten
 				try {
 					System.out.println(mainMenuGUI.getClientUserInterface());
 					gameServer.unregister(mainMenuGUI.getClientUserInterface());
 				} catch (RemoteException e) {
-					//FIXME: Karol, RemoteException richtig so?
 					System.out.println(e.getLocalizedMessage());
 				}
 				display.asyncExec(new Runnable() {

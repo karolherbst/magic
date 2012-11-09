@@ -3,8 +3,6 @@ package herbstJennrichLehmannRitter.ui.impl;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.ui.UserInterface;
-import herbstJennrichLehmannRitter.ui.GUI.ChooseDeckGUI;
-import herbstJennrichLehmannRitter.ui.GUI.GameMenuGUI;
 import herbstJennrichLehmannRitter.ui.GUI.HostMenuGUI;
 import herbstJennrichLehmannRitter.ui.GUI.MainMenuGUI;
 import herbstJennrichLehmannRitter.ui.GUI.PlayGameGUI;
@@ -13,7 +11,6 @@ import java.util.Collection;
 
 public class ClientUserInterface implements UserInterface {
 
-	private ChooseDeckGUI chooseDeckGUI;
 	private MainMenuGUI mainMenuGUI;
 	private PlayGameGUI playGameGUI;
 	private HostMenuGUI hostMenuGUI;
@@ -24,10 +21,6 @@ public class ClientUserInterface implements UserInterface {
 	
 	public void setPlayGameGUI(PlayGameGUI playGameGUI) {
 		this.playGameGUI = playGameGUI;
-	}
-	
-	public void setChoosenCardGUI(ChooseDeckGUI chooseDeckGUI) {
-		this.chooseDeckGUI = chooseDeckGUI; 
 	}
 	
 	public void setHostMenuGUI(HostMenuGUI hostMenuGUI) {
