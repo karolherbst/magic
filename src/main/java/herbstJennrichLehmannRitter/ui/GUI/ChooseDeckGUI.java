@@ -46,7 +46,6 @@ public class ChooseDeckGUI {
 	private Label systemLabel;
 	private List systemList;
 	private List userList;
-	private Collection<String> playerCards;
 	private MainMenuGUI mainMenuGUI;
 	
 	public ChooseDeckGUI(Display parent, MainMenuGUI mainMenuGUI){
@@ -66,21 +65,16 @@ public class ChooseDeckGUI {
 		this.shell.pack();
 		initPlayersDeck();
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
-		
-		this.mainMenuGUI.getClientUserInterface().setChoosenCardGUI(this);
 	}
 	
 	private void initPlayersDeck() {
-		this.playerCards = new ArrayList<String>();
+		Collection<String> cards = new ArrayList<String>();
 		for (Card card: Globals.getGameCardFactory().createDefaultDeck()) {
-			this.playerCards.add(card.getName().toString());
+			cards.add(card.getName().toString());
 		}
+		this.mainMenuGUI.setPlayerCards(cards);
 	}
 	
-	public Collection<String> getPlayersCards() {
-		return this.playerCards;
-
-	}
 
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
@@ -155,7 +149,9 @@ public class ChooseDeckGUI {
 		this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Collections.addAll(playerCards, userList.getItems());
+				Collection<String> cards = new ArrayList<String>();
+				Collections.addAll(cards, userList.getItems());
+				mainMenuGUI.setPlayerCards(cards);
 				shell.setVisible(false);
 			}
 		});

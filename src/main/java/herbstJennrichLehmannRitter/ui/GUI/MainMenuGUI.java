@@ -1,6 +1,11 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
 import herbstJennrichLehmannRitter.engine.Globals;
+import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
 
@@ -30,6 +35,7 @@ public class MainMenuGUI {
 	
 	private String playerName = "Spieler";
 	private String enemyName = "Computer";
+	private Collection<String> playerCards = new ArrayList<String>();
 	private UserInterface clientUserInterface = new ClientUserInterface();
 	
 	public MainMenuGUI() {
@@ -43,6 +49,11 @@ public class MainMenuGUI {
 		setShellLocationCenteredToScreen(this.display, this.shell);
 		this.shell.open();
 		this.getClientUserInterface().setMainMenuGUI(this);
+		
+		Collection<Card> cards = Globals.getGameCardFactory().createDefaultDeck();
+		for (Card card:cards) {
+			this.playerCards.add(card.getName());
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -68,6 +79,13 @@ public class MainMenuGUI {
 	}
 	public void setEnemyName(String name) {
 		this.enemyName = name;
+	}
+	
+	public Collection<String> getPlayerCards() {
+		return this.playerCards;
+	}
+	public void setPlayerCards(Collection<String> cards) {
+		this.playerCards = cards;
 	}
 	
 	private void initShell() {

@@ -102,6 +102,6 @@ public class ClientUserInterface implements UserInterface {
 
 	@Override
 	public Collection<String> getCards() {
-		return this.chooseDeckGUI.getPlayersCards();
+		return this.mainMenuGUI.getPlayerCards();
 	}
 }

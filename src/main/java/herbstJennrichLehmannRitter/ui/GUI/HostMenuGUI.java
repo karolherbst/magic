@@ -94,6 +94,7 @@ public class HostMenuGUI {
 			@Override
 			public void run() {
 				try {
+					System.out.println(mainMenuGUI.getClientUserInterface());
 					gameServer.unregister(mainMenuGUI.getClientUserInterface());
 				} catch (RemoteException e) {
 					//FIXME: Karol, RemoteException richtig so?
@@ -107,7 +108,7 @@ public class HostMenuGUI {
 					}
 				});
 			}
-		}, 30000);
+		}, 3000);
 	}
 	
 	private void initShell() {
