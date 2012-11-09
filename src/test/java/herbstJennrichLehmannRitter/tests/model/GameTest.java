@@ -1,21 +1,15 @@
 package herbstJennrichLehmannRitter.tests.model;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.Collection;
-
-import herbstJennrichLehmannRitter.engine.enums.GameType;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
 import herbstJennrichLehmannRitter.engine.factory.impl.PlayerFactoryImpl;
-import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.GameAction;
 import herbstJennrichLehmannRitter.engine.model.action.impl.GameActionImpl;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class GameTest {
