@@ -10,6 +10,7 @@ import herbstJennrichLehmannRitter.engine.factory.impl.PlayerFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.engine.model.Player;
+import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
 import herbstJennrichLehmannRitter.engine.model.impl.DataImpl;
 import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 
@@ -87,6 +88,8 @@ public class GameEngineControllerImpl implements GameEngineController {
 		}
 		
 		applyCostFromCardOnPlayer(card, player);
+		applyResourceAction(card.getOwnResourceAction(), player);
+		applyResourceAction(card.getEnemyResourceAction(), enemyPlayer);
 		
 		// we can simply call this method here
 		discardCard(card, player);
@@ -98,7 +101,25 @@ public class GameEngineControllerImpl implements GameEngineController {
 		player.getMagicLab().reduceStock(card.getCostCrystal());
 		player.getMine().reduceStock(card.getCostBrick());
 	}
+	
+	private void applyResourceAction(ResourceAction ra, Player player) {
 
+		player.getMine().addStock(ra.getBrickEffect());
+		player.getMine().addLevel(ra.getMineLvlEffect());
+		
+		player.getDungeon().addStock(ra.getMonsterEffect());
+		player.getDungeon().addLevel(ra.getDungeonLvlEffect());
+		
+		player.getMagicLab().addStock(ra.getCrystalEffect());
+		player.getMagicLab().addLevel(ra.getMagicLabLvlEffect());
+		
+		player.getWall().addPoints(ra.getWallEffect());
+		player.getTower().addPoints(ra.getTowerEffect());
+		
+		// apply damage on Player
+		player.getTower().applyDamage(player.getWall().applyDamage(ra.getDamage()));
+	}
+	
 	@Override
 	public void discardCard(Card card, Player player) {
 		player.getDeck().discardCard(card);
