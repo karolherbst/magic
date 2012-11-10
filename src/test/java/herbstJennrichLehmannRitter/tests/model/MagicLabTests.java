@@ -62,10 +62,25 @@ public class MagicLabTests {
 	}
 	
 	@Test
-	public void testLevelSetAndReduceNegativeLevelTo0() {
+	public void testLevelSetAndReduceLevelWithReductionLowerThanActualLevelTo5() {
 		this.magicLab.setLevel(10);
-		this.magicLab.reduceLevel(15);
-		assertEquals(this.magicLab.getLevel(), 0);
+		this.magicLab.reduceLevel(5);
+		assertEquals(this.magicLab.getLevel(), 5);
+	}
+	
+	@Test
+	public void testSetLevelAndReduceLevelWithReductionHigherThanActualLevelTo1() {
+		this.magicLab.setLevel(5);
+		this.magicLab.reduceLevel(6);
+		assertEquals(this.magicLab.getLevel(), 1);
+		//TODO Der Test hier wars
+	}
+	
+	@Test
+	public void testSetLevelAndReduceLevelWithReductionEqualToActualLevelTo1() {
+		this.magicLab.setLevel(5);
+		this.magicLab.reduceLevel(5);
+		assertEquals(this.magicLab.getLevel(), 1);
 	}
 	
 	
@@ -73,6 +88,12 @@ public class MagicLabTests {
 	public void testStock8() {
 		this.magicLab.setStock(8);
 		assertEquals(this.magicLab.getStock(), 8);
+	}
+	
+	@Test
+	public void testStock25() {
+		this.magicLab.setStock(25);
+		assertEquals(this.magicLab.getStock(), 25);
 	}
 	
 	@Test
