@@ -44,6 +44,7 @@ public class MainMenuGUI {
 	private GameType gameType = GameType.TOWER_BUILDING;
 	private Collection<String> playerCards = new ArrayList<String>();
 	private UserInterface clientUserInterface = new ClientUserInterface();
+	private GameServer gameServer;
 	
 	public MainMenuGUI() {
 		this.display = new Display();
@@ -98,6 +99,9 @@ public class MainMenuGUI {
 	
 	public GameType getGameType() {
 		return this.gameType;
+	}
+	public GameServer getGameServer() {
+		return this.gameServer;
 	}
 	
 	private void initShell() {
@@ -170,9 +174,10 @@ public class MainMenuGUI {
 		this.startDemoButton.setText("Starte Demo");
 		this.startDemoButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
 		this.startDemoButton.addSelectionListener(new SelectionAdapter() {
+
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				GameServer gameServer = Globals.getLocalGameServer();
+				gameServer = Globals.getLocalGameServer();
 				PlayGameGUI playGameGUI = new PlayGameGUI(display, MainMenuGUI.this);
 				playGameGUI.open();
 				KI.newKiOnServer(gameServer, getPlayerName());
