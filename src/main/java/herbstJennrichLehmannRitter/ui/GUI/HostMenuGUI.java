@@ -2,8 +2,6 @@ package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.server.GameServer;
-import herbstJennrichLehmannRitter.ui.UserInterface;
-import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -93,19 +91,14 @@ public class HostMenuGUI {
 			
 			@Override
 			public void run() {
-				//FIXME: Muss hier ein unregister hin? Da bekomme ich immer eine Exception...
-				// dazu "Start Spiel" -> "Spiel als Host" und 3 Sekunden warten
-				try {
-					System.out.println(mainMenuGUI.getClientUserInterface());
-					gameServer.unregister(mainMenuGUI.getClientUserInterface());
-				} catch (RemoteException e) {
-					System.out.println(e.getLocalizedMessage());
-				}
 				display.asyncExec(new Runnable() {
-					
 					@Override
 					public void run() {
-						msgBox("Es wurde kein weiterer Spieler innerhalb von 30 Sekunden gefunden");
+						try {
+							gameServer.unregister(mainMenuGUI.getClientUserInterface());
+						} catch (RemoteException e) {
+							System.out.println(e.getLocalizedMessage());
+						}
 					}
 				});
 			}
@@ -138,15 +131,17 @@ public class HostMenuGUI {
 	
 	public void cancelTimerAndOpenPlayGameGUI() {
 		this.timer.cancel();
-		PlayGameGUI playGameGUI = new PlayGameGUI(display, this.mainMenuGUI, this.gameServer);
+		PlayGameGUI playGameGUI = new PlayGameGUI(display, this.mainMenuGUI);
 		playGameGUI.open();
 	}
 	
-	private void msgBox(String text) {
+	public void displayMessageBox(String text) {
 		MessageBox msgBox = new MessageBox(this.shell);
 		msgBox.setMessage(text);
 		msgBox.open();
-		this.timer.purge();
+		if (this.timer != null) {
+			this.timer.purge();
+		}
 		this.shell.setVisible(false);
 	}
 	

@@ -1,7 +1,5 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
-import herbstJennrichLehmannRitter.engine.Globals;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -134,7 +132,7 @@ public class GameMenuGUI {
 		this.startLocalButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				PlayGameGUI playGameGUI = new PlayGameGUI(display, mainMenuGUI, Globals.getLocalGameServer());
+				PlayGameGUI playGameGUI = new PlayGameGUI(display, mainMenuGUI);
 				playGameGUI.open();
 			}
 		});

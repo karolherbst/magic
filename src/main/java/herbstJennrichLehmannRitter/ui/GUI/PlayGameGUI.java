@@ -1,7 +1,6 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
-import herbstJennrichLehmannRitter.server.GameServer;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -50,14 +49,12 @@ public class PlayGameGUI {
 	private CardFields playerChoosenCard;
 	private CardFields enemyChoosenCards;
 	
-	private GameServer gameServer;
 	protected String text;
 	private GameMessage gameMessage;
 	private MainMenuGUI mainMenuGUI;
 	
-	public PlayGameGUI(Display parent, MainMenuGUI mainMenuGUI, GameServer gameServer) {
+	public PlayGameGUI(Display parent, MainMenuGUI mainMenuGUI) {
 		this.display = parent;
-		this.gameServer = gameServer;
 		this.mainMenuGUI = mainMenuGUI;
 		initShell();
 		this.gameMessage = new GameMessage();
@@ -111,7 +108,6 @@ public class PlayGameGUI {
 			}
 		});
 		this.shell.setMenuBar(menuBar);
-		
 	}
 	
 	private void horizontalLine() {

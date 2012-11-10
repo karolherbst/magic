@@ -85,7 +85,11 @@ public class ClientUserInterface implements UserInterface {
 
 	@Override
 	public void abort(String reason) {
-		this.playGameGUI.setGameStateToAbort(reason);
+		if (this.playGameGUI != null) {
+			this.playGameGUI.setGameStateToAbort(reason);
+		} else if (this.hostMenuGUI != null) {
+			this.hostMenuGUI.displayMessageBox(reason);
+		}
 	}
 
 	@Override

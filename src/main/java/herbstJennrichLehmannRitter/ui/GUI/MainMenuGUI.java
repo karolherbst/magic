@@ -1,13 +1,12 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-
 import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
@@ -114,7 +113,7 @@ public class MainMenuGUI {
 		this.chooseDeckButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ChooseDeckGUI chooseDeckGUI = new ChooseDeckGUI(display, MainMenuGUI.this);
+				ChooseDeckGUI chooseDeckGUI = new ChooseDeckGUI(display);
 				chooseDeckGUI.open();
 			}
 		});
@@ -140,7 +139,7 @@ public class MainMenuGUI {
 		this.startDemoButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				PlayGameGUI playGameGUI = new PlayGameGUI(display, MainMenuGUI.this, Globals.getLocalGameServer());
+				PlayGameGUI playGameGUI = new PlayGameGUI(display, MainMenuGUI.this);
 				playGameGUI.open();
 			}
 		});
