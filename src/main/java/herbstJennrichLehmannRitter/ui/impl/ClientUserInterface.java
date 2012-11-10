@@ -56,14 +56,13 @@ public class ClientUserInterface implements UserInterface {
 
 	@Override
 	public void nextTurn() {
-		// TODO Auto-generated method stub
+		this.playGameGUI.nextTurn();
 		
 	}
 
 	@Override
 	public void playAnotherCard() {
-		// TODO Auto-generated method stub
-		
+		this.playGameGUI.playAnotherCard();
 	}
 
 	@Override

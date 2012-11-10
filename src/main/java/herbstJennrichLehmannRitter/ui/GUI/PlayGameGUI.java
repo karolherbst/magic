@@ -52,6 +52,8 @@ public class PlayGameGUI {
 	protected String text;
 	private GameMessage gameMessage;
 	private MainMenuGUI mainMenuGUI;
+	private NameFields playerName;
+	private NameFields enemyName;
 	
 	public PlayGameGUI(Display parent, MainMenuGUI mainMenuGUI) {
 		this.display = parent;
@@ -63,10 +65,9 @@ public class PlayGameGUI {
 		initPlayerDungeon();
 		initPlayerMagicLab();
 		initPlayerMine();
-		initEnemyDungeon();
 		initPlayerWall();
 		initPlayerTower();
-		initEnemyName();
+		initEnemyDungeon();
 		initEnemyMagicLab();
 		initEnemyMine();
 		initEnemyWall();
@@ -75,13 +76,13 @@ public class PlayGameGUI {
 		initEnemyCards();
 		initPlayerChoosenCards();
 		initEnemyChoosenCards();
+		initEnemyName();
 		horizontalLine();
 		
 		this.mainMenuGUI.getClientUserInterface().setPlayGameGUI(this);
+		this.nextTurn();
 	}
 	
-	//TODO: Sichtbarmachen, wer gerade dran ist
-
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
 		this.shell.setText("Magic");
@@ -281,13 +282,34 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerName() {
-		new NameFields(this.mainMenuGUI.getPlayerName(), 372);
+		this.playerName = new NameFields(this.mainMenuGUI.getPlayerName(), 372);
 	}
 	
 	private void initEnemyName() {
-		new NameFields(this.mainMenuGUI.getEnemyName(), 3);
+		this.enemyName = new NameFields(this.mainMenuGUI.getEnemyName(), 3);
 	}
 	
+	public void nextTurn() {
+		if (this.playerName.getPlayerIsActive()) {
+			this.changePlayer(this.playerName, this.enemyName, "ist am Zug");
+		} else {
+			this.changePlayer(this.enemyName, this.playerName, "ist am Zug");
+		}
+	}
+	
+	public void playAnotherCard() {
+		if (this.playerName.getPlayerIsActive()) {
+			this.changePlayer(this.enemyName, this.playerName, "ist am Zug");
+		} else {
+			this.changePlayer(this.playerName, this.enemyName, "ist am Zug");
+		}
+	}
+	
+	private void changePlayer(NameFields playerOne, NameFields playerTwo, String message) {
+		playerOne.deactivatePlayer();
+		playerTwo.activePlayer(message);
+	}
+
 	public void setGameStateToWon() {
 		this.gameMessage.setTitleToWon();
 	}
@@ -434,17 +456,41 @@ public class PlayGameGUI {
 	}
 	
 	private class NameFields {
+		private Label nameLabel;
+		private boolean playerIsActive = false;
+		private String playerName;
+		
 		public NameFields(String name, int positionFromTop) {
+			this.playerName = name;
+			
 			FormData nameData = new FormData();
 			nameData.left =  new FormAttachment(0, 1000, 10);
 			nameData.top =  new FormAttachment(0, 1000, positionFromTop);
 			nameData.width = 1004;
 			nameData.height = 20;
 			
-			Label nameLabel = new Label(shell, SWT.CENTER);
-			nameLabel.setText(name);
-			nameLabel.setLayoutData(nameData);
-			nameLabel.pack();
+			this.nameLabel = new Label(shell, SWT.CENTER | SWT.BORDER_SOLID);
+			this.nameLabel.setText(this.playerName);
+			this.nameLabel.setLayoutData(nameData);
+			this.nameLabel.pack();
+		}
+		
+		public void activePlayer(String text) {
+			this.nameLabel.setBackground(new Color(display, 150, 0, 0));
+			this.nameLabel.setForeground(new Color(display, 255, 255, 255));
+			this.nameLabel.setText(this.playerName + ' ' + text);
+			this.playerIsActive = true;
+		}
+		
+		public void deactivatePlayer() {
+			this.nameLabel.setBackground(display.getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
+			this.nameLabel.setForeground(new Color(display, 0, 0, 0));
+			this.nameLabel.setText(this.playerName);
+			this.playerIsActive = false;
+		}
+		
+		public boolean getPlayerIsActive() {
+			return this.playerIsActive;
 		}
 	}
 
