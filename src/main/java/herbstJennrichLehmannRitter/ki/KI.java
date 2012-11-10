@@ -20,13 +20,31 @@ public class KI implements UserInterface, Runnable {
 	private Object mutex = new Object();
 	private Semaphore semaphore = new Semaphore(1);
 	
-	static public KI newKiOnServer(final GameServer gameServer, String name) {
+	static public void newKiOnServer(final GameServer gameServer, String name) {
 		final KI ki = new KI(name, gameServer);
 		
 		ki.thread = new Thread(ki);
 		ki.thread.start();
+	}
+	
+	static public void startBridgedKIOnServer(final GameServer gameServer, String name, final UserInterface bridgeTo) {
+		final KI ki = new KI(name, gameServer) {
+			
+			@Override
+			public void setData(Data data) {
+				super.setData(data);
+				bridgeTo.setData(data);
+			}
+			
+			@Override
+			public void twoPlayerFound() {
+				super.twoPlayerFound();
+				bridgeTo.twoPlayerFound();
+			}
+		};
 		
-		return ki;
+		ki.thread = new Thread(ki);
+		ki.thread.start();
 	}
 	
 	@Override
@@ -142,7 +160,7 @@ public class KI implements UserInterface, Runnable {
 
 	@Override
 	public void twoPlayerFound() {
-		// TODO Auto-generated method stub
+		// nothing should be done here, we are using a KI bridge for starting demos
 	}
 
 }
