@@ -3,8 +3,8 @@ package herbstJennrichLehmannRitter.engine.controller.impl;
 import herbstJennrichLehmannRitter.engine.controller.GameEngineController;
 import herbstJennrichLehmannRitter.engine.controller.WinAndLoseChecker;
 import herbstJennrichLehmannRitter.engine.enums.GameType;
-import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
 import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
+import herbstJennrichLehmannRitter.engine.exception.GameEngineException.ENGINE_ERROR;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
@@ -75,7 +75,7 @@ public class GameEngineControllerImpl implements GameEngineController {
 			break;
 			
 		default:
-			throw new EngineCouldNotStartException("unknown game mode:" + gameType);
+			throw new GameEngineException(ENGINE_ERROR.UNKNOWN_GAME_TYP);
 		}
 	}
 	
@@ -113,11 +113,11 @@ public class GameEngineControllerImpl implements GameEngineController {
 	@Override
 	public void playCard(Card card, Player player, Player enemyPlayer) {
 		if (!isRunning()) {
-			throw new GameEngineException("GameEngine is not Running");
+			throw new GameEngineException(ENGINE_ERROR.NOT_RUNNING);
 		}
 		
 		if (!MagicUtils.canPlayerEffortCard(player, card)) {
-			throw new GameEngineException("player can't effort card");
+			throw new GameEngineException(ENGINE_ERROR.PLAYER_CANT_EFFORT_CARD);
 		}
 		
 		addResourcesToPlayer(player);
@@ -133,7 +133,7 @@ public class GameEngineControllerImpl implements GameEngineController {
 	@Override
 	public void discardCard(Card card, Player player) {
 		if (!isRunning()) {
-			throw new GameEngineException("GameEngine is not Running");
+			throw new GameEngineException(ENGINE_ERROR.NOT_RUNNING);
 		}
 		
 		addResourcesToPlayer(player);

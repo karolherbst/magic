@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
+import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Card;
@@ -21,7 +21,7 @@ public class DeckCreatorTests {
 	public void before() {
 		try {
 			this.gameCardFactory = new GameCardFactoryImpl();
-		} catch (EngineCouldNotStartException e) {
+		} catch (GameEngineException e) {
 			fail(e.getLocalizedMessage());
 		}
 	}

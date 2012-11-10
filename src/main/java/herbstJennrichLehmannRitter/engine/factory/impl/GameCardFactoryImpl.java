@@ -1,8 +1,8 @@
 package herbstJennrichLehmannRitter.engine.factory.impl;
 
 import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
-import herbstJennrichLehmannRitter.engine.exception.CardFactoryFileException;
-import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
+import herbstJennrichLehmannRitter.engine.exception.GameCardFactoryException;
+import herbstJennrichLehmannRitter.engine.exception.GameCardFactoryException.CARD_FACTORY_ERROR;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
@@ -37,22 +37,16 @@ public class GameCardFactoryImpl implements GameCardFactory {
 	private Map<String, Class<?>> complexCardActions;
 	
 	private static void assertCard(Card card) {
-		final String DEFAULT_ERROR_STRING = "Card with name " + card.getName() + ' ';
+		final String DEFAULT_ERROR_STRING = "Karte " + card.getName() + ' ';
 		
 		if (card.getCardType() == null) {
-			throw new EngineCouldNotStartException(DEFAULT_ERROR_STRING + "has no CardType");
+			throw new GameCardFactoryException(CARD_FACTORY_ERROR.CARD_ASSERTION_ERROR, DEFAULT_ERROR_STRING +
+					"hat keinen Kartentyp");
 		}
 		
-		if (card.getCostBrick() < 0) {
-			throw new EngineCouldNotStartException(DEFAULT_ERROR_STRING + "has brick costs < 0");
-		}
-		
-		if (card.getCostCrystal() < 0) {
-			throw new EngineCouldNotStartException(DEFAULT_ERROR_STRING + "has brick crystal < 0");
-		}
-
-		if (card.getCostMonsters() < 0) {
-			throw new EngineCouldNotStartException(DEFAULT_ERROR_STRING + "has brick monster < 0");
+		if (card.getCostBrick() < 0 || card.getCostCrystal() < 0 || card.getCostMonsters() < 0) {
+			throw new GameCardFactoryException(CARD_FACTORY_ERROR.CARD_ASSERTION_ERROR, DEFAULT_ERROR_STRING +
+					"hat Kosten kleiner 0");
 		}
 	}
 	
@@ -64,7 +58,7 @@ public class GameCardFactoryImpl implements GameCardFactory {
 		File directory = new File(URLDecoder.decode(resource.getFile(), "UTF-8"));
 		
 		if (!directory.exists()) {
-			throw new EngineCouldNotStartException("could not find ComplexCard Actions");
+			throw new GameCardFactoryException(CARD_FACTORY_ERROR.COULD_NOT_LOAD_COMPLEX_ACTIONS);
 		}
 		File[] files = directory.listFiles(new FilenameFilter() {
 			@Override
@@ -88,9 +82,9 @@ public class GameCardFactoryImpl implements GameCardFactory {
 		try {
 			this.complexCardActions = getComplexCardActions("herbstJennrichLehmannRitter.engine.model.action.complexImpl");
 		} catch (IOException e) {
-			throw new EngineCouldNotStartException(e);
+			throw new GameCardFactoryException(CARD_FACTORY_ERROR.COULD_NOT_LOAD_COMPLEX_ACTIONS, e);
 		} catch (ClassNotFoundException e) {
-			throw new EngineCouldNotStartException(e);
+			throw new GameCardFactoryException(CARD_FACTORY_ERROR.COULD_NOT_LOAD_COMPLEX_ACTIONS, e);
 		}
 		
 		try {
@@ -104,7 +98,7 @@ public class GameCardFactoryImpl implements GameCardFactory {
 			is.close();
 			
 			if (xmlCards.getCards() == null || xmlCards.getCards().isEmpty()) {
-				throw new EngineCouldNotStartException("the cards.xml provides no cards");
+				throw new GameCardFactoryException(CARD_FACTORY_ERROR.NO_CARDS_FOUND);
 			}
 			
 			// store all cards in a map to improve performance (getting a card from a HashMap is less expensive than from
@@ -130,7 +124,7 @@ public class GameCardFactoryImpl implements GameCardFactory {
 			
 		} catch (JAXBException e) {
 			e.printStackTrace();
-			throw new EngineCouldNotStartException(e);
+			throw new GameCardFactoryException(CARD_FACTORY_ERROR.XML_ERROR, e);
 		} catch (IOException e) {
 			// this can be ignored
 		}
@@ -180,7 +174,7 @@ public class GameCardFactoryImpl implements GameCardFactory {
 			XmlCardNames xmlCardNames = new XmlCardNames(cardNames);
 			this.marshaller.marshal(xmlCardNames, destination);
 		} catch (JAXBException e) {
-			throw new CardFactoryFileException("couldn't write objects to file", e);
+			throw new GameCardFactoryException(CARD_FACTORY_ERROR.WRITE_OBJECTS_TO_FILE_FAILED, e);
 		}
 	}
 
@@ -192,9 +186,9 @@ public class GameCardFactoryImpl implements GameCardFactory {
 				XmlCardNames xmlCardNames = (XmlCardNames)o;
 				return createCardsFromNames(xmlCardNames.getCardNames());
 			}
-			throw new CardFactoryFileException("file has the wrong format", null);
+			throw new GameCardFactoryException(CARD_FACTORY_ERROR.WRONG_FORMAT);
 		} catch (JAXBException e) {
-			throw new CardFactoryFileException("couldn't read objects from file", e);
+			throw new GameCardFactoryException(CARD_FACTORY_ERROR.WRITE_OBJECTS_TO_FILE_FAILED, e);
 		}
 	}
 

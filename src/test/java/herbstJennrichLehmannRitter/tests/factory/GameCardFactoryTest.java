@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
-import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
+import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Card;
@@ -31,7 +31,7 @@ public class GameCardFactoryTest {
 	public void before() {
 		try {
 			this.gameCardFactory = new GameCardFactoryImpl();
-		} catch (EngineCouldNotStartException e) {
+		} catch (GameEngineException e) {
 			fail(e.getLocalizedMessage());
 		}
 	}

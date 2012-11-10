@@ -1,7 +1,8 @@
 package herbstJennrichLehmannRitter.engine.model.impl;
 
 import herbstJennrichLehmannRitter.engine.enums.CardType;
-import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
+import herbstJennrichLehmannRitter.engine.exception.GameCardFactoryException;
+import herbstJennrichLehmannRitter.engine.exception.GameCardFactoryException.CARD_FACTORY_ERROR;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.action.CardAction;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
@@ -25,7 +26,7 @@ public class CardImpl extends AbstractCard {
 	public CardImpl(Card card) {
 		
 		if (card == null) {
-			throw new EngineCouldNotStartException("CardImpl needs a card!=null for constructor");
+			throw new GameCardFactoryException(CARD_FACTORY_ERROR.INTERNAL_CARD_WAS_NULL);
 		}
 
 		this.name = card.getName();

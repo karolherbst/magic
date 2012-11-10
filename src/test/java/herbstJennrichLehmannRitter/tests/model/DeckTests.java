@@ -5,7 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
-import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
+import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
@@ -36,7 +36,7 @@ public class DeckTests {
 			this.cardsOnHand.add(this.gameCardFactory.createCard("Smaragd"));
 			this.cardsOnHand.add(this.gameCardFactory.createCard("Blutmond"));
 			this.cardsOnHand.add(this.gameCardFactory.createCard("Tollwütiges Schaf"));
-		} catch (EngineCouldNotStartException e) {
+		} catch (GameEngineException e) {
 			fail(e.getLocalizedMessage());
 		}
 	}

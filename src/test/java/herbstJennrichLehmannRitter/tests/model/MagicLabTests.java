@@ -2,7 +2,7 @@ package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
+import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
 import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
 import herbstJennrichLehmannRitter.engine.model.impl.MagicLabImpl;
 
@@ -17,7 +17,7 @@ public class MagicLabTests {
 	public void before() {
 		try {
 			this.magicLab = new MagicLabImpl();
-		} catch (EngineCouldNotStartException e) {
+		} catch (GameEngineException e) {
 			fail(e.getLocalizedMessage());
 		}
 	}

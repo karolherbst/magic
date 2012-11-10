@@ -2,7 +2,7 @@ package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.*;
 import herbstJennrichLehmannRitter.engine.enums.BuildingType;
-import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
+import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
 import herbstJennrichLehmannRitter.engine.model.DefenceBuilding;
 import herbstJennrichLehmannRitter.engine.model.impl.WallImpl;
 
@@ -17,7 +17,7 @@ public class WallTests {
 	public void before() {
 		try {
 			this.wall = new WallImpl();
-		} catch (EngineCouldNotStartException e) {
+		} catch (GameEngineException e) {
 			fail(e.getLocalizedMessage());
 		}
 	}

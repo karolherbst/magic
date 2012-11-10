@@ -4,7 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
-import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
+import herbstJennrichLehmannRitter.engine.exception.GameCardFactoryException;
+import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.action.CardAction;
 import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
@@ -42,8 +43,8 @@ public class CardTests {
 		}
 	}
 	
-	@Test (expected=EngineCouldNotStartException.class)
-	public void testCardIsNullException() throws EngineCouldNotStartException {
+	@Test (expected=GameCardFactoryException.class)
+	public void testCardIsNullException() throws GameEngineException {
 		new CardImpl(null);
 	}
 	

@@ -46,11 +46,10 @@ public class ChooseDeckGUI {
 	private Label systemLabel;
 	private List systemList;
 	private List userList;
-	private MainMenuGUI mainMenuGUI;
+	private Collection<String> playerCards;
 	
-	public ChooseDeckGUI(Display parent, MainMenuGUI mainMenuGUI){
+	public ChooseDeckGUI(Display parent){
 		this.display = parent;
-		this.mainMenuGUI = mainMenuGUI;
 		initShell();
 		initNewButton();
 		initOpenButton();
@@ -68,13 +67,16 @@ public class ChooseDeckGUI {
 	}
 	
 	private void initPlayersDeck() {
-		Collection<String> cards = new ArrayList<String>();
-		for (Card card: Globals.getGameCardFactory().createDefaultDeck()) {
-			cards.add(card.getName().toString());
-		}
-		this.mainMenuGUI.setPlayerCards(cards);
+		this.playerCards = new ArrayList<String>();
+//		for (Card card: Globals.getGameCardFactory().createDefaultDeck()) {
+//			this.playerCards.add(card.getName().toString());
+//		}
 	}
 	
+	public Collection<String> getPlayersCards() {
+		return this.playerCards;
+
+	}
 
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
@@ -95,8 +97,8 @@ public class ChooseDeckGUI {
 		this.newButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				systemList.removeAll();
-				userList.removeAll();
+				ChooseDeckGUI.this.systemList.removeAll();
+				ChooseDeckGUI.this.userList.removeAll();
 				loadSystemDeck();
 				sortLists();
 			}
@@ -149,10 +151,8 @@ public class ChooseDeckGUI {
 		this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Collection<String> cards = new ArrayList<String>();
-				Collections.addAll(cards, userList.getItems());
-				mainMenuGUI.setPlayerCards(cards);
-				shell.setVisible(false);
+				Collections.addAll(ChooseDeckGUI.this.playerCards, ChooseDeckGUI.this.userList.getItems());
+				ChooseDeckGUI.this.shell.setVisible(false);
 			}
 		});
 	}
@@ -293,7 +293,7 @@ public class ChooseDeckGUI {
 					this.userList.add(card.getName());
 				}
 			} catch (Exception e) {
-					MessageBox msgBox = new MessageBox(shell, SWT.ICON_ERROR);
+					MessageBox msgBox = new MessageBox(this.shell, SWT.ICON_ERROR);
 					if (e.getLocalizedMessage() != null) {
 						msgBox.setMessage(e.getLocalizedMessage());
 					} else {
@@ -316,10 +316,10 @@ public class ChooseDeckGUI {
 			try {
 				FileWriter fileWriter = new FileWriter(new File(fileName));
 				ArrayList<String> cardNames = new ArrayList<String>();
-				Collections.addAll(cardNames, userList.getItems());
+				Collections.addAll(cardNames, this.userList.getItems());
 				Globals.getGameCardFactory().saveToXml(cardNames, fileWriter);
 			} catch (Exception e) {
-				MessageBox msgBox = new MessageBox(shell, SWT.ICON_ERROR);
+				MessageBox msgBox = new MessageBox(this.shell, SWT.ICON_ERROR);
 				msgBox.setMessage(e.getLocalizedMessage());
 				msgBox.open();
 			}

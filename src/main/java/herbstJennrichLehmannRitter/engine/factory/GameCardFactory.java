@@ -1,6 +1,6 @@
 package herbstJennrichLehmannRitter.engine.factory;
 
-import herbstJennrichLehmannRitter.engine.exception.CardFactoryFileException;
+import herbstJennrichLehmannRitter.engine.exception.GameCardFactoryException;
 import herbstJennrichLehmannRitter.engine.model.Card;
 
 import java.io.Reader;
@@ -24,7 +24,7 @@ public interface GameCardFactory {
 	
 	public Collection<String> getAllPossibleCardNames();
 	
-	public void saveToXml(Collection<String> cardNames, Writer destination) throws CardFactoryFileException;
+	public void saveToXml(Collection<String> cardNames, Writer destination) throws GameCardFactoryException;
 	
-	public Collection<Card> loadFromXml(Reader source) throws CardFactoryFileException;
+	public Collection<Card> loadFromXml(Reader source) throws GameCardFactoryException;
 }

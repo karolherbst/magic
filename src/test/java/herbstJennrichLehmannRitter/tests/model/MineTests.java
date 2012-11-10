@@ -1,7 +1,7 @@
 package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.*;
-import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
+import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
 import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
 import herbstJennrichLehmannRitter.engine.model.impl.MineImpl;
 
@@ -16,7 +16,7 @@ public class MineTests {
 	public void before() {
 		try {
 			this.mine = new MineImpl();
-		} catch (EngineCouldNotStartException e) {
+		} catch (GameEngineException e) {
 			fail(e.getLocalizedMessage());
 		}
 	}

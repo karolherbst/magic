@@ -2,7 +2,8 @@ package herbstJennrichLehmannRitter.engine.service.impl;
 
 import herbstJennrichLehmannRitter.engine.controller.GameEngineController;
 import herbstJennrichLehmannRitter.engine.enums.GameType;
-import herbstJennrichLehmannRitter.engine.exception.EngineCouldNotStartException;
+import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
+import herbstJennrichLehmannRitter.engine.exception.GameEngineException.ENGINE_ERROR;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.engine.model.Player;
@@ -15,8 +16,6 @@ import java.util.Map;
 
 public class GameServiceImpl implements GameService {
 
-	private static long DEFAULT_TIMEOUT = 1000 * 30;
-	
 	private class UIHolder {
 		
 		public UIHolder(UserInterface userInterface) {
@@ -39,7 +38,7 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public void start(GameType gameType) {
 		if (this.threadToUi.size() < 2) {
-			throw new EngineCouldNotStartException("there aren't two players at the moment");
+			throw new GameEngineException(ENGINE_ERROR.NOT_2_PLAYERS_AVAILABLE);
 		}
 		
 		this.gameEngineController.start(gameType);
