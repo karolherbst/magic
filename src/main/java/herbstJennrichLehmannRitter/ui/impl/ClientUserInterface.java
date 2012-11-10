@@ -1,7 +1,6 @@
 package herbstJennrichLehmannRitter.ui.impl;
 
 import herbstJennrichLehmannRitter.engine.Globals;
-import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.server.GameServer;
@@ -39,6 +38,7 @@ public class ClientUserInterface implements UserInterface {
 			
 			@Override
 			public void run() {
+				ClientUserInterface.this.playGameGUI.setPlayerHandCards(data.getOwnPlayer().getDeck().getAllCards());
 				ClientUserInterface.this.playGameGUI.setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
 				ClientUserInterface.this.playGameGUI.setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
 				ClientUserInterface.this.playGameGUI.setPlayerDungeonStock(data.getOwnPlayer().getDungeon().getStock());
@@ -66,11 +66,9 @@ public class ClientUserInterface implements UserInterface {
 		if (this.hostMenuGUI != null) {
 			this.hostMenuGUI.cancelTimerAndOpenPlayGameGUI();
 		} else {
-			GameType actualGameType = this.mainMenuGUI.getGameType();
-			System.out.println(actualGameType.toString());
 			GameServer gameServer = Globals.getLocalGameServer();
 			try {
-				gameServer.start(actualGameType);
+				gameServer.start(this.mainMenuGUI.getGameType());
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}

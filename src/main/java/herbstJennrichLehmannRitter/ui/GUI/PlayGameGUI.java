@@ -1,7 +1,9 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
+import herbstJennrichLehmannRitter.engine.model.Card;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -105,6 +107,13 @@ public class PlayGameGUI {
 		menuItemExit.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				try {
+					//FIXME: Wie stoppe ich das aktuelle Spiel?
+					mainMenuGUI.getGameServer().stop();
+					mainMenuGUI.getGameServer().unregister(mainMenuGUI.getClientUserInterface());
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
 				PlayGameGUI.this.shell.setVisible(false);
 			}
 		});
@@ -123,11 +132,9 @@ public class PlayGameGUI {
 	private void initPlayerDungeon() {
 		this.playerDungeon = new RessourceFields("Verlies", 10, 676);
 	}
-	
 	public void setPlayerDungeonLevel(int level) {
 		this.playerDungeon.setLevel(level);
 	}
-	
 	public void setPlayerDungeonStock(int stock) {
 		this.playerDungeon.setStock(stock);
 	}
@@ -135,11 +142,9 @@ public class PlayGameGUI {
 	private void initPlayerMagicLab() {
 		this.playerMagicLab = new RessourceFields("Zauberlabor", 220, 676);
 	}
-	
 	public void setPlayerMagicLabLevel(int level) {
 		this.playerMagicLab.setLevel(level);
 	}
-	
 	public void setPlayerMagicLabStock(int stock) {
 		this.playerMagicLab.setStock(stock);
 	}
@@ -147,11 +152,9 @@ public class PlayGameGUI {
 	private void initPlayerMine() {
 		this.playerMine = new RessourceFields("Steinbruch", 430, 676);
 	}
-
 	public void setPlayerMineLevel(int level) {
 		this.playerMine.setLevel(level);
 	}
-	
 	public void setPlayerMineStock(int stock) {
 		this.playerMine.setStock(stock);
 	}
@@ -159,7 +162,6 @@ public class PlayGameGUI {
 	private void initPlayerWall() {
 		this.playerWall = new DefenceBuildingFields("Mauer", 640, 676);
 	}
-	
 	public void setPlayerWall(int level) {
 		this.playerWall.setLevel(level);
 	}
@@ -167,7 +169,6 @@ public class PlayGameGUI {
 	private void initPlayerTower(){
 		this.playerTower = new DefenceBuildingFields("Turm", 830, 676);
 	}
-
 	public void setPlayerTower(int level) {
 		this.playerTower.setLevel(level);
 	}
@@ -175,11 +176,9 @@ public class PlayGameGUI {
 	private void initEnemyDungeon() {
 		this.enemyDungeon = new RessourceFields("Verlies", 10, 20);
 	}
-	
 	public void setEnemyDungeonLevel(int level) {
 		this.enemyDungeon.setLevel(level);
 	}
-	
 	public void setEnemyDungeonStock(int stock) {
 		this.enemyDungeon.setStock(stock);
 	}
@@ -187,11 +186,9 @@ public class PlayGameGUI {
 	private void initEnemyMagicLab() {
 		this.enemyMagicLab = new RessourceFields("Zauberlabor", 220, 20);
 	}
-	
 	public void setEnemyMagicLabLevel(int level) {
 		this.enemyMagicLab.setLevel(level);
 	}
-	
 	public void setEnemyMagicLabStock(int stock) {
 		this.enemyMagicLab.setStock(stock);
 	}
@@ -199,11 +196,9 @@ public class PlayGameGUI {
 	private void initEnemyMine() {
 		this.enemyMine = new RessourceFields("Steinbruch", 430, 20);
 	}
-	
 	public void setEnemyMineLevel(int level) {
 		this.enemyMine.setLevel(level);
 	}
-	
 	public void setEnemyMineStock(int stock) {
 		this.enemyMine.setStock(stock);
 	}
@@ -211,7 +206,6 @@ public class PlayGameGUI {
 	private void initEnemyWall() {
 		this.enemyWall = new DefenceBuildingFields("Mauer", 640, 20);
 	}
-	
 	public void setEnemyWall(int level) {
 		this.enemyWall.setLevel(level);
 	}
@@ -219,7 +213,6 @@ public class PlayGameGUI {
 	private void initEnemyTower(){
 		this.enemyTower = new DefenceBuildingFields("Turm", 830, 20);
 	}
-	
 	public void setEnemyTower(int level) {
 		this.enemyTower.setLevel(level);
 	}
@@ -235,6 +228,13 @@ public class PlayGameGUI {
 	
 	public void setPlayerCardName(int index, String name) {
 		this.playerCards.get(index).setCardName(name);
+	}
+	
+	public void setPlayerHandCards(Collection<Card> cards) {
+		int i = 0;
+		for (Card card: cards) {
+			this.setPlayerCardName(i++, card.getName());
+		}
 	}
 	
 	private void initEnemyCards() {
