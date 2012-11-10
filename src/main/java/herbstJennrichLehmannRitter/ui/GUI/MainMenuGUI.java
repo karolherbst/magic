@@ -7,7 +7,6 @@ import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
 
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -50,7 +49,7 @@ public class MainMenuGUI {
 		this.shell.pack();
 		setShellLocationCenteredToScreen(this.display, this.shell);
 		this.shell.open();
-		this.getClientUserInterface().setMainMenuGUI(this);
+		getClientUserInterface().setMainMenuGUI(this);
 		
 		Collection<Card> cards = Globals.getGameCardFactory().createDefaultDeck();
 		for (Card card:cards) {
@@ -116,7 +115,7 @@ public class MainMenuGUI {
 		this.chooseDeckButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ChooseDeckGUI chooseDeckGUI = new ChooseDeckGUI(display);
+				ChooseDeckGUI chooseDeckGUI = new ChooseDeckGUI(MainMenuGUI.this.display);
 				chooseDeckGUI.open();
 			}
 		});
@@ -143,15 +142,10 @@ public class MainMenuGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				GameServer gameServer = Globals.getLocalGameServer();
-				try {
-					gameServer.register(getClientUserInterface());
-				} catch (RemoteException e1) {
-					e1.printStackTrace();
-				}
-				KI.newKiOnServer(gameServer, getPlayerName());
-				KI.newKiOnServer(gameServer, getEnemyName());
-				PlayGameGUI playGameGUI = new PlayGameGUI(display, MainMenuGUI.this);
+				PlayGameGUI playGameGUI = new PlayGameGUI(MainMenuGUI.this.display, MainMenuGUI.this);
 				playGameGUI.open();
+				KI.newKiOnServer(gameServer, getPlayerName());
+				KI.startBridgedKIOnServer(gameServer, getEnemyName(), getClientUserInterface());
 			}
 		});
 	}
@@ -163,7 +157,7 @@ public class MainMenuGUI {
 		this.startGameButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				GameMenuGUI gameMenuGUI = new GameMenuGUI(display, MainMenuGUI.this);
+				GameMenuGUI gameMenuGUI = new GameMenuGUI(MainMenuGUI.this.display, MainMenuGUI.this);
 				gameMenuGUI.open();
 			}
 		});

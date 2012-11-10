@@ -9,6 +9,8 @@ import herbstJennrichLehmannRitter.ui.GUI.PlayGameGUI;
 
 import java.util.Collection;
 
+import org.eclipse.swt.widgets.Display;
+
 public class ClientUserInterface implements UserInterface {
 
 	private MainMenuGUI mainMenuGUI;
@@ -28,30 +30,39 @@ public class ClientUserInterface implements UserInterface {
 	}
 	
 	@Override
-	public void setData(Data data) {
-		this.playGameGUI.setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
-		this.playGameGUI.setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
-		this.playGameGUI.setPlayerDungeonStock(data.getOwnPlayer().getDungeon().getStock());
-		this.playGameGUI.setPlayerMagicLabLevel(data.getOwnPlayer().getMagicLab().getLevel());
-		this.playGameGUI.setPlayerMagicLabStock(data.getOwnPlayer().getMagicLab().getStock());
-		this.playGameGUI.setPlayerMineLevel(data.getOwnPlayer().getMine().getLevel());
-		this.playGameGUI.setPlayerMineStock(data.getOwnPlayer().getMine().getStock());
-		this.playGameGUI.setPlayerTower(data.getOwnPlayer().getTower().getActualPoints());
-		this.playGameGUI.setPlayerWall(data.getOwnPlayer().getWall().getActualPoints());
-		
-		this.playGameGUI.setEnemyDungeonLevel(data.getEnemyPlayer().getDungeon().getLevel());
-		this.playGameGUI.setEnemyDungeonStock(data.getEnemyPlayer().getDungeon().getStock());
-		this.playGameGUI.setEnemyMagicLabLevel(data.getEnemyPlayer().getMagicLab().getLevel());
-		this.playGameGUI.setEnemyMagicLabStock(data.getEnemyPlayer().getMagicLab().getStock());
-		this.playGameGUI.setEnemyMineLevel(data.getEnemyPlayer().getMine().getLevel());
-		this.playGameGUI.setEnemyMineStock(data.getEnemyPlayer().getMine().getStock());
-		this.playGameGUI.setEnemyTower(data.getEnemyPlayer().getTower().getActualPoints());
-		this.playGameGUI.setEnemyWall(data.getEnemyPlayer().getWall().getActualPoints());
+	public void setData(final Data data) {
+		Display.getDefault().asyncExec(new Runnable() {
+			
+			@Override
+			public void run() {
+				ClientUserInterface.this.playGameGUI.setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
+				ClientUserInterface.this.playGameGUI.setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
+				ClientUserInterface.this.playGameGUI.setPlayerDungeonStock(data.getOwnPlayer().getDungeon().getStock());
+				ClientUserInterface.this.playGameGUI.setPlayerMagicLabLevel(data.getOwnPlayer().getMagicLab().getLevel());
+				ClientUserInterface.this.playGameGUI.setPlayerMagicLabStock(data.getOwnPlayer().getMagicLab().getStock());
+				ClientUserInterface.this.playGameGUI.setPlayerMineLevel(data.getOwnPlayer().getMine().getLevel());
+				ClientUserInterface.this.playGameGUI.setPlayerMineStock(data.getOwnPlayer().getMine().getStock());
+				ClientUserInterface.this.playGameGUI.setPlayerTower(data.getOwnPlayer().getTower().getActualPoints());
+				ClientUserInterface.this.playGameGUI.setPlayerWall(data.getOwnPlayer().getWall().getActualPoints());
+				
+				ClientUserInterface.this.playGameGUI.setEnemyDungeonLevel(data.getEnemyPlayer().getDungeon().getLevel());
+				ClientUserInterface.this.playGameGUI.setEnemyDungeonStock(data.getEnemyPlayer().getDungeon().getStock());
+				ClientUserInterface.this.playGameGUI.setEnemyMagicLabLevel(data.getEnemyPlayer().getMagicLab().getLevel());
+				ClientUserInterface.this.playGameGUI.setEnemyMagicLabStock(data.getEnemyPlayer().getMagicLab().getStock());
+				ClientUserInterface.this.playGameGUI.setEnemyMineLevel(data.getEnemyPlayer().getMine().getLevel());
+				ClientUserInterface.this.playGameGUI.setEnemyMineStock(data.getEnemyPlayer().getMine().getStock());
+				ClientUserInterface.this.playGameGUI.setEnemyTower(data.getEnemyPlayer().getTower().getActualPoints());
+				ClientUserInterface.this.playGameGUI.setEnemyWall(data.getEnemyPlayer().getWall().getActualPoints());
+			}
+		});
 	}
 	
 	@Override
 	public void twoPlayerFound() {
-		this.hostMenuGUI.cancelTimerAndOpenPlayGameGUI();
+		if (this.hostMenuGUI != null) {
+			this.hostMenuGUI.cancelTimerAndOpenPlayGameGUI();
+		}
+		// TODO: starte server hier, wenn lokaler Server
 	}
 
 	@Override
