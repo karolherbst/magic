@@ -14,28 +14,21 @@ public abstract class AbstractResourceBuilding implements ResourceBuilding {
 
 	@Override
 	public void setLevel(int level) {
-		this.level = level;
+		if (level < 1) {
+			this.level = 1;
+		} else {
+			this.level = level;
+		}
 	}
 	
 	@Override
 	public void addLevel(int levels) {
-		if (levels < 0) {
-			reduceLevel(-levels);
-		} else {
-			this.level += levels;
-		}
+		setLevel(this.level + levels);
 	}
 	
 	@Override
 	public void reduceLevel(int levels){
-		if (levels < 0) {
-			addLevel(-levels);
-		} else {
-			this.level -= levels;
-			if (this.level < 0) {
-				this.level = 0;
-			}
-		}
+		setLevel(this.level - levels);
 	}
 
 	@Override
@@ -45,27 +38,20 @@ public abstract class AbstractResourceBuilding implements ResourceBuilding {
 
 	@Override
 	public void setStock(int stock) {
-		this.stock = stock;
+		if (stock < 0) {
+			this.stock = 0;
+		} else {
+			this.stock = stock;
+		}
 	}
 	
 	@Override
 	public void addStock(int stocks){
-		if (stocks < 0) {
-			reduceStock(-stocks);
-		} else {
-			this.stock += stocks;
-		}
+		setStock(this.stock + stocks);
 	}
 	
 	@Override
 	public void reduceStock(int stocks){
-		if (stocks < 0) {
-			addStock(-stocks);
-		} else {
-			this.stock -= stocks;
-			if (this.stock < 0) {
-				this.stock = 0;
-			}
-		}
+		setStock(this.stock - stocks);
 	}
 }

@@ -17,23 +17,26 @@ public abstract class AbstractDefenceBuilding implements DefenceBuilding {
 
 	@Override
 	public void setActualPoints(int points) {
-		this.actualPoints = points;
+		if (points < 0) {
+			this.actualPoints = 0;
+		} else {
+			this.actualPoints = points;
+		}
 	}
 	
 	@Override
 	public void addPoints(int points) {
-		this.actualPoints += points;
+		setActualPoints(this.actualPoints + points);
 	}
 	
 	@Override
 	public int applyDamage(int damage) {
 		if (this.actualPoints < damage) {
-			int result = damage - this.actualPoints;
-			this.actualPoints = 0;
-			return result;
+			setActualPoints(0);
+			return damage - this.actualPoints;
 		}
 		
-		this.actualPoints -= damage;
+		setActualPoints(this.actualPoints - damage);
 		return 0;
 	}
 
