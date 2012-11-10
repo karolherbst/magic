@@ -10,8 +10,6 @@ import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Card;
-import herbstJennrichLehmannRitter.engine.model.Player;
-import herbstJennrichLehmannRitter.engine.model.impl.PlayerImpl;
 
 import java.io.OutputStreamWriter;
 import java.io.Reader;
