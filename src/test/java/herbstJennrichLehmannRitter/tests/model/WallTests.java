@@ -38,5 +38,33 @@ public class WallTests {
 		this.wall.setActualPoints(30);
 		assertEquals(this.wall.getActualPoints(), 30);
 	}
+	
+	@Test
+	public void testSetAndAddPoints20() {
+		this.wall.setActualPoints(10);
+		this.wall.addPoints(20);
+		assertEquals(this.wall.getActualPoints(), 30);
+	}
+	
+	@Test
+	public void testApplyDamageWithDamageLowerThenActualPoints() {
+		this.wall.setActualPoints(20);
+		this.wall.applyDamage(10);
+		assertEquals(this.wall.getActualPoints(), 10);
+	}
+
+	@Test
+	public void testApplyDamageWithDamageHigherThenActualPoints() {
+		this.wall.setActualPoints(15);
+		this.wall.applyDamage(30);
+		assertEquals(this.wall.getActualPoints(), 0);
+	}
+	
+	@Test
+	public void testApplyDamageWithDamageEqualToActualPoints(){
+		this.wall.setActualPoints(20);
+		this.wall.applyDamage(20);
+		assertEquals(this.wall.getActualPoints(), 0);
+	}
 
 }

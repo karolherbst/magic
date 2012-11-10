@@ -40,7 +40,7 @@ public class TowerTests {
 	}
 	
 	@Test
-	public void testSetAndAddPointsTo20() {
+	public void testSetAndAddPoints20() {
 		this.tower.setActualPoints(10);
 		this.tower.addPoints(10);
 		assertEquals(this.tower.getActualPoints(), 20);
@@ -57,6 +57,13 @@ public class TowerTests {
 	public void testApplyDamageWithDamageHigherThenActualPoints() {
 		this.tower.setActualPoints(15);
 		this.tower.applyDamage(30);
+		assertEquals(this.tower.getActualPoints(), 0);
+	}
+	
+	@Test
+	public void testApplyDamageWithDamageEqualToActualPoints(){
+		this.tower.setActualPoints(20);
+		this.tower.applyDamage(20);
 		assertEquals(this.tower.getActualPoints(), 0);
 	}
 
