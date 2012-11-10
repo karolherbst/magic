@@ -127,7 +127,7 @@ public class GameServiceImpl implements GameService {
 		System.out.println("round: " + ++round);
 		// sleep a bit to take away stress from the process
 		try {
-			Thread.sleep(1);
+			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			// do nothing here
 		}
@@ -152,7 +152,7 @@ public class GameServiceImpl implements GameService {
 		System.out.println("round: " + ++round);
 		// sleep a bit to take away stress from the process
 		try {
-			Thread.sleep(1);
+			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			// do nothing here
 		}
