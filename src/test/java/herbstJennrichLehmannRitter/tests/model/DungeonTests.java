@@ -38,6 +38,29 @@ public class DungeonTests {
 	}
 	
 	@Test
+	public void testSetLevelAndRaiseLevel() {
+		this.dungeon.setLevel(5);
+		this.dungeon.addLevel(5);
+		assertEquals(this.dungeon.getLevel(), 10);
+	}
+	
+	@Test
+	public void testSetLevelAndReduceLevel() {
+		this.dungeon.setLevel(5);
+		this.dungeon.reduceLevel(4);
+		assertEquals(this.dungeon.getLevel(), 1);
+	}
+	
+	@Test
+	public void testSetLevelAndReduceLevelWithReductionHigherThanActualLevel() {
+		this.dungeon.setLevel(5);
+		this.dungeon.reduceLevel(6);
+		assertEquals(this.dungeon.getLevel(), 1);
+		
+		//TODO Der Test hier wars
+	}
+	
+	@Test
 	public void testStock8() {
 		this.dungeon.setStock(8);
 		assertEquals(this.dungeon.getStock(), 8);
@@ -47,5 +70,26 @@ public class DungeonTests {
 	public void testStock25() {
 		this.dungeon.setStock(25);
 		assertEquals(this.dungeon.getStock(), 25);
+	}
+	
+	@Test
+	public void testSetStockAndReduceStockWithNeededStockLowerThanActualStock() {
+		this.dungeon.setStock(20);
+		this.dungeon.reduceStock(10);
+		assertEquals(this.dungeon.getStock(), 10);
+	}
+
+	@Test
+	public void testSetStockandReduceStockWithNeededStockHigherThanActualStock() {
+		this.dungeon.setStock(15);
+		this.dungeon.reduceStock(30);
+		assertEquals(this.dungeon.getStock(), 0);
+	}
+	
+	@Test
+	public void testSetStockandReduceStockWithNeededStockEqualToActualStock(){
+		this.dungeon.setStock(20);
+		this.dungeon.reduceStock(20);
+		assertEquals(this.dungeon.getStock(), 0);
 	}
 }
