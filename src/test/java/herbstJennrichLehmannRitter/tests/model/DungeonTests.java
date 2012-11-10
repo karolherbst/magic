@@ -70,7 +70,6 @@ public class DungeonTests {
 		this.dungeon.setLevel(5);
 		this.dungeon.reduceLevel(6);
 		assertEquals(this.dungeon.getLevel(), 1);
-		//TODO Der Test hier wars
 	}
 	
 	@Test

@@ -73,7 +73,6 @@ public class MagicLabTests {
 		this.magicLab.setLevel(5);
 		this.magicLab.reduceLevel(6);
 		assertEquals(this.magicLab.getLevel(), 1);
-		//TODO Der Test hier wars
 	}
 	
 	@Test
