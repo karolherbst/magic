@@ -96,9 +96,12 @@ public class KI implements UserInterface, Runnable {
 		Card lastCard = null;
 		for (Card card : this.data.getOwnPlayer().getDeck().getAllCards()) {
 			lastCard = card;
-			if (MagicUtils.canPlayerEffortCard(this.data.getOwnPlayer(), card)) {
-				cardToPlay = card;
-				break;
+			//FIXME: Karol, hier musste ich auf null Abfragen, da sonst eine NullPointerException kam
+			if (card != null) {
+				if (MagicUtils.canPlayerEffortCard(this.data.getOwnPlayer(), card)) {
+					cardToPlay = card;
+					break;
+				}
 			}
 		}
 		
