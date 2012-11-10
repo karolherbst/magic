@@ -2,9 +2,12 @@ package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.ki.KI;
+import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -139,6 +142,14 @@ public class MainMenuGUI {
 		this.startDemoButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				GameServer gameServer = Globals.getLocalGameServer();
+				try {
+					gameServer.register(getClientUserInterface());
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
+				KI.newKiOnServer(gameServer, getPlayerName());
+				KI.newKiOnServer(gameServer, getEnemyName());
 				PlayGameGUI playGameGUI = new PlayGameGUI(display, MainMenuGUI.this);
 				playGameGUI.open();
 			}
