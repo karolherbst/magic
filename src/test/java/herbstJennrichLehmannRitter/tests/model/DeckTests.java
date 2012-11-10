@@ -66,18 +66,9 @@ public class DeckTests {
 		player.getDeck().discardCard(cardOne);
 		
 		assertFalse(player.getDeck().getAllCards().containsAll(cards));
-		assertEquals(5, player.getDeck().getAllCards().size());
+		assertEquals(6, player.getDeck().getAllCards().size());
 	}
 
-	@Test
-	public void testDiscardAllCards() {
-		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
-		
-		this.globalPlayer.getDeck().discardAllCards();
-		
-		assertTrue(this.globalPlayer.getDeck().getAllCards().isEmpty());
-		assertEquals(0, this.globalPlayer.getDeck().getAllCards().size());
-	}
 
 	@Test
 	public void testDiscardAllCardsByType() {
@@ -123,7 +114,7 @@ public class DeckTests {
 		this.globalPlayer.getDeck().discardAllCards();
 		
 		assertTrue(this.globalPlayer.getDeck().pickCard());
-		assertEquals(this.globalPlayer.getDeck().getAllCards().size(),1);
+		assertEquals(this.globalPlayer.getDeck().getAllCards().size(),6);
 	}
 
 	@Test
@@ -132,7 +123,7 @@ public class DeckTests {
 		this.globalPlayer.getDeck().discardAllCards();
 		
 		assertTrue(this.globalPlayer.getDeck().pickCards(3));
-		assertEquals(this.globalPlayer.getDeck().getAllCards().size(),3);
+		assertEquals(this.globalPlayer.getDeck().getHandDeckSize(),3);
 	}
 	
 	@Test
@@ -242,7 +233,7 @@ public class DeckTests {
 		this.globalPlayer.getDeck().discardAllCards();
 		
 		assertTrue(this.globalPlayer.getDeck().pickNumberOfCardsWithType(3, CardType.SPECIAL));
-		assertEquals(this.globalPlayer.getDeck().getAllCards().size(), 3);
+		assertEquals(this.globalPlayer.getDeck().getHandDeckSize(), 3);
 		assertTrue(this.globalPlayer.getDeck().getAllCards().containsAll(cards));
 	}
 
