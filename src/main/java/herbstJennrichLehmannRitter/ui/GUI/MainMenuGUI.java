@@ -173,7 +173,7 @@ public class MainMenuGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				GameServer gameServer = Globals.getLocalGameServer();
-				PlayGameGUI playGameGUI = new PlayGameGUI(MainMenuGUI.this.display, MainMenuGUI.this);
+				PlayGameGUI playGameGUI = new PlayGameGUI(display, MainMenuGUI.this);
 				playGameGUI.open();
 				KI.newKiOnServer(gameServer, getPlayerName());
 				KI.startBridgedKIOnServer(gameServer, getEnemyName(), getClientUserInterface());

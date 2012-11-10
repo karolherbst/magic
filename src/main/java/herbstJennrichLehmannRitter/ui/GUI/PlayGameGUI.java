@@ -475,18 +475,28 @@ public class PlayGameGUI {
 			this.nameLabel.pack();
 		}
 		
-		public void activePlayer(String text) {
-			this.nameLabel.setBackground(new Color(display, 150, 0, 0));
-			this.nameLabel.setForeground(new Color(display, 255, 255, 255));
-			this.nameLabel.setText(this.playerName + ' ' + text);
-			this.playerIsActive = true;
+		public void activePlayer(final String text) {
+			display.asyncExec(new Runnable() {
+				@Override
+				public void run() {
+					nameLabel.setBackground(new Color(display, 150, 0, 0));
+					nameLabel.setForeground(new Color(display, 255, 255, 255));
+					nameLabel.setText(playerName + ' ' + text);
+					playerIsActive = true;
+				}
+			});
 		}
 		
 		public void deactivatePlayer() {
-			this.nameLabel.setBackground(display.getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
-			this.nameLabel.setForeground(new Color(display, 0, 0, 0));
-			this.nameLabel.setText(this.playerName);
-			this.playerIsActive = false;
+			display.asyncExec(new Runnable() {
+				@Override
+				public void run() {
+					nameLabel.setBackground(shell.getBackground());
+					nameLabel.setForeground(new Color(display, 0, 0, 0));
+					nameLabel.setText(playerName);
+					playerIsActive = false;
+				}
+			});
 		}
 		
 		public boolean getPlayerIsActive() {

@@ -41,6 +41,12 @@ public class KI implements UserInterface, Runnable {
 				super.twoPlayerFound();
 				bridgeTo.twoPlayerFound();
 			}
+			
+			@Override
+			public void nextTurn() {
+				super.nextTurn();
+				bridgeTo.nextTurn();
+			}
 		};
 		
 		ki.thread = new Thread(ki);
