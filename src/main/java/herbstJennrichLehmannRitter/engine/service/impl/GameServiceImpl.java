@@ -108,11 +108,12 @@ public class GameServiceImpl implements GameService {
 		for (UIHolder uiHolder : this.threadToUi.values()) {
 			if (uiHolder.userInterface == userInterface) {
 				
-				UserInterface userInterface1 = userInterface;
-				UserInterface userInterface2 = uiHolder.enemy.userInterface;
+				userInterface.abort("Game aborted!");
 				
-				userInterface1.abort("Game aborted!");
-				userInterface2.abort("Player " + uiHolder.player.getName() + " left the game");
+				if (uiHolder.enemy != null && uiHolder.enemy.userInterface != null) {
+					UserInterface userInterface2 = uiHolder.enemy.userInterface;
+					userInterface2.abort("Player " + uiHolder.player.getName() + " left the game");
+				}
 				
 				this.threadToUi = new HashMap<Thread, GameServiceImpl.UIHolder>();
 			}
