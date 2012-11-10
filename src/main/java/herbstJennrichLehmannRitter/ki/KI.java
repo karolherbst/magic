@@ -20,7 +20,7 @@ public class KI implements UserInterface, Runnable {
 	private Object mutex = new Object();
 	private Semaphore semaphore = new Semaphore(1);
 	
-	static private KI newKiOnServer(final GameServer gameServer, String name) {
+	static public KI newKiOnServer(final GameServer gameServer, String name) {
 		final KI ki = new KI(name, gameServer);
 		
 		ki.thread = new Thread(ki);
