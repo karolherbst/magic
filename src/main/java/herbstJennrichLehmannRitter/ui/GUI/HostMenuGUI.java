@@ -20,7 +20,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
@@ -36,7 +35,6 @@ public class HostMenuGUI {
 	private final Display display;
 	private Button exitButton;
 	private Label modeLabel;
-	private Combo gameModeBox;
 	private Label wartenLabel;
 	private Timer timer;
 	
@@ -49,7 +47,6 @@ public class HostMenuGUI {
 		initShell();
 		initWartenLabel();
 		initModeLabel();
-		initGameModeBox();
 		initExitButton();
 		this.shell.pack();
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
@@ -74,15 +71,6 @@ public class HostMenuGUI {
 		
 	}
 
-	private void initGameModeBox() {
-		this.gameModeBox = new Combo (this.shell , SWT.READ_ONLY);
-		String modes[] = { "Turmbau", "Sammelwut"};
-		this.gameModeBox.setItems(modes);
-		this.gameModeBox.select(0);
-		this.gameModeBox.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
-		
-	}
-
 	public void open() {
 		this.shell.open();
 		
@@ -102,7 +90,7 @@ public class HostMenuGUI {
 					}
 				});
 			}
-		}, 3000);
+		}, 30000);
 	}
 	
 	private void initShell() {
@@ -170,9 +158,5 @@ public class HostMenuGUI {
 				Globals.stopRemoteServer();
 			}
 		});
-	}
-	
-	public String getGameMode(){
-		return this.gameModeBox.getText();
 	}
 }

@@ -1,12 +1,16 @@
 package herbstJennrichLehmannRitter.ui.impl;
 
+import herbstJennrichLehmannRitter.engine.Globals;
+import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
+import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 import herbstJennrichLehmannRitter.ui.GUI.HostMenuGUI;
 import herbstJennrichLehmannRitter.ui.GUI.MainMenuGUI;
 import herbstJennrichLehmannRitter.ui.GUI.PlayGameGUI;
 
+import java.rmi.RemoteException;
 import java.util.Collection;
 
 import org.eclipse.swt.widgets.Display;
@@ -61,8 +65,16 @@ public class ClientUserInterface implements UserInterface {
 	public void twoPlayerFound() {
 		if (this.hostMenuGUI != null) {
 			this.hostMenuGUI.cancelTimerAndOpenPlayGameGUI();
+		} else {
+			GameType actualGameType = this.mainMenuGUI.getGameType();
+			System.out.println(actualGameType.toString());
+			GameServer gameServer = Globals.getLocalGameServer();
+			try {
+				gameServer.start(actualGameType);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 		}
-		// TODO: starte server hier, wenn lokaler Server
 	}
 
 	@Override

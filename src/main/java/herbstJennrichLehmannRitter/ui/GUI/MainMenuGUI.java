@@ -1,6 +1,7 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
+import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.ki.KI;
 import herbstJennrichLehmannRitter.server.GameServer;
@@ -13,12 +14,15 @@ import java.util.Collection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
@@ -33,9 +37,11 @@ public class MainMenuGUI {
 	private Button startDemoButton;
 	private Button chooseDeckButton;
 	private Button exitButton;
+	private Combo gameTypeBox;
 	
 	private String playerName = "Spieler";
 	private String enemyName = "Computer";
+	private GameType gameType = GameType.TOWER_BUILDING;
 	private Collection<String> playerCards = new ArrayList<String>();
 	private UserInterface clientUserInterface = new ClientUserInterface();
 	
@@ -45,6 +51,7 @@ public class MainMenuGUI {
 		initStartGameButton();
 		initStartDemoButton();
 		initChooseDeckButton();
+		initGameTypeBox();
 		initExitButton();
 		this.shell.pack();
 		setShellLocationCenteredToScreen(this.display, this.shell);
@@ -89,6 +96,10 @@ public class MainMenuGUI {
 		this.playerCards = cards;
 	}
 	
+	public GameType getGameType() {
+		return this.gameType;
+	}
+	
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
 		this.shells++;
@@ -130,6 +141,26 @@ public class MainMenuGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				MainMenuGUI.this.shell.dispose();
+			}
+		});
+	}
+	
+	private void initGameTypeBox() {
+		this.gameTypeBox = new Combo (this.shell , SWT.READ_ONLY);
+		for (GameType gt: GameType.values()) {
+			this.gameTypeBox.add(gt.toString(), gt.ordinal());
+		}
+		this.gameTypeBox.select(this.gameType.ordinal());
+		this.gameTypeBox.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
+		this.gameTypeBox.addModifyListener(new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent e) {
+				for (GameType gt: GameType.values()) {
+					if (gt.toString().equals(gameTypeBox.getText())) {
+						gameType = gt;
+						break;
+					}
+				}
 			}
 		});
 	}

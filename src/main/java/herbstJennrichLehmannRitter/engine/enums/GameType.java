@@ -7,8 +7,17 @@ package herbstJennrichLehmannRitter.engine.enums;
  */
 public enum GameType {
 	
-	//TODO: We have to implement this
-	TOWER_BUILDING,
-	COLLECTION_RAGE
+	TOWER_BUILDING("Turmbau"),
+	COLLECTION_RAGE("Sammelwut");
 	
+	private final String value;
+	
+	private GameType(String value) {
+		this.value = value;
+	}
+	
+	@Override
+	public String toString() {
+		return this.value;
+	}
 }
