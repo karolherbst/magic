@@ -77,8 +77,12 @@ public class ClientUserInterface implements UserInterface {
 
 	@Override
 	public void nextTurn() {
-		this.playGameGUI.nextTurn();
-		
+		Display.getDefault().asyncExec(new Runnable() {
+			@Override
+			public void run() {
+				playGameGUI.nextTurn();
+			}
+		});
 	}
 
 	@Override
@@ -90,7 +94,28 @@ public class ClientUserInterface implements UserInterface {
 	public void enemeyPlayedCard(Card card) {
 		this.playGameGUI.setEnemyChoosenCardName(card.getName());
 	}
-
+	
+	@Override
+	public void onPlayCard(final Card card) {
+		Display.getDefault().asyncExec(new Runnable() {
+			@Override
+			public void run() {
+				playGameGUI.playerPlayedCard(card.getName());
+			}
+		});
+	}
+	
+	@Override
+	public void onDiscardCard(final Card card) {
+		Display.getDefault().asyncExec(new Runnable() {
+			@Override
+			public void run() {
+				playGameGUI.playerDiscardCard(card.getName());
+			}
+		});
+	}
+	
+	
 	@Override
 	public void youLost() {
 		this.playGameGUI.setGameStateToLoose();

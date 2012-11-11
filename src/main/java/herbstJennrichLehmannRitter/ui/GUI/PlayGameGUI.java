@@ -6,6 +6,7 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
@@ -223,6 +224,7 @@ public class PlayGameGUI {
 		this.playerCards = new ArrayList<CardFields>();
 		for (int i=0; i<6; i++) {
 			this.playerCards.add(new CardFields((x+(120*i)), y, true, true));
+			this.playerCards.get(i).setCardName("");
 		}
 	}
 	
@@ -231,10 +233,25 @@ public class PlayGameGUI {
 	}
 	
 	public void setPlayerHandCards(Collection<Card> cards) {
-		int i = 0;
-		for (Card card: cards) {
-			this.setPlayerCardName(i++, card.getName());
+		ArrayList<String> cardFields = new ArrayList<String>();
+		for (CardFields cardField: this.playerCards) {
+			cardFields.add(cardField.getCardName());
 		}
+		
+		Iterator<Card> cardIterator = cards.iterator();
+		String cardName;
+		do {
+			cardName = cardIterator.next().getName();
+			if (cardFields.contains(cardName)) {
+				continue;
+			}
+			for (CardFields cardField: this.playerCards) {
+				if (cardField.getCardName() == "") {
+					cardField.setCardName(cardName);
+					break;
+				}
+			}
+		} while (cardIterator.hasNext());
 	}
 	
 	private void initEnemyCards() {
@@ -250,22 +267,26 @@ public class PlayGameGUI {
 		this.playerChoosenCard = new CardFields(457, 390, false, false);
 	}
 	
-	public void setPlayerChoosenCardName(String name) {
-		if (name != null) {
-			this.playerChoosenCard.setCardName(name);
-			this.playerChoosenCard.setVisible(true);
-		} else {
-			this.playerChoosenCard.setVisible(false);
-		}
-
+	public void playerPlayedCard(String name) {
+		this.removeCardFromDeck(this.playerCards, name);
+		this.playerChoosenCard.setCardName(name);
+		this.playerChoosenCard.setVisible(true);
 	}
 	
-	public Collection<String> getPlayerCards() {
-		Collection<String> cards = new ArrayList<String>();
-		for (CardFields cardfield : this.playerCards) {
-			cards.add(cardfield.getCardName());
+	public void playerDiscardCard(String name) {
+		this.removeCardFromDeck(this.playerCards, name);
+	}
+	
+	private void removeCardFromDeck(ArrayList<CardFields> cardFields, String name) {
+		int i = 0;
+		for (CardFields cardField: cardFields) {
+			if( cardField.getCardName() == name) {
+				System.out.println("Remove Card " + name + " from Position:" + i);
+				cardField.setCardName("");
+				break;
+			}
+			i++;
 		}
-		return cards;
 	}
 	
 	private void initEnemyChoosenCards() {
@@ -292,6 +313,7 @@ public class PlayGameGUI {
 	public void nextTurn() {
 		if (this.playerName.getPlayerIsActive()) {
 			this.changePlayer(this.playerName, this.enemyName, "ist am Zug");
+			this.playerChoosenCard.setVisible(false);
 		} else {
 			this.changePlayer(this.enemyName, this.playerName, "ist am Zug");
 		}

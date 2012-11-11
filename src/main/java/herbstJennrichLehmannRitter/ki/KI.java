@@ -49,13 +49,15 @@ public class KI implements UserInterface, Runnable {
 			}
 			
 			@Override
-			protected void onDiscardCard(Card card) {
-				// TODO Auto-generated method stub
+			public void onDiscardCard(Card card) {
+				super.onDiscardCard(card);
+				bridgeTo.onDiscardCard(card);
 			}
 			
 			@Override
-			protected void onPlayCard(Card card) {
-				// TODO Auto-generated method stub
+			public void onPlayCard(Card card) {
+				super.onPlayCard(card);
+				bridgeTo.onPlayCard(card);
 			}
 		};
 		
@@ -102,7 +104,7 @@ public class KI implements UserInterface, Runnable {
 	private void runKILogic() throws RemoteException, InterruptedException {
 		System.out.println(getName() + ": my next turn, now you will die!");
 		
-		Thread.sleep(500);
+		Thread.sleep(1000);
 		
 		Card cardToPlay = null;
 		Card lastCard = null;
@@ -124,11 +126,14 @@ public class KI implements UserInterface, Runnable {
 		}
 	}
 	
-	protected void onPlayCard(Card card) {
+	@Override
+	public void onPlayCard(Card card) {
 		// only for GUI notification
 	}
 	
-	protected void onDiscardCard(Card card) {
+	
+	@Override
+	public void onDiscardCard(Card card) {
 		// on for GUI notification
 	}
 	
