@@ -48,11 +48,11 @@ public class MagicLabTests {
 	}
 	
 	@Test
-	public void testLevelSetAndReduceLevelTo10() {
+	public void testLevelSetAndReduceLevelWithReductionLowerThanActualLevelTo10() {
 		this.magicLab.setLevel(15);
 		this.magicLab.reduceLevel(5);
 		assertEquals(this.magicLab.getLevel(), 10);
-	}	
+	}
 	
 	@Test
 	public void testLevelSetAndReduceNegativeLevelTo20() {
@@ -62,16 +62,23 @@ public class MagicLabTests {
 	}
 	
 	@Test
-	public void testLevelSetAndReduceLevelWithReductionLowerThanActualLevelTo5() {
+	public void testSetLevelAndAddNegativeLevelWithReductionHigherThanActualLevelTo1() {
 		this.magicLab.setLevel(10);
-		this.magicLab.reduceLevel(5);
-		assertEquals(this.magicLab.getLevel(), 5);
+		this.magicLab.addLevel(-15);
+		assertEquals(this.magicLab.getLevel(), 1);
 	}
 	
 	@Test
 	public void testSetLevelAndReduceLevelWithReductionHigherThanActualLevelTo1() {
 		this.magicLab.setLevel(5);
 		this.magicLab.reduceLevel(6);
+		assertEquals(this.magicLab.getLevel(), 1);
+	}
+	
+	@Test
+	public void testSetLevelAndAddNegativeLevelWithReductionEqualToActualLevelTo1() {
+		this.magicLab.setLevel(10);
+		this.magicLab.addLevel(-10);
 		assertEquals(this.magicLab.getLevel(), 1);
 	}
 	
@@ -110,24 +117,37 @@ public class MagicLabTests {
 	}
 	
 	@Test
-	public void testStockSetAndReduceStockTo15() {
+	public void testSetStockAndReduceStockWithReductionLowerThanActualStockTo10() {
 		this.magicLab.setStock(20);
-		this.magicLab.reduceStock(5);
-		assertEquals(this.magicLab.getStock(), 15);
+		this.magicLab.reduceStock(10);
+		assertEquals(this.magicLab.getStock(), 10);
 	}
 	
 	@Test
-	public void testStockSetAndReduceNegativeStockTo25() {
-		this.magicLab.setStock(30);
-		this.magicLab.reduceStock(-5);
-		assertEquals(this.magicLab.getStock(), 35);
+	public void testAddNegativeStockWithReductionHigherThanActualStockTo0() {
+		this.magicLab.setStock(10);
+		this.magicLab.addStock(-15);
+		assertEquals(this.magicLab.getStock(), 0);
+	}
+
+	@Test
+	public void testSetStockandReduceStockWithReductionHigherThanActualStockTo0() {
+		this.magicLab.setStock(15);
+		this.magicLab.reduceStock(30);
+		assertEquals(this.magicLab.getStock(), 0);
 	}
 	
 	@Test
-	public void testStockSetAndReduceNegativeStockTo0() {
-		this.magicLab.setStock(20);
-		this.magicLab.reduceStock(-25);
-		assertEquals(this.magicLab.getStock(), 45);
+	public void testAddNegativeStockWithReductionEqualToActualStockTo0() {
+		this.magicLab.setStock(10);
+		this.magicLab.addStock(-10);
+		assertEquals(this.magicLab.getStock(), 0);
 	}
 	
+	@Test
+	public void testSetStockandReduceStockWithReductionEqualToActualStockTo0(){
+		this.magicLab.setStock(20);
+		this.magicLab.reduceStock(20);
+		assertEquals(this.magicLab.getStock(), 0);
+	}
 }
