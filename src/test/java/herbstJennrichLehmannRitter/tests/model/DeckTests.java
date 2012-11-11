@@ -66,7 +66,7 @@ public class DeckTests {
 		player.getDeck().discardCard(cardOne);
 		
 		assertFalse(player.getDeck().getAllCards().containsAll(cards));
-		assertEquals(6, player.getDeck().getAllCards().size());
+		assertEquals(5, player.getDeck().getAllCards().size());
 	}
 
 
@@ -114,7 +114,7 @@ public class DeckTests {
 		this.globalPlayer.getDeck().discardAllCards();
 		
 		assertTrue(this.globalPlayer.getDeck().pickCard());
-		assertEquals(this.globalPlayer.getDeck().getAllCards().size(),6);
+		assertEquals(this.globalPlayer.getDeck().getAllCards().size(),1);
 	}
 
 	@Test
