@@ -27,7 +27,7 @@ public class GameServiceImpl implements GameService {
 		private UIHolder enemy;
 	}
 	
-	private Map<Thread, UIHolder> threadToUi = new HashMap<Thread, GameServiceImpl.UIHolder>();
+	private Map<Thread, UIHolder> threadToUi = new HashMap<Thread, GameServiceImpl.UIHolder>(2, 1);
 	
 	private final GameEngineController gameEngineController;
 	
@@ -108,17 +108,23 @@ public class GameServiceImpl implements GameService {
 	
 	@Override
 	public synchronized void unregister(UserInterface userInterface) {
-		for (UIHolder uiHolder : this.threadToUi.values()) {
+		Thread key = null;
+		for (Map.Entry<Thread, UIHolder> entry : this.threadToUi.entrySet()) {
+			
+			UIHolder uiHolder = entry.getValue();
+			key = entry.getKey();
+			
 			if (uiHolder.userInterface == userInterface) {
 				
 				if (uiHolder.enemy != null && uiHolder.enemy.userInterface != null) {
+					uiHolder.enemy.enemy = null;
 					UserInterface userInterface2 = uiHolder.enemy.userInterface;
 					userInterface2.abort("Player " + uiHolder.player.getName() + " left the game");
 				}
 				
-				this.threadToUi = new HashMap<Thread, GameServiceImpl.UIHolder>();
 			}
 		}
+		this.threadToUi.remove(key);
 	}
 
 	// for debugging

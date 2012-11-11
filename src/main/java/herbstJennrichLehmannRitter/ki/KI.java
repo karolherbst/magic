@@ -153,7 +153,14 @@ public class KI implements UserInterface, Runnable {
 	@Override
 	public void abort(String reason) {
 		System.out.println(getName() + ": :( the game was aborted! (Reason: " + reason + ')');
-		this.thread.interrupt();
+		if (this.thread != null) {
+			this.thread.interrupt();
+		}
+		try {
+			this.gameServer.unregister(this);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		this.thread = null;
 	}
 
