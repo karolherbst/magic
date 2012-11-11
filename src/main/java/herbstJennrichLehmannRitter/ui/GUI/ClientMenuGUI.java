@@ -19,7 +19,6 @@ public class ClientMenuGUI {
 	 */
 	
 	private Shell shell;
-	//FIXME: We never use the display, why is it implemented? See also the other GUI classes (Sebastian)
 	private final Display display;
 	private Text ipTextField;
 	private Label ipTextLabel;

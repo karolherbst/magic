@@ -108,7 +108,6 @@ public class PlayGameGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try {
-					//FIXME: Wie stoppe ich das aktuelle Spiel?
 					mainMenuGUI.getGameServer().stop();
 					mainMenuGUI.getGameServer().unregister(mainMenuGUI.getClientUserInterface());
 				} catch (RemoteException e1) {

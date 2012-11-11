@@ -57,8 +57,7 @@ public class HostMenuGUI {
 		try {
 			this.gameServer.register(this.mainMenuGUI.getClientUserInterface());
 		} catch (RemoteException e) {
-			//FIXME: Karol, Catch Remote Exception richtig so?
-			System.out.println(e.getLocalizedMessage());
+			e.getLocalizedMessage();
 		}
 	}
 	
