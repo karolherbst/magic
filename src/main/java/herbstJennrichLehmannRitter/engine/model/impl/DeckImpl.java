@@ -17,33 +17,33 @@ public class DeckImpl implements Deck {
 	
 	private class HandDeckImpl {
 		
-		private List<Card> handDeck = new ArrayList<Card>(6);
+		private Collection<Card> handDeck = new ArrayList<Card>();
 		
 		public Collection<Card> getCards() {
 			return Collections.unmodifiableCollection(this.handDeck);
 		}
 		
 		public void discardCard(Card card) {
-			for (int i=0; i<this.handDeck.size(); i++) {
-				if (this.handDeck.get(i) == card) {
-					this.handDeck.set(i, null);
-				}
-			}
+			this.handDeck.remove(card);
 			DeckImpl.this.cemeteryDeck.addCard(card);
 		}
 
 		public void discardAllCards() {
 			DeckImpl.this.cemeteryDeck.addCards(this.handDeck);
-			for (int i=0; i<this.handDeck.size(); i++) {
-				this.handDeck.set(i, null);
-			}
+			this.handDeck.clear();
 		}
 		
 		public void discardAllCardsByType(CardType cardType) {
+			Collection<Card> cardToRemove = new ArrayList<Card>();
+			
 			for (Card card : this.handDeck) {
 				if (card.getCardType() == cardType) {
-					discardCard(card);
+					cardToRemove.add(card);
 				}
+			}
+			
+			for (Card card : cardToRemove) {
+				discardCard(card);
 			}
 		}
 		
@@ -52,26 +52,17 @@ public class DeckImpl implements Deck {
 				this.handDeck.add(DeckImpl.this.deckStack.pickCard());
 				return true;
 			} else {
-				int handDeckSize = this.getHandDeckSize();
-				if (handDeckSize < 6) {
-					for (int i=0; i< 6; i++) {
-						if (this.handDeck.get(i) == null) {
-							this.handDeck.set(i, DeckImpl.this.deckStack.pickCard());
-							break;
-						}
-					}
-					return true;
-				} else {
-					return false;
-				}
+				return false;
 			}
 		}
 
 		public boolean pickCards(int numberOfCards) {
-			int handDeckSize = this.getHandDeckSize();
-			if (handDeckSize < 6) {
+			if (this.handDeck.size() < 6) {
 				for (int i = 0; i < numberOfCards; i++) {
-					this.pickCard();
+					if (this.handDeck.size() >= 6) {
+						break;
+					}
+					this.handDeck.add(DeckImpl.this.deckStack.pickCard());
 				}
 				return true;
 			} else {
@@ -80,8 +71,7 @@ public class DeckImpl implements Deck {
 		}
 		
 		public boolean pickCardFromDeckStackOrCemeteryDeckWithCostAbout(int cost) {
-			int handDeckSize = this.getHandDeckSize();
-			if (handDeckSize < 6) {
+			if( this.handDeck.size() < 6) {
 				List<Card> cards = new ArrayList<Card>();
 				Card card = null;
 					
@@ -104,12 +94,7 @@ public class DeckImpl implements Deck {
 					} else {
 						DeckImpl.this.deckStack.removeCard(card);
 					}
-					for (int i=0; i< 6; i++) {
-						if (this.handDeck.get(i) == null) {
-							this.handDeck.set(i, card);
-							break;
-						}
-					}
+					this.handDeck.add(card);
 					return true;
 				} else {
 					return false;
@@ -120,8 +105,7 @@ public class DeckImpl implements Deck {
 		}
 
 		public boolean pickNumberOfCardsWithType(int numberOfCards, CardType cardType) {
-			int handDeckSize = this.getHandDeckSize();
-			if (handDeckSize < 6) {
+			if (this.handDeck.size() < 6) {
 				List<Card> cards = new ArrayList<Card>();
 				Card card;
 				
@@ -135,15 +119,10 @@ public class DeckImpl implements Deck {
 				Collections.shuffle(cards);
 				
 				for (int i = 0; i < numberOfCards; i++) {
-					if (this.getHandDeckSize() >= 6) {
+					if (this.handDeck.size() >= 6) {
 						break;
 					}
-					for (int a=0; a< 6; a++) {
-						if (this.handDeck.get(a) == null) {
-							this.handDeck.set(a, cards.get(i));
-							break;
-						}
-					}
+					this.handDeck.add(cards.get(i));
 				}
 				return true;
 			} else {
@@ -152,19 +131,9 @@ public class DeckImpl implements Deck {
 		}
 		
 		public void exchangeCardsWithHandDeck(HandDeckImpl handDeck) {
-			List<Card> tmp = this.handDeck;
+			Collection<Card> tmp = this.handDeck;
 			this.handDeck = handDeck.handDeck;
 			handDeck.handDeck = tmp;
-		}
-		
-		public int getHandDeckSize() {
-			int i = 0;
-			for (Card card: this.handDeck) {
-				if (card != null) {
-					i++;
-				}
-			}
-			return i;
 		}
 	}
 	
@@ -281,10 +250,5 @@ public class DeckImpl implements Deck {
 	@Override
 	public void shuffle() {
 		this.deckStack.shuffle();
-	}
-	
-	@Override
-	public int getHandDeckSize() {
-		return this.handDeck.getHandDeckSize();
 	}
 }

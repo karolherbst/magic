@@ -27,6 +27,5 @@ public interface Deck {
 	
 	public void shuffle();
 	
-	public int getHandDeckSize();
 
 }
