@@ -47,6 +47,16 @@ public class KI implements UserInterface, Runnable {
 				super.nextTurn();
 				bridgeTo.nextTurn();
 			}
+			
+			@Override
+			protected void onDiscardCard(Card card) {
+				// TODO Auto-generated method stub
+			}
+			
+			@Override
+			protected void onPlayCard(Card card) {
+				// TODO Auto-generated method stub
+			}
 		};
 		
 		ki.thread = new Thread(ki);
@@ -106,10 +116,20 @@ public class KI implements UserInterface, Runnable {
 		}
 		
 		if (cardToPlay != null) {
+			onPlayCard(cardToPlay);
 			this.gameServer.playCard(cardToPlay);
 		} else {
+			onDiscardCard(lastCard);
 			this.gameServer.discardCard(lastCard);
 		}
+	}
+	
+	protected void onPlayCard(Card card) {
+		// only for GUI notification
+	}
+	
+	protected void onDiscardCard(Card card) {
+		// on for GUI notification
 	}
 	
 	@Override
