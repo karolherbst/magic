@@ -1,5 +1,11 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
+import java.rmi.RemoteException;
+
+import herbstJennrichLehmannRitter.engine.Globals;
+import herbstJennrichLehmannRitter.ki.KI;
+import herbstJennrichLehmannRitter.server.GameServer;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -28,6 +34,7 @@ public class GameMenuGUI {
 	private Button backButton;
 	
 	private MainMenuGUI mainMenuGUI;
+	protected GameServer gameServer;
 	
 	public GameMenuGUI(Display parent, MainMenuGUI mainMenuGUI) {
 		this.display = parent;
@@ -117,7 +124,7 @@ public class GameMenuGUI {
 		this.startClientButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ClientMenuGUI clientMenuGUI = new ClientMenuGUI(display);
+				ClientMenuGUI clientMenuGUI = new ClientMenuGUI(display, mainMenuGUI);
 				clientMenuGUI.open();
 			}
 		});
@@ -132,8 +139,15 @@ public class GameMenuGUI {
 		this.startLocalButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				PlayGameGUI playGameGUI = new PlayGameGUI(display, mainMenuGUI);
-				playGameGUI.open();
+				try {
+					gameServer = Globals.getLocalGameServer();
+					PlayGameGUI playGameGUI = new PlayGameGUI(display, mainMenuGUI);
+					gameServer.register(mainMenuGUI.getClientUserInterface());
+					KI.startKIOnLocal(mainMenuGUI.getEnemyName());
+					playGameGUI.open();
+				} catch (RemoteException e2) {
+					e2.printStackTrace();
+				}
 			}
 		});
 	}

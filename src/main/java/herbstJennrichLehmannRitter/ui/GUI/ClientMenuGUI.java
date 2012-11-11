@@ -1,6 +1,11 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
+import java.rmi.RemoteException;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import herbstJennrichLehmannRitter.engine.Globals;
+import herbstJennrichLehmannRitter.server.GameServer;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -25,8 +30,12 @@ public class ClientMenuGUI {
 	private Button connectButton;
 	private Button backButton;
 	
-	public ClientMenuGUI(Display parent) {
+	private MainMenuGUI mainMenuGUI;
+	private Timer timer;
+	
+	public ClientMenuGUI(Display parent, MainMenuGUI mainMenuGUI) {
 		this.display = parent;
+		this.mainMenuGUI = mainMenuGUI;
 		initShell();
 		initIpTextLabel();
 		initIpTextField();
@@ -34,6 +43,7 @@ public class ClientMenuGUI {
 		initBackButton();
 		this.shell.pack();
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
+		this.mainMenuGUI.getClientUserInterface().setClientMenuGUI(this);
 	}
 	
 	public void open() {
@@ -88,9 +98,31 @@ public class ClientMenuGUI {
 		this.connectButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Globals.getRemoteServer(ipTextField.getText());
-				//TODO set Players name 
+				final GameServer gameServer = Globals.getRemoteServer(ipTextField.getText());
+				timer = new Timer();
+				timer.schedule(new TimerTask() {
+					@Override
+					public void run() {
+						display.asyncExec(new Runnable() {
+							@Override
+							public void run() {
+								try {
+									gameServer.unregister(mainMenuGUI.getClientUserInterface());
+								} catch (RemoteException e) {
+									System.out.println(e.getLocalizedMessage());
+								}
+							}
+						});
+					}
+				}, 30000);
+				//TODO: Spielername an Server übermitteln -> wie?
 			}
 		});
+	}
+
+	public void cancelTimerAndOpenPlayGameGUI() {
+		this.timer.cancel();
+		PlayGameGUI playGameGUI = new PlayGameGUI(display, this.mainMenuGUI);
+		playGameGUI.open();
 	}	
 }

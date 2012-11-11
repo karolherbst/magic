@@ -108,6 +108,7 @@ public class PlayGameGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try {
+					//FIXME: NullPointerException bei Lokalem Spiel
 					mainMenuGUI.getGameServer().stop();
 					mainMenuGUI.getGameServer().unregister(mainMenuGUI.getClientUserInterface());
 				} catch (RemoteException e1) {
@@ -233,15 +234,27 @@ public class PlayGameGUI {
 		}
 		
 		Iterator<Card> cardIterator = cards.iterator();
-		String cardName;
+		Card card;
+		int valueBrick = Integer.valueOf(this.playerDungeon.levelValue.getText().toString());
+		int valueCrystal = Integer.valueOf(this.playerMagicLab.levelValue.getText().toString());
+		int valueMonsters = Integer.valueOf(this.playerMine.levelValue.getText().toString());
+		int index;
 		do {
-			cardName = cardIterator.next().getName();
-			if (cardFields.contains(cardName)) {
+			card = cardIterator.next();
+			if (cardFields.contains(card.getName())) {
+				index = cardFields.indexOf(card.getName());
+				if (card.getCostBrick() > valueBrick && 
+						card.getCostCrystal() > valueCrystal &&
+						card.getCostMonsters() > valueMonsters) {
+					this.playerCards.get(index).setEnabled(false);
+				} else {
+					this.playerCards.get(index).setEnabled(true);
+				}
 				continue;
 			}
 			for (CardFields cardField: this.playerCards) {
 				if (cardField.getCardName() == "") {
-					cardField.setCardName(cardName);
+					cardField.setCardName(card.getName());
 					break;
 				}
 			}
@@ -264,15 +277,27 @@ public class PlayGameGUI {
 		}
 		
 		Iterator<Card> cardIterator = cards.iterator();
-		String cardName;
+		Card card;
+		int valueBrick = Integer.valueOf(this.enemyDungeon.levelValue.getText().toString());
+		int valueCrystal = Integer.valueOf(this.enemyMagicLab.levelValue.getText().toString());
+		int valueMonsters = Integer.valueOf(this.enemyMine.levelValue.getText().toString());
+		int index;
 		do {
-			cardName = cardIterator.next().getName();
-			if (cardFields.contains(cardName)) {
+			card = cardIterator.next();
+			if (cardFields.contains(card.getName())) {
+				index = cardFields.indexOf(card.getName());
+				if (card.getCostBrick() > valueBrick && 
+						card.getCostCrystal() > valueCrystal &&
+						card.getCostMonsters() > valueMonsters) {
+					this.enemyCards.get(index).setEnabled(false);
+				} else {
+					this.enemyCards.get(index).setEnabled(true);
+				}
 				continue;
 			}
 			for (CardFields cardField: this.enemyCards) {
 				if (cardField.getCardName() == "") {
-					cardField.setCardName(cardName);
+					cardField.setCardName(card.getName());
 					break;
 				}
 			}
@@ -406,6 +431,10 @@ public class PlayGameGUI {
 		
 		public void setVisible(boolean isVisible) {
 			this.cardComp.setVisible(isVisible);
+		}
+		
+		public void setEnabled(boolean isDisabled) {
+			this.cardComp.setEnabled(isDisabled);
 		}
 	}
 	

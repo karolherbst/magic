@@ -5,6 +5,7 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.ui.UserInterface;
+import herbstJennrichLehmannRitter.ui.GUI.ClientMenuGUI;
 import herbstJennrichLehmannRitter.ui.GUI.HostMenuGUI;
 import herbstJennrichLehmannRitter.ui.GUI.MainMenuGUI;
 import herbstJennrichLehmannRitter.ui.GUI.PlayGameGUI;
@@ -19,6 +20,7 @@ public class ClientUserInterface implements UserInterface {
 	private MainMenuGUI mainMenuGUI;
 	private PlayGameGUI playGameGUI;
 	private HostMenuGUI hostMenuGUI;
+	private ClientMenuGUI clientMenuGUI;
 
 	public void setMainMenuGUI(MainMenuGUI mainMenuGUI) {
 		this.mainMenuGUI = mainMenuGUI;
@@ -32,13 +34,16 @@ public class ClientUserInterface implements UserInterface {
 		this.hostMenuGUI = hostMenuGUI;
 	}
 	
+	public void setClientMenuGUI(ClientMenuGUI clientMenuGUI) {
+		this.clientMenuGUI = clientMenuGUI;
+	}
+	
 	@Override
 	public void setData(final Data data) {
 		Display.getDefault().asyncExec(new Runnable() {
 			
 			@Override
 			public void run() {
-				ClientUserInterface.this.playGameGUI.setPlayerHandCards(data.getOwnPlayer().getDeck().getAllCards());
 				ClientUserInterface.this.playGameGUI.setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
 				ClientUserInterface.this.playGameGUI.setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
 				ClientUserInterface.this.playGameGUI.setPlayerDungeonStock(data.getOwnPlayer().getDungeon().getStock());
@@ -48,10 +53,8 @@ public class ClientUserInterface implements UserInterface {
 				ClientUserInterface.this.playGameGUI.setPlayerMineStock(data.getOwnPlayer().getMine().getStock());
 				ClientUserInterface.this.playGameGUI.setPlayerTower(data.getOwnPlayer().getTower().getActualPoints());
 				ClientUserInterface.this.playGameGUI.setPlayerWall(data.getOwnPlayer().getWall().getActualPoints());
+				ClientUserInterface.this.playGameGUI.setPlayerHandCards(data.getOwnPlayer().getDeck().getAllCards());
 				
-				if (data.getEnemyPlayer().getDeck() != null) {
-					ClientUserInterface.this.playGameGUI.setEnemyHandCards(data.getEnemyPlayer().getDeck().getAllCards());
-				}
 				ClientUserInterface.this.playGameGUI.setEnemyDungeonLevel(data.getEnemyPlayer().getDungeon().getLevel());
 				ClientUserInterface.this.playGameGUI.setEnemyDungeonStock(data.getEnemyPlayer().getDungeon().getStock());
 				ClientUserInterface.this.playGameGUI.setEnemyMagicLabLevel(data.getEnemyPlayer().getMagicLab().getLevel());
@@ -60,6 +63,9 @@ public class ClientUserInterface implements UserInterface {
 				ClientUserInterface.this.playGameGUI.setEnemyMineStock(data.getEnemyPlayer().getMine().getStock());
 				ClientUserInterface.this.playGameGUI.setEnemyTower(data.getEnemyPlayer().getTower().getActualPoints());
 				ClientUserInterface.this.playGameGUI.setEnemyWall(data.getEnemyPlayer().getWall().getActualPoints());
+				if (data.getEnemyPlayer().getDeck() != null) {
+					ClientUserInterface.this.playGameGUI.setEnemyHandCards(data.getEnemyPlayer().getDeck().getAllCards());
+				}
 			}
 		});
 	}
@@ -68,6 +74,8 @@ public class ClientUserInterface implements UserInterface {
 	public void twoPlayerFound() {
 		if (this.hostMenuGUI != null) {
 			this.hostMenuGUI.cancelTimerAndOpenPlayGameGUI();
+		} else if (this.clientMenuGUI != null) {
+			this.clientMenuGUI.cancelTimerAndOpenPlayGameGUI();
 		} else {
 			GameServer gameServer = Globals.getLocalGameServer();
 			try {
@@ -94,8 +102,13 @@ public class ClientUserInterface implements UserInterface {
 	}
 
 	@Override
-	public void enemeyPlayedCard(Card card) {
-		this.playGameGUI.setEnemyChoosenCardName(card.getName());
+	public void enemeyPlayedCard(final Card card) {
+		Display.getDefault().asyncExec(new Runnable() {
+			@Override
+			public void run() {
+				playGameGUI.setEnemyChoosenCardName(card.getName());
+			}
+		});
 	}
 	
 	@Override

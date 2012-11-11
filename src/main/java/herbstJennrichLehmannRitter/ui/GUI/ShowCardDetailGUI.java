@@ -162,6 +162,7 @@ public class ShowCardDetailGUI {
 				//TODO: Karol, ist hier getLocalGameServer richtig, wenn ich das generell an dich übergeben möchte?
 				try {
 					Globals.getLocalGameServer().discardCard(ShowCardDetailGUI.this.card);
+					ShowCardDetailGUI.this.shell.setVisible(false);
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
@@ -186,6 +187,7 @@ public class ShowCardDetailGUI {
 				//TODO: Karol, ist hier getLocalGameServer richtig, wenn ich das generell an dich übergeben möchte?
 				try {
 					Globals.getLocalGameServer().playCard(ShowCardDetailGUI.this.card);
+					ShowCardDetailGUI.this.shell.setVisible(false);
 				} catch (RemoteException e1) {
 					// TODO: exception
 					e1.printStackTrace();
