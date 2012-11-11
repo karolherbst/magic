@@ -251,4 +251,9 @@ public class DeckImpl implements Deck {
 	public void shuffle() {
 		this.deckStack.shuffle();
 	}
+	
+	@Override
+	public int getHandDeckSize() {
+		return this.handDeck.handDeck.size();
+	}
 }

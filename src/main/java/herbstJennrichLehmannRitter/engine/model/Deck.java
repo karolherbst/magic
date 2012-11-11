@@ -1,8 +1,8 @@
 package herbstJennrichLehmannRitter.engine.model;
 
-import java.util.Collection;
-
 import herbstJennrichLehmannRitter.engine.enums.CardType;
+
+import java.util.Collection;
 
 
 /**
@@ -27,5 +27,6 @@ public interface Deck {
 	
 	public void shuffle();
 	
+	public int getHandDeckSize();
 
 }
