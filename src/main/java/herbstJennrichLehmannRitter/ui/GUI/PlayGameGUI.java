@@ -138,6 +138,9 @@ public class PlayGameGUI {
 	public void setPlayerDungeonStock(int stock) {
 		this.playerDungeon.setStock(stock);
 	}
+	public int getPlayerDungeonStock() {
+		return this.playerDungeon.getStock();
+	}
 	
 	private void initPlayerMagicLab() {
 		this.playerMagicLab = new RessourceFields("Zauberlabor", 220, 676);
@@ -148,6 +151,9 @@ public class PlayGameGUI {
 	public void setPlayerMagicLabStock(int stock) {
 		this.playerMagicLab.setStock(stock);
 	}
+	public int getPlayerMagicLabStock() {
+		return this.playerMagicLab.getStock(); 
+	}
 
 	private void initPlayerMine() {
 		this.playerMine = new RessourceFields("Steinbruch", 430, 676);
@@ -157,6 +163,9 @@ public class PlayGameGUI {
 	}
 	public void setPlayerMineStock(int stock) {
 		this.playerMine.setStock(stock);
+	}
+	public int getPlayerMineStock() {
+		return this.playerMine.getStock();
 	}
 	
 	private void initPlayerWall() {
@@ -235,9 +244,9 @@ public class PlayGameGUI {
 		
 		Iterator<Card> cardIterator = cards.iterator();
 		Card card;
-		int valueBrick = Integer.valueOf(this.playerDungeon.levelValue.getText().toString());
+		int valueBrick = Integer.valueOf(this.playerMine.levelValue.getText().toString());
 		int valueCrystal = Integer.valueOf(this.playerMagicLab.levelValue.getText().toString());
-		int valueMonsters = Integer.valueOf(this.playerMine.levelValue.getText().toString());
+		int valueMonsters = Integer.valueOf(this.playerDungeon.levelValue.getText().toString());
 		int index;
 		do {
 			card = cardIterator.next();
@@ -278,9 +287,9 @@ public class PlayGameGUI {
 		
 		Iterator<Card> cardIterator = cards.iterator();
 		Card card;
-		int valueBrick = Integer.valueOf(this.enemyDungeon.levelValue.getText().toString());
+		int valueBrick = Integer.valueOf(this.enemyMine.levelValue.getText().toString());
 		int valueCrystal = Integer.valueOf(this.enemyMagicLab.levelValue.getText().toString());
-		int valueMonsters = Integer.valueOf(this.enemyMine.levelValue.getText().toString());
+		int valueMonsters = Integer.valueOf(this.enemyDungeon.levelValue.getText().toString());
 		int index;
 		do {
 			card = cardIterator.next();
@@ -412,8 +421,8 @@ public class PlayGameGUI {
 						@Override
 					   public void mouseDown(MouseEvent e) {
 							if (!getCardName().isEmpty()) {
-								ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(display, true, 
-										Globals.getGameCardFactory().createCard(getCardName()));
+								ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(display, 
+										PlayGameGUI.this, Globals.getGameCardFactory().createCard(getCardName()));
 								showCardDetailGUI.open();
 							}
 					   }
@@ -519,6 +528,10 @@ public class PlayGameGUI {
 		
 		public void setStock(int stock) {
 			this.stockValue.setText(String.valueOf(stock));
+		}
+		
+		public int getStock() {
+			return Integer.valueOf(this.stockValue.getText().toString());
 		}
 	}
 	

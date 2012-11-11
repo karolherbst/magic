@@ -27,8 +27,6 @@ public class ShowCardDetailGUI {
 	
 	private Shell shell;
 	private final Display display;
-	private boolean isUsedDuringGamePlay;
-	private final Card card;
 	private Label cardNameLabel;
 	private StyledText cardTypeLabel;
 	private StyledText cardType;
@@ -43,9 +41,12 @@ public class ShowCardDetailGUI {
 	private Button discardButton;
 	private Button playCardButton;
 	
-	public ShowCardDetailGUI(Display parent, boolean isUsedDuringGamePlay, Card card) {
+	private final Card card;
+	private PlayGameGUI playGameGui;
+	
+	public ShowCardDetailGUI(Display parent, PlayGameGUI playGameGUI, Card card) {
 		this.display = parent;
-		this.isUsedDuringGamePlay = isUsedDuringGamePlay;
+		this.playGameGui = playGameGUI;
 		this.card = card;
 		initShell();
 		initCardNameText();
@@ -59,10 +60,13 @@ public class ShowCardDetailGUI {
 		initCardEnemyEffectsLabel();
 		initCardEnemyEffectsText();
 		initExitButton();
-		if (this.isUsedDuringGamePlay == true) {
-			initDiscardButton();
-			//TODO: Hier muss geprüft werden, ob Card Cost > Player Ressourcen ist, wie kann man auf Player zugreifen? 
-			initPlayCardButton();
+		if (this.playGameGui != null) {
+			if (this.playGameGui.getPlayerDungeonStock() > card.getCostMonsters() && 
+					this.playGameGui.getPlayerMagicLabStock() > card.getCostCrystal() && 
+					this.playGameGui.getPlayerMineStock() > card.getCostBrick()) {
+				initDiscardButton();
+				initPlayCardButton();
+			}
 		}
 		this.shell.pack();
 	}
@@ -186,6 +190,7 @@ public class ShowCardDetailGUI {
 			public void widgetSelected(SelectionEvent e) {
 				//TODO: Karol, ist hier getLocalGameServer richtig, wenn ich das generell an dich übergeben möchte?
 				try {
+					playGameGui.playerPlayedCard(ShowCardDetailGUI.this.card.getName());
 					Globals.getLocalGameServer().playCard(ShowCardDetailGUI.this.card);
 					ShowCardDetailGUI.this.shell.setVisible(false);
 				} catch (RemoteException e1) {
