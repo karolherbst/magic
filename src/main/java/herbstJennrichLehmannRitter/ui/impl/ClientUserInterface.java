@@ -49,6 +49,9 @@ public class ClientUserInterface implements UserInterface {
 				ClientUserInterface.this.playGameGUI.setPlayerTower(data.getOwnPlayer().getTower().getActualPoints());
 				ClientUserInterface.this.playGameGUI.setPlayerWall(data.getOwnPlayer().getWall().getActualPoints());
 				
+				if (data.getEnemyPlayer().getDeck() != null) {
+					ClientUserInterface.this.playGameGUI.setEnemyHandCards(data.getEnemyPlayer().getDeck().getAllCards());
+				}
 				ClientUserInterface.this.playGameGUI.setEnemyDungeonLevel(data.getEnemyPlayer().getDungeon().getLevel());
 				ClientUserInterface.this.playGameGUI.setEnemyDungeonStock(data.getEnemyPlayer().getDungeon().getStock());
 				ClientUserInterface.this.playGameGUI.setEnemyMagicLabLevel(data.getEnemyPlayer().getMagicLab().getLevel());

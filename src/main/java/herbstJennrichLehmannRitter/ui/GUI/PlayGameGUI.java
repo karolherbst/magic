@@ -83,7 +83,6 @@ public class PlayGameGUI {
 		horizontalLine();
 		
 		this.mainMenuGUI.getClientUserInterface().setPlayGameGUI(this);
-		this.nextTurn();
 	}
 	
 	private void initShell() {
@@ -228,10 +227,6 @@ public class PlayGameGUI {
 		}
 	}
 	
-	public void setPlayerCardName(int index, String name) {
-		this.playerCards.get(index).setCardName(name);
-	}
-	
 	public void setPlayerHandCards(Collection<Card> cards) {
 		ArrayList<String> cardFields = new ArrayList<String>();
 		for (CardFields cardField: this.playerCards) {
@@ -261,6 +256,28 @@ public class PlayGameGUI {
 		for (int i=0; i<6; i++) {
 			this.enemyCards.add(new CardFields((x+(120*i)), y, true, true));
 		}
+	}
+	
+	public void setEnemyHandCards(Collection<Card> cards) {
+		ArrayList<String> cardFields = new ArrayList<String>();
+		for (CardFields cardField: this.enemyCards) {
+			cardFields.add(cardField.getCardName());
+		}
+		
+		Iterator<Card> cardIterator = cards.iterator();
+		String cardName;
+		do {
+			cardName = cardIterator.next().getName();
+			if (cardFields.contains(cardName)) {
+				continue;
+			}
+			for (CardFields cardField: this.enemyCards) {
+				if (cardField.getCardName() == "") {
+					cardField.setCardName(cardName);
+					break;
+				}
+			}
+		} while (cardIterator.hasNext());
 	}
 
 	private void initPlayerChoosenCards() {
