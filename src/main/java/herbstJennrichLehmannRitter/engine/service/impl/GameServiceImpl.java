@@ -49,6 +49,9 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public void stop() {
 		this.gameEngineController.stop();
+		for (UIHolder uiHolder : this.threadToUi.values()) {
+			uiHolder.userInterface.abort("Das Spiel wurde gestoppt");
+		}
 	}
 	
 	private Player createPlayer(String name, Collection<String> cardNames) {
@@ -108,8 +111,6 @@ public class GameServiceImpl implements GameService {
 		for (UIHolder uiHolder : this.threadToUi.values()) {
 			if (uiHolder.userInterface == userInterface) {
 				
-				userInterface.abort("Game aborted!");
-				
 				if (uiHolder.enemy != null && uiHolder.enemy.userInterface != null) {
 					UserInterface userInterface2 = uiHolder.enemy.userInterface;
 					userInterface2.abort("Player " + uiHolder.player.getName() + " left the game");
@@ -127,7 +128,7 @@ public class GameServiceImpl implements GameService {
 		System.out.println("round: " + ++round);
 		// sleep a bit to take away stress from the process
 		try {
-			Thread.sleep(500);
+			Thread.sleep(1);
 		} catch (InterruptedException e) {
 			// do nothing here
 		}
@@ -152,7 +153,7 @@ public class GameServiceImpl implements GameService {
 		System.out.println("round: " + ++round);
 		// sleep a bit to take away stress from the process
 		try {
-			Thread.sleep(500);
+			Thread.sleep(1);
 		} catch (InterruptedException e) {
 			// do nothing here
 		}
