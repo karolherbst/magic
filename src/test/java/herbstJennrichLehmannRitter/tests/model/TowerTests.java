@@ -47,12 +47,33 @@ public class TowerTests {
 	}
 	
 	@Test
+	public void testApplyNegativeDamageTo30() {
+		this.tower.setActualPoints(20);
+		this.tower.applyDamage(-10);
+		assertEquals(this.tower.getActualPoints(), 30);
+	}
+		
+	@Test
+	public void testSetAndAddNegativePointsWithDamageLowerThanActualPointsTo5() {
+		this.tower.setActualPoints(10);
+		this.tower.addPoints(-5);
+		assertEquals(this.tower.getActualPoints(), 5);
+	}
+	
+	@Test
 	public void testApplyDamageWithDamageLowerThenActualPoints() {
 		this.tower.setActualPoints(20);
 		this.tower.applyDamage(10);
 		assertEquals(this.tower.getActualPoints(), 10);
 	}
-
+	
+	@Test
+	public void testAddNegativePointsWithDamageHigherThenActualPoints() {
+		this.tower.setActualPoints(15);
+		this.tower.addPoints(-30);
+		assertEquals(this.tower.getActualPoints(), 0);
+	}
+	
 	@Test
 	public void testApplyDamageWithDamageHigherThenActualPoints() {
 		this.tower.setActualPoints(15);
@@ -66,5 +87,11 @@ public class TowerTests {
 		this.tower.applyDamage(20);
 		assertEquals(this.tower.getActualPoints(), 0);
 	}
-
+	
+	@Test
+	public void testAddNegativePointsWithDamageEqualToActualPoints() {
+		this.tower.setActualPoints(15);
+		this.tower.addPoints(-15);
+		assertEquals(this.tower.getActualPoints(), 0);
+	}
 }
