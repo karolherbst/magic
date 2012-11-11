@@ -71,7 +71,6 @@ public class GameServerImpl implements GameServer {
 			@Override
 			public void run() {
 				GameServerImpl.this.gameService.unregister(userInterface);
-				// TODO Auto-generated method stub
 			}
 		}).start();
 	}

@@ -83,9 +83,7 @@ public final class Globals {
 		GameServer gameServer = null;
 		try {
 			gameServer = (GameServer)Naming.lookup("//" + ipAddress + "/" + GAME_SERVER_NAME);
-			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println(gameServer);
