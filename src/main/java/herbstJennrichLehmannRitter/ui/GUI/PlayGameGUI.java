@@ -141,10 +141,25 @@ public class PlayGameGUI {
 			PlayGameGUI.this.shell.setVisible(false);
 	}
 	
+//	Quelle für Carriage Return: http://www.java2s.com/Code/JavaScript/Window-Browser/Acarriagereturninalertdialogbox.htm
 	private void howToButtonPressed (SelectionEvent e){
 		MessageBox messageBox = new MessageBox(this.shell, SWT.ICON_INFORMATION);
 		messageBox.getStyle();
-		messageBox.setMessage("Brot für die Welt!");
+		messageBox.setMessage("Jeder Spieler beginnt mit dem Folgenden: Turm 25 Punkte, Mauer 10 Punkte, " +
+				"Steinbruch, Zauberlabor, Verlies jeweils Stufe 1 und 15 Ressourcen. " +
+				"Und 6 zufälligen Spielkarten aus seinem Kartenstapel. Es gibt zwei verschiedene Modi: " +
+				"Turmbau und Sammelwut. " +
+				"Ein Spieler gewinnt, wenn der gegnerische Turm 0 Punkte hat (beide Modi), " +
+				"der eigene Turm 100 Punkte hat (Turmbau) oder von einer Sorte Ressourcen 400 Stück " +
+				"gesammelt worden sind (Sammelwut). \rDas Spiel läuft in Runden ab. " +
+				"Zum Anfang der Runde erhält der Spieler Ressourcen im Wert seiner aktuellen Stufen von Verlies, " +
+				"Zauberlabor und Steinbruch. Dann kann der Spieler eine Karte auswählen und spielen oder verwerfen. " +
+				"Gespielt werden kann die Karte nur, wenn er genügend Ressourcen besitzt, wenn ja, werden alle Aktionen " +
+				"gleichzeitig ausgeführt. Im Anschluss wird die Karte auf den Friedhof gelegt und der Spieler zieht Karten " +
+				"vom Deck, bis er wieder 6 Karten auf der Hand hat. Falls das Deck leer ist, wird der Friedhof neu gemischt. " +
+				"Der andere Spieler ist am Zug. \rSchaden wird erst von der Mauer, danach vom Turm abgezogen, Mauerschaden nur " +
+				"von der Mauer und Turmschaden immer vom Turm. Ressourcengebäude können Stufen gewinnen oder verlieren, dabei ist " +
+				"die niedrigste Stufe Stufe 1. Ressourcenbestände können nicht unter 0 fallen.");
 		messageBox.open();
 		
 	}
