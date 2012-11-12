@@ -51,7 +51,7 @@ public class ClientMenuGUI {
 	}
 	
 	private void initShell() {
-		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
+		this.shell = new Shell(SWT.TITLE);
 		this.shell.setText("Starte Spiel als Client");
 		this.shell.setLayout(new GridLayout(2, false));
 	}

@@ -24,8 +24,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 public class MainMenuGUI {
@@ -108,7 +106,7 @@ public class MainMenuGUI {
 	}
 	
 	private void initShell() {
-		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
+		this.shell = new Shell(SWT.TITLE);
 		this.shells++;
 		this.shell.setText("Hauptmenü");
 		this.shell.setLayout(new GridLayout(1, false));
@@ -117,11 +115,6 @@ public class MainMenuGUI {
 			@Override
 			public void widgetDisposed(DisposeEvent d) {
 				MainMenuGUI.this.shells--;
-			}
-		});
-		this.shell.addListener(SWT.Close, new Listener() {
-			@Override
-			public void handleEvent(Event event) {
 			}
 		});
 	}
@@ -133,7 +126,7 @@ public class MainMenuGUI {
 		this.chooseDeckButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ChooseDeckGUI chooseDeckGUI = new ChooseDeckGUI(MainMenuGUI.this.display);
+				ChooseDeckGUI chooseDeckGUI = new ChooseDeckGUI(MainMenuGUI.this.display, MainMenuGUI.this);
 				chooseDeckGUI.open();
 			}
 		});

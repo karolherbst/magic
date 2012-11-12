@@ -56,7 +56,7 @@ public class GameMenuGUI {
 	}
 	
 	private void initShell() {
-		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
+		this.shell = new Shell(SWT.TITLE);
 		this.shell.setText("Spielauswahl");
 		this.shell.setLayout(new GridLayout(1, false));
 	}

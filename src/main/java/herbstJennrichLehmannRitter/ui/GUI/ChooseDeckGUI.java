@@ -81,7 +81,7 @@ public class ChooseDeckGUI {
 	}
 
 	private void initShell() {
-		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
+		this.shell = new Shell(SWT.TITLE);
 		this.shell.setText("Deck erstellen");
 		this.shell.setLayout(new FormLayout());
 		this.shell.layout();
