@@ -21,7 +21,9 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 
@@ -44,22 +46,35 @@ public class HostMenuGUI {
 	public HostMenuGUI(Display parent, MainMenuGUI mainMenuGUI){
 		this.display = parent;
 		this.mainMenuGUI = mainMenuGUI;
+		
+		initGUI();
+	}
+	
+	private void initGUI() {
 		initShell();
 		initWartenLabel();
 		initModeLabel();
 		initExitButton();
 		this.shell.pack();
+		
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 		
-		this.mainMenuGUI.getClientUserInterface().setHostMenuGUI(this);
-		
-		this.gameServer = Globals.getLocalGameServer();
-		try {
-			this.gameServer.register(this.mainMenuGUI.getClientUserInterface());
-		} catch (RemoteException e) {
-			e.getLocalizedMessage();
-		}
+		this.shell.addListener(SWT.Close, this.onCloseListener);
 	}
+	
+	private Listener onCloseListener = new Listener() {
+		@Override
+		public void handleEvent(Event event) {
+			cancelTimer();
+			HostMenuGUI.this.shell.setVisible(false);
+			try {
+				HostMenuGUI.this.gameServer.unregister(HostMenuGUI.this.mainMenuGUI.getClientUserInterface());
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			Globals.stopRemoteServer();
+		}
+	};
 	
 	private void initModeLabel() {
 		String text = "Modusauswahl";
@@ -71,6 +86,22 @@ public class HostMenuGUI {
 	}
 
 	public void open() {
+		if (this.shell.isDisposed()) {
+			initGUI();
+		}
+		
+		if (this.shell.isVisible()) {
+			this.shell.forceActive();
+			return;
+		}
+		this.mainMenuGUI.getClientUserInterface().setHostMenuGUI(this);
+		this.gameServer = Globals.getLocalGameServer();
+		try {
+			this.gameServer.register(this.mainMenuGUI.getClientUserInterface());
+		} catch (RemoteException e) {
+			e.getLocalizedMessage();
+		}
+		
 		this.shell.open();
 		
 		this.timer = new Timer();
@@ -78,14 +109,10 @@ public class HostMenuGUI {
 			
 			@Override
 			public void run() {
-				display.asyncExec(new Runnable() {
+				HostMenuGUI.this.display.asyncExec(new Runnable() {
 					@Override
 					public void run() {
-						try {
-							gameServer.unregister(mainMenuGUI.getClientUserInterface());
-						} catch (RemoteException e) {
-							System.out.println(e.getLocalizedMessage());
-						}
+						HostMenuGUI.this.shell.close();
 					}
 				});
 			}
@@ -103,7 +130,7 @@ public class HostMenuGUI {
 		
 		try {
 			text += "Ihre IP-Adresse ist:\n";
-			text += this.lookupIpAddress(); 
+			text += lookupIpAddress(); 
 			text += "\n";
 		} catch (SocketException e) {
 			text += "Ihre IP-Adresse ist unbekannt. Bitte prüfen Sie, ob Sie mit dem Netzwerk verbunden sind.\n";
@@ -116,9 +143,13 @@ public class HostMenuGUI {
 		this.wartenLabel.setBounds(this.shell.getClientArea());
 	}
 	
-	public void cancelTimerAndOpenPlayGameGUI() {
+	private void cancelTimer() {
 		this.timer.cancel();
-		PlayGameGUI playGameGUI = new PlayGameGUI(display, this.mainMenuGUI);
+	}
+	
+	public void cancelTimerAndOpenPlayGameGUI() {
+		cancelTimer();
+		PlayGameGUI playGameGUI = new PlayGameGUI(this.display, this.mainMenuGUI);
 		playGameGUI.open();
 	}
 	
@@ -153,8 +184,7 @@ public class HostMenuGUI {
 		this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				HostMenuGUI.this.shell.setVisible(false);
-				Globals.stopRemoteServer();
+				HostMenuGUI.this.shell.close();
 			}
 		});
 	}

@@ -1,10 +1,10 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
-import java.rmi.RemoteException;
-
 import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.ki.KI;
 import herbstJennrichLehmannRitter.server.GameServer;
+
+import java.rmi.RemoteException;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -36,6 +36,9 @@ public class GameMenuGUI {
 	private MainMenuGUI mainMenuGUI;
 	protected GameServer gameServer;
 	
+	private ClientMenuGUI clientMenuGUI;
+	private HostMenuGUI hostMenuGUI;
+	
 	public GameMenuGUI(Display parent, MainMenuGUI mainMenuGUI) {
 		this.display = parent;
 		this.mainMenuGUI = mainMenuGUI;
@@ -49,6 +52,8 @@ public class GameMenuGUI {
 		initBackButton();
 		this.shell.pack();
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
+		this.clientMenuGUI = new ClientMenuGUI(this.display, this.mainMenuGUI);
+		this.hostMenuGUI = new HostMenuGUI(GameMenuGUI.this.display, GameMenuGUI.this.mainMenuGUI);
 	}
 	
 	public void open() {
@@ -84,7 +89,7 @@ public class GameMenuGUI {
 			@Override
 			public void modifyText(ModifyEvent e) {
 				Text changedText = (Text)e.widget;
-				mainMenuGUI.setPlayerName(changedText.getText());
+				GameMenuGUI.this.mainMenuGUI.setPlayerName(changedText.getText());
 			}
 		});
 	}
@@ -109,8 +114,7 @@ public class GameMenuGUI {
 		this.startHostButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				HostMenuGUI hostMenuGUI = new HostMenuGUI(display, mainMenuGUI);
-				hostMenuGUI.open();
+				GameMenuGUI.this.hostMenuGUI.open();
 			}
 		});
 	}
@@ -124,8 +128,7 @@ public class GameMenuGUI {
 		this.startClientButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ClientMenuGUI clientMenuGUI = new ClientMenuGUI(display, mainMenuGUI);
-				clientMenuGUI.open();
+				GameMenuGUI.this.clientMenuGUI.open();
 			}
 		});
 	}
@@ -140,11 +143,11 @@ public class GameMenuGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try {
-					gameServer = Globals.getLocalGameServer();
-					mainMenuGUI.setGameServer(gameServer);
-					PlayGameGUI playGameGUI = new PlayGameGUI(display, mainMenuGUI);
-					gameServer.register(mainMenuGUI.getClientUserInterface());
-					KI.startKIOnLocal(mainMenuGUI.getEnemyName());
+					GameMenuGUI.this.gameServer = Globals.getLocalGameServer();
+					GameMenuGUI.this.mainMenuGUI.setGameServer(GameMenuGUI.this.gameServer);
+					PlayGameGUI playGameGUI = new PlayGameGUI(GameMenuGUI.this.display, GameMenuGUI.this.mainMenuGUI);
+					GameMenuGUI.this.gameServer.register(GameMenuGUI.this.mainMenuGUI.getClientUserInterface());
+					KI.startKIOnLocal(GameMenuGUI.this.mainMenuGUI.getEnemyName());
 					playGameGUI.open();
 				} catch (RemoteException e2) {
 					e2.printStackTrace();
