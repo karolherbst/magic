@@ -145,9 +145,15 @@ public class ClientUserInterface implements UserInterface {
 	}
 
 	@Override
-	public void abort(String reason) {
+	public void abort(final String reason) {
 		if (this.playGameGUI != null) {
-			this.playGameGUI.setGameStateToAbort(reason);
+			Display.getDefault().asyncExec(new Runnable() {
+				
+				@Override
+				public void run() {
+					playGameGUI.setGameStateToAbort(reason);
+				}
+			});
 		} else if (this.hostMenuGUI != null) {
 			this.hostMenuGUI.displayMessageBox(reason);
 		}
