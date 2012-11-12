@@ -182,50 +182,6 @@ public class PlayGameGUI {
 		this.playerTower.setLevel(level);
 	}
 	
-	private void initEnemyDungeon() {
-		this.enemyDungeon = new RessourceFields("Verlies", 10, 20);
-	}
-	public void setEnemyDungeonLevel(int level) {
-		this.enemyDungeon.setLevel(level);
-	}
-	public void setEnemyDungeonStock(int stock) {
-		this.enemyDungeon.setStock(stock);
-	}
-
-	private void initEnemyMagicLab() {
-		this.enemyMagicLab = new RessourceFields("Zauberlabor", 220, 20);
-	}
-	public void setEnemyMagicLabLevel(int level) {
-		this.enemyMagicLab.setLevel(level);
-	}
-	public void setEnemyMagicLabStock(int stock) {
-		this.enemyMagicLab.setStock(stock);
-	}
-	
-	private void initEnemyMine() {
-		this.enemyMine = new RessourceFields("Steinbruch", 430, 20);
-	}
-	public void setEnemyMineLevel(int level) {
-		this.enemyMine.setLevel(level);
-	}
-	public void setEnemyMineStock(int stock) {
-		this.enemyMine.setStock(stock);
-	}
-	
-	private void initEnemyWall() {
-		this.enemyWall = new DefenceBuildingFields("Mauer", 640, 20);
-	}
-	public void setEnemyWall(int level) {
-		this.enemyWall.setLevel(level);
-	}
-	
-	private void initEnemyTower(){
-		this.enemyTower = new DefenceBuildingFields("Turm", 830, 20);
-	}
-	public void setEnemyTower(int level) {
-		this.enemyTower.setLevel(level);
-	}
-	
 	private void initPlayerCards() {
 		int x = 157;
 		int y = 540;
@@ -268,11 +224,56 @@ public class PlayGameGUI {
 				}
 			}
 		} while (cardIterator.hasNext());
+	}	
+	
+	private void initEnemyDungeon() {
+		this.enemyDungeon = new RessourceFields("Verlies", 10, 25);
+	}
+	public void setEnemyDungeonLevel(int level) {
+		this.enemyDungeon.setLevel(level);
+	}
+	public void setEnemyDungeonStock(int stock) {
+		this.enemyDungeon.setStock(stock);
+	}
+
+	private void initEnemyMagicLab() {
+		this.enemyMagicLab = new RessourceFields("Zauberlabor", 220, 25);
+	}
+	public void setEnemyMagicLabLevel(int level) {
+		this.enemyMagicLab.setLevel(level);
+	}
+	public void setEnemyMagicLabStock(int stock) {
+		this.enemyMagicLab.setStock(stock);
 	}
 	
+	private void initEnemyMine() {
+		this.enemyMine = new RessourceFields("Steinbruch", 430, 25);
+	}
+	public void setEnemyMineLevel(int level) {
+		this.enemyMine.setLevel(level);
+	}
+	public void setEnemyMineStock(int stock) {
+		this.enemyMine.setStock(stock);
+	}
+	
+	private void initEnemyWall() {
+		this.enemyWall = new DefenceBuildingFields("Mauer", 640, 25);
+	}
+	public void setEnemyWall(int level) {
+		this.enemyWall.setLevel(level);
+	}
+	
+	private void initEnemyTower(){
+		this.enemyTower = new DefenceBuildingFields("Turm", 830, 25);
+	}
+	public void setEnemyTower(int level) {
+		this.enemyTower.setLevel(level);
+	}
+	
+
 	private void initEnemyCards() {
 		int x = 157;
-		int y = 86;
+		int y = 90;
 		this.enemyCards = new ArrayList<CardFields>();
 		for (int i=0; i<6; i++) {
 			this.enemyCards.add(new CardFields((x+(120*i)), y, true, true));
@@ -314,7 +315,7 @@ public class PlayGameGUI {
 	}
 
 	private void initPlayerChoosenCards() {
-		this.playerChoosenCard = new CardFields(457, 390, false, false);
+		this.playerChoosenCard = new CardFields(457, 400, false, false);
 	}
 	
 	public void playerPlayedCard(String name) {
