@@ -349,7 +349,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initEnemyChoosenCards() {
-		this.enemyChoosenCards = new CardFields(457, 235, false, false);
+		this.enemyChoosenCards = new CardFields(457, 227, false, false);
 	}
 	
 	public void setEnemyChoosenCardName(String name) {
