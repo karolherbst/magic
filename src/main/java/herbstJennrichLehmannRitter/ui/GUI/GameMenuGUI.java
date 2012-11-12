@@ -36,9 +36,6 @@ public class GameMenuGUI {
 	private MainMenuGUI mainMenuGUI;
 	protected GameServer gameServer;
 	
-	private ClientMenuGUI clientMenuGUI;
-	private HostMenuGUI hostMenuGUI;
-	
 	public GameMenuGUI(Display parent, MainMenuGUI mainMenuGUI) {
 		this.display = parent;
 		this.mainMenuGUI = mainMenuGUI;
@@ -52,8 +49,6 @@ public class GameMenuGUI {
 		initBackButton();
 		this.shell.pack();
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
-		this.clientMenuGUI = new ClientMenuGUI(this.display, this.mainMenuGUI);
-		this.hostMenuGUI = new HostMenuGUI(GameMenuGUI.this.display, GameMenuGUI.this.mainMenuGUI);
 	}
 	
 	public void open() {
@@ -114,7 +109,8 @@ public class GameMenuGUI {
 		this.startHostButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				GameMenuGUI.this.hostMenuGUI.open();
+				HostMenuGUI hostMenuGUI = new HostMenuGUI(GameMenuGUI.this.display, GameMenuGUI.this.mainMenuGUI);
+				hostMenuGUI.open();
 			}
 		});
 	}
@@ -128,7 +124,8 @@ public class GameMenuGUI {
 		this.startClientButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				GameMenuGUI.this.clientMenuGUI.open();
+				ClientMenuGUI clientMenuGUI = new ClientMenuGUI(GameMenuGUI.this.display, GameMenuGUI.this.mainMenuGUI);
+				clientMenuGUI.open();
 			}
 		});
 	}
