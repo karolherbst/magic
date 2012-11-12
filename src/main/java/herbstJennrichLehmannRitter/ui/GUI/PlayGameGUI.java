@@ -60,6 +60,9 @@ public class PlayGameGUI {
 	private NameFields enemyName;
 	private boolean cardDetailIsOpen = false;
 	
+	//TODO: Gegner Karten und Ressourcen beim DEMO Mode zeigen. Bei Lokalem / Netzwerkspiel nur die jeweiligen Level.
+	//Hätte das gerne selber gemacht, finde nur keine Methode - SÖNKE
+	
 	public PlayGameGUI(Display parent, MainMenuGUI mainMenuGUI) {
 		this.display = parent;
 		this.mainMenuGUI = mainMenuGUI;
@@ -109,7 +112,6 @@ public class PlayGameGUI {
 		Menu menuMenu = new Menu(this.shell, SWT.DROP_DOWN);
 		fileMenuHead.setMenu(menuMenu);
 		MenuItem menuItemHowTo = new MenuItem(menuMenu, SWT.PUSH);
-		//TODO: Spielregel a la Message Box?
 		menuItemHowTo.setText("Spielregeln");
 		menuItemHowTo.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -145,7 +147,7 @@ public class PlayGameGUI {
 	private void howToButtonPressed (SelectionEvent e){
 		MessageBox messageBox = new MessageBox(this.shell, SWT.ICON_INFORMATION);
 		messageBox.getStyle();
-		messageBox.setMessage("Jeder Spieler beginnt mit dem Folgenden: Turm 25 Punkte, Mauer 10 Punkte, " +
+		String messageString = "Jeder Spieler beginnt mit dem Folgenden: Turm 25 Punkte, Mauer 10 Punkte, " +
 				"Steinbruch, Zauberlabor, Verlies jeweils Stufe 1 und 15 Ressourcen. " +
 				"Und 6 zufälligen Spielkarten aus seinem Kartenstapel. Es gibt zwei verschiedene Modi: " +
 				"Turmbau und Sammelwut. " +
@@ -159,7 +161,8 @@ public class PlayGameGUI {
 				"vom Deck, bis er wieder 6 Karten auf der Hand hat. Falls das Deck leer ist, wird der Friedhof neu gemischt. " +
 				"Der andere Spieler ist am Zug. \rSchaden wird erst von der Mauer, danach vom Turm abgezogen, Mauerschaden nur " +
 				"von der Mauer und Turmschaden immer vom Turm. Ressourcengebäude können Stufen gewinnen oder verlieren, dabei ist " +
-				"die niedrigste Stufe Stufe 1. Ressourcenbestände können nicht unter 0 fallen.");
+				"die niedrigste Stufe Stufe 1. Ressourcenbestände können nicht unter 0 fallen.";
+		messageBox.setMessage(messageString);
 		messageBox.open();
 		
 	}
