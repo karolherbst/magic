@@ -141,6 +141,7 @@ public class GameMenuGUI {
 			public void widgetSelected(SelectionEvent e) {
 				try {
 					gameServer = Globals.getLocalGameServer();
+					mainMenuGUI.setGameServer(gameServer);
 					PlayGameGUI playGameGUI = new PlayGameGUI(display, mainMenuGUI);
 					gameServer.register(mainMenuGUI.getClientUserInterface());
 					KI.startKIOnLocal(mainMenuGUI.getEnemyName());

@@ -100,6 +100,9 @@ public class MainMenuGUI {
 	public GameType getGameType() {
 		return this.gameType;
 	}
+	public void setGameServer(GameServer gameServer) {
+		this.gameServer = gameServer;
+	}
 	public GameServer getGameServer() {
 		return this.gameServer;
 	}
