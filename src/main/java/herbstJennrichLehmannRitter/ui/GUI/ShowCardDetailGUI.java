@@ -144,6 +144,7 @@ public class ShowCardDetailGUI {
 		this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				playGameGui.setCardDetailIsOpen(false);
 				ShowCardDetailGUI.this.shell.setVisible(false);
 			}
 		});
@@ -165,6 +166,8 @@ public class ShowCardDetailGUI {
 			public void widgetSelected(SelectionEvent e) {
 				//TODO: Karol, ist hier getLocalGameServer richtig, wenn ich das generell an dich übergeben möchte?
 				try {
+					//FIXME: Das funktioniert noch nicht beim lokalen Spiel!
+					playGameGui.setCardDetailIsOpen(false);
 					Globals.getLocalGameServer().discardCard(ShowCardDetailGUI.this.card);
 					ShowCardDetailGUI.this.shell.setVisible(false);
 				} catch (RemoteException e1) {
@@ -190,7 +193,9 @@ public class ShowCardDetailGUI {
 			public void widgetSelected(SelectionEvent e) {
 				//TODO: Karol, ist hier getLocalGameServer richtig, wenn ich das generell an dich übergeben möchte?
 				try {
+					playGameGui.setCardDetailIsOpen(false);
 					playGameGui.playerPlayedCard(ShowCardDetailGUI.this.card.getName());
+					//FIXME: Das funktioniert noch nicht beim lokalen Spiel!
 					Globals.getLocalGameServer().playCard(ShowCardDetailGUI.this.card);
 					ShowCardDetailGUI.this.shell.setVisible(false);
 				} catch (RemoteException e1) {

@@ -57,6 +57,7 @@ public class PlayGameGUI {
 	private MainMenuGUI mainMenuGUI;
 	private NameFields playerName;
 	private NameFields enemyName;
+	private boolean cardDetailIsOpen = false;
 	
 	public PlayGameGUI(Display parent, MainMenuGUI mainMenuGUI) {
 		this.display = parent;
@@ -93,6 +94,10 @@ public class PlayGameGUI {
 		this.shell.pack();
 		this.shell.setSize(1024, 768);
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
+	}
+	
+	public void setCardDetailIsOpen(boolean bool) {
+		this.cardDetailIsOpen = bool;
 	}
 	
 	private void initMenuBar() {
@@ -187,7 +192,7 @@ public class PlayGameGUI {
 		int y = 540;
 		this.playerCards = new ArrayList<CardFields>();
 		for (int i=0; i<6; i++) {
-			this.playerCards.add(new CardFields((x+(120*i)), y, true, true));
+			this.playerCards.add(new CardFields((x+(120*i)), y, true));
 			this.playerCards.get(i).setCardName("");
 		}
 	}
@@ -276,7 +281,7 @@ public class PlayGameGUI {
 		int y = 90;
 		this.enemyCards = new ArrayList<CardFields>();
 		for (int i=0; i<6; i++) {
-			this.enemyCards.add(new CardFields((x+(120*i)), y, true, true));
+			this.enemyCards.add(new CardFields((x+(120*i)), y, true));
 		}
 	}
 	
@@ -315,7 +320,7 @@ public class PlayGameGUI {
 	}
 
 	private void initPlayerChoosenCards() {
-		this.playerChoosenCard = new CardFields(457, 400, false, false);
+		this.playerChoosenCard = new CardFields(457, 400, false);
 	}
 	
 	public void playerPlayedCard(String name) {
@@ -341,7 +346,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initEnemyChoosenCards() {
-		this.enemyChoosenCards = new CardFields(457, 235, false, false);
+		this.enemyChoosenCards = new CardFields(457, 235, false);
 	}
 	
 	public void setEnemyChoosenCardName(String name) {
@@ -399,7 +404,7 @@ public class PlayGameGUI {
 		private Label nameLabel;
 		private Composite cardComp;
 		
-		private CardFields(int positionFromLeft, int positionFromTop, boolean isVisible, boolean isClickable) {
+		private CardFields(int positionFromLeft, int positionFromTop, boolean isVisible) {
 			FormData cardData = new FormData();
 			cardData.left = new FormAttachment(0, 800, positionFromLeft);
 			cardData.top = new FormAttachment(0, 800, positionFromTop);
@@ -416,19 +421,17 @@ public class PlayGameGUI {
 			
 			this.nameLabel = new Label(this.cardComp, SWT.CENTER);
 			this.nameLabel.setBounds(0, 20, 110, 15);
-			
-			if (isClickable) {
-				this.cardComp.addMouseListener(new MouseAdapter() {
-						@Override
-					   public void mouseDown(MouseEvent e) {
-							if (!getCardName().isEmpty()) {
-								ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(display, 
-										PlayGameGUI.this, Globals.getGameCardFactory().createCard(getCardName()));
-								showCardDetailGUI.open();
-							}
-					   }
-				});
-			}
+			this.cardComp.addMouseListener(new MouseAdapter() {
+				@Override
+			   public void mouseDown(MouseEvent e) {
+					if (!getCardName().isEmpty() && cardDetailIsOpen == false) {
+						ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(display, 
+								PlayGameGUI.this, Globals.getGameCardFactory().createCard(getCardName()));
+						showCardDetailGUI.open();
+						cardDetailIsOpen = true;
+					}
+			   }
+			});
 		}
 		
 		public void setCardName(String cardName) {
@@ -443,8 +446,25 @@ public class PlayGameGUI {
 			this.cardComp.setVisible(isVisible);
 		}
 		
-		public void setEnabled(boolean isDisabled) {
-			this.cardComp.setEnabled(isDisabled);
+		public void setEnabled(boolean isEnabled) {
+			if (isEnabled) {
+				this.cardComp.addMouseListener(new MouseAdapter() {
+					@Override
+				   public void mouseDown(MouseEvent e) {
+						if (!getCardName().isEmpty() && cardDetailIsOpen == false) {
+							ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(display, 
+									PlayGameGUI.this, Globals.getGameCardFactory().createCard(getCardName()));
+							showCardDetailGUI.open();
+							cardDetailIsOpen = true;
+						}
+				   }
+				});
+			} else {
+				this.cardComp.addMouseListener(new MouseAdapter() {
+					@Override
+				   public void mouseDown(MouseEvent e) {}
+				});
+			}
 		}
 	}
 	
