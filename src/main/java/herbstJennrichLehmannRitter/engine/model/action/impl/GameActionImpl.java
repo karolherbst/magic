@@ -3,7 +3,6 @@ package herbstJennrichLehmannRitter.engine.model.action.impl;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.GameAction;
 
-//TODO: This is not a good package for this. We have to find a better place.
 public class GameActionImpl implements GameAction {
 	
 	private Player sourcePlayer;
