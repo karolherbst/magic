@@ -411,7 +411,7 @@ public class PlayGameGUI {
 			FormData cardData = new FormData();
 			cardData.left = new FormAttachment(0, 800, positionFromLeft);
 			cardData.top = new FormAttachment(0, 800, positionFromTop);
-			cardData.height = 122;
+			cardData.height = 120;
 			cardData.width = 110;
 
 			this.cardComp = new Composite(shell, SWT.BORDER);
@@ -471,7 +471,7 @@ public class PlayGameGUI {
 			canvasData.left =  new FormAttachment(0, 1000, positionFromLeft);
 			canvasData.top =  new FormAttachment(0, 1000, positionFromTop);
 			canvasData.width = 180;
-			canvasData.height = 60;
+			canvasData.height = 55;
 			
 			Composite defenceComp = new Composite(shell, SWT.BORDER);
 			defenceComp.setLayoutData(canvasData);
@@ -506,7 +506,7 @@ public class PlayGameGUI {
 			canvasData.left =  new FormAttachment(0, 1000, positionFromLeft);
 			canvasData.top =  new FormAttachment(0, 1000, positionFromTop);
 			canvasData.width = 200;
-			canvasData.height = 60;
+			canvasData.height = 55;
 			
 			Composite ressourceComp = new Composite(shell, SWT.BORDER);
 			ressourceComp.setLayoutData(canvasData);
