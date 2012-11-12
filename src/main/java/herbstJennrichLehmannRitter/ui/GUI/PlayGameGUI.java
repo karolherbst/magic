@@ -159,7 +159,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerDungeon() {
-		this.playerDungeon = new RessourceFields("Verlies", 10, 647);
+		this.playerDungeon = new RessourceFields("Verlies", 10, 642);
 	}
 	public void setPlayerDungeonLevel(int level) {
 		this.playerDungeon.setLevel(level);
@@ -172,7 +172,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerMagicLab() {
-		this.playerMagicLab = new RessourceFields("Zauberlabor", 220, 647);
+		this.playerMagicLab = new RessourceFields("Zauberlabor", 220, 642);
 	}
 	public void setPlayerMagicLabLevel(int level) {
 		this.playerMagicLab.setLevel(level);
@@ -185,7 +185,7 @@ public class PlayGameGUI {
 	}
 
 	private void initPlayerMine() {
-		this.playerMine = new RessourceFields("Steinbruch", 430, 647);
+		this.playerMine = new RessourceFields("Steinbruch", 430, 642);
 	}
 	public void setPlayerMineLevel(int level) {
 		this.playerMine.setLevel(level);
@@ -198,14 +198,14 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerWall() {
-		this.playerWall = new DefenceBuildingFields("Mauer", 640, 647);
+		this.playerWall = new DefenceBuildingFields("Mauer", 640, 642);
 	}
 	public void setPlayerWall(int level) {
 		this.playerWall.setLevel(level);
 	}
 	
 	private void initPlayerTower(){
-		this.playerTower = new DefenceBuildingFields("Turm", 830, 647);
+		this.playerTower = new DefenceBuildingFields("Turm", 830, 642);
 	}
 	public void setPlayerTower(int level) {
 		this.playerTower.setLevel(level);
@@ -213,7 +213,7 @@ public class PlayGameGUI {
 	
 	private void initPlayerCards() {
 		int x = 157;
-		int y = 520;
+		int y = 515;
 		this.playerCards = new ArrayList<CardFields>();
 		for (int i=0; i<6; i++) {
 			this.playerCards.add(new CardFields((x+(120*i)), y, true, true));
@@ -322,7 +322,7 @@ public class PlayGameGUI {
 	}
 
 	private void initPlayerChoosenCards() {
-		this.playerChoosenCard = new CardFields(457, 392, false, false);
+		this.playerChoosenCard = new CardFields(457, 388, false, false);
 	}
 	
 	public void playerPlayedCard(String name) {
@@ -362,7 +362,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerName() {
-		this.playerName = new NameFields(this.mainMenuGUI.getPlayerName(), 370);
+		this.playerName = new NameFields(this.mainMenuGUI.getPlayerName(), 366);
 	}
 	
 	private void initEnemyName() {
@@ -423,7 +423,7 @@ public class PlayGameGUI {
 			this.cardComp.setLayoutData(cardData);
 			
 			this.nameLabel = new Label(this.cardComp, SWT.CENTER | SWT.WRAP);
-			this.nameLabel.setBounds(0, 5, 110, 15);
+			this.nameLabel.setBounds(0, 5, 110, 30);
 			if (isClickable) {
 				this.cardComp.addMouseListener(new MouseAdapter() {
 					@Override
