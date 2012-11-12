@@ -192,7 +192,7 @@ public class PlayGameGUI {
 		int y = 540;
 		this.playerCards = new ArrayList<CardFields>();
 		for (int i=0; i<6; i++) {
-			this.playerCards.add(new CardFields((x+(120*i)), y, true));
+			this.playerCards.add(new CardFields((x+(120*i)), y, true, true));
 			this.playerCards.get(i).setCardName("");
 		}
 	}
@@ -205,21 +205,9 @@ public class PlayGameGUI {
 		
 		Iterator<Card> cardIterator = cards.iterator();
 		Card card;
-		int valueBrick = Integer.valueOf(this.playerMine.levelValue.getText().toString());
-		int valueCrystal = Integer.valueOf(this.playerMagicLab.levelValue.getText().toString());
-		int valueMonsters = Integer.valueOf(this.playerDungeon.levelValue.getText().toString());
-		int index;
 		do {
 			card = cardIterator.next();
 			if (cardFields.contains(card.getName())) {
-				index = cardFields.indexOf(card.getName());
-				if (card.getCostBrick() > valueBrick && 
-						card.getCostCrystal() > valueCrystal &&
-						card.getCostMonsters() > valueMonsters) {
-					this.playerCards.get(index).setEnabled(false);
-				} else {
-					this.playerCards.get(index).setEnabled(true);
-				}
 				continue;
 			}
 			for (CardFields cardField: this.playerCards) {
@@ -281,7 +269,7 @@ public class PlayGameGUI {
 		int y = 90;
 		this.enemyCards = new ArrayList<CardFields>();
 		for (int i=0; i<6; i++) {
-			this.enemyCards.add(new CardFields((x+(120*i)), y, true));
+			this.enemyCards.add(new CardFields((x+(120*i)), y, true, true));
 		}
 	}
 	
@@ -293,21 +281,9 @@ public class PlayGameGUI {
 		
 		Iterator<Card> cardIterator = cards.iterator();
 		Card card;
-		int valueBrick = Integer.valueOf(this.enemyMine.levelValue.getText().toString());
-		int valueCrystal = Integer.valueOf(this.enemyMagicLab.levelValue.getText().toString());
-		int valueMonsters = Integer.valueOf(this.enemyDungeon.levelValue.getText().toString());
-		int index;
 		do {
 			card = cardIterator.next();
 			if (cardFields.contains(card.getName())) {
-				index = cardFields.indexOf(card.getName());
-				if (card.getCostBrick() > valueBrick && 
-						card.getCostCrystal() > valueCrystal &&
-						card.getCostMonsters() > valueMonsters) {
-					this.enemyCards.get(index).setEnabled(false);
-				} else {
-					this.enemyCards.get(index).setEnabled(true);
-				}
 				continue;
 			}
 			for (CardFields cardField: this.enemyCards) {
@@ -320,7 +296,7 @@ public class PlayGameGUI {
 	}
 
 	private void initPlayerChoosenCards() {
-		this.playerChoosenCard = new CardFields(457, 400, false);
+		this.playerChoosenCard = new CardFields(457, 400, false, false);
 	}
 	
 	public void playerPlayedCard(String name) {
@@ -346,7 +322,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initEnemyChoosenCards() {
-		this.enemyChoosenCards = new CardFields(457, 235, false);
+		this.enemyChoosenCards = new CardFields(457, 235, false, false);
 	}
 	
 	public void setEnemyChoosenCardName(String name) {
@@ -404,7 +380,7 @@ public class PlayGameGUI {
 		private Label nameLabel;
 		private Composite cardComp;
 		
-		private CardFields(int positionFromLeft, int positionFromTop, boolean isVisible) {
+		private CardFields(int positionFromLeft, int positionFromTop, boolean isVisible, boolean isClickable) {
 			FormData cardData = new FormData();
 			cardData.left = new FormAttachment(0, 800, positionFromLeft);
 			cardData.top = new FormAttachment(0, 800, positionFromTop);
@@ -421,17 +397,19 @@ public class PlayGameGUI {
 			
 			this.nameLabel = new Label(this.cardComp, SWT.CENTER);
 			this.nameLabel.setBounds(0, 20, 110, 15);
-			this.cardComp.addMouseListener(new MouseAdapter() {
-				@Override
-			   public void mouseDown(MouseEvent e) {
-					if (!getCardName().isEmpty() && cardDetailIsOpen == false) {
-						ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(display, 
-								PlayGameGUI.this, Globals.getGameCardFactory().createCard(getCardName()));
-						showCardDetailGUI.open();
-						cardDetailIsOpen = true;
-					}
-			   }
-			});
+			if (isClickable) {
+				this.cardComp.addMouseListener(new MouseAdapter() {
+					@Override
+				   public void mouseDown(MouseEvent e) {
+						if (!getCardName().isEmpty() && cardDetailIsOpen == false) {
+							ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(display, 
+									PlayGameGUI.this, Globals.getGameCardFactory().createCard(getCardName()));
+							showCardDetailGUI.open();
+							cardDetailIsOpen = true;
+						}
+				   }
+				});
+			}
 		}
 		
 		public void setCardName(String cardName) {
@@ -444,27 +422,6 @@ public class PlayGameGUI {
 		
 		public void setVisible(boolean isVisible) {
 			this.cardComp.setVisible(isVisible);
-		}
-		
-		public void setEnabled(boolean isEnabled) {
-			if (isEnabled) {
-				this.cardComp.addMouseListener(new MouseAdapter() {
-					@Override
-				   public void mouseDown(MouseEvent e) {
-						if (!getCardName().isEmpty() && cardDetailIsOpen == false) {
-							ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(display, 
-									PlayGameGUI.this, Globals.getGameCardFactory().createCard(getCardName()));
-							showCardDetailGUI.open();
-							cardDetailIsOpen = true;
-						}
-				   }
-				});
-			} else {
-				this.cardComp.addMouseListener(new MouseAdapter() {
-					@Override
-				   public void mouseDown(MouseEvent e) {}
-				});
-			}
 		}
 	}
 	
