@@ -144,7 +144,7 @@ public class PlayGameGUI {
 	private void howToButtonPressed (SelectionEvent e){
 		MessageBox messageBox = new MessageBox(this.shell, SWT.ICON_INFORMATION);
 		messageBox.getStyle();
-		messageBox.setMessage("(.) (.) -> Brüste für die Welt!");
+		messageBox.setMessage("Brot für die Welt!");
 		messageBox.open();
 		
 	}
