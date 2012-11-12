@@ -379,8 +379,8 @@ public class PlayGameGUI {
 		this.enemyName = new NameFields(this.mainMenuGUI.getEnemyName(), 3);
 	}
 	
-	public void nextTurn() {
-		if (this.playerName.getPlayerIsActive()) {
+	public void nextTurn(String currentPlayerName) {
+		if (this.playerName.getPlayerName() == currentPlayerName) {
 			this.changePlayer(this.playerName, this.enemyName, "ist am Zug");
 			this.playerChoosenCard.setVisible(false);
 		} else {
