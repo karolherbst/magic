@@ -211,7 +211,7 @@ public class ShowCardDetailGUI {
 		FormData formData = new FormData();
 		formData.left = new FormAttachment(0, 1000, 30);
 		formData.top =  new FormAttachment(0, 1000, positionFromTop);
-		formData.width = 90;
+		formData.width = 80;
 		if (fieldHeight != 0) {
 			formData.height = fieldHeight;
 		}
