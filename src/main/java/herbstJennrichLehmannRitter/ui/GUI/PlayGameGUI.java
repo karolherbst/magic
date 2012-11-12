@@ -201,6 +201,7 @@ public class PlayGameGUI {
 		ArrayList<String> cardFields = new ArrayList<String>();
 		for (CardFields cardField: this.playerCards) {
 			cardFields.add(cardField.getCardName());
+			cardField.setVisible(true);
 		}
 		
 		Iterator<Card> cardIterator = cards.iterator();
@@ -277,6 +278,7 @@ public class PlayGameGUI {
 		ArrayList<String> cardFields = new ArrayList<String>();
 		for (CardFields cardField: this.enemyCards) {
 			cardFields.add(cardField.getCardName());
+			cardField.setVisible(true);
 		}
 		
 		Iterator<Card> cardIterator = cards.iterator();
@@ -315,6 +317,7 @@ public class PlayGameGUI {
 			if( cardField.getCardName() == name) {
 				System.out.println("Remove Card " + name + " from Position:" + i);
 				cardField.setCardName("");
+				cardField.setVisible(false);
 				break;
 			}
 			i++;
