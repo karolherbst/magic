@@ -27,6 +27,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 
 public class PlayGameGUI {
@@ -101,30 +102,53 @@ public class PlayGameGUI {
 	}
 	
 	private void initMenuBar() {
-		//TODO: Spielregel a la Message Box
+		
 		Menu menuBar = new Menu(this.shell, SWT.BAR);
 		MenuItem fileMenuHead = new MenuItem(menuBar, SWT.CASCADE);
 		fileMenuHead.setText("Menü");
-		
 		Menu menuMenu = new Menu(this.shell, SWT.DROP_DOWN);
 		fileMenuHead.setMenu(menuMenu);
+		MenuItem menuItemHowTo = new MenuItem(menuMenu, SWT.PUSH);
+		//TODO: Spielregel a la Message Box?
+		menuItemHowTo.setText("Spielregeln");
+		menuItemHowTo.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				howToButtonPressed(e);
+			}
+		});
 		MenuItem menuItemExit = new MenuItem(menuMenu, SWT.PUSH);
 		menuItemExit.setText("Beenden");
 		menuItemExit.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				try {
-					mainMenuGUI.getGameServer().stop();
-					mainMenuGUI.getGameServer().unregister(mainMenuGUI.getClientUserInterface());
-				} catch (RemoteException e1) {
-					e1.printStackTrace();
-				}
-				PlayGameGUI.this.shell.setVisible(false);
+				exitButtonPressed(e);
 			}
 		});
+
+		
 		this.shell.setMenuBar(menuBar);
 	
 	}
+	
+	private void exitButtonPressed (SelectionEvent e) {
+			try {
+				mainMenuGUI.getGameServer().stop();
+				mainMenuGUI.getGameServer().unregister(mainMenuGUI.getClientUserInterface());
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			}
+			PlayGameGUI.this.shell.setVisible(false);
+	}
+	
+	private void howToButtonPressed (SelectionEvent e){
+		MessageBox messageBox = new MessageBox(this.shell, SWT.ICON_INFORMATION);
+		messageBox.getStyle();
+		messageBox.setMessage("(.) (.) -> Brüste für die Welt!");
+		messageBox.open();
+		
+	}
+	
 	private void horizontalLine() {
 		FormData formData = new FormData();
 		formData.left =  new FormAttachment(0, 1000, 10);
@@ -135,7 +159,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerDungeon() {
-		this.playerDungeon = new RessourceFields("Verlies", 10, 660);
+		this.playerDungeon = new RessourceFields("Verlies", 10, 647);
 	}
 	public void setPlayerDungeonLevel(int level) {
 		this.playerDungeon.setLevel(level);
@@ -148,7 +172,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerMagicLab() {
-		this.playerMagicLab = new RessourceFields("Zauberlabor", 220, 660);
+		this.playerMagicLab = new RessourceFields("Zauberlabor", 220, 647);
 	}
 	public void setPlayerMagicLabLevel(int level) {
 		this.playerMagicLab.setLevel(level);
@@ -161,7 +185,7 @@ public class PlayGameGUI {
 	}
 
 	private void initPlayerMine() {
-		this.playerMine = new RessourceFields("Steinbruch", 430, 660);
+		this.playerMine = new RessourceFields("Steinbruch", 430, 647);
 	}
 	public void setPlayerMineLevel(int level) {
 		this.playerMine.setLevel(level);
@@ -174,14 +198,14 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerWall() {
-		this.playerWall = new DefenceBuildingFields("Mauer", 640, 660);
+		this.playerWall = new DefenceBuildingFields("Mauer", 640, 647);
 	}
 	public void setPlayerWall(int level) {
 		this.playerWall.setLevel(level);
 	}
 	
 	private void initPlayerTower(){
-		this.playerTower = new DefenceBuildingFields("Turm", 830, 660);
+		this.playerTower = new DefenceBuildingFields("Turm", 830, 647);
 	}
 	public void setPlayerTower(int level) {
 		this.playerTower.setLevel(level);
@@ -189,7 +213,7 @@ public class PlayGameGUI {
 	
 	private void initPlayerCards() {
 		int x = 157;
-		int y = 532;
+		int y = 520;
 		this.playerCards = new ArrayList<CardFields>();
 		for (int i=0; i<6; i++) {
 			this.playerCards.add(new CardFields((x+(120*i)), y, true, true));
@@ -298,7 +322,7 @@ public class PlayGameGUI {
 	}
 
 	private void initPlayerChoosenCards() {
-		this.playerChoosenCard = new CardFields(457, 400, false, false);
+		this.playerChoosenCard = new CardFields(457, 392, false, false);
 	}
 	
 	public void playerPlayedCard(String name) {
