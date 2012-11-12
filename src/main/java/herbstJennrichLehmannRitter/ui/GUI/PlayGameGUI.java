@@ -123,8 +123,8 @@ public class PlayGameGUI {
 			}
 		});
 		this.shell.setMenuBar(menuBar);
-	}
 	
+	}
 	private void horizontalLine() {
 		FormData formData = new FormData();
 		formData.left =  new FormAttachment(0, 1000, 10);
@@ -401,16 +401,27 @@ public class PlayGameGUI {
 				this.cardComp.addMouseListener(new MouseAdapter() {
 					@Override
 				   public void mouseDown(MouseEvent e) {
-						if (!getCardName().isEmpty() && cardDetailIsOpen == false) {
-							ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(display, 
-									PlayGameGUI.this, Globals.getGameCardFactory().createCard(getCardName()));
-							showCardDetailGUI.open();
-							cardDetailIsOpen = true;
-						}
+						mousePressed(e);
 				   }
+				});
+				this.nameLabel.addMouseListener(new MouseAdapter() {
+					@Override
+					   public void mouseDown(MouseEvent e) {
+							mousePressed(e);
+					   }
 				});
 			}
 		}
+		
+		private void mousePressed(MouseEvent e) {
+			if (!getCardName().isEmpty() && cardDetailIsOpen == false) {
+				ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(display, 
+						PlayGameGUI.this, Globals.getGameCardFactory().createCard(getCardName()));
+				showCardDetailGUI.open();
+				cardDetailIsOpen = true;
+			}
+		  }
+		
 		
 		public void setCardName(String cardName) {
 			this.nameLabel.setText(cardName);
