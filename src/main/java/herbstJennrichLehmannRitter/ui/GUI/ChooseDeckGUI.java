@@ -47,9 +47,11 @@ public class ChooseDeckGUI {
 	private List systemList;
 	private List userList;
 	private Collection<String> playerCards;
+	private MainMenuGUI mainMenuGui;
 	
-	public ChooseDeckGUI(Display parent){
+	public ChooseDeckGUI(Display parent, MainMenuGUI mainMenuGUI){
 		this.display = parent;
+		this.mainMenuGui = mainMenuGUI;
 		initShell();
 		initNewButton();
 		initOpenButton();
@@ -152,6 +154,7 @@ public class ChooseDeckGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Collections.addAll(ChooseDeckGUI.this.playerCards, ChooseDeckGUI.this.userList.getItems());
+				mainMenuGui.setPlayerCards(Arrays.asList(ChooseDeckGUI.this.userList.getItems()));
 				ChooseDeckGUI.this.shell.setVisible(false);
 			}
 		});
