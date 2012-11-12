@@ -98,5 +98,16 @@ public abstract class AbstractCard implements Card {
 		
 		return stringBuilder.toString();
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Card)) {
+			return false;
+		}
+		
+		Card card = (Card)obj;
+		
+		return getName().equals(card.getName());
+	}
 
 }

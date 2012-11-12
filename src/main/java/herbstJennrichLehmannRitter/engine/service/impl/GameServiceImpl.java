@@ -8,6 +8,7 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.service.GameService;
+import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
 import java.util.Collection;
@@ -146,7 +147,7 @@ public class GameServiceImpl implements GameService {
 		uiHolder.enemy.userInterface.enemeyPlayedCard(card);
 		
 		updatePlayerDatas(uiHolder);
-		if (this.gameEngineController.canPlayerPlayAnotherRound(card, uiHolder.player)) {
+		if (MagicUtils.canPlayerPlayAnotherRound(card, uiHolder.player)) {
 			uiHolder.userInterface.playAnotherCard();
 		} else {
 			uiHolder.enemy.userInterface.nextTurn();

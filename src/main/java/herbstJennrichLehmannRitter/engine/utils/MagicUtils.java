@@ -55,4 +55,9 @@ public abstract class MagicUtils {
 			&& card.getCostCrystal() <= player.getMagicLab().getStock()
 			&& card.getCostMonsters() <= player.getDungeon().getStock();
 	}
+	
+	public static boolean canPlayerPlayAnotherRound(Card card, Player player) {
+		return card.getCardAction().getPlayCards()
+				&& player.getDeck().getAllCards().size() > 0;
+	}
 }

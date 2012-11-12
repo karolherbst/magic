@@ -10,7 +10,8 @@ public class GameEngineException extends MagicException {
 		UNKNOWN_GAME_TYP("this won't ever occur"),
 		NOT_2_PLAYERS_AVAILABLE("Derzeit sind nicht 2 Spieler registriert!"),
 		NOT_RUNNING("Die GameEngine ist noch nicht gestartet"),
-		PLAYER_CANT_EFFORT_CARD("Die Karten kann vom Spieler nicht bezahlt werden!");
+		PLAYER_CANT_EFFORT_CARD("Die Karten kann vom Spieler nicht bezahlt werden!"),
+		PLAYER_DONT_OWN_CARD("Diese Karte gehört nicht zum Spieler!");
 	
 		private final String msg;
 		

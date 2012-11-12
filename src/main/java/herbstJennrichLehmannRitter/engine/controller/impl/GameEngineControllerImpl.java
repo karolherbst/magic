@@ -120,6 +120,10 @@ public class GameEngineControllerImpl implements GameEngineController {
 			throw new GameEngineException(ENGINE_ERROR.PLAYER_CANT_EFFORT_CARD);
 		}
 		
+		if (!ownsPlayerCard(card, player)) {
+			throw new GameEngineException(ENGINE_ERROR.PLAYER_DONT_OWN_CARD);
+		}
+		
 		addResourcesToPlayer(player);
 		
 		applyCostFromCardOnPlayer(card, player);
@@ -134,6 +138,10 @@ public class GameEngineControllerImpl implements GameEngineController {
 	public void discardCard(Card card, Player player) {
 		if (!isRunning()) {
 			throw new GameEngineException(ENGINE_ERROR.NOT_RUNNING);
+		}
+		
+		if (!ownsPlayerCard(card, player)) {
+			throw new GameEngineException(ENGINE_ERROR.PLAYER_DONT_OWN_CARD);
 		}
 		
 		addResourcesToPlayer(player);
@@ -181,10 +189,7 @@ public class GameEngineControllerImpl implements GameEngineController {
 		cca.applyActionOnPlayer(player, enemy);
 	}
 	
-	@Override
-	public boolean canPlayerPlayAnotherRound(Card card, Player player) {
-		// TODO: add check against hand deck
-		return card.getCardAction().getPlayCards();
+	private boolean ownsPlayerCard(Card card, Player player) {
+		return player.getDeck().getAllCards().contains(card);
 	}
-
 }
