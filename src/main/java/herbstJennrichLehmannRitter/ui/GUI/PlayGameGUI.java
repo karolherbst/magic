@@ -87,12 +87,12 @@ public class PlayGameGUI {
 	}
 	
 	private void initShell() {
-		this.shell = new Shell(SWT.TITLE | SWT.CLOSE);
+		this.shell = new Shell(SWT.TITLE);
 		this.shell.setText("Magic");
 		this.shell.setLayout(new FormLayout());
 		this.shell.layout();
 		this.shell.pack();
-		this.shell.setSize(1024, 768);
+		this.shell.setSize(1024, 750);
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 	
@@ -101,6 +101,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initMenuBar() {
+		//TODO: Spielregel a la Message Box
 		Menu menuBar = new Menu(this.shell, SWT.BAR);
 		MenuItem fileMenuHead = new MenuItem(menuBar, SWT.CASCADE);
 		fileMenuHead.setText("Menü");
@@ -113,7 +114,6 @@ public class PlayGameGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try {
-					//FIXME: NullPointerException bei Lokalem Spiel
 					mainMenuGUI.getGameServer().stop();
 					mainMenuGUI.getGameServer().unregister(mainMenuGUI.getClientUserInterface());
 				} catch (RemoteException e1) {
@@ -128,14 +128,14 @@ public class PlayGameGUI {
 	private void horizontalLine() {
 		FormData formData = new FormData();
 		formData.left =  new FormAttachment(0, 1000, 10);
-		formData.top =  new FormAttachment(0, 1000, 370);
+		formData.top =  new FormAttachment(0, 1000, 362);
 		formData.width = 1004;
 		Label line = new Label(this.shell, SWT.SEPARATOR | SWT.HORIZONTAL | SWT.SHADOW_OUT);
 		line.setLayoutData(formData);
 	}
 	
 	private void initPlayerDungeon() {
-		this.playerDungeon = new RessourceFields("Verlies", 10, 676);
+		this.playerDungeon = new RessourceFields("Verlies", 10, 660);
 	}
 	public void setPlayerDungeonLevel(int level) {
 		this.playerDungeon.setLevel(level);
@@ -148,7 +148,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerMagicLab() {
-		this.playerMagicLab = new RessourceFields("Zauberlabor", 220, 676);
+		this.playerMagicLab = new RessourceFields("Zauberlabor", 220, 660);
 	}
 	public void setPlayerMagicLabLevel(int level) {
 		this.playerMagicLab.setLevel(level);
@@ -161,7 +161,7 @@ public class PlayGameGUI {
 	}
 
 	private void initPlayerMine() {
-		this.playerMine = new RessourceFields("Steinbruch", 430, 676);
+		this.playerMine = new RessourceFields("Steinbruch", 430, 660);
 	}
 	public void setPlayerMineLevel(int level) {
 		this.playerMine.setLevel(level);
@@ -174,14 +174,14 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerWall() {
-		this.playerWall = new DefenceBuildingFields("Mauer", 640, 676);
+		this.playerWall = new DefenceBuildingFields("Mauer", 640, 660);
 	}
 	public void setPlayerWall(int level) {
 		this.playerWall.setLevel(level);
 	}
 	
 	private void initPlayerTower(){
-		this.playerTower = new DefenceBuildingFields("Turm", 830, 676);
+		this.playerTower = new DefenceBuildingFields("Turm", 830, 660);
 	}
 	public void setPlayerTower(int level) {
 		this.playerTower.setLevel(level);
@@ -189,7 +189,7 @@ public class PlayGameGUI {
 	
 	private void initPlayerCards() {
 		int x = 157;
-		int y = 540;
+		int y = 532;
 		this.playerCards = new ArrayList<CardFields>();
 		for (int i=0; i<6; i++) {
 			this.playerCards.add(new CardFields((x+(120*i)), y, true, true));
@@ -338,7 +338,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerName() {
-		this.playerName = new NameFields(this.mainMenuGUI.getPlayerName(), 372);
+		this.playerName = new NameFields(this.mainMenuGUI.getPlayerName(), 370);
 	}
 	
 	private void initEnemyName() {
@@ -387,7 +387,7 @@ public class PlayGameGUI {
 			FormData cardData = new FormData();
 			cardData.left = new FormAttachment(0, 800, positionFromLeft);
 			cardData.top = new FormAttachment(0, 800, positionFromTop);
-			cardData.height = 130;
+			cardData.height = 122;
 			cardData.width = 110;
 
 			this.cardComp = new Composite(shell, SWT.BORDER);
@@ -398,8 +398,8 @@ public class PlayGameGUI {
 			}
 			this.cardComp.setLayoutData(cardData);
 			
-			this.nameLabel = new Label(this.cardComp, SWT.CENTER);
-			this.nameLabel.setBounds(0, 20, 110, 15);
+			this.nameLabel = new Label(this.cardComp, SWT.CENTER | SWT.WRAP);
+			this.nameLabel.setBounds(0, 5, 110, 15);
 			if (isClickable) {
 				this.cardComp.addMouseListener(new MouseAdapter() {
 					@Override
