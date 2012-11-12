@@ -365,6 +365,16 @@ public class PlayGameGUI {
 		this.playerName = new NameFields(this.mainMenuGUI.getPlayerName(), 366);
 	}
 	
+	public void setActivePlayer(String name) {
+		if (this.playerName.getPlayerName() == name) {
+			this.playerName.setPlayerIsActive(true);
+			this.enemyName.setPlayerIsActive(false);
+		} else {
+			this.playerName.setPlayerIsActive(false);
+			this.enemyName.setPlayerIsActive(true);
+		}
+	}
+	
 	private void initEnemyName() {
 		this.enemyName = new NameFields(this.mainMenuGUI.getEnemyName(), 3);
 	}
@@ -595,8 +605,16 @@ public class PlayGameGUI {
 			});
 		}
 		
+		public String getPlayerName() {
+			return this.playerName;
+		}
+		
 		public boolean getPlayerIsActive() {
 			return this.playerIsActive;
+		}
+		
+		public void setPlayerIsActive(boolean isActive) {
+			this.playerIsActive = isActive;
 		}
 	}
 
