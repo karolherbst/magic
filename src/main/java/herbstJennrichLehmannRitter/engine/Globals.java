@@ -9,6 +9,7 @@ import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.server.impl.GameServerImpl;
 import herbstJennrichLehmannRitter.server.impl.NetworkServerImpl;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -57,12 +58,18 @@ public final class Globals {
 			return;
 		}
 		
-		LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
-		remoteGameServer = new NetworkServerImpl(getLocalGameServer());
-		GameServer remote = (GameServer) UnicastRemoteObject.exportObject(remoteGameServer); 
 		try {
-			Naming.rebind("//localhost/" + GAME_SERVER_NAME, remote);
+			LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
+			System.out.println("Registry wurde erzeugt!");
+			
+			remoteGameServer = new NetworkServerImpl(getLocalGameServer());
+			
+			Naming.rebind(GAME_SERVER_NAME, remoteGameServer);
+			System.out.println(GAME_SERVER_NAME + ": remoteGameServer wurde registriert!");
+//			Naming.rebind("//localhost/" + GAME_SERVER_NAME, remoteGameServer);
 		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -84,7 +91,9 @@ public final class Globals {
 	public static GameServer getRemoteServer(String ipAddress) {
 		GameServer gameServer = null;
 		try {
-			gameServer = (GameServer)Naming.lookup("//" + ipAddress + "/" + GAME_SERVER_NAME);
+			Registry registry = LocateRegistry.getRegistry(ipAddress, Registry.REGISTRY_PORT);
+			gameServer = (GameServer)registry.lookup(GAME_SERVER_NAME);
+//			gameServer = (GameServer)Naming.lookup("//" + ipAddress + "/" + GAME_SERVER_NAME);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
