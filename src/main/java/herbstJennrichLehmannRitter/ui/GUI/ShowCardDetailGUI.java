@@ -64,9 +64,9 @@ public class ShowCardDetailGUI {
 		initExitButton();
 		if (this.playGameGui != null) {
 			initDiscardButton();
-			if (this.playGameGui.getPlayerDungeonStock() > card.getCostMonsters() && 
-					this.playGameGui.getPlayerMagicLabStock() > card.getCostCrystal() && 
-					this.playGameGui.getPlayerMineStock() > card.getCostBrick()) {
+			if (this.playGameGui.getPlayerDungeonStock() >= card.getCostMonsters() && 
+					this.playGameGui.getPlayerMagicLabStock() >= card.getCostCrystal() && 
+					this.playGameGui.getPlayerMineStock() >= card.getCostBrick()) {
 				initPlayCardButton();
 			}
 		}
