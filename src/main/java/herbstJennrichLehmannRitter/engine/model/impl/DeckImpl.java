@@ -70,7 +70,7 @@ public class DeckImpl implements Deck {
 			}
 		}
 		
-		public boolean pickCardFromDeckStackOrCemeteryDeckWithCostAbout(int cost) {
+		public boolean pickCardFromDeckStackOrCemeteryDeckWithCostAbove(int cost) {
 			if( this.handDeck.size() < 6) {
 				List<Card> cards = new ArrayList<Card>();
 				Card card = null;
@@ -237,7 +237,7 @@ public class DeckImpl implements Deck {
 
 	@Override
 	public boolean pickCardFromDeckStackOrCemeteryDeckWithCostAbove(int cost) {
-		return this.handDeck.pickCardFromDeckStackOrCemeteryDeckWithCostAbout(cost);
+		return this.handDeck.pickCardFromDeckStackOrCemeteryDeckWithCostAbove(cost);
 	}
 
 	@Override
