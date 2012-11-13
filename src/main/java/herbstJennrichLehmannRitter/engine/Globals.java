@@ -59,7 +59,7 @@ public final class Globals {
 		}
 		
 		try {
-			LocateRegistry.createRegistry(51337);
+			LocateRegistry.createRegistry(1099);
 			System.out.println("Registry wurde erzeugt!");
 			
 			remoteGameServer = new NetworkServerImpl(getLocalGameServer());
@@ -80,7 +80,7 @@ public final class Globals {
 		}
 		
 		try {
-			Naming.unbind("//localhost/" + GAME_SERVER_NAME);
+			Naming.unbind(GAME_SERVER_NAME);
 			UnicastRemoteObject.unexportObject(remoteGameServer, true);
 			remoteGameServer = null;
 		} catch (Exception e) {
@@ -91,12 +91,13 @@ public final class Globals {
 	public static GameServer getRemoteServer(String ipAddress) {
 		GameServer gameServer = null;
 		try {
-			Registry registry = LocateRegistry.getRegistry(ipAddress, 51337);
+			Registry registry = LocateRegistry.getRegistry(ipAddress, 1099);
 			System.out.println("Registry wurde located on IP:" + ipAddress);
 			gameServer = (GameServer)registry.lookup(GAME_SERVER_NAME);
 			System.out.println("Looking up to:" + GAME_SERVER_NAME);
 //			gameServer = (GameServer)Naming.lookup("//" + ipAddress + "/" + GAME_SERVER_NAME);
 		} catch (Exception e) {
+			System.out.println("Exception Client");
 			e.printStackTrace();
 		}
 		System.out.println(gameServer);

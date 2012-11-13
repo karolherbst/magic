@@ -1,11 +1,11 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
+import herbstJennrichLehmannRitter.engine.Globals;
+import herbstJennrichLehmannRitter.server.GameServer;
+
 import java.rmi.RemoteException;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import herbstJennrichLehmannRitter.engine.Globals;
-import herbstJennrichLehmannRitter.server.GameServer;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -115,7 +115,13 @@ public class ClientMenuGUI {
 						});
 					}
 				}, 30000);
-				//TODO: Spielername an Server übermitteln -> wie?
+				
+				try {
+					gameServer.register(ClientMenuGUI.this.mainMenuGUI.getClientUserInterface());
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 	}
