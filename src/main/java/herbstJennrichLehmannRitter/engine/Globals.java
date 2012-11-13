@@ -13,6 +13,7 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 public final class Globals {
@@ -56,7 +57,7 @@ public final class Globals {
 			return;
 		}
 		
-		LocateRegistry.createRegistry(1099);
+		LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
 		remoteGameServer = new NetworkServerImpl(getLocalGameServer());
 		try {
 			Naming.rebind("//localhost/" + GAME_SERVER_NAME, remoteGameServer);
