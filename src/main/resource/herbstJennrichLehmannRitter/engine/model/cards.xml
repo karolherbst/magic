@@ -818,6 +818,7 @@
  <Card name="Schäfchen">
 	<CardType>Verlies</CardType>
 	<CostMonster>6</CostMonster>
+	<CanBeDiscarded>false</CanBeDiscarded>
 	<EnemyResourceAction>
 		<Damage>1</Damage>
 	</EnemyResourceAction>
