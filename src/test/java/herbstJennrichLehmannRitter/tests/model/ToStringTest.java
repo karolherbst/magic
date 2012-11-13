@@ -33,6 +33,7 @@ public class ToStringTest {
 		Card barracke = this.gameCardFactory.createCard("Barracke");
 		assertNotNull(barracke);
 		System.out.println(barracke);
-		assertEquals("Barracke[Kosten: 10 Ziegel; Selbst: +6 Mauer, +6 Monster, Wenn das eigene Verlies größer als das des Gegners ist, wird es um 1 erhöht]", barracke.toString());
+		assertEquals("Barracke[Kosten: 10 Ziegel; Selbst: +6 Mauer, +6 Monster, Wenn das eigene Verlies " +
+				"kleiner als das des Gegners ist, wird es um 1 erhöht]", barracke.toString());
 	}
 }
