@@ -18,6 +18,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -86,6 +87,11 @@ public class PlayGameGUI {
 		initEnemyChoosenCards();
 		initEnemyName();
 		horizontalLine();
+		this.shell.pack();
+		
+		Rectangle shellBounds = this.shell.getBounds();
+		this.shell.setSize(1024, (shellBounds.height+5));
+		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 		
 		this.mainMenuGUI.getClientUserInterface().setPlayGameGUI(this);
 	}
@@ -95,9 +101,6 @@ public class PlayGameGUI {
 		this.shell.setText("Magic");
 		this.shell.setLayout(new FormLayout());
 		this.shell.layout();
-		this.shell.pack();
-		this.shell.setSize(1024, 750);
-		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 	
 	public void setCardDetailIsOpen(boolean bool) {
@@ -260,6 +263,29 @@ public class PlayGameGUI {
 				}
 			}
 		} while (cardIterator.hasNext());
+	}
+	
+	private void initPlayerChoosenCards() {
+		this.playerChoosenCard = new CardFields(457, 388, false, false);
+	}
+	
+	public void setPlayerChoosenCardName(String name) {
+		if (name != null) {
+			this.playerChoosenCard.setCardName(name);
+			this.playerChoosenCard.setVisible(true);
+		} else {
+			this.playerChoosenCard.setVisible(false);
+		}
+	}
+
+	public void playerPlayedCard(String name) {
+		this.removeCardFromDeck(this.playerCards, name);
+		this.playerChoosenCard.setCardName(name);
+		this.playerChoosenCard.setVisible(true);
+	}
+	
+	public void playerDiscardCard(String name) {
+		this.removeCardFromDeck(this.playerCards, name);
 	}	
 	
 	private void initEnemyDungeon() {
@@ -339,20 +365,6 @@ public class PlayGameGUI {
 		} while (cardIterator.hasNext());
 	}
 
-	private void initPlayerChoosenCards() {
-		this.playerChoosenCard = new CardFields(457, 388, false, false);
-	}
-	
-	public void playerPlayedCard(String name) {
-		this.removeCardFromDeck(this.playerCards, name);
-		this.playerChoosenCard.setCardName(name);
-		this.playerChoosenCard.setVisible(true);
-	}
-	
-	public void playerDiscardCard(String name) {
-		this.removeCardFromDeck(this.playerCards, name);
-	}
-	
 	private void removeCardFromDeck(ArrayList<CardFields> cardFields, String name) {
 		int i = 0;
 		for (CardFields cardField: cardFields) {
@@ -379,44 +391,49 @@ public class PlayGameGUI {
 		}
 	}
 	
-	private void initPlayerName() {
-		this.playerName = new NameFields(this.mainMenuGUI.getPlayerName(), 366);
+	public void enemyPlayedCard(String name) {
+		this.removeCardFromDeck(this.enemyCards, name);
+		this.enemyChoosenCards.setCardName(name);
+		this.enemyChoosenCards.setVisible(true);
 	}
 	
-	public void setActivePlayer(String name) {
-		if (this.playerName.getPlayerName() == name) {
-			this.playerName.setPlayerIsActive(true);
-			this.enemyName.setPlayerIsActive(false);
-		} else {
-			this.playerName.setPlayerIsActive(false);
-			this.enemyName.setPlayerIsActive(true);
-		}
+	public void enemyDiscardCard(String name) {
+		this.removeCardFromDeck(this.enemyCards, name);
+	}
+	
+	
+	private void initPlayerName() {
+		this.playerName = new NameFields(this.mainMenuGUI.getPlayerName(), 366);
 	}
 	
 	private void initEnemyName() {
 		this.enemyName = new NameFields(this.mainMenuGUI.getEnemyName(), 3);
 	}
 	
-	public void nextTurn() {
-		if (this.playerName.getPlayerIsActive() == false) {
-			this.changePlayer(this.playerName, this.enemyName, "ist am Zug");
-			this.playerChoosenCard.setVisible(false);
-		} else {
-			this.changePlayer(this.enemyName, this.playerName, "ist am Zug");
-		}
+	public void nextTurnPlayer() {
+		this.playerName.setPlayerActive("ist am Zug");
+		this.enemyName.setPlayerInactive();
+	}
+
+	public void nextTurnEnemy() {
+		this.enemyName.setPlayerActive("ist am Zug");
+		this.playerName.setPlayerInactive();
 	}
 	
-	public void playAnotherCard() {
-		if (this.playerName.getPlayerIsActive()) {
-			this.changePlayer(this.enemyName, this.playerName, "ist am Zug");
-		} else {
-			this.changePlayer(this.playerName, this.enemyName, "ist am Zug");
-		}
+	public void playAnotherCardPlayer() {
+		this.playAnotherCard(this.playerCards);
 	}
 	
-	private void changePlayer(NameFields playerOne, NameFields playerTwo, String message) {
-		playerOne.deactivatePlayer();
-		playerTwo.activePlayer(message);
+	public void playAnotherCardEnemy() {
+		this.playAnotherCard(this.enemyCards);
+	}
+	
+	private void playAnotherCard(ArrayList<CardFields> cardFields) {
+		for (CardFields cardField: cardFields) {
+			if (cardField.getCardName() == "") {
+				cardField.setVisible(false);
+			}
+		}
 	}
 
 	public void setGameStateToWon() {
@@ -451,7 +468,7 @@ public class PlayGameGUI {
 			this.cardComp.setLayoutData(cardData);
 			
 			this.nameLabel = new Label(this.cardComp, SWT.CENTER | SWT.WRAP);
-			this.nameLabel.setBounds(0, 5, 110, 30);
+			this.nameLabel.setBounds(0, 5, 110, 35);
 			if (isClickable) {
 				this.cardComp.addMouseListener(new MouseAdapter() {
 					@Override
@@ -581,7 +598,6 @@ public class PlayGameGUI {
 	
 	private class NameFields {
 		private Label nameLabel;
-		private boolean playerIsActive = false;
 		private String playerName;
 		
 		public NameFields(String name, int positionFromTop) {
@@ -599,41 +615,18 @@ public class PlayGameGUI {
 			this.nameLabel.pack();
 		}
 		
-		public void activePlayer(final String text) {
-			display.asyncExec(new Runnable() {
-				@Override
-				public void run() {
-					nameLabel.setBackground(new Color(display, 150, 0, 0));
-					nameLabel.setForeground(new Color(display, 255, 255, 255));
-					nameLabel.setText(playerName + ' ' + text);
-					playerIsActive = true;
-				}
-			});
+		public void setPlayerActive(String text) {
+			this.nameLabel.setBackground(new Color(display, 150, 0, 0));
+			this.nameLabel.setForeground(new Color(display, 255, 255, 255));
+			this.nameLabel.setText(playerName + ' ' + text);
 		}
 		
-		public void deactivatePlayer() {
-			display.asyncExec(new Runnable() {
-				@Override
-				public void run() {
-					nameLabel.setBackground(shell.getBackground());
-					nameLabel.setForeground(new Color(display, 0, 0, 0));
-					nameLabel.setText(playerName);
-					playerIsActive = false;
-				}
-			});
+		public void setPlayerInactive() {
+			this.nameLabel.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
+			this.nameLabel.setForeground(Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_FOREGROUND));
+			this.nameLabel.setText(playerName);
 		}
 		
-		public String getPlayerName() {
-			return this.playerName;
-		}
-		
-		public boolean getPlayerIsActive() {
-			return this.playerIsActive;
-		}
-		
-		public void setPlayerIsActive(boolean isActive) {
-			this.playerIsActive = isActive;
-		}
 	}
 
 	public void open() {
