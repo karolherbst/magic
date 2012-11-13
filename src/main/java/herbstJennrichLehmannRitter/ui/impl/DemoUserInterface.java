@@ -15,7 +15,7 @@ import java.util.Collection;
 
 import org.eclipse.swt.widgets.Display;
 
-public class EnemyUserInterface implements UserInterface {
+public class DemoUserInterface implements UserInterface {
 
 	private MainMenuGUI mainMenuGUI;
 	private PlayGameGUI playGameGUI;
@@ -44,24 +44,24 @@ public class EnemyUserInterface implements UserInterface {
 			
 			@Override
 			public void run() {
-				EnemyUserInterface.this.playGameGUI.setEnemyDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
-				EnemyUserInterface.this.playGameGUI.setEnemyDungeonStock(data.getOwnPlayer().getDungeon().getStock());
-				EnemyUserInterface.this.playGameGUI.setEnemyMagicLabLevel(data.getOwnPlayer().getMagicLab().getLevel());
-				EnemyUserInterface.this.playGameGUI.setEnemyMagicLabStock(data.getOwnPlayer().getMagicLab().getStock());
-				EnemyUserInterface.this.playGameGUI.setEnemyMineLevel(data.getOwnPlayer().getMine().getLevel());
-				EnemyUserInterface.this.playGameGUI.setEnemyMineStock(data.getOwnPlayer().getMine().getStock());
-				EnemyUserInterface.this.playGameGUI.setEnemyTower(data.getOwnPlayer().getTower().getActualPoints());
-				EnemyUserInterface.this.playGameGUI.setEnemyWall(data.getOwnPlayer().getWall().getActualPoints());
-				EnemyUserInterface.this.playGameGUI.setEnemyHandCards(data.getOwnPlayer().getDeck().getAllCards());
+				DemoUserInterface.this.playGameGUI.setEnemyDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
+				DemoUserInterface.this.playGameGUI.setEnemyDungeonStock(data.getOwnPlayer().getDungeon().getStock());
+				DemoUserInterface.this.playGameGUI.setEnemyMagicLabLevel(data.getOwnPlayer().getMagicLab().getLevel());
+				DemoUserInterface.this.playGameGUI.setEnemyMagicLabStock(data.getOwnPlayer().getMagicLab().getStock());
+				DemoUserInterface.this.playGameGUI.setEnemyMineLevel(data.getOwnPlayer().getMine().getLevel());
+				DemoUserInterface.this.playGameGUI.setEnemyMineStock(data.getOwnPlayer().getMine().getStock());
+				DemoUserInterface.this.playGameGUI.setEnemyTower(data.getOwnPlayer().getTower().getActualPoints());
+				DemoUserInterface.this.playGameGUI.setEnemyWall(data.getOwnPlayer().getWall().getActualPoints());
+				DemoUserInterface.this.playGameGUI.setEnemyHandCards(data.getOwnPlayer().getDeck().getAllCards());
 				
-				EnemyUserInterface.this.playGameGUI.setPlayerDungeonLevel(data.getEnemyPlayer().getDungeon().getLevel());
-				EnemyUserInterface.this.playGameGUI.setPlayerDungeonStock(data.getEnemyPlayer().getDungeon().getStock());
-				EnemyUserInterface.this.playGameGUI.setPlayerMagicLabLevel(data.getEnemyPlayer().getMagicLab().getLevel());
-				EnemyUserInterface.this.playGameGUI.setPlayerMagicLabStock(data.getEnemyPlayer().getMagicLab().getStock());
-				EnemyUserInterface.this.playGameGUI.setPlayerMineLevel(data.getEnemyPlayer().getMine().getLevel());
-				EnemyUserInterface.this.playGameGUI.setPlayerMineStock(data.getEnemyPlayer().getMine().getStock());
-				EnemyUserInterface.this.playGameGUI.setPlayerTower(data.getEnemyPlayer().getTower().getActualPoints());
-				EnemyUserInterface.this.playGameGUI.setPlayerWall(data.getEnemyPlayer().getWall().getActualPoints());
+				DemoUserInterface.this.playGameGUI.setPlayerDungeonLevel(data.getEnemyPlayer().getDungeon().getLevel());
+				DemoUserInterface.this.playGameGUI.setPlayerDungeonStock(data.getEnemyPlayer().getDungeon().getStock());
+				DemoUserInterface.this.playGameGUI.setPlayerMagicLabLevel(data.getEnemyPlayer().getMagicLab().getLevel());
+				DemoUserInterface.this.playGameGUI.setPlayerMagicLabStock(data.getEnemyPlayer().getMagicLab().getStock());
+				DemoUserInterface.this.playGameGUI.setPlayerMineLevel(data.getEnemyPlayer().getMine().getLevel());
+				DemoUserInterface.this.playGameGUI.setPlayerMineStock(data.getEnemyPlayer().getMine().getStock());
+				DemoUserInterface.this.playGameGUI.setPlayerTower(data.getEnemyPlayer().getTower().getActualPoints());
+				DemoUserInterface.this.playGameGUI.setPlayerWall(data.getEnemyPlayer().getWall().getActualPoints());
 			}
 		});
 	}

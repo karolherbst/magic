@@ -7,7 +7,7 @@ import herbstJennrichLehmannRitter.ki.KI;
 import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
-import herbstJennrichLehmannRitter.ui.impl.EnemyUserInterface;
+import herbstJennrichLehmannRitter.ui.impl.DemoUserInterface;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -188,12 +188,12 @@ public class MainMenuGUI {
 				PlayGameGUI playGameGUI = new PlayGameGUI(display, MainMenuGUI.this);
 				playGameGUI.open();
 
-				EnemyUserInterface enemyUserInterface = new EnemyUserInterface();
-				enemyUserInterface.setMainMenuGUI(MainMenuGUI.this);
-				enemyUserInterface.setPlayGameGUI(playGameGUI);
+				DemoUserInterface demoUserInterface = new DemoUserInterface();
+				demoUserInterface.setMainMenuGUI(MainMenuGUI.this);
+				demoUserInterface.setPlayGameGUI(playGameGUI);
 				
 				KI.startBridgedKIOnServer(gameServer, getPlayerName(), getClientUserInterface());
-				KI.startBridgedKIOnServer(gameServer, getEnemyName(), enemyUserInterface);
+				KI.startBridgedKIOnServer(gameServer, getEnemyName(), demoUserInterface);
 			}
 		});
 	}
