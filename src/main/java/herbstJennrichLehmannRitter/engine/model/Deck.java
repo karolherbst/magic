@@ -21,7 +21,7 @@ public interface Deck {
 	public boolean pickCard();
 	public boolean pickCards(int numberOfCards);
 	public boolean pickNumberOfCardsWithType(int numberOfCards, CardType cardType);
-	public boolean pickCardFromDeckStackOrCemeteryDeckWithCostAbout(int cost);
+	public boolean pickCardFromDeckStackOrCemeteryDeckWithCostAbove(int cost);
 	
 	public void exchangeCardsWithHandDeck(Deck deck);
 	

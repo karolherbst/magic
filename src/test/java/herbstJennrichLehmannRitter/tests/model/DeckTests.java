@@ -156,7 +156,7 @@ public class DeckTests {
 		Player player = this.playerFactory.createPlayer("Player", cards, 0, 0, 0, 0);
 		
 		player.getDeck().discardAllCards();
-		assertTrue(player.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(14));
+		assertTrue(player.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbove(14));
 	}
 	
 	@Test
@@ -165,7 +165,7 @@ public class DeckTests {
 		Player player = this.playerFactory.createPlayer("Player", cards, 0, 0, 0, 0);
 		
 		player.getDeck().discardAllCards();
-		assertFalse(player.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(100));
+		assertFalse(player.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbove(100));
 	}
 	
 	@Test
@@ -175,7 +175,7 @@ public class DeckTests {
 		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
 		
 		this.globalPlayer.getDeck().discardAllCards();
-		assertTrue(this.globalPlayer.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(14));
+		assertTrue(this.globalPlayer.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbove(14));
 		assertTrue(this.globalPlayer.getDeck().getAllCards().contains(card));
 	}	
 
@@ -186,7 +186,7 @@ public class DeckTests {
 		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
 		
 		this.globalPlayer.getDeck().discardAllCards();
-		assertTrue(this.globalPlayer.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(20));
+		assertTrue(this.globalPlayer.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbove(20));
 		assertTrue(this.globalPlayer.getDeck().getAllCards().contains(card));
 	}
 	
@@ -197,7 +197,7 @@ public class DeckTests {
 		this.globalPlayer = this.playerFactory.createPlayer("Player", this.cardsOnHand, 0, 0, 0, 0);
 		
 		this.globalPlayer.getDeck().discardAllCards();
-		assertTrue(this.globalPlayer.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(24));
+		assertTrue(this.globalPlayer.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbove(24));
 		assertTrue(this.globalPlayer.getDeck().getAllCards().contains(card));
 	}	
 	
@@ -206,7 +206,7 @@ public class DeckTests {
 		Collection<Card> cards = this.gameCardFactory.createDefaultDeck();
 		Player player = this.playerFactory.createPlayer("Player", cards, 0, 0, 0, 0);
 		
-		assertFalse(player.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbout(14));
+		assertFalse(player.getDeck().pickCardFromDeckStackOrCemeteryDeckWithCostAbove(14));
 	}	
 
 	@Test

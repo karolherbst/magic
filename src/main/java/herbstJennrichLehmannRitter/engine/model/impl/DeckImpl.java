@@ -236,7 +236,7 @@ public class DeckImpl implements Deck {
 	}
 
 	@Override
-	public boolean pickCardFromDeckStackOrCemeteryDeckWithCostAbout(int cost) {
+	public boolean pickCardFromDeckStackOrCemeteryDeckWithCostAbove(int cost) {
 		return this.handDeck.pickCardFromDeckStackOrCemeteryDeckWithCostAbout(cost);
 	}
 
