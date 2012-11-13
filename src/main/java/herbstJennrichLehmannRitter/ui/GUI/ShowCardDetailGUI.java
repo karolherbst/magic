@@ -43,10 +43,12 @@ public class ShowCardDetailGUI {
 	
 	private final Card card;
 	private PlayGameGUI playGameGui;
+	private ChooseDeckGUI chooseDeckGui;
 	
-	public ShowCardDetailGUI(Display parent, PlayGameGUI playGameGUI, Card card) {
+	public ShowCardDetailGUI(Display parent, PlayGameGUI playGameGUI, ChooseDeckGUI chooseDeckGUI, Card card) {
 		this.display = parent;
 		this.playGameGui = playGameGUI;
+		this.chooseDeckGui = chooseDeckGUI;
 		this.card = card;
 		initShell();
 		initCardNameText();
@@ -146,6 +148,9 @@ public class ShowCardDetailGUI {
 			public void widgetSelected(SelectionEvent e) {
 				if (playGameGui != null) {
 					playGameGui.setCardDetailIsOpen(false);
+				}
+				if (chooseDeckGui != null) {
+					chooseDeckGui.setCardDetailIsOpen(false);
 				}
 				ShowCardDetailGUI.this.shell.setVisible(false);
 			}

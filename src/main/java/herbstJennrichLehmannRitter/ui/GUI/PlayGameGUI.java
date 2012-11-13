@@ -61,9 +61,6 @@ public class PlayGameGUI {
 	private NameFields enemyName;
 	private boolean cardDetailIsOpen = false;
 	
-	//TODO: Gegner Karten und Ressourcen beim DEMO Mode zeigen. Bei Lokalem / Netzwerkspiel nur die jeweiligen Level.
-	//Hätte das gerne selber gemacht, finde nur keine Methode - SÖNKE
-	
 	public PlayGameGUI(Display parent, MainMenuGUI mainMenuGUI) {
 		this.display = parent;
 		this.mainMenuGUI = mainMenuGUI;
@@ -489,7 +486,7 @@ public class PlayGameGUI {
 		private void mousePressed(MouseEvent e) {
 			if (!getCardName().isEmpty() && cardDetailIsOpen == false) {
 				ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(display, 
-						PlayGameGUI.this, Globals.getGameCardFactory().createCard(getCardName()));
+						PlayGameGUI.this, null, Globals.getGameCardFactory().createCard(getCardName()));
 				showCardDetailGUI.open();
 				cardDetailIsOpen = true;
 			}

@@ -17,7 +17,6 @@ import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -48,6 +47,7 @@ public class ChooseDeckGUI {
 	private List userList;
 	private Collection<String> playerCards;
 	private MainMenuGUI mainMenuGui;
+	private boolean cardDetailIsOpen = false;
 	
 	public ChooseDeckGUI(Display parent, MainMenuGUI mainMenuGUI){
 		this.display = parent;
@@ -70,15 +70,16 @@ public class ChooseDeckGUI {
 	
 	private void initPlayersDeck() {
 		this.playerCards = new ArrayList<String>();
-//		for (Card card: Globals.getGameCardFactory().createDefaultDeck()) {
-//			this.playerCards.add(card.getName().toString());
-//		}
 	}
 	
 	public Collection<String> getPlayersCards() {
 		return this.playerCards;
-
 	}
+	
+	public void setCardDetailIsOpen(boolean bool) {
+		this.cardDetailIsOpen  = bool;
+	}
+
 
 	private void initShell() {
 		this.shell = new Shell(SWT.TITLE);
@@ -170,20 +171,15 @@ public class ChooseDeckGUI {
 	}
 	
 	private void initCardList(final List list) {
-		list.addSelectionListener(new SelectionListener() {
-			
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				// nothing to do here
-			}
-			
+		list.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 				String[] selectedItems = list.getSelection();
-				if (selectedItems.length == 1) {
+				if (selectedItems.length == 1 && cardDetailIsOpen == false) {
 					ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(ChooseDeckGUI.this.display, null,
-							Globals.getGameCardFactory().createCard(selectedItems[0]));
+							ChooseDeckGUI.this, Globals.getGameCardFactory().createCard(selectedItems[0]));
 					showCardDetailGUI.open();
+					cardDetailIsOpen = true;
 				}
 			}
 		});
