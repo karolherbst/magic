@@ -3,6 +3,7 @@ package herbstJennrichLehmannRitter.ui.GUI;
 import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.ki.KI;
 import herbstJennrichLehmannRitter.server.GameServer;
+import herbstJennrichLehmannRitter.ui.impl.LocalUserInterface;
 
 import java.rmi.RemoteException;
 
@@ -140,11 +141,21 @@ public class GameMenuGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try {
+					PlayGameGUI playGameGUI = new PlayGameGUI(GameMenuGUI.this.display, GameMenuGUI.this.mainMenuGUI);
+
 					GameMenuGUI.this.gameServer = Globals.getLocalGameServer();
 					GameMenuGUI.this.mainMenuGUI.setGameServer(GameMenuGUI.this.gameServer);
-					PlayGameGUI playGameGUI = new PlayGameGUI(GameMenuGUI.this.display, GameMenuGUI.this.mainMenuGUI);
 					GameMenuGUI.this.gameServer.register(GameMenuGUI.this.mainMenuGUI.getClientUserInterface());
-					KI.startKIOnLocal(GameMenuGUI.this.mainMenuGUI.getEnemyName());
+
+					LocalUserInterface localUserInterface = new LocalUserInterface();
+					localUserInterface.setMainMenuGUI(GameMenuGUI.this.mainMenuGUI);
+					localUserInterface.setPlayGameGUI(playGameGUI);
+					
+					KI.startBridgedKIOnServer(gameServer, GameMenuGUI.this.mainMenuGUI.getEnemyName(), 
+							localUserInterface);
+					
+//					KI.startKIOnLocal(GameMenuGUI.this.mainMenuGUI.getEnemyName());
+					
 					playGameGUI.open();
 				} catch (RemoteException e2) {
 					e2.printStackTrace();
