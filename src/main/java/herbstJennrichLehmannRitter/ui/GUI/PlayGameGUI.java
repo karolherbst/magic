@@ -367,7 +367,6 @@ public class PlayGameGUI {
 		int i = 0;
 		for (CardFields cardField: cardFields) {
 			if( cardField.getCardName() == name) {
-				System.out.println("Remove Card " + name + " from Position:" + i);
 				cardField.setCardName("");
 				cardField.setVisible(false);
 				break;
