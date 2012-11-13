@@ -169,7 +169,7 @@ public class GameCardFactoryImpl implements GameCardFactory {
 
 	@Override
 	public void saveToXml(Collection<String> cardNames, Writer destination) {
-		// TODO: check all names
+		// TODO: check all names; checked all names once; please second check by another person. Daniel
 		try {
 			XmlCardNames xmlCardNames = new XmlCardNames(cardNames);
 			this.marshaller.marshal(xmlCardNames, destination);
