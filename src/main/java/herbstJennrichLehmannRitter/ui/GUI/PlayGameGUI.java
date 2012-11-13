@@ -364,14 +364,12 @@ public class PlayGameGUI {
 	}
 
 	private void removeCardFromDeck(ArrayList<CardFields> cardFields, String name) {
-		int i = 0;
 		for (CardFields cardField: cardFields) {
 			if( cardField.getCardName() == name) {
 				cardField.setCardName("");
 				cardField.setVisible(false);
 				break;
 			}
-			i++;
 		}
 	}
 	
