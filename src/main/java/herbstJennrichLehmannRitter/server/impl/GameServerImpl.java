@@ -23,7 +23,12 @@ public class GameServerImpl implements GameServer {
 	
 	@Override
 	public void stop() {
-		this.gameService.stop();
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				GameServerImpl.this.gameService.stop();
+			}
+		}).start();
 	}
 
 	@Override
