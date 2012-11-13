@@ -84,12 +84,12 @@ public class ShowCardDetailGUI {
 	
 	private void initCardNameText() {		
 		FormData LabelData = new FormData();
-		LabelData.left = new FormAttachment(0, 1000, 100);
+		LabelData.left = new FormAttachment(0, 1000, 40);
 		LabelData.top =  new FormAttachment(0, 1000, 15);
-		LabelData.width = 200;
+		LabelData.width = 300;
 		Font font = new Font(this.display, "Arial", 14, SWT.BOLD);
 		
-		this.cardNameLabel = new Label(this.shell, SWT.CENTER);
+		this.cardNameLabel = new Label(this.shell, SWT.CENTER | SWT.WRAP);
 		this.cardNameLabel.setText(this.card.getName().toString());
 		this.cardNameLabel.setFont(font);
 		this.cardNameLabel.setLayoutData(LabelData);
@@ -146,6 +146,7 @@ public class ShowCardDetailGUI {
 			public void widgetSelected(SelectionEvent e) {
 				playGameGui.setCardDetailIsOpen(false);
 				ShowCardDetailGUI.this.shell.setVisible(false);
+				//TODO: Bei Klick auf Zurück gibts ne NullPointerException
 			}
 		});
 	}
