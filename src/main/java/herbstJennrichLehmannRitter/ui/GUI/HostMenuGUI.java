@@ -36,7 +36,6 @@ public class HostMenuGUI {
 	private Shell shell;
 	private final Display display;
 	private Button exitButton;
-	private Label modeLabel;
 	private Label wartenLabel;
 	private Timer timer;
 	
@@ -53,7 +52,6 @@ public class HostMenuGUI {
 	private void initGUI() {
 		initShell();
 		initWartenLabel();
-		initModeLabel();
 		initExitButton();
 		this.shell.pack();
 		
@@ -76,15 +74,6 @@ public class HostMenuGUI {
 		}
 	};
 	
-	private void initModeLabel() {
-		String text = "Modusauswahl";
-		this.modeLabel = new Label(this.shell, SWT.CENTER);
-		this.modeLabel.setText(text);
-		this.modeLabel.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
-		this.modeLabel.setBounds(this.shell.getClientArea());
-		
-	}
-
 	public void open() {
 		if (this.shell.isDisposed()) {
 			initGUI();
@@ -103,15 +92,25 @@ public class HostMenuGUI {
 		}
 		
 		this.shell.open();
+		try {
+			Globals.startRemoteServer();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		this.timer = new Timer();
 		this.timer.schedule(new TimerTask() {
-			
 			@Override
 			public void run() {
 				HostMenuGUI.this.display.asyncExec(new Runnable() {
 					@Override
 					public void run() {
+						String text = "Leider hat sich keiner mit dir verbunden!\n";
+						text += "Hast du keine Freunde?\n";
+						text += "Dann musst wohl lokal Spielen!\n";
+						text += "www.facebook.de kann dir helfen";
+						displayMessageBox(text);
 						HostMenuGUI.this.shell.close();
 					}
 				});
