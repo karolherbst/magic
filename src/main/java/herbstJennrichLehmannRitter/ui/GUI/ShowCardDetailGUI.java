@@ -148,7 +148,6 @@ public class ShowCardDetailGUI {
 					playGameGui.setCardDetailIsOpen(false);
 				}
 				ShowCardDetailGUI.this.shell.setVisible(false);
-				//TODO: Bei Klick auf Zurück gibts ne NullPointerException
 			}
 		});
 	}
