@@ -34,6 +34,7 @@ public abstract class AbstractCard implements Card {
 			MagicUtils.addValueToStringBuilder(getComplexCardAction().getOwnEffectDescription(), stringBuilder);
 		}
 		
+		
 		return stringBuilder.toString();
 	}
 	
@@ -56,7 +57,6 @@ public abstract class AbstractCard implements Card {
 		
 		return stringBuilder.toString();
 	}
-	//TODO: Karteineigenschaften (bspw: noch eine ziehen) einbauen!
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder(getName());
