@@ -15,7 +15,7 @@ import java.util.Collection;
 
 import org.eclipse.swt.widgets.Display;
 
-public class ClientUserInterface implements UserInterface {
+public class EnemyUserInterface implements UserInterface {
 
 	private MainMenuGUI mainMenuGUI;
 	private PlayGameGUI playGameGUI;
@@ -44,24 +44,24 @@ public class ClientUserInterface implements UserInterface {
 			
 			@Override
 			public void run() {
-				ClientUserInterface.this.playGameGUI.setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
-				ClientUserInterface.this.playGameGUI.setPlayerDungeonStock(data.getOwnPlayer().getDungeon().getStock());
-				ClientUserInterface.this.playGameGUI.setPlayerMagicLabLevel(data.getOwnPlayer().getMagicLab().getLevel());
-				ClientUserInterface.this.playGameGUI.setPlayerMagicLabStock(data.getOwnPlayer().getMagicLab().getStock());
-				ClientUserInterface.this.playGameGUI.setPlayerMineLevel(data.getOwnPlayer().getMine().getLevel());
-				ClientUserInterface.this.playGameGUI.setPlayerMineStock(data.getOwnPlayer().getMine().getStock());
-				ClientUserInterface.this.playGameGUI.setPlayerTower(data.getOwnPlayer().getTower().getActualPoints());
-				ClientUserInterface.this.playGameGUI.setPlayerWall(data.getOwnPlayer().getWall().getActualPoints());
-				ClientUserInterface.this.playGameGUI.setPlayerHandCards(data.getOwnPlayer().getDeck().getAllCards());
+				EnemyUserInterface.this.playGameGUI.setEnemyDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
+				EnemyUserInterface.this.playGameGUI.setEnemyDungeonStock(data.getOwnPlayer().getDungeon().getStock());
+				EnemyUserInterface.this.playGameGUI.setEnemyMagicLabLevel(data.getOwnPlayer().getMagicLab().getLevel());
+				EnemyUserInterface.this.playGameGUI.setEnemyMagicLabStock(data.getOwnPlayer().getMagicLab().getStock());
+				EnemyUserInterface.this.playGameGUI.setEnemyMineLevel(data.getOwnPlayer().getMine().getLevel());
+				EnemyUserInterface.this.playGameGUI.setEnemyMineStock(data.getOwnPlayer().getMine().getStock());
+				EnemyUserInterface.this.playGameGUI.setEnemyTower(data.getOwnPlayer().getTower().getActualPoints());
+				EnemyUserInterface.this.playGameGUI.setEnemyWall(data.getOwnPlayer().getWall().getActualPoints());
+				EnemyUserInterface.this.playGameGUI.setEnemyHandCards(data.getOwnPlayer().getDeck().getAllCards());
 				
-				ClientUserInterface.this.playGameGUI.setEnemyDungeonLevel(data.getEnemyPlayer().getDungeon().getLevel());
-				ClientUserInterface.this.playGameGUI.setEnemyDungeonStock(data.getEnemyPlayer().getDungeon().getStock());
-				ClientUserInterface.this.playGameGUI.setEnemyMagicLabLevel(data.getEnemyPlayer().getMagicLab().getLevel());
-				ClientUserInterface.this.playGameGUI.setEnemyMagicLabStock(data.getEnemyPlayer().getMagicLab().getStock());
-				ClientUserInterface.this.playGameGUI.setEnemyMineLevel(data.getEnemyPlayer().getMine().getLevel());
-				ClientUserInterface.this.playGameGUI.setEnemyMineStock(data.getEnemyPlayer().getMine().getStock());
-				ClientUserInterface.this.playGameGUI.setEnemyTower(data.getEnemyPlayer().getTower().getActualPoints());
-				ClientUserInterface.this.playGameGUI.setEnemyWall(data.getEnemyPlayer().getWall().getActualPoints());
+				EnemyUserInterface.this.playGameGUI.setPlayerDungeonLevel(data.getEnemyPlayer().getDungeon().getLevel());
+				EnemyUserInterface.this.playGameGUI.setPlayerDungeonStock(data.getEnemyPlayer().getDungeon().getStock());
+				EnemyUserInterface.this.playGameGUI.setPlayerMagicLabLevel(data.getEnemyPlayer().getMagicLab().getLevel());
+				EnemyUserInterface.this.playGameGUI.setPlayerMagicLabStock(data.getEnemyPlayer().getMagicLab().getStock());
+				EnemyUserInterface.this.playGameGUI.setPlayerMineLevel(data.getEnemyPlayer().getMine().getLevel());
+				EnemyUserInterface.this.playGameGUI.setPlayerMineStock(data.getEnemyPlayer().getMine().getStock());
+				EnemyUserInterface.this.playGameGUI.setPlayerTower(data.getEnemyPlayer().getTower().getActualPoints());
+				EnemyUserInterface.this.playGameGUI.setPlayerWall(data.getEnemyPlayer().getWall().getActualPoints());
 			}
 		});
 	}
@@ -84,10 +84,11 @@ public class ClientUserInterface implements UserInterface {
 
 	@Override
 	public void nextTurn() {
+		System.out.println("ENEMY: NEXT TURN");
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.nextTurnPlayer();
+				playGameGUI.nextTurnEnemy();
 			}
 		});
 	}
@@ -97,7 +98,7 @@ public class ClientUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.playAnotherCardPlayer();
+				playGameGUI.playAnotherCardEnemy();
 			}
 		});
 	}
@@ -107,7 +108,7 @@ public class ClientUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.setEnemyChoosenCardName(card.getName());
+				playGameGUI.setPlayerChoosenCardName(card.getName());
 			}
 		});
 	}
@@ -117,7 +118,7 @@ public class ClientUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.playerPlayedCard(card.getName());
+				playGameGUI.enemyPlayedCard(card.getName());
 			}
 		});
 	}
@@ -127,7 +128,7 @@ public class ClientUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.playerDiscardCard(card.getName());
+				playGameGUI.enemyDiscardCard(card.getName());
 			}
 		});
 	}
@@ -162,11 +163,11 @@ public class ClientUserInterface implements UserInterface {
 
 	@Override
 	public String getName() {
-		return this.mainMenuGUI.getPlayerName();
+		return this.mainMenuGUI.getEnemyName();
 	}
 
 	@Override
 	public Collection<String> getCards() {
-		return this.mainMenuGUI.getPlayerCards();
+		return this.mainMenuGUI.getEnemyCards();
 	}
 }

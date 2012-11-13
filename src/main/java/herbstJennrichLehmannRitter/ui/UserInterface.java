@@ -20,7 +20,7 @@ public interface UserInterface {
 
 	public void playAnotherCard();
 
-	public void enemeyPlayedCard(Card card);
+	public void enemyPlayedCard(Card card);
 	
 	public void onPlayCard(Card card);
 	

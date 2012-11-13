@@ -7,6 +7,7 @@ import herbstJennrichLehmannRitter.ki.KI;
 import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
+import herbstJennrichLehmannRitter.ui.impl.EnemyUserInterface;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -41,6 +42,7 @@ public class MainMenuGUI {
 	private String enemyName = "Computer";
 	private GameType gameType = GameType.TOWER_BUILDING;
 	private Collection<String> playerCards = new ArrayList<String>();
+	private Collection<String> enemyCards = new ArrayList<String>();
 	private UserInterface clientUserInterface = new ClientUserInterface();
 	private GameServer gameServer;
 	
@@ -60,6 +62,7 @@ public class MainMenuGUI {
 		Collection<Card> cards = Globals.getGameCardFactory().createDefaultDeck();
 		for (Card card:cards) {
 			this.playerCards.add(card.getName());
+			this.enemyCards.add(card.getName());
 		}
 	}
 	
@@ -93,6 +96,13 @@ public class MainMenuGUI {
 	}
 	public void setPlayerCards(Collection<String> cards) {
 		this.playerCards = cards;
+	}
+	
+	public Collection<String> getEnemyCards() {
+		return this.enemyCards;
+	}
+	public void setEnemyCards(Collection<String> cards) {
+		this.enemyCards = cards;
 	}
 	
 	public GameType getGameType() {
@@ -174,10 +184,16 @@ public class MainMenuGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				gameServer = Globals.getLocalGameServer();
+
 				PlayGameGUI playGameGUI = new PlayGameGUI(display, MainMenuGUI.this);
 				playGameGUI.open();
-				KI.newKiOnServer(gameServer, getPlayerName());
-				KI.startBridgedKIOnServer(gameServer, getEnemyName(), getClientUserInterface());
+
+				EnemyUserInterface enemyUserInterface = new EnemyUserInterface();
+				enemyUserInterface.setMainMenuGUI(MainMenuGUI.this);
+				enemyUserInterface.setPlayGameGUI(playGameGUI);
+				
+				KI.startBridgedKIOnServer(gameServer, getPlayerName(), getClientUserInterface());
+				KI.startBridgedKIOnServer(gameServer, getEnemyName(), enemyUserInterface);
 			}
 		});
 	}

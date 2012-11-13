@@ -49,6 +49,18 @@ public class KI implements UserInterface, Runnable {
 			}
 			
 			@Override
+			public void playAnotherCard() {
+				super.playAnotherCard();
+				bridgeTo.playAnotherCard();
+			}
+			
+			@Override
+			public void enemyPlayedCard(Card card) {
+				super.enemyPlayedCard(card);
+				bridgeTo.enemyPlayedCard(card);
+			}
+			
+			@Override
 			public void onDiscardCard(Card card) {
 				super.onDiscardCard(card);
 				bridgeTo.onDiscardCard(card);
@@ -58,6 +70,24 @@ public class KI implements UserInterface, Runnable {
 			public void onPlayCard(Card card) {
 				super.onPlayCard(card);
 				bridgeTo.onPlayCard(card);
+			}
+			
+			@Override
+			public void youLost() {
+				super.youLost();
+				bridgeTo.youLost();
+			}
+			
+			@Override
+			public void youWon() {
+				super.youWon();
+				bridgeTo.youWon();
+			}
+			
+			@Override
+			public void abort(String reason) {
+				super.abort(reason);
+				bridgeTo.abort(reason);
 			}
 		};
 		
@@ -160,7 +190,7 @@ public class KI implements UserInterface, Runnable {
 	}
 
 	@Override
-	public void enemeyPlayedCard(Card card) {
+	public void enemyPlayedCard(Card card) {
 		System.out.println(getName() + ": ahh your card (" + card.getName() + ") won't destroy me!");
 	}
 
