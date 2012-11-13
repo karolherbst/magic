@@ -144,7 +144,9 @@ public class ShowCardDetailGUI {
 		this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				playGameGui.setCardDetailIsOpen(false);
+				if (playGameGui != null) {
+					playGameGui.setCardDetailIsOpen(false);
+				}
 				ShowCardDetailGUI.this.shell.setVisible(false);
 				//TODO: Bei Klick auf Zurück gibts ne NullPointerException
 			}
