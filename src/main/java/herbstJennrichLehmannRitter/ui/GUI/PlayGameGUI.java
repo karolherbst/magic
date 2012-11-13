@@ -180,7 +180,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerDungeon() {
-		this.playerDungeon = new RessourceFields("Verlies", 10, 642);
+		this.playerDungeon = new RessourceFields("Verlies", "Monster", 10, 642);
 	}
 	public void setPlayerDungeonLevel(int level) {
 		this.playerDungeon.setLevel(level);
@@ -193,7 +193,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initPlayerMagicLab() {
-		this.playerMagicLab = new RessourceFields("Zauberlabor", 220, 642);
+		this.playerMagicLab = new RessourceFields("Zauberlabor", "Kristall", 220, 642);
 	}
 	public void setPlayerMagicLabLevel(int level) {
 		this.playerMagicLab.setLevel(level);
@@ -206,7 +206,7 @@ public class PlayGameGUI {
 	}
 
 	private void initPlayerMine() {
-		this.playerMine = new RessourceFields("Steinbruch", 430, 642);
+		this.playerMine = new RessourceFields("Steinbruch", "Ziegel", 430, 642);
 	}
 	public void setPlayerMineLevel(int level) {
 		this.playerMine.setLevel(level);
@@ -290,7 +290,7 @@ public class PlayGameGUI {
 	}	
 	
 	private void initEnemyDungeon() {
-		this.enemyDungeon = new RessourceFields("Verlies", 10, 25);
+		this.enemyDungeon = new RessourceFields("Verlies", "Monster", 10, 25);
 	}
 	public void setEnemyDungeonLevel(int level) {
 		this.enemyDungeon.setLevel(level);
@@ -300,7 +300,7 @@ public class PlayGameGUI {
 	}
 
 	private void initEnemyMagicLab() {
-		this.enemyMagicLab = new RessourceFields("Zauberlabor", 220, 25);
+		this.enemyMagicLab = new RessourceFields("Zauberlabor", "Kristall", 220, 25);
 	}
 	public void setEnemyMagicLabLevel(int level) {
 		this.enemyMagicLab.setLevel(level);
@@ -310,7 +310,7 @@ public class PlayGameGUI {
 	}
 	
 	private void initEnemyMine() {
-		this.enemyMine = new RessourceFields("Steinbruch", 430, 25);
+		this.enemyMine = new RessourceFields("Steinbruch", "Ziegel", 430, 25);
 	}
 	public void setEnemyMineLevel(int level) {
 		this.enemyMine.setLevel(level);
@@ -547,7 +547,7 @@ public class PlayGameGUI {
 		private Label levelValue;
 		private Label stockValue;
 		
-		public RessourceFields(String headline,int positionFromLeft, int positionFromTop) {
+		public RessourceFields(String headline, String resourceName, int positionFromLeft, int positionFromTop) {
 			FormData canvasData = new FormData();
 			canvasData.left =  new FormAttachment(0, 1000, positionFromLeft);
 			canvasData.top =  new FormAttachment(0, 1000, positionFromTop);
@@ -573,7 +573,7 @@ public class PlayGameGUI {
 			}
 			{
 				Label stockLabel = new Label(ressourceComp, SWT.NONE);
-				stockLabel.setText("Ressource");
+				stockLabel.setText(resourceName);
 				stockLabel.setSize(60, 30);
 				stockLabel.setBounds(12, 38, 60, 15);
 			}
