@@ -135,22 +135,24 @@ public class GameServiceImpl implements GameService {
 		System.out.println("round: " + ++round);
 		// sleep a bit to take away stress from the process
 		try {
-			Thread.sleep(1);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// do nothing here
 		}
 		
 		UIHolder uiHolder = this.threadToUi.get(thread);
-		System.out.println("service: player " + uiHolder.player.getName() + " played card " + card.getName());
-		
-		this.gameEngineController.playCard(card, uiHolder.player, uiHolder.enemy.player);
-		uiHolder.enemy.userInterface.enemeyPlayedCard(card);
-		
-		updatePlayerDatas(uiHolder);
-		if (MagicUtils.canPlayerPlayAnotherRound(card, uiHolder.player)) {
-			uiHolder.userInterface.playAnotherCard();
-		} else {
-			uiHolder.enemy.userInterface.nextTurn();
+		if (uiHolder != null) {
+			System.out.println("service: player " + uiHolder.player.getName() + " played card " + card.getName());
+			
+			this.gameEngineController.playCard(card, uiHolder.player, uiHolder.enemy.player);
+			uiHolder.enemy.userInterface.enemyPlayedCard(card);
+			
+			updatePlayerDatas(uiHolder);
+			if (MagicUtils.canPlayerPlayAnotherRound(card, uiHolder.player)) {
+				uiHolder.userInterface.playAnotherCard();
+			} else {
+				uiHolder.enemy.userInterface.nextTurn();
+			}
 		}
 		
 	}
@@ -160,18 +162,20 @@ public class GameServiceImpl implements GameService {
 		System.out.println("round: " + ++round);
 		// sleep a bit to take away stress from the process
 		try {
-			Thread.sleep(1);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// do nothing here
 		}
 				
 		UIHolder uiHolder = this.threadToUi.get(thread);
-		System.out.println("service: player " + uiHolder.player.getName() + " discard card " + card.getName());
+		if (uiHolder != null) {
+			System.out.println("service: player " + uiHolder.player.getName() + " discard card " + card.getName());
 		
-		this.gameEngineController.discardCard(card, uiHolder.player);
+			this.gameEngineController.discardCard(card, uiHolder.player);
 
-		updatePlayerDatas(uiHolder);
-		uiHolder.enemy.userInterface.nextTurn();
+			updatePlayerDatas(uiHolder);
+			uiHolder.enemy.userInterface.nextTurn();
+		}
 	}
 
 	@Override
