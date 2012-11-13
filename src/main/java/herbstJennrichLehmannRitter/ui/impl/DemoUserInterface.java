@@ -84,7 +84,6 @@ public class DemoUserInterface implements UserInterface {
 
 	@Override
 	public void nextTurn() {
-		System.out.println("ENEMY: NEXT TURN");
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
