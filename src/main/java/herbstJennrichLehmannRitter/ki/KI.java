@@ -134,7 +134,7 @@ public class KI implements UserInterface, Runnable {
 	private void runKILogic() throws RemoteException, InterruptedException {
 		System.out.println(getName() + ": my next turn, now you will die!");
 		
-		Thread.sleep(1000);
+		Thread.sleep(1);
 		
 		Card cardToPlay = null;
 		Card lastCard = null;
