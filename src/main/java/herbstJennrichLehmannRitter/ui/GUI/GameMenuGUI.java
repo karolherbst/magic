@@ -154,8 +154,6 @@ public class GameMenuGUI {
 					KI.startBridgedKIOnServer(gameServer, GameMenuGUI.this.mainMenuGUI.getEnemyName(), 
 							localUserInterface);
 					
-//					KI.startKIOnLocal(GameMenuGUI.this.mainMenuGUI.getEnemyName());
-					
 					playGameGUI.open();
 				} catch (RemoteException e2) {
 					e2.printStackTrace();
