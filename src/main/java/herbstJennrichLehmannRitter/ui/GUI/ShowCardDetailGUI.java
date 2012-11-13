@@ -174,6 +174,7 @@ public class ShowCardDetailGUI {
 				try {
 					playGameGui.setCardDetailIsOpen(false);
 					Globals.getLocalGameServer().discardCard(ShowCardDetailGUI.this.card);
+					playGameGui.playerDiscardCard(card.getName());
 					ShowCardDetailGUI.this.shell.setVisible(false);
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
