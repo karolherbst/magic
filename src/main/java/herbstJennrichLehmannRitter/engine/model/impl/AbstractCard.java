@@ -56,7 +56,7 @@ public abstract class AbstractCard implements Card {
 		
 		return stringBuilder.toString();
 	}
-	
+	//TODO: Karteineigenschaften (bspw: noch eine ziehen) einbauen!
 	@Override
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder(getName());
