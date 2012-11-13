@@ -239,6 +239,7 @@ public class PlayGameGUI {
 		for (int i=0; i<6; i++) {
 			this.playerCards.add(new CardFields((x+(120*i)), y, true, true));
 			this.playerCards.get(i).setCardName("");
+			this.playerCards.get(i).setVisible(false);
 		}
 	}
 	
@@ -578,8 +579,8 @@ public class PlayGameGUI {
 			}
 			{	
 				this.stockValue = new Label(ressourceComp, SWT.NONE);
-				this.stockValue.setText(String.valueOf(0));
-				this.stockValue.setBounds(80, 38, 60, 15);
+				this.stockValue.setText("unbekannt");
+				this.stockValue.setBounds(80, 38, 80, 15);
 			}
 		}
 		
