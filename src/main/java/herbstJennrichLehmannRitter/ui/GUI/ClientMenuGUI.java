@@ -2,6 +2,7 @@ package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.server.GameServer;
+import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
 
 import java.rmi.RemoteException;
 import java.util.Timer;
@@ -32,6 +33,7 @@ public class ClientMenuGUI {
 	
 	private MainMenuGUI mainMenuGUI;
 	private Timer timer;
+	private PlayGameGUI playGameGUI;
 	
 	public ClientMenuGUI(Display parent, MainMenuGUI mainMenuGUI) {
 		this.display = parent;
@@ -43,7 +45,6 @@ public class ClientMenuGUI {
 		initBackButton();
 		this.shell.pack();
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
-		this.mainMenuGUI.getClientUserInterface().setClientMenuGUI(this);
 	}
 	
 	public void open() {
@@ -117,7 +118,18 @@ public class ClientMenuGUI {
 				}, 30000);
 				
 				try {
+					ClientMenuGUI.this.mainMenuGUI.setGameServer(gameServer);
 					gameServer.register(ClientMenuGUI.this.mainMenuGUI.getClientUserInterface());
+					
+					ClientMenuGUI.this.playGameGUI = new PlayGameGUI(ClientMenuGUI.this.display, 
+							ClientMenuGUI.this.mainMenuGUI);
+
+					ClientUserInterface clientUserInterface = ClientMenuGUI.this.mainMenuGUI.getClientUserInterface();
+					clientUserInterface.setMainMenuGUI(ClientMenuGUI.this.mainMenuGUI);
+					clientUserInterface.setClientMenuGUI(ClientMenuGUI.this);
+					clientUserInterface.setPlayGameGUI(ClientMenuGUI.this.playGameGUI);
+					
+					
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -128,7 +140,6 @@ public class ClientMenuGUI {
 
 	public void cancelTimerAndOpenPlayGameGUI() {
 		this.timer.cancel();
-		PlayGameGUI playGameGUI = new PlayGameGUI(display, this.mainMenuGUI);
-		playGameGUI.open();
+		this.playGameGUI.open();
 	}	
 }
