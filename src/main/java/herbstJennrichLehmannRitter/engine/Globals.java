@@ -59,8 +59,9 @@ public final class Globals {
 		
 		LocateRegistry.createRegistry(Registry.REGISTRY_PORT);
 		remoteGameServer = new NetworkServerImpl(getLocalGameServer());
+		GameServer remote = (GameServer) UnicastRemoteObject.exportObject(remoteGameServer); 
 		try {
-			Naming.rebind("//localhost/" + GAME_SERVER_NAME, remoteGameServer);
+			Naming.rebind("//localhost/" + GAME_SERVER_NAME, remote);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
