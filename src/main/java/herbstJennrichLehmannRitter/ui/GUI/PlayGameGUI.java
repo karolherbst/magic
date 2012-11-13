@@ -149,7 +149,7 @@ public class PlayGameGUI {
 		messageBox.getStyle();
 		String messageString = "Jeder Spieler beginnt mit dem Folgenden: Turm 25 Punkte, Mauer 10 Punkte, " +
 				"Steinbruch, Zauberlabor, Verlies jeweils Stufe 1 und 15 Ressourcen. " +
-				"Und 6 zufälligen Spielkarten aus seinem Kartenstapel. Es gibt zwei verschiedene Modi: " +
+				"Und 6 zufälligen Spielkarten aus seinem Kartenstapel. \rEs gibt zwei verschiedene Modi: " +
 				"Turmbau und Sammelwut. " +
 				"Ein Spieler gewinnt, wenn der gegnerische Turm 0 Punkte hat (beide Modi), " +
 				"der eigene Turm 100 Punkte hat (Turmbau) oder von einer Sorte Ressourcen 400 Stück " +
@@ -416,10 +416,12 @@ public class PlayGameGUI {
 	}
 	
 	public void playAnotherCardPlayer() {
+		this.playerName.setPlayerActive("hat noch einen Zug");
 		this.playAnotherCard(this.playerCards);
 	}
 	
 	public void playAnotherCardEnemy() {
+		this.playerName.setPlayerActive("hat noch einen Zug");
 		this.playAnotherCard(this.enemyCards);
 	}
 	
