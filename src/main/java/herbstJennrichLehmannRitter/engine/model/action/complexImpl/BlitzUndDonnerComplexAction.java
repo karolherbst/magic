@@ -23,7 +23,7 @@ public class BlitzUndDonnerComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getEnemyEffectDescription() {
-		return "Wenn der eigene Turm kleiner als der des Gegners ist, " +
+		return "Wenn der eigene Turm größer als der des Gegners ist, " +
 				"werden 8 Turmschaden und sonst 8 Schaden zugefügt";
 	}
 
