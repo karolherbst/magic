@@ -38,6 +38,15 @@ public class ToStringTest {
 	}
 	
 	@Test
+	public void testBaumgeistComplexAction() {
+		Card baumgeist = this.gameCardFactory.createCard("Baumgeist");
+		assertNotNull(baumgeist);
+		System.out.println(baumgeist);
+		assertEquals("Baumgeist[Kosten: 9 Monster, 7 Ziegel; Gegner: Wenn das eigene Verlies größer als die" +
+				" gegnerische Mauer ist, bekommt der Gegner 11 Turmschaden]", baumgeist.toString());
+	}
+	
+	@Test
 	public void testBlitzUndDonnerComplexAction() {
 		Card blitzUndDonner = this.gameCardFactory.createCard("Blitz und Donner");
 		assertNotNull(blitzUndDonner);
