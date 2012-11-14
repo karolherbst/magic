@@ -24,8 +24,15 @@ public class WinAndLooseTests {
 	}
 
 	@Test
-	public void testHasPlayerLost() {
+	public void testHasPlayerLostWithPointsUnder0() {
 		this.player.getTower().applyDamage(30);
+		WinAndLoseChecker winAndLoseChecker = new WinAndLoseTowerBuildingChecker();
+		assertTrue(winAndLoseChecker.hasPlayerLost(this.player));
+	}
+
+	@Test
+	public void testHasPlayerLostWithPointsEquals0() {
+		this.player.getTower().applyDamage(25);
 		WinAndLoseChecker winAndLoseChecker = new WinAndLoseTowerBuildingChecker();
 		assertTrue(winAndLoseChecker.hasPlayerLost(this.player));
 	}
