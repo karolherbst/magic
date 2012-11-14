@@ -16,6 +16,7 @@ public class CardActionImpl implements CardAction {
 			this.ownAmountCardDiscard = 0;
 			this.enemyAmountCardDiscard = 0;
 			this.playCards = false;
+
 		} else {
 			this.amountCardDraw = cardAction.getAmountCardDraw();
 			this.ownAmountCardDiscard = cardAction.getOwnAmountCardDiscard();
@@ -50,7 +51,9 @@ public class CardActionImpl implements CardAction {
 		
 		MagicUtils.addValueToStringBuilder("Karte ablegen", Integer.valueOf(getOwnAmountCardDiscard()), stringBuilder);
 		MagicUtils.addValueToStringBuilder("Karte ziehen", Integer.valueOf(getAmountCardDraw()), stringBuilder);
-		
+		//TODO: if playCards == true {
+			//MagicUtils.addValueToStringBuilder("noch eine Karte spielen", stringBuilder);
+		//}
 		return stringBuilder.toString();
 	}
 	

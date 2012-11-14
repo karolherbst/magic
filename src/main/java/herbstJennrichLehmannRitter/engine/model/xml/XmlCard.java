@@ -25,7 +25,6 @@ public class XmlCard extends AbstractCard {
 	private ResourceAction enemyResourceAction = new XmlResourceAction();
 	private ComplexCardAction complexCardAction;
 	private boolean canBeDiscarded = true;
-	private boolean playAnotherCard = false;
 	
 	public void setName(String name) {
 		this.name = name;
@@ -116,16 +115,6 @@ public class XmlCard extends AbstractCard {
 	@Override
 	public CardAction getCardAction() {
 		return this.cardAction;
-	}
-	
-	@XmlElement(name="PlayAnotherCard", defaultValue="false") 
-	@Override
-	public boolean getPlayAnotherCard(){
-		return this.playAnotherCard;	
-	}
-
-	public void setPlayAnotherCard(boolean playAnotherCard) {
-		this.playAnotherCard = playAnotherCard;
 	}
 	
 	public void setCanBeDiscarded(boolean canBeDiscarded) {

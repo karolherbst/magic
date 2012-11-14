@@ -25,7 +25,6 @@ public interface Card {
 	public ResourceAction getEnemyResourceAction();
 	public ComplexCardAction getComplexCardAction();
 	public boolean getCanBeDiscarded();
-	public boolean getPlayAnotherCard();
 	
 	public String getCostDescription();
 	public String getOwnEffectDescription();

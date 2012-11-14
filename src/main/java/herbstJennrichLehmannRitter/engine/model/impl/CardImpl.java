@@ -22,7 +22,7 @@ public class CardImpl extends AbstractCard {
 	private final ResourceAction enemyResourceActions;
 	private final ComplexCardAction complexCardAction;
 	private final boolean canBeDiscarded;
-	private final boolean playAnotherCard;
+
 	
 	public CardImpl(Card card) {
 		
@@ -56,7 +56,6 @@ public class CardImpl extends AbstractCard {
 		
 		this.complexCardAction = card.getComplexCardAction();
 		this.canBeDiscarded = card.getCanBeDiscarded();
-		this.playAnotherCard = card.getPlayAnotherCard();
 	}
 	
 	@Override
@@ -109,8 +108,4 @@ public class CardImpl extends AbstractCard {
 		return this.canBeDiscarded;
 	}
 	
-	@Override
-	public boolean getPlayAnotherCard(){
-		return this.playAnotherCard;
-	}
 }
