@@ -110,4 +110,22 @@ public class ToStringTest {
 		assertEquals("Glasperlen[Selbst: Wenn der eigene Turm kleiner als der des Gegner ist, " +
 				"wird er um 2 erhöht, sonst um 1]", glasperlen.toString());
 	}
+	
+	@Test
+	public void testGrundsteinComplexAction() {
+		Card grundstein = this.gameCardFactory.createCard("Grundstein");
+		assertNotNull(grundstein);
+		System.out.println(grundstein);
+		assertEquals("Grundstein[Kosten: 3 Ziegel; Selbst: Wenn die eigene Mauer zerstört wurde, " +
+				"wird die Mauer um 6 erhöht, sonst nur um 3]", grundstein.toString());
+	}
+	
+	@Test
+	public void testHauptaderComplexAction() {
+		Card hauptader = this.gameCardFactory.createCard("Hauptader");
+		assertNotNull(hauptader);
+		System.out.println(hauptader);
+		assertEquals("Hauptader[Kosten: 4 Ziegel; Selbst: Wenn der eigene Steinbruch kleiner als der " +
+				"des Gegners ist, wird er um 2 erhöht, sonst nur um 1]", hauptader.toString());
+	}
 }
