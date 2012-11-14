@@ -25,6 +25,7 @@ public class XmlCard extends AbstractCard {
 	private ResourceAction enemyResourceAction = new XmlResourceAction();
 	private ComplexCardAction complexCardAction;
 	private boolean canBeDiscarded = true;
+	private boolean playAnotherCard = false;
 	
 	public void setName(String name) {
 		this.name = name;
@@ -117,15 +118,15 @@ public class XmlCard extends AbstractCard {
 		return this.cardAction;
 	}
 	
-//TODO: @XmlElement(name"PlayAnotherCard", defaultValue="false") - für String Spiele noch eine Karte?
-//@Override
-//public boolean PlayAnotherCard(){
-//	return.this.playAnotherCard	
-//}
+	@XmlElement(name="PlayAnotherCard", defaultValue="false") 
+	@Override
+	public boolean getPlayAnotherCard(){
+		return this.playAnotherCard;	
+	}
 
-//	public void setgetPlayAnotherCard(boolean playAnotherCard) {
-//		this.playAnotherCard = playAnotherCard;
-//	}
+	public void setPlayAnotherCard(boolean playAnotherCard) {
+		this.playAnotherCard = playAnotherCard;
+	}
 	
 	public void setCanBeDiscarded(boolean canBeDiscarded) {
 		this.canBeDiscarded = canBeDiscarded;
