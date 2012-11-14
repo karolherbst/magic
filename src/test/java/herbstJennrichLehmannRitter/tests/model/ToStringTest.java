@@ -54,4 +54,13 @@ public class ToStringTest {
 		assertEquals("Blitz und Donner[Kosten: 11 Kristall; Gegner: Wenn der eigene Turm größer als der des Gegners ist, " +
 				"werden 8 Turmschaden und sonst 8 Schaden zugefügt]", blitzUndDonner.toString());
 	}
+	
+	@Test
+	public void testBlutmondComplexAction() {
+		Card blutmond = this.gameCardFactory.createCard("Blutmond");
+		assertNotNull(blutmond);
+		System.out.println(blutmond);
+		assertEquals("Blutmond[Kosten: 8 Monster; Selbst: -1 Zauberlabor, Es werden alle Karten auf der Hand verworfen " +
+				"und 6 zufällige Verlieskarten gezogen]", blutmond.toString());
+	}
 }
