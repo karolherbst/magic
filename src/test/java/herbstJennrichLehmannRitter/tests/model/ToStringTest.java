@@ -137,4 +137,14 @@ public class ToStringTest {
 		assertEquals("Paradoxon[Kosten: 5 Monster, 5 Kristall, 5 Ziegel; Selbst: Tausche Kartenhand mit dem Gegner; " +
 				"Gegner: Tausche Kartenhand mit dem Gegner]", paradoxon.toString());
 	}
+	
+	@Test
+	public void testParitaetComplexAction() {
+		Card paritaet = this.gameCardFactory.createCard("Parität");
+		assertNotNull(paritaet);
+		System.out.println(paritaet);
+		assertEquals("Parität[Kosten: 7 Kristall; Selbst: Zauberlabor auf höchste " +
+				"Zauberlaborstufe im Spiel setzen; Gegner: Zauberlabor auf höchste Zauberlaborstufe im " +
+				"Spiel setzen]", paritaet.toString());
+	}
 }
