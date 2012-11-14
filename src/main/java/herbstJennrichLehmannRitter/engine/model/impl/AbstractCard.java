@@ -5,6 +5,8 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 
 public abstract class AbstractCard implements Card {
+	
+	//TODO: How to implement String "Noch eine Karte spielen?" Boolean PlayAnotherCard is implemented (Sönke)
 
 	@Override
 	public String getCostDescription() {
@@ -33,8 +35,6 @@ public abstract class AbstractCard implements Card {
 				&& getComplexCardAction().getOwnEffectDescription().length() > 0) {
 			MagicUtils.addValueToStringBuilder(getComplexCardAction().getOwnEffectDescription(), stringBuilder);
 		}
-		
-		
 		return stringBuilder.toString();
 	}
 	
@@ -109,5 +109,4 @@ public abstract class AbstractCard implements Card {
 		
 		return getName().equals(card.getName());
 	}
-
 }
