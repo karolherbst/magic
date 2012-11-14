@@ -44,6 +44,7 @@ public class ShowCardDetailGUI {
 	private final Card card;
 	private PlayGameGUI playGameGui;
 	private ChooseDeckGUI chooseDeckGui;
+	private StyledText discardCardLabel;
 	
 	public ShowCardDetailGUI(Display parent, PlayGameGUI playGameGUI, ChooseDeckGUI chooseDeckGUI, Card card) {
 		this.display = parent;
@@ -61,6 +62,9 @@ public class ShowCardDetailGUI {
 		initCardOwnEffectsText();
 		initCardEnemyEffectsLabel();
 		initCardEnemyEffectsText();
+		if (card.getCanBeDiscarded() == false) {
+			initDiscardCardLabel();
+		}
 		initExitButton();
 		if (this.playGameGui != null) {
 			if (card.getCanBeDiscarded() == true) {
@@ -100,7 +104,7 @@ public class ShowCardDetailGUI {
 	}
 
 	private void initCardTypeLabel() {
-		createCategorieText(this.cardTypeLabel, "Kartentyp:", true, 40, 0);
+		createCategorieText(this.cardTypeLabel, "Kartentyp:", true, 40, 0, 80);
 	}
 
 	private void initCardTypeText() {
@@ -108,7 +112,7 @@ public class ShowCardDetailGUI {
 	}
 	
 	private void initCardCostsLabel() {
-		createCategorieText(this.cardCostsLabel, "Kosten:", true, 65, 0);
+		createCategorieText(this.cardCostsLabel, "Kosten:", true, 65, 0, 80);
 	}
 	
 	private void initCardCostsText() {
@@ -116,11 +120,11 @@ public class ShowCardDetailGUI {
 	}
 	
 	private void initCardEffectsLabel() {
-		createCategorieText(this.cardEffectsLabel, "Effekte:", true, 130, 0);
+		createCategorieText(this.cardEffectsLabel, "Effekte:", true, 130, 0, 80);
 	}
 	
 	private void initCardOwnEffectsLabel() {
-		createCategorieText(this.cardOwnEffectsLabel, "Eigene:", false, 150, 90);
+		createCategorieText(this.cardOwnEffectsLabel, "Eigene:", false, 150, 90, 80);
 	}
 	
 	private void initCardOwnEffectsText() {
@@ -128,11 +132,15 @@ public class ShowCardDetailGUI {
 	}
 
 	private void initCardEnemyEffectsLabel() {
-		createCategorieText(this.cardEnemyEffectsLabel, "Gegner:", false, 250, 90);
+		createCategorieText(this.cardEnemyEffectsLabel, "Gegner:", false, 250, 90, 80);
 	}
 	private void initCardEnemyEffectsText() {
 		createCardText(this.cardEnemyEffects, this.card.getEnemyEffectDescription(), 250, 90);
 	}
+	private void initDiscardCardLabel() {
+		createCategorieText(this.discardCardLabel, "Karte kann nicht verworfen werden", true,  370, 90, 220);
+	}
+
 
 	private void initExitButton() {
 		FormData btnExitData = new FormData();
@@ -213,11 +221,15 @@ public class ShowCardDetailGUI {
 	}
 	
 	private void createCategorieText(StyledText field, String text, boolean underline, 
-			int positionFromTop, int fieldHeight) {
+			int positionFromTop, int fieldHeight, int formDataWidth) {
 		FormData formData = new FormData();
 		formData.left = new FormAttachment(0, 1000, 30);
 		formData.top =  new FormAttachment(0, 1000, positionFromTop);
-		formData.width = 80;
+		if (formDataWidth != 0){
+			formData.width = formDataWidth;
+		} else {
+			formData.width = 80;
+		}
 		if (fieldHeight != 0) {
 			formData.height = fieldHeight;
 		}
