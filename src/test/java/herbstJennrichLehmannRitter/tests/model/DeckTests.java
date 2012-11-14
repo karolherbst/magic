@@ -280,5 +280,17 @@ public class DeckTests {
 		assertEquals(orginalCardsPlayerOne, changedCardsPlayerTwo);
 		assertEquals(orginalCardsPlayerTwo,  changedCardsPlayerOne);
 	}
+	
+	@Test
+	public void testExchangeCardInstance() {
+		Collection<Card> cardsPlayerOne = this.gameCardFactory.createDefaultDeck();
+		Player playerOne = this.playerFactory.createPlayer("Player One", cardsPlayerOne, 0, 0, 0, 0);
+		List<Card> orginalCardsPlayerOne = new ArrayList<Card>(playerOne.getDeck().getAllCards());
+
+		playerOne.getDeck().exchangeCardsWithHandDeck(null);	
+		List<Card> changedCardsPlayerOne = new ArrayList<Card>(playerOne.getDeck().getAllCards());
+		
+		assertEquals(orginalCardsPlayerOne, changedCardsPlayerOne);
+	}
 }
 
