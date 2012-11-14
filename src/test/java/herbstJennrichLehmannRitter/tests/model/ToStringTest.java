@@ -166,4 +166,13 @@ public class ToStringTest {
 		assertEquals("Pure Magie[Kosten: 15 Kristall; Selbst: Verwirf alle Karten und ziehe 6 " +
 				"zufällige Zauberlaborkarten]", pureMagie.toString());
 	}
+	
+	@Test
+	public void testSpionageComplexAction() {
+		Card spionage = this.gameCardFactory.createCard("Spionage");
+		assertNotNull(spionage);
+		System.out.println(spionage);
+		assertEquals("Spionage[Kosten: 5 Ziegel; Selbst: Wenn dein Steinbruchlevel niedriger " +
+				"als das des Gegners ist, wird es auf die Stufe des Gegners angehoben]", spionage.toString());
+	}
 }
