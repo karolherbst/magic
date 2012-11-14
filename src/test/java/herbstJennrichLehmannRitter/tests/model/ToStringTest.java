@@ -101,4 +101,13 @@ public class ToStringTest {
 				"Leben hat, als die gegnerische Mauer, dann werden dem Gegner 6 Turmschaden zugefügt, " +
 				"sonst nur 6 Schaden.]", elfischeBogenschuetzen.toString());
 	}
+	
+	@Test
+	public void testGlasperlenComplexAction() {
+		Card glasperlen = this.gameCardFactory.createCard("Glasperlen");
+		assertNotNull(glasperlen);
+		System.out.println(glasperlen);
+		assertEquals("Glasperlen[Selbst: Wenn der eigene Turm kleiner als der des Gegner ist, " +
+				"wird er um 2 erhöht, sonst um 1]", glasperlen.toString());
+	}
 }
