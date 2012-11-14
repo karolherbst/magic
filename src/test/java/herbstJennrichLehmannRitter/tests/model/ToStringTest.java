@@ -9,6 +9,8 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import org.junit.Test;
 
 public class ToStringTest {
+	
+	//TODO Write tests for other cards. Doing that, Daniel
 
 	private GameCardFactory gameCardFactory = new GameCardFactoryImpl();
 	
