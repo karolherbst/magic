@@ -80,4 +80,13 @@ public class ToStringTest {
 		assertEquals("Dieb[Kosten: 12 Monster; Selbst: Man erhält die Hälfte des gegnerischen Verlustes; " +
 				"Gegner: Es werden maximal -10 Kristall und -5 Ziegel abgezogen]", dieb.toString());
 	}
+	
+	@Test
+	public void testEinhornComplexAction() {
+		Card einhorn = this.gameCardFactory.createCard("Einhorn");
+		assertNotNull(einhorn);
+		System.out.println(einhorn);
+		assertEquals("Einhorn[Kosten: 9 Monster; Gegner: Wenn das eigene Zauberlabor größer als das des " +
+				"Gegners ist, wird 12 Schaden zugefügt, sonst nur 8]", einhorn.toString());
+	}
 }
