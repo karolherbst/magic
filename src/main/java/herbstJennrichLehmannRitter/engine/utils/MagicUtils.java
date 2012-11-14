@@ -13,7 +13,6 @@ public abstract class MagicUtils {
 	
 	public static void addValueToStringBuilder(Object value, StringBuilder stringBuilder) {
 		
-		// return if value is null or empty string
 		if (value == null) {
 			return;
 		}
@@ -39,6 +38,7 @@ public abstract class MagicUtils {
 		valueStr += value;
 		String keyStr = key.toString();
 		
+		//FIXME: Ist hier wirklich das valueStr.length notwendig? Da value ne Number ist, kann valueStr.length doch gar nicht =0 sein.
 		if (valueStr.length() > 0) {
 			addValueToStringBuilder(valueStr, stringBuilder);
 			stringBuilder.append(' ');

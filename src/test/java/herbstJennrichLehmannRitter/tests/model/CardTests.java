@@ -16,6 +16,7 @@ import herbstJennrichLehmannRitter.engine.model.xml.XmlCard;
 import herbstJennrichLehmannRitter.engine.model.xml.XmlCardAction;
 import herbstJennrichLehmannRitter.engine.model.xml.XmlCards;
 import herbstJennrichLehmannRitter.engine.model.xml.XmlResourceAction;
+import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -155,6 +156,15 @@ public class CardTests {
 		assertEquals(cardAction.getOwnAmountCardDiscard(), 0);
 		assertEquals(cardAction.getEnemyAmountCardDiscard(), 0);
 		assertEquals(cardAction.getPlayCards(), false);
+	}
+	
+	@Test
+	public void testMagicUtilsaddNullToStringBuider() {
+		StringBuilder stringBuilder = new StringBuilder();
+
+		MagicUtils.addValueToStringBuilder(null, stringBuilder);
+		MagicUtils.addValueToStringBuilder("", null, stringBuilder, false);
+		assertEquals(stringBuilder.length(), 0);
 	}
 
 }
