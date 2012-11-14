@@ -1,8 +1,7 @@
 package herbstJennrichLehmannRitter.tests.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import herbstJennrichLehmannRitter.engine.enums.BuildingType;
-import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
 import herbstJennrichLehmannRitter.engine.model.DefenceBuilding;
 import herbstJennrichLehmannRitter.engine.model.impl.TowerImpl;
 
@@ -15,11 +14,7 @@ public class TowerTests {
 	
 	@Before
 	public void before() {
-		try {
-			this.tower = new TowerImpl();
-		} catch (GameEngineException e) {
-			fail(e.getLocalizedMessage());
-		}
+		this.tower = new TowerImpl();
 	}
 	
 	@Test

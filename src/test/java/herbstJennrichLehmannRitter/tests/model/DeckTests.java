@@ -3,9 +3,7 @@ package herbstJennrichLehmannRitter.tests.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
-import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
@@ -29,16 +27,12 @@ public class DeckTests {
 	
 	@Before
 	public void before() {
-		try {
-			this.cardsOnHand.add(this.gameCardFactory.createCard("Geheimraum"));
-			this.cardsOnHand.add(this.gameCardFactory.createCard("Neues Werkzeug"));
-			this.cardsOnHand.add(this.gameCardFactory.createCard("Magische Quelle"));
-			this.cardsOnHand.add(this.gameCardFactory.createCard("Smaragd"));
-			this.cardsOnHand.add(this.gameCardFactory.createCard("Blutmond"));
-			this.cardsOnHand.add(this.gameCardFactory.createCard("Tollwütiges Schaf"));
-		} catch (GameEngineException e) {
-			fail(e.getLocalizedMessage());
-		}
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Geheimraum"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Neues Werkzeug"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Magische Quelle"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Smaragd"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Blutmond"));
+		this.cardsOnHand.add(this.gameCardFactory.createCard("Tollwütiges Schaf"));
 	}
 	
 	@Test

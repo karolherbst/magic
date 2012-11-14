@@ -1,8 +1,6 @@
 package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Deck;
@@ -25,12 +23,9 @@ public class PlayerTests {
 	
 	@Before
 	public void before() {
-		try {
-			this.player = new PlayerImpl();
-		} catch (GameEngineException e) {
-			fail(e.getLocalizedMessage());
-		}
+		this.player = new PlayerImpl();
 	}
+	
 	@Test
 	public void testName() {
 		this.player.setName("Player One");

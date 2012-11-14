@@ -1,7 +1,6 @@
 package herbstJennrichLehmannRitter.tests.model;
 
-import static org.junit.Assert.*;
-import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
+import static org.junit.Assert.assertEquals;
 import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
 import herbstJennrichLehmannRitter.engine.model.impl.MineImpl;
 
@@ -14,11 +13,7 @@ public class MineTests {
 	
 	@Before
 	public void before() {
-		try {
-			this.mine = new MineImpl();
-		} catch (GameEngineException e) {
-			fail(e.getLocalizedMessage());
-		}
+		this.mine = new MineImpl();
 	}
 	
 	@Test

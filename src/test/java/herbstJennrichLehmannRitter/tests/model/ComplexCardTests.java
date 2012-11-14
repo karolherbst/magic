@@ -1,8 +1,6 @@
 package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Card;
@@ -18,11 +16,7 @@ public class ComplexCardTests {
 	
 	@Before
 	public void before() {
-		try {
-			this.gameCardFactory = new GameCardFactoryImpl();
-		} catch (GameEngineException e) {
-			fail(e.getLocalizedMessage());
-		}
+		this.gameCardFactory = new GameCardFactoryImpl();
 	}
 
 	@Test

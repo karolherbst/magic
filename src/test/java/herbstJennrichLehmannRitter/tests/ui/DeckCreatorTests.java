@@ -1,14 +1,16 @@
 package herbstJennrichLehmannRitter.tests.ui;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.ui.impl.DeckCreatorImpl;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,11 +21,7 @@ public class DeckCreatorTests {
 	
 	@Before
 	public void before() {
-		try {
-			this.gameCardFactory = new GameCardFactoryImpl();
-		} catch (GameEngineException e) {
-			fail(e.getLocalizedMessage());
-		}
+		this.gameCardFactory = new GameCardFactoryImpl();
 	}
 	@Test
 	public void testDeckExists() {
