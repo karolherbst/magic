@@ -128,4 +128,13 @@ public class ToStringTest {
 		assertEquals("Hauptader[Kosten: 4 Ziegel; Selbst: Wenn der eigene Steinbruch kleiner als der " +
 				"des Gegners ist, wird er um 2 erhöht, sonst nur um 1]", hauptader.toString());
 	}
+	
+	@Test
+	public void testParadoxonComplexAction() {
+		Card paradoxon = this.gameCardFactory.createCard("Paradoxon");
+		assertNotNull(paradoxon);
+		System.out.println(paradoxon);
+		assertEquals("Paradoxon[Kosten: 5 Monster, 5 Kristall, 5 Ziegel; Selbst: Tausche Kartenhand mit dem Gegner; " +
+				"Gegner: Tausche Kartenhand mit dem Gegner]", paradoxon.toString());
+	}
 }
