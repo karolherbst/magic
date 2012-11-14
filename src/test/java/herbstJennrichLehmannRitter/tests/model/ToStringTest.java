@@ -71,4 +71,13 @@ public class ToStringTest {
 		System.out.println(demolieren);
 		assertEquals("Demolieren[Kosten: 16 Ziegel; Gegner: Die Mauer wird zerstört]", demolieren.toString());
 	}
+	
+	@Test
+	public void testDiebComplexAction() {
+		Card dieb = this.gameCardFactory.createCard("Dieb");
+		assertNotNull(dieb);
+		System.out.println(dieb);
+		assertEquals("Dieb[Kosten: 12 Monster; Selbst: Man erhält die Hälfte des gegnerischen Verlustes; " +
+				"Gegner: Es werden maximal -10 Kristall und -5 Ziegel abgezogen]", dieb.toString());
+	}
 }
