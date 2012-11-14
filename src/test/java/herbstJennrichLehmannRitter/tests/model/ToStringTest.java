@@ -23,6 +23,14 @@ public class ToStringTest {
 	}
 	
 	@Test
+	public void testAmethyst() {
+		Card amethyst = this.gameCardFactory.createCard("Amethyst");
+		assertNotNull(amethyst);
+		System.out.println(amethyst);
+		assertEquals("Amethyst[Kosten: 2 Kristall; Selbst: +3 Turm]", amethyst.toString());
+	}
+	
+	@Test
 	public void testAuferstehungComplexAction() {
 		Card auferstehung = this.gameCardFactory.createCard("Auferstehung");
 		assertNotNull(auferstehung);
@@ -64,6 +72,14 @@ public class ToStringTest {
 		System.out.println(blutmond);
 		assertEquals("Blutmond[Kosten: 8 Monster; Selbst: -1 Zauberlabor, Es werden alle Karten auf der Hand verworfen " +
 				"und 6 zufällige Verlieskarten gezogen]", blutmond.toString());
+	}
+	
+	@Test
+	public void testBruechigerStein() {
+		Card bruechigerStein = this.gameCardFactory.createCard("Brüchiger Stein");
+		assertNotNull(bruechigerStein);
+		System.out.println(bruechigerStein);
+		assertEquals("Brüchiger Stein[Kosten: 7 Kristall; Selbst: +5 Turm; Gegner: -6 Ziegel]", bruechigerStein.toString());
 	}
 	
 	@Test
