@@ -21,7 +21,7 @@ public class ToStringTest {
 	}
 	
 	@Test
-	public void testAuferstehungComplextAction() {
+	public void testAuferstehungComplexAction() {
 		Card auferstehung = this.gameCardFactory.createCard("Auferstehung");
 		assertNotNull(auferstehung);
 		System.out.println(auferstehung);
@@ -29,11 +29,20 @@ public class ToStringTest {
 	}
 	
 	@Test
-	public void testBarrackeComplextAction() {
+	public void testBarrackeComplexAction() {
 		Card barracke = this.gameCardFactory.createCard("Barracke");
 		assertNotNull(barracke);
 		System.out.println(barracke);
 		assertEquals("Barracke[Kosten: 10 Ziegel; Selbst: +6 Mauer, +6 Monster, Wenn das eigene Verlies " +
 				"kleiner als das des Gegners ist, wird es um 1 erhöht]", barracke.toString());
+	}
+	
+	@Test
+	public void testBlitzUndDonnerComplexAction() {
+		Card blitzUndDonner = this.gameCardFactory.createCard("Blitz und Donner");
+		assertNotNull(blitzUndDonner);
+		System.out.println(blitzUndDonner);
+		assertEquals("Blitz und Donner[Kosten: 11 Kristall; Gegner: Wenn der eigene Turm größer als der des Gegners ist, " +
+				"werden 8 Turmschaden und sonst 8 Schaden zugefügt]", blitzUndDonner.toString());
 	}
 }
