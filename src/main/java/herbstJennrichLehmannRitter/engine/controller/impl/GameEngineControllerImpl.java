@@ -94,7 +94,8 @@ public class GameEngineControllerImpl implements GameEngineController {
 	}
 	
 	private Player lastPlayerWhoGainedResources = null;
-	private void addResourcesToPlayer(Player player) {
+	@Override
+	public void addResourcesToPlayer(Player player) {
 		if (player == this.lastPlayerWhoGainedResources) {
 			return;
 		}
@@ -124,8 +125,6 @@ public class GameEngineControllerImpl implements GameEngineController {
 			throw new GameEngineException(ENGINE_ERROR.PLAYER_DONT_OWN_CARD);
 		}
 		
-		addResourcesToPlayer(player);
-		
 		applyCostFromCardOnPlayer(card, player);
 		applyResourceAction(card.getOwnResourceAction(), player);
 		applyResourceAction(card.getEnemyResourceAction(), enemyPlayer);
@@ -144,7 +143,6 @@ public class GameEngineControllerImpl implements GameEngineController {
 			throw new GameEngineException(ENGINE_ERROR.PLAYER_DONT_OWN_CARD);
 		}
 		
-		addResourcesToPlayer(player);
 		throwAwayCardAndRefillHandDeckIfNeeded(card, player);
 	}
 	

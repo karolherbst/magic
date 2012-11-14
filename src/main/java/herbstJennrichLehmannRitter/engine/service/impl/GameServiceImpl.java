@@ -43,8 +43,9 @@ public class GameServiceImpl implements GameService {
 		}
 		
 		this.gameEngineController.start(gameType);
-		
-		this.threadToUi.values().iterator().next().userInterface.nextTurn();
+		UIHolder uiHolder = this.threadToUi.values().iterator().next();
+		this.gameEngineController.addResourcesToPlayer(uiHolder.player);
+		uiHolder.userInterface.nextTurn();
 	}
 	
 	@Override
@@ -147,10 +148,12 @@ public class GameServiceImpl implements GameService {
 			this.gameEngineController.playCard(card, uiHolder.player, uiHolder.enemy.player);
 			uiHolder.enemy.userInterface.enemyPlayedCard(card);
 			
-			updatePlayerDatas(uiHolder);
 			if (MagicUtils.canPlayerPlayAnotherRound(card, uiHolder.player)) {
+				updatePlayerDatas(uiHolder);
 				uiHolder.userInterface.playAnotherCard();
 			} else {
+				this.gameEngineController.addResourcesToPlayer(uiHolder.enemy.player);
+				updatePlayerDatas(uiHolder);
 				uiHolder.enemy.userInterface.nextTurn();
 			}
 		}
@@ -172,6 +175,7 @@ public class GameServiceImpl implements GameService {
 			System.out.println("service: player " + uiHolder.player.getName() + " discard card " + card.getName());
 		
 			this.gameEngineController.discardCard(card, uiHolder.player);
+			this.gameEngineController.addResourcesToPlayer(uiHolder.enemy.player);
 
 			updatePlayerDatas(uiHolder);
 			uiHolder.enemy.userInterface.nextTurn();

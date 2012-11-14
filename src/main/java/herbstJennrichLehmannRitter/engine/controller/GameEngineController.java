@@ -23,4 +23,6 @@ public interface GameEngineController {
 	public void playCard(Card card, Player player, Player enePlayer);
 	public void discardCard(Card card, Player player);
 	
+	public void addResourcesToPlayer(Player player);
+	
 }
