@@ -147,4 +147,14 @@ public class ToStringTest {
 				"Zauberlaborstufe im Spiel setzen; Gegner: Zauberlabor auf höchste Zauberlaborstufe im " +
 				"Spiel setzen]", paritaet.toString());
 	}
+	
+	@Test
+	public void testPfuschenderSchmiedComplexAction() {
+		Card pfuschenderSchmied = this.gameCardFactory.createCard("Pfuschender Schmied");
+		assertNotNull(pfuschenderSchmied);
+		System.out.println(pfuschenderSchmied);
+		//TODO: Text muss noch angepasst werden, wenn Karte ziehen und spielen korrekt implementiert ist
+		assertEquals("Pfuschender Schmied[Kosten: 2 Kristall, 2 Ziegel; Selbst: 1 Karte ziehen; " +
+				"Gegner: Alle Steinbruchkarten aus der Hand ablegen]", pfuschenderSchmied.toString());
+	}
 }
