@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class ToStringTest {
 	
-	//TODO Write tests for other cards. Doing that, Daniel
+	//TODO: Write tests for other cards. Doing that, Daniel
 
 	private GameCardFactory gameCardFactory = new GameCardFactoryImpl();
 	
@@ -93,7 +93,7 @@ public class ToStringTest {
 	}
 	
 	@Test
-	public void testelfischeBogenschuetzenComplexAction() {
+	public void testElfischeBogenschuetzenComplexAction() {
 		Card elfischeBogenschuetzen = this.gameCardFactory.createCard("Elfische Bogenschützen");
 		assertNotNull(elfischeBogenschuetzen);
 		System.out.println(elfischeBogenschuetzen);
