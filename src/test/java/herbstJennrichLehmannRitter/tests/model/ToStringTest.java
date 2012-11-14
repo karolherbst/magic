@@ -89,4 +89,14 @@ public class ToStringTest {
 		assertEquals("Einhorn[Kosten: 9 Monster; Gegner: Wenn das eigene Zauberlabor größer als das des " +
 				"Gegners ist, wird 12 Schaden zugefügt, sonst nur 8]", einhorn.toString());
 	}
+	
+	@Test
+	public void testelfischeBogenschuetzenComplexAction() {
+		Card elfischeBogenschuetzen = this.gameCardFactory.createCard("Elfische Bogenschützen");
+		assertNotNull(elfischeBogenschuetzen);
+		System.out.println(elfischeBogenschuetzen);
+		assertEquals("Elfische Bogenschützen[Kosten: 10 Monster; Gegner: Wenn die eigene Mauer mehr " +
+				"Leben hat, als die gegnerische Mauer, dann werden dem Gegner 6 Turmschaden zugefügt, " +
+				"sonst nur 6 Schaden.]", elfischeBogenschuetzen.toString());
+	}
 }
