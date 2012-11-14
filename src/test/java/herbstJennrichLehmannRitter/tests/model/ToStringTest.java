@@ -175,4 +175,22 @@ public class ToStringTest {
 		assertEquals("Spionage[Kosten: 5 Ziegel; Selbst: Wenn dein Steinbruchlevel niedriger " +
 				"als das des Gegners ist, wird es auf die Stufe des Gegners angehoben]", spionage.toString());
 	}
+	
+	@Test
+	public void testVerschiebungComplexAction() {
+		Card verschiebung = this.gameCardFactory.createCard("Verschiebung");
+		assertNotNull(verschiebung);
+		System.out.println(verschiebung);
+		assertEquals("Verschiebung[Kosten: 17 Ziegel; Selbst: Tausche deine Mauer mit der des " +
+				"Gegners]", verschiebung.toString());
+	}
+	
+	@Test
+	public void testWeihnachtsmannComplexAction() {
+		Card weihnachtsmann = this.gameCardFactory.createCard("Weihnachtsmann");
+		assertNotNull(weihnachtsmann);
+		System.out.println(weihnachtsmann);
+		assertEquals("Weihnachtsmann[Selbst: +5 Ziegel, +5 Monster, +5 Kristall, " +
+				"Zufällige Karte mit Kosten>14 vom Vorratsstapel oder Friedhof ziehen]", weihnachtsmann.toString());
+	}
 }
