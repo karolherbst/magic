@@ -157,4 +157,13 @@ public class ToStringTest {
 		assertEquals("Pfuschender Schmied[Kosten: 2 Kristall, 2 Ziegel; Selbst: 1 Karte ziehen; " +
 				"Gegner: Alle Steinbruchkarten aus der Hand ablegen]", pfuschenderSchmied.toString());
 	}
+	
+	@Test
+	public void testPureMagieComplexAction() {
+		Card pureMagie = this.gameCardFactory.createCard("Pure Magie");
+		assertNotNull(pureMagie);
+		System.out.println(pureMagie);
+		assertEquals("Pure Magie[Kosten: 15 Kristall; Selbst: Verwirf alle Karten und ziehe 6 " +
+				"zufällige Zauberlaborkarten]", pureMagie.toString());
+	}
 }
