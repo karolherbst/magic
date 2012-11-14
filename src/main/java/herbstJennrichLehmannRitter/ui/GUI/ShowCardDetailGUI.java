@@ -63,7 +63,9 @@ public class ShowCardDetailGUI {
 		initCardEnemyEffectsText();
 		initExitButton();
 		if (this.playGameGui != null) {
-			initDiscardButton();
+			if (card.getCanBeDiscarded() == true) {
+				initDiscardButton();
+			}
 			if (this.playGameGui.getPlayerDungeonStock() >= card.getCostMonsters() && 
 					this.playGameGui.getPlayerMagicLabStock() >= card.getCostCrystal() && 
 					this.playGameGui.getPlayerMineStock() >= card.getCostBrick()) {
