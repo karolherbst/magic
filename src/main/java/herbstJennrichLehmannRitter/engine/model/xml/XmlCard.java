@@ -117,6 +117,16 @@ public class XmlCard extends AbstractCard {
 		return this.cardAction;
 	}
 	
+//TODO: @XmlElement(name"PlayAnotherCard", defaultValue="false") - für String Spiele noch eine Karte?
+//@Override
+//public boolean PlayAnotherCard(){
+//	return.this.playAnotherCard	
+//}
+
+//	public void setgetPlayAnotherCard(boolean playAnotherCard) {
+//		this.playAnotherCard = playAnotherCard;
+//	}
+	
 	public void setCanBeDiscarded(boolean canBeDiscarded) {
 		this.canBeDiscarded = canBeDiscarded;
 	}
