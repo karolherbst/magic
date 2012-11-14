@@ -63,4 +63,12 @@ public class ToStringTest {
 		assertEquals("Blutmond[Kosten: 8 Monster; Selbst: -1 Zauberlabor, Es werden alle Karten auf der Hand verworfen " +
 				"und 6 zufällige Verlieskarten gezogen]", blutmond.toString());
 	}
+	
+	@Test
+	public void testDemolierenComplexAction() {
+		Card demolieren = this.gameCardFactory.createCard("Demolieren");
+		assertNotNull(demolieren);
+		System.out.println(demolieren);
+		assertEquals("Demolieren[Kosten: 16 Ziegel; Gegner: Die Mauer wird zerstört]", demolieren.toString());
+	}
 }
