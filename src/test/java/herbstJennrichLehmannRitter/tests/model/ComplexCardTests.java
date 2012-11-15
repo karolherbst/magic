@@ -353,4 +353,27 @@ public class ComplexCardTests {
 		spionageTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
 		assertEquals(13, playerOne.getMine().getLevel());	
 	}
+	
+	@Test
+	public void testVerschiebung() {
+		Card verschiebung = this.gameCardFactory.createCard("Verschiebung");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				1, 1, 1, 1);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		verschiebung.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(12, playerOne.getWall().getActualPoints());
+		assertEquals(1, playerTwo.getWall().getActualPoints());
+	}
+	
+	@Test
+	public void testWeihnachtsmann() {
+		Card weihnachtsmann = this.gameCardFactory.createCard("Weihnachtsmann");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				1, 1, 1, 1);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		weihnachtsmann.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		//TODO: Hier fehlt noch eine Implementation der Kostenabfrage, aber ich hab keine Ahnung, wie ich das machen soll...
+	}
 }
