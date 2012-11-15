@@ -91,6 +91,11 @@ public class GameMenuGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				HostMenuGUI hostMenuGUI = new HostMenuGUI(GameMenuGUI.this.display, GameMenuGUI.this.mainMenuGUI);
+				PlayGameGUI playGameGUI = new PlayGameGUI(GameMenuGUI.this.display, 
+						GameMenuGUI.this.mainMenuGUI.getClientUserInterface(),
+						GameMenuGUI.this.mainMenuGUI.getGameServer());
+				playGameGUI.setPlayerName(GameMenuGUI.this.mainMenuGUI.getPlayerName());
+				GameMenuGUI.this.mainMenuGUI.getClientUserInterface().setPlayGameGUI(playGameGUI);
 				hostMenuGUI.open();
 			}
 		});
@@ -113,7 +118,9 @@ public class GameMenuGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try {
-					PlayGameGUI playGameGUI = new PlayGameGUI(GameMenuGUI.this.display, GameMenuGUI.this.mainMenuGUI);
+					PlayGameGUI playGameGUI = new PlayGameGUI(GameMenuGUI.this.display,
+							GameMenuGUI.this.mainMenuGUI.getClientUserInterface(),
+							GameMenuGUI.this.mainMenuGUI.getGameServer());
 
 					GameMenuGUI.this.gameServer = Globals.getLocalGameServer();
 					GameMenuGUI.this.mainMenuGUI.setGameServer(GameMenuGUI.this.gameServer);
@@ -126,6 +133,8 @@ public class GameMenuGUI {
 					KI.startBridgedKIOnServer(GameMenuGUI.this.gameServer, GameMenuGUI.this.mainMenuGUI.getEnemyName(), 
 							localUserInterface);
 					
+					playGameGUI.setPlayerName(GameMenuGUI.this.mainMenuGUI.getPlayerName());
+					playGameGUI.setEnemyName(GameMenuGUI.this.mainMenuGUI.getEnemyName());
 					playGameGUI.open();
 				} catch (RemoteException e2) {
 					e2.printStackTrace();

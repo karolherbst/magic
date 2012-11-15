@@ -2,6 +2,8 @@ package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.server.GameServer;
+import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -56,14 +58,17 @@ public class PlayGameGUI {
 	
 	protected String text;
 	private GameMessage gameMessage;
-	private MainMenuGUI mainMenuGUI;
 	private NameFields playerName;
 	private NameFields enemyName;
 	private boolean cardDetailIsOpen = false;
 	
-	public PlayGameGUI(Display parent, MainMenuGUI mainMenuGUI) {
+	private ClientUserInterface clientUserInterface;
+	private GameServer gameServer;
+	
+	public PlayGameGUI(Display parent, ClientUserInterface clientUserInterface, GameServer gameServer) {
 		this.display = parent;
-		this.mainMenuGUI = mainMenuGUI;
+		this.clientUserInterface = clientUserInterface;
+		this.gameServer = gameServer;
 		initShell();
 		this.gameMessage = new GameMessage();
 		initMenuBar();
@@ -90,7 +95,7 @@ public class PlayGameGUI {
 		this.shell.setSize(1024, (shellBounds.height+5));
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 		
-		this.mainMenuGUI.getClientUserInterface().setPlayGameGUI(this);
+		this.clientUserInterface.setPlayGameGUI(this);
 	}
 	
 	private void initShell() {
@@ -126,19 +131,17 @@ public class PlayGameGUI {
 				exitButtonPressed(e);
 			}
 		});
-
-		
 		this.shell.setMenuBar(menuBar);
 	
 	}
 	
 	private void exitButtonPressed (SelectionEvent e) {
 			try {
-				PlayGameGUI.this.mainMenuGUI.getGameServer().stop();
-				PlayGameGUI.this.mainMenuGUI.getGameServer().unregister(
-						PlayGameGUI.this.mainMenuGUI.getClientUserInterface());
+				this.gameServer.stop();
+				this.gameServer.unregister(this.clientUserInterface);
 			} catch (RemoteException e1) {
 				e1.printStackTrace();
+			} catch (NullPointerException e2) {
 			}
 			PlayGameGUI.this.shell.setVisible(false);
 	}
@@ -224,6 +227,20 @@ public class PlayGameGUI {
 		this.playerWall.setLevel(level);
 	}
 	
+	public void setPlayerName(String name) {
+		this.playerName.setPlayerName(name);
+	}
+	public String getPlayerName() {
+		return this.playerName.getPlayerName();
+	}
+	
+	public void setEnemyName(String name) {
+		this.enemyName.setPlayerName(name);
+	}
+	public String getEnemyName() {
+		return this.enemyName.getPlayerName();
+	}
+	
 	private void initPlayerTower(){
 		this.playerTower = new DefenceBuildingFields("Turm", 830, 642);
 	}
@@ -243,7 +260,7 @@ public class PlayGameGUI {
 	}
 	
 	public void setPlayerHandCards(Collection<Card> cards) {
-		PlayGameGUI.this.setHandCards(PlayGameGUI.this.playerCards, cards);
+		PlayGameGUI.setHandCards(PlayGameGUI.this.playerCards, cards);
 	}
 	
 	private void initPlayerChoosenCards() {
@@ -251,7 +268,7 @@ public class PlayGameGUI {
 	}
 	
 	public void setPlayerChoosenCardName(String name) {
-		PlayGameGUI.this.setChoosenCardName(PlayGameGUI.this.playerChoosenCard, name);
+		PlayGameGUI.setChoosenCardName(PlayGameGUI.this.playerChoosenCard, name);
 	}
 
 	public void playerPlayedCard(String name) {
@@ -318,7 +335,7 @@ public class PlayGameGUI {
 	}
 	
 	public void setEnemyHandCards(Collection<Card> cards) {
-		PlayGameGUI.this.setHandCards(PlayGameGUI.this.enemyCards, cards);
+		PlayGameGUI.setHandCards(PlayGameGUI.this.enemyCards, cards);
 	}
 	
 	private void initEnemyChoosenCards() {
@@ -326,7 +343,7 @@ public class PlayGameGUI {
 	}
 	
 	public void setEnemyChoosenCardName(String name) {
-		PlayGameGUI.this.setChoosenCardName(PlayGameGUI.this.enemyChoosenCards, name);
+		PlayGameGUI.setChoosenCardName(PlayGameGUI.this.enemyChoosenCards, name);
 	}
 	
 	public void enemyPlayedCard(String name) {
@@ -341,11 +358,11 @@ public class PlayGameGUI {
 	
 	
 	private void initPlayerName() {
-		this.playerName = new NameFields(this.mainMenuGUI.getPlayerName(), 366);
+		this.playerName = new NameFields("Spieler", 366);
 	}
 	
 	private void initEnemyName() {
-		this.enemyName = new NameFields(this.mainMenuGUI.getEnemyName(), 3);
+		this.enemyName = new NameFields("Gegner", 3);
 	}
 	
 	public void nextTurnPlayer() {
@@ -443,7 +460,7 @@ public class PlayGameGUI {
 		}
 	}
 	
-	private void setHandCards(ArrayList<CardFields> playerCards, Collection<Card> cards) {
+	private static void setHandCards(ArrayList<CardFields> playerCards, Collection<Card> cards) {
 		ArrayList<String> cardFields = new ArrayList<String>();
 		for (CardFields cardField: playerCards) {
 			cardFields.add(cardField.getCardName());
@@ -476,7 +493,7 @@ public class PlayGameGUI {
 		}
 	}
 	
-	private void setChoosenCardName(CardFields cardField, String name) {
+	private static void setChoosenCardName(CardFields cardField, String name) {
 		if (name != null) {
 			cardField.setCardName(name);
 			cardField.setVisible(true);
@@ -605,6 +622,13 @@ public class PlayGameGUI {
 			this.nameLabel.setText(NameFields.this.playerName);
 		}
 		
+		public void setPlayerName(String name) {
+			this.playerName = name;
+		}
+		
+		public String getPlayerName() {
+			return this.playerName;
+		}
 	}
 
 	public void open() {

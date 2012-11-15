@@ -118,18 +118,18 @@ public class ClientMenuGUI {
 				}, 30000);
 				
 				try {
+					ClientUserInterface clientUserInterface = new ClientUserInterface();
 					ClientMenuGUI.this.mainMenuGUI.setGameServer(gameServer);
-					gameServer.register(ClientMenuGUI.this.mainMenuGUI.getClientUserInterface());
 					
 					ClientMenuGUI.this.playGameGUI = new PlayGameGUI(ClientMenuGUI.this.display, 
-							ClientMenuGUI.this.mainMenuGUI);
+							clientUserInterface, gameServer);
 
-					ClientUserInterface clientUserInterface = ClientMenuGUI.this.mainMenuGUI.getClientUserInterface();
+					ClientMenuGUI.this.playGameGUI.setPlayerName(ClientMenuGUI.this.mainMenuGUI.getPlayerName());
 					clientUserInterface.setMainMenuGUI(ClientMenuGUI.this.mainMenuGUI);
 					clientUserInterface.setClientMenuGUI(ClientMenuGUI.this);
 					clientUserInterface.setPlayGameGUI(ClientMenuGUI.this.playGameGUI);
 					
-					
+					gameServer.register(clientUserInterface);
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

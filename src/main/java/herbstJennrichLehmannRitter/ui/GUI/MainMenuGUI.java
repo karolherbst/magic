@@ -28,7 +28,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 public class MainMenuGUI {
-
+	
 	private int shells = 0;
 	private Shell shell;
 	private Display display;
@@ -178,7 +178,11 @@ public class MainMenuGUI {
 			public void widgetSelected(SelectionEvent e) {
 				MainMenuGUI.this.gameServer = Globals.getLocalGameServer();
 
-				PlayGameGUI playGameGUI = new PlayGameGUI(MainMenuGUI.this.display, MainMenuGUI.this);
+				PlayGameGUI playGameGUI = new PlayGameGUI(MainMenuGUI.this.display,
+						MainMenuGUI.this.getClientUserInterface(),
+						MainMenuGUI.this.getGameServer());
+				playGameGUI.setPlayerName(MainMenuGUI.this.playerName);
+				playGameGUI.setEnemyName(MainMenuGUI.this.enemyName);
 				playGameGUI.open();
 
 				DemoUserInterface demoUserInterface = new DemoUserInterface();

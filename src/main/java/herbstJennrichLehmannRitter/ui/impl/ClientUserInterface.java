@@ -32,6 +32,10 @@ public class ClientUserInterface implements UserInterface {
 		this.playGameGUI = playGameGUI;
 	}
 	
+	public PlayGameGUI getPlayGameGUI() {
+		return this.playGameGUI;
+	}
+
 	public void setHostMenuGUI(HostMenuGUI hostMenuGUI) {
 		this.hostMenuGUI = hostMenuGUI;
 	}
@@ -165,7 +169,8 @@ public class ClientUserInterface implements UserInterface {
 
 	@Override
 	public String getName() {
-		return this.mainMenuGUI.getPlayerName();
+		return this.playGameGUI.getPlayerName();
+//		return this.mainMenuGUI.getPlayerName();
 	}
 
 	@Override
