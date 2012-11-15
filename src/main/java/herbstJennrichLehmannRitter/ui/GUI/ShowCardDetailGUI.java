@@ -156,11 +156,11 @@ public class ShowCardDetailGUI {
 		this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if (playGameGui != null) {
-					playGameGui.setCardDetailIsOpen(false);
+				if (ShowCardDetailGUI.this.playGameGui != null) {
+					ShowCardDetailGUI.this.playGameGui.setCardDetailIsOpen(false);
 				}
-				if (chooseDeckGui != null) {
-					chooseDeckGui.setCardDetailIsOpen(false);
+				if (ShowCardDetailGUI.this.chooseDeckGui != null) {
+					ShowCardDetailGUI.this.chooseDeckGui.setCardDetailIsOpen(false);
 				}
 				ShowCardDetailGUI.this.shell.setVisible(false);
 			}
@@ -182,9 +182,9 @@ public class ShowCardDetailGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try {
-					playGameGui.setCardDetailIsOpen(false);
+					ShowCardDetailGUI.this.playGameGui.setCardDetailIsOpen(false);
 					Globals.getLocalGameServer().discardCard(ShowCardDetailGUI.this.card);
-					playGameGui.playerDiscardCard(card.getName());
+					ShowCardDetailGUI.this.playGameGui.playerDiscardCard(ShowCardDetailGUI.this.card.getName());
 					ShowCardDetailGUI.this.shell.setVisible(false);
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
@@ -208,8 +208,8 @@ public class ShowCardDetailGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try {
-					playGameGui.setCardDetailIsOpen(false);
-					playGameGui.playerPlayedCard(ShowCardDetailGUI.this.card.getName());
+					ShowCardDetailGUI.this.playGameGui.setCardDetailIsOpen(false);
+					ShowCardDetailGUI.this.playGameGui.playerPlayedCard(ShowCardDetailGUI.this.card.getName());
 					Globals.getLocalGameServer().playCard(ShowCardDetailGUI.this.card);
 					ShowCardDetailGUI.this.shell.setVisible(false);
 				} catch (RemoteException e1) {
