@@ -28,8 +28,10 @@ public class ComplexCardTests {
 	@Test
 	public void testAuferstehung() {
 		Card auferstehung = this.gameCardFactory.createCard("Auferstehung");
-		Player player1 = new PlayerImpl();
-		Player player2 = new PlayerImpl();
+		Player player1 = this.playerFactory.createPlayer("1", this.gameCardFactory.createDefaultDeck(),
+				25, 10, 1, 15);
+		Player player2 = this.playerFactory.createPlayer("2", this.gameCardFactory.createDefaultDeck(),
+				25, 10, 1, 15);
 		
 		auferstehung.getComplexCardAction().applyActionOnPlayer(player1, player2);
 		
@@ -39,23 +41,23 @@ public class ComplexCardTests {
 	@Test
 	public void testBarracke() {
 		Card barracke = this.gameCardFactory.createCard("Barracke");
-		Player player1 = new PlayerImpl();
-		Player player2 = new PlayerImpl();
-		player1.getDungeon().addLevel(0);
-		player2.getDungeon().addLevel(3);
+		Player player1 = this.playerFactory.createPlayer("1", this.gameCardFactory.createDefaultDeck(),
+				5, 5, 4, 5);
+		Player player2 = this.playerFactory.createPlayer("2", this.gameCardFactory.createDefaultDeck(),
+				5, 5, 5, 5);
 		
 		barracke.getComplexCardAction().applyActionOnPlayer(player1, player2);
 		
-		assertEquals(2, player1.getDungeon().getLevel());
+		assertEquals(5, player1.getDungeon().getLevel());
 	}
 	
 	@Test
 	public void testBaumgeist() {
 		Card baumgeist = this.gameCardFactory.createCard("Baumgeist");
-		Player player1 = new PlayerImpl();
-		Player player2 = new PlayerImpl();
-		player1.getDungeon().setLevel(20);
-		player2.getWall().setActualPoints(15);
+		Player player1 = this.playerFactory.createPlayer("1", this.gameCardFactory.createDefaultDeck(),
+				25, 10, 6, 20);
+		Player player2 = this.playerFactory.createPlayer("2", this.gameCardFactory.createDefaultDeck(),
+				25, 5, 5, 20);
 		
 		baumgeist.getComplexCardAction().applyActionOnPlayer(player1, player2);
 		
@@ -65,8 +67,10 @@ public class ComplexCardTests {
 	@Test
 	public void testBlitzUndDonner() {
 		Card blitzUndDonner = this.gameCardFactory.createCard("Blitz und Donner");
-		Player player1 = new PlayerImpl();
-		Player player2 = new PlayerImpl();
+		Player player1 = this.playerFactory.createPlayer("1", this.gameCardFactory.createDefaultDeck(),
+				5, 5, 5, 5);
+		Player player2 = this.playerFactory.createPlayer("2", this.gameCardFactory.createDefaultDeck(),
+				5, 5, 5, 5);
 		player1.getTower().setActualPoints(15);
 		player2.getTower().setActualPoints(10);
 		
@@ -78,8 +82,10 @@ public class ComplexCardTests {
 	@Test
 	public void testBlitzUndDonnerTwo() {
 		Card blitzUndDonnerTwo = this.gameCardFactory.createCard("Blitz und Donner");
-		Player player1 = new PlayerImpl();
-		Player player2 = new PlayerImpl();
+		Player player1 = this.playerFactory.createPlayer("1", this.gameCardFactory.createDefaultDeck(),
+				5, 5, 5, 5);
+		Player player2 = this.playerFactory.createPlayer("2", this.gameCardFactory.createDefaultDeck(),
+				5, 5, 5, 5);
 		player1.getTower().setActualPoints(10);
 		player2.getTower().setActualPoints(10);
 		player2.getWall().setActualPoints(10);
@@ -94,7 +100,8 @@ public class ComplexCardTests {
 		Card blutmond = this.gameCardFactory.createCard("Blutmond");
 		Player player1 = this.playerFactory.createPlayer("1", this.gameCardFactory.createDefaultDeck(),
 				5, 5, 5, 5);
-		Player player2 = new PlayerImpl();
+		Player player2 = this.playerFactory.createPlayer("2", this.gameCardFactory.createDefaultDeck(),
+				5, 5, 5, 5);
 		
 		blutmond.getComplexCardAction().applyActionOnPlayer(player1, player2);
 		
@@ -113,8 +120,8 @@ public class ComplexCardTests {
 				5, 5, 5, 5);
 		
 		demolieren.getComplexCardAction().applyActionOnPlayer(playerTwo, playerOne);
-		assertEquals(playerOne.getWall().getActualPoints(), 0);
-		assertEquals(playerTwo.getWall().getActualPoints(), 5);
+		assertEquals(0, playerOne.getWall().getActualPoints());
+		assertEquals(5, playerTwo.getWall().getActualPoints());
 	}
 	
 	@Test
@@ -155,7 +162,7 @@ public class ComplexCardTests {
 		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
 				12, 12, 12, 12);
 		einhornOne.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
-		assertEquals(playerTwo.getWall().getActualPoints(), 0);		
+		assertEquals(0, playerTwo.getWall().getActualPoints());		
 	}
 	@Test
 	public void testEinhornTwo() {
@@ -165,7 +172,7 @@ public class ComplexCardTests {
 		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
 				12, 12, 12, 12);
 		einhornTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
-		assertEquals(playerTwo.getWall().getActualPoints(), 4);		
+		assertEquals(4, playerTwo.getWall().getActualPoints());		
 	}
 	
 	@Test
@@ -176,7 +183,7 @@ public class ComplexCardTests {
 		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
 				12, 12, 12, 12);
 		elfischeBogenschuetzen.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
-		assertEquals(playerTwo.getTower().getActualPoints(), 6);	
+		assertEquals(6, playerTwo.getTower().getActualPoints());	
 	}
 	
 	@Test
@@ -187,7 +194,7 @@ public class ComplexCardTests {
 		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
 				12, 12, 12, 12);
 		elfischeBogenschuetzenTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
-		assertEquals(playerTwo.getWall().getActualPoints(), 6);	
+		assertEquals(6, playerTwo.getWall().getActualPoints());	
 	}
 	
 	@Test
@@ -198,7 +205,7 @@ public class ComplexCardTests {
 		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
 				12, 12, 12, 12);
 		glasperlen.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
-		assertEquals(playerOne.getTower().getActualPoints(), 12);	
+		assertEquals(12, playerOne.getTower().getActualPoints());	
 	}
 	
 	@Test
@@ -209,6 +216,6 @@ public class ComplexCardTests {
 		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
 				12, 12, 12, 12);
 		glasperlenTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
-		assertEquals(playerOne.getTower().getActualPoints(), 14);	
+		assertEquals(14, playerOne.getTower().getActualPoints());	
 	}
 }
