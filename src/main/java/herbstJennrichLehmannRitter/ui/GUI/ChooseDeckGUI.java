@@ -125,7 +125,13 @@ public class ChooseDeckGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Collections.addAll(ChooseDeckGUI.this.playerCards, ChooseDeckGUI.this.userList.getItems());
-				ChooseDeckGUI.this.mainMenuGui.setPlayerCards(Arrays.asList(ChooseDeckGUI.this.userList.getItems()));
+				if (ChooseDeckGUI.this.userList.getItemCount() < 50) {
+					ChooseDeckGUI.this.mainMenuGui.setPlayerCards(
+							Globals.getGameCardFactory().getAllPossibleCardNames());
+				} else {
+					ChooseDeckGUI.this.mainMenuGui.setPlayerCards(
+							Arrays.asList(ChooseDeckGUI.this.userList.getItems()));
+				}
 				ChooseDeckGUI.this.shell.setVisible(false);
 			}
 		});
