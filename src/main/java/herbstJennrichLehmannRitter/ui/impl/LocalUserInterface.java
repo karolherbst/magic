@@ -19,11 +19,11 @@ public class LocalUserInterface implements UserInterface {
 	private PlayGameGUI playGameGUI;
 
 	public void setMainMenuGUI(MainMenuGUI mainMenuGUI) {
-		this.mainMenuGUI = mainMenuGUI;
+		LocalUserInterface.this.mainMenuGUI = mainMenuGUI;
 	}
 	
 	public void setPlayGameGUI(PlayGameGUI playGameGUI) {
-		this.playGameGUI = playGameGUI;
+		LocalUserInterface.this.playGameGUI = playGameGUI;
 	}
 	
 	@Override
@@ -45,7 +45,7 @@ public class LocalUserInterface implements UserInterface {
 	public void twoPlayerFound() {
 		GameServer gameServer = Globals.getLocalGameServer();
 		try {
-			gameServer.start(this.mainMenuGUI.getGameType());
+			gameServer.start(LocalUserInterface.this.mainMenuGUI.getGameType());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -56,7 +56,7 @@ public class LocalUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.nextTurnEnemy();
+				LocalUserInterface.this.playGameGUI.nextTurnEnemy();
 			}
 		});
 	}
@@ -66,7 +66,7 @@ public class LocalUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.playAnotherCardEnemy();
+				LocalUserInterface.this.playGameGUI.playAnotherCardEnemy();
 			}
 		});
 	}
@@ -76,7 +76,7 @@ public class LocalUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.setPlayerChoosenCardName(card.getName());
+				LocalUserInterface.this.playGameGUI.setPlayerChoosenCardName(card.getName());
 			}
 		});
 	}
@@ -97,11 +97,11 @@ public class LocalUserInterface implements UserInterface {
 
 	@Override
 	public String getName() {
-		return this.mainMenuGUI.getEnemyName();
+		return LocalUserInterface.this.mainMenuGUI.getEnemyName();
 	}
 
 	@Override
 	public Collection<String> getCards() {
-		return this.mainMenuGUI.getEnemyCards();
+		return LocalUserInterface.this.mainMenuGUI.getEnemyCards();
 	}
 }
