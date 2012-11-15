@@ -26,9 +26,7 @@ public class GameMenuGUI {
 	 */
 	private Shell shell;
 	private final Display display;
-	private Label nameTextLabel;
 	private Text nameTextField;
-	private Label selectionTextLabel;
 	private Button startHostButton;
 	private Button startClientButton;
 	private Button startLocalButton;
@@ -63,14 +61,7 @@ public class GameMenuGUI {
 	}
 	
 	private void initNameTextLabel() {
-	    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-		gridData.grabExcessHorizontalSpace = true;
-		gridData.horizontalSpan = 3;
-		
-		this.nameTextLabel = new Label(this.shell, SWT.FILL);
-		this.nameTextLabel.setText("Bitte geben Sie ihren Namen an:");
-		this.nameTextLabel.setBackground(this.shell.getBackground());
-		this.nameTextLabel.setLayoutData(gridData);
+		createLabel("Bitte geben Sie ihren Namen an:");
 	}
 	
 	private void initNameTextField() {
@@ -91,22 +82,11 @@ public class GameMenuGUI {
 	}
 	
 	private void initSelectionTextLabel() {
-	    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
-		gridData.grabExcessHorizontalSpace = true;
-		gridData.horizontalSpan = 3;
-		
-		this.selectionTextLabel = new Label(this.shell, SWT.FILL);
-		this.selectionTextLabel.setText("Wählen Sie ihre Spieloption aus:");
-		this.selectionTextLabel.setBackground(this.shell.getBackground());
-		this.selectionTextLabel.setLayoutData(gridData);		
+		createLabel("Wählen Sie ihre Spieloption aus:");
 	}
 	
 	private void initStartHostButton() {
-		this.startHostButton = new Button(this.shell, SWT.NONE);
-		this.startHostButton.setText("Starte als Host");
-		this.startHostButton.setToolTipText("Ein Spiel als Server starten");
-		this.startHostButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
-				true, false));
+		this.startHostButton = createButton("Starte als Host");
 		this.startHostButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -117,11 +97,7 @@ public class GameMenuGUI {
 	}
 	
 	private void initStartClientButton() {
-		this.startClientButton= new Button(this.shell, SWT.NONE);
-		this.startClientButton.setText("Starte als Client");
-		this.startClientButton.setToolTipText("An einem Spiel teilnehmen");
-		this.startClientButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
-				true, false));
+		this.startClientButton = createButton("Starte als Client");
 		this.startClientButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -132,11 +108,7 @@ public class GameMenuGUI {
 	}
 	
 	private void initStartLocalButton() {
-		this.startLocalButton= new Button(this.shell, SWT.NONE);
-		this.startLocalButton.setText("Lokales Spiel starten");
-		this.startLocalButton.setToolTipText("Ein Spiel gegen die KI starten");
-		this.startLocalButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
-				true, false));
+		this.startLocalButton= createButton("Lokales Spiel starten");
 		this.startLocalButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -163,10 +135,7 @@ public class GameMenuGUI {
 	}
 	
 	private void initBackButton() {
-		this.backButton = new Button(this.shell, SWT.NONE);
-		this.backButton.setText("Zurück");
-		this.backButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER,
-				true, false));
+		this.backButton = createButton("Zurück");
 		this.backButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -174,4 +143,23 @@ public class GameMenuGUI {
 			}
 		});
 	}
+	
+	private Button createButton(String text) {
+		Button button = new Button(this.shell, SWT.NONE);
+		button.setText(text);
+		button.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
+		return button;
+	}
+	
+	private void createLabel(String text) {
+	    GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.horizontalSpan = 3;
+		
+		Label label = new Label(this.shell, SWT.FILL);
+		label.setText(text);
+		label.setBackground(this.shell.getBackground());
+		label.setLayoutData(gridData);
+	}
+
 }
