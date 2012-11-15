@@ -28,15 +28,6 @@ public class ShowCardDetailGUI {
 	private Shell shell;
 	private final Display display;
 	private Label cardNameLabel;
-	private StyledText cardTypeLabel;
-	private StyledText cardType;
-	private StyledText cardCostsLabel;
-	private StyledText cardCosts;
-	private StyledText cardEffectsLabel;
-	private StyledText cardOwnEffectsLabel;
-	private StyledText cardOwnEffects;
-	private StyledText cardEnemyEffects;
-	private StyledText cardEnemyEffectsLabel;
 	private Button exitButton;
 	private Button discardButton;
 	private Button playCardButton;
@@ -44,7 +35,6 @@ public class ShowCardDetailGUI {
 	private final Card card;
 	private PlayGameGUI playGameGui;
 	private ChooseDeckGUI chooseDeckGui;
-	private StyledText discardCardLabel;
 	
 	public ShowCardDetailGUI(Display parent, PlayGameGUI playGameGUI, ChooseDeckGUI chooseDeckGUI, Card card) {
 		this.display = parent;
@@ -104,55 +94,45 @@ public class ShowCardDetailGUI {
 	}
 
 	private void initCardTypeLabel() {
-		createCategorieText(this.cardTypeLabel, "Kartentyp:", true, 40, 0, 80);
+		createCategorieText("Kartentyp:", true, 40, 0, 80);
 	}
 
 	private void initCardTypeText() {
-		createCardText(this.cardType, this.card.getCardType().toString(), 40, 0);
+		createCardText(this.card.getCardType().toString(), 40, 0);
 	}
 	
 	private void initCardCostsLabel() {
-		createCategorieText(this.cardCostsLabel, "Kosten:", true, 65, 0, 80);
+		createCategorieText("Kosten:", true, 65, 0, 80);
 	}
 	
 	private void initCardCostsText() {
-		createCardText(this.cardCosts, this.card.getCostDescription().replace(", ", "\n"), 65, 0);
+		createCardText(this.card.getCostDescription().replace(", ", "\n"), 65, 0);
 	}
 	
 	private void initCardEffectsLabel() {
-		createCategorieText(this.cardEffectsLabel, "Effekte:", true, 130, 0, 80);
+		createCategorieText("Effekte:", true, 130, 0, 80);
 	}
 	
 	private void initCardOwnEffectsLabel() {
-		createCategorieText(this.cardOwnEffectsLabel, "Eigene:", false, 150, 90, 80);
+		createCategorieText("Eigene:", false, 150, 90, 80);
 	}
 	
 	private void initCardOwnEffectsText() {
-		createCardText(this.cardOwnEffects, this.card.getOwnEffectDescription(), 150, 90);
+		createCardText(this.card.getOwnEffectDescription(), 150, 90);
 	}
 
 	private void initCardEnemyEffectsLabel() {
-		createCategorieText(this.cardEnemyEffectsLabel, "Gegner:", false, 250, 90, 80);
+		createCategorieText("Gegner:", false, 250, 90, 80);
 	}
 	private void initCardEnemyEffectsText() {
-		createCardText(this.cardEnemyEffects, this.card.getEnemyEffectDescription(), 250, 90);
+		createCardText(this.card.getEnemyEffectDescription(), 250, 90);
 	}
 	private void initDiscardCardLabel() {
-		createCategorieText(this.discardCardLabel, "Karte kann nicht verworfen werden", true,  370, 90, 220);
+		createCategorieText("Karte kann nicht verworfen werden", true,  370, 90, 220);
 	}
 
-
 	private void initExitButton() {
-		FormData btnExitData = new FormData();
-		btnExitData.top =  new FormAttachment(0, 1000, 390);
-		btnExitData.left =  new FormAttachment(0, 1000, 275);
-		btnExitData.width = 100;
-		btnExitData.height = 30;
-		
-		this.exitButton = new Button(this.shell, SWT.PUSH | SWT.CENTER);
-		this.exitButton.setLayoutData(btnExitData);
-		this.exitButton.setText("Zurück");
-		
+		this.exitButton = createButton("Zurück", 390, 275);
 		this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -168,16 +148,7 @@ public class ShowCardDetailGUI {
 	}
 	
 	private void initDiscardButton() {
-		FormData btnData = new FormData();
-		btnData.top =  new FormAttachment(0, 1000, 390);
-		btnData.left =  new FormAttachment(0, 1000, 25);
-		btnData.width = 100;
-		btnData.height = 28;
-		
-		this.discardButton = new Button(this.shell, SWT.PUSH | SWT.CENTER);
-		this.discardButton.setLayoutData(btnData);
-		this.discardButton.setText("Verwerfen");
-		
+		this.discardButton = createButton("Verwerfen", 390, 25);
 		this.discardButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -194,16 +165,7 @@ public class ShowCardDetailGUI {
 	}
 	
 	private void initPlayCardButton() {
-		FormData btnData = new FormData();
-		btnData.top =  new FormAttachment(0, 1000, 390);
-		btnData.left =  new FormAttachment(0, 1000, 150);
-		btnData.width = 100;
-		btnData.height = 28;
-		
-		this.playCardButton = new Button(this.shell, SWT.PUSH | SWT.CENTER);
-		this.playCardButton.setLayoutData(btnData);
-		this.playCardButton.setText("Spielen");
-		
+		this.playCardButton = createButton("Spielen", 390, 150);
 		this.playCardButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -220,7 +182,21 @@ public class ShowCardDetailGUI {
 		});
 	}
 	
-	private void createCategorieText(StyledText field, String text, boolean underline, 
+	private Button createButton(String text, int x, int y) {
+		FormData btnData = new FormData();
+		btnData.top =  new FormAttachment(0, 1000, x);
+		btnData.left =  new FormAttachment(0, 1000, y);
+		btnData.width = 100;
+		btnData.height = 28;
+		
+		Button button = new Button(this.shell, SWT.PUSH | SWT.CENTER);
+		button.setLayoutData(btnData);
+		button.setText(text);
+		
+		return button;
+	}
+	
+	private void createCategorieText(String text, boolean underline, 
 			int positionFromTop, int fieldHeight, int formDataWidth) {
 		FormData formData = new FormData();
 		formData.left = new FormAttachment(0, 1000, 30);
@@ -234,7 +210,7 @@ public class ShowCardDetailGUI {
 			formData.height = fieldHeight;
 		}
 		
-		field = new StyledText(this.shell, SWT.LEFT);
+		StyledText field = new StyledText(this.shell, SWT.LEFT);
 		field.setText(text);
 		
 		StyleRange styledRange = new StyleRange();
@@ -247,7 +223,7 @@ public class ShowCardDetailGUI {
 		field.setLayoutData(formData);
 	}
 	
-	private void createCardText(StyledText field, String text, int postitionFromTop, int fieldHeight) {
+	private void createCardText(String text, int postitionFromTop, int fieldHeight) {
 		FormData formData = new FormData();
 		formData.top =  new FormAttachment(0, 1000, postitionFromTop);
 		formData.left = new FormAttachment(0, 1000, 120);
@@ -256,7 +232,7 @@ public class ShowCardDetailGUI {
 			formData.height = fieldHeight;
 		}
 		
-		field = new StyledText(this.shell, SWT.LEFT);
+		StyledText field = new StyledText(this.shell, SWT.LEFT);
 		field.setText(text);
 		field.setBackground(this.shell.getBackground());
 		field.setWordWrap(true);
