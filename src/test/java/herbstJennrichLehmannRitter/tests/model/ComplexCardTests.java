@@ -56,6 +56,33 @@ public class ComplexCardTests {
 	}
 	
 	@Test
+	public void testBlitzUndDonner() {
+		Card blitzUndDonner = this.gameCardFactory.createCard("Blitz und Donner");
+		Player player1 = new PlayerImpl();
+		Player player2 = new PlayerImpl();
+		player1.getTower().setActualPoints(15);
+		player2.getTower().setActualPoints(10);
+		
+		blitzUndDonner.getComplexCardAction().applyActionOnPlayer(player1, player2);
+		
+		assertEquals(2, player2.getTower().getActualPoints());
+	}
+	
+	@Test
+	public void testBlitzUndDonnerTwo() {
+		Card blitzUndDonnerTwo = this.gameCardFactory.createCard("Blitz und Donner");
+		Player player1 = new PlayerImpl();
+		Player player2 = new PlayerImpl();
+		player1.getTower().setActualPoints(10);
+		player2.getTower().setActualPoints(10);
+		player2.getWall().setActualPoints(10);
+		
+		blitzUndDonnerTwo.getComplexCardAction().applyActionOnPlayer(player1, player2);
+		
+		assertEquals(2, player2.getWall().getActualPoints());
+	}
+	
+	@Test
 	public void testDieb() {
 		Card dieb = this.gameCardFactory.createCard("Dieb");
 		Player player1 = new PlayerImpl();
