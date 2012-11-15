@@ -43,6 +43,19 @@ public class ComplexCardTests {
 	}
 	
 	@Test
+	public void testBaumgeist() {
+		Card baumgeist = this.gameCardFactory.createCard("Baumgeist");
+		Player player1 = new PlayerImpl();
+		Player player2 = new PlayerImpl();
+		player1.getDungeon().setLevel(20);
+		player2.getWall().setActualPoints(15);
+		
+		baumgeist.getComplexCardAction().applyActionOnPlayer(player1, player2);
+		
+		assertEquals(14, player2.getTower().getActualPoints());
+	}
+	
+	@Test
 	public void testDieb() {
 		Card dieb = this.gameCardFactory.createCard("Dieb");
 		Player player1 = new PlayerImpl();
