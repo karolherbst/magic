@@ -95,4 +95,20 @@ public class ComplexCardTests {
 		assertEquals(5, player2.getMagicLab().getStock());
 		assertEquals(10, player2.getMine().getStock());
 	}
+	
+	@Test
+	public void testDiebTwo() {
+		Card diebTwo = this.gameCardFactory.createCard("Dieb");
+		Player player1 = new PlayerImpl();
+		Player player2 = new PlayerImpl();
+		player2.getMagicLab().setStock(8);
+		player2.getMine().setStock(4);
+		
+		diebTwo.getComplexCardAction().applyActionOnPlayer(player1, player2);
+		
+		assertEquals(19, player1.getMagicLab().getStock());
+		assertEquals(17, player1.getMine().getStock());
+		assertEquals(0, player2.getMagicLab().getStock());
+		assertEquals(0, player2.getMine().getStock());
+	}
 }
