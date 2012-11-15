@@ -87,7 +87,7 @@ public class DemoUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.nextTurnEnemy();
+				DemoUserInterface.this.playGameGUI.nextTurnEnemy();
 			}
 		});
 	}
@@ -97,7 +97,7 @@ public class DemoUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.playAnotherCardEnemy();
+				DemoUserInterface.this.playGameGUI.playAnotherCardEnemy();
 			}
 		});
 	}
@@ -107,7 +107,7 @@ public class DemoUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.setPlayerChoosenCardName(card.getName());
+				DemoUserInterface.this.playGameGUI.setPlayerChoosenCardName(card.getName());
 			}
 		});
 	}
@@ -117,7 +117,7 @@ public class DemoUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.enemyPlayedCard(card.getName());
+				DemoUserInterface.this.playGameGUI.enemyPlayedCard(card.getName());
 			}
 		});
 	}
@@ -127,7 +127,7 @@ public class DemoUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.enemyDiscardCard(card.getName());
+				DemoUserInterface.this.playGameGUI.enemyDiscardCard(card.getName());
 			}
 		});
 	}
@@ -135,14 +135,25 @@ public class DemoUserInterface implements UserInterface {
 	
 	@Override
 	public void youLost() {
-		this.playGameGUI.setGameStateToLoose();
+		Display.getDefault().asyncExec(new Runnable() {
+			
+			@Override
+			public void run() {
+				DemoUserInterface.this.playGameGUI.setGameStateToLoose();
+			}
+		});
 		
 	}
 
 	@Override
 	public void youWon() {
-		this.playGameGUI.setGameStateToWon();
-		
+		Display.getDefault().asyncExec(new Runnable() {
+			
+			@Override
+			public void run() {
+				DemoUserInterface.this.playGameGUI.setGameStateToWon();
+			}
+		});
 	}
 
 	@Override
@@ -152,7 +163,7 @@ public class DemoUserInterface implements UserInterface {
 				
 				@Override
 				public void run() {
-					playGameGUI.setGameStateToAbort(reason);
+					DemoUserInterface.this.playGameGUI.setGameStateToAbort(reason);
 				}
 			});
 		} else if (this.hostMenuGUI != null) {

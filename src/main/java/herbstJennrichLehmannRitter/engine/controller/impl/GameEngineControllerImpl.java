@@ -193,6 +193,9 @@ public class GameEngineControllerImpl implements GameEngineController {
 	
 	@Override
 	public boolean hasPlayerWon(Player player, Player enemy) {
+		if (this.winAndLoseChecker.hasPlayerWon(player) || this.winAndLoseChecker.hasPlayerLost(enemy)) {
+			return true;
+		}
 		return false;
 	}
 }

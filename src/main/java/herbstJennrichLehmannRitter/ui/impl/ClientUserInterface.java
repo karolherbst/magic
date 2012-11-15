@@ -78,7 +78,7 @@ public class ClientUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.nextTurnPlayer();
+				ClientUserInterface.this.playGameGUI.nextTurnPlayer();
 			}
 		});
 	}
@@ -88,7 +88,7 @@ public class ClientUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.playAnotherCardPlayer();
+				ClientUserInterface.this.playGameGUI.playAnotherCardPlayer();
 			}
 		});
 	}
@@ -98,7 +98,7 @@ public class ClientUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.setEnemyChoosenCardName(card.getName());
+				ClientUserInterface.this.playGameGUI.setEnemyChoosenCardName(card.getName());
 			}
 		});
 	}
@@ -108,7 +108,7 @@ public class ClientUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.playerPlayedCard(card.getName());
+				ClientUserInterface.this.playGameGUI.playerPlayedCard(card.getName());
 			}
 		});
 	}
@@ -118,7 +118,7 @@ public class ClientUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				playGameGUI.playerDiscardCard(card.getName());
+				ClientUserInterface.this.playGameGUI.playerDiscardCard(card.getName());
 			}
 		});
 	}
@@ -126,14 +126,24 @@ public class ClientUserInterface implements UserInterface {
 	
 	@Override
 	public void youLost() {
-		this.playGameGUI.setGameStateToLoose();
-		
+		Display.getDefault().asyncExec(new Runnable() {
+			
+			@Override
+			public void run() {
+				ClientUserInterface.this.playGameGUI.setGameStateToLoose();
+			}
+		});
 	}
 
 	@Override
 	public void youWon() {
-		this.playGameGUI.setGameStateToWon();
-		
+		Display.getDefault().asyncExec(new Runnable() {
+			
+			@Override
+			public void run() {
+				ClientUserInterface.this.playGameGUI.setGameStateToWon();
+			}
+		});
 	}
 
 	@Override
@@ -143,7 +153,7 @@ public class ClientUserInterface implements UserInterface {
 				
 				@Override
 				public void run() {
-					playGameGUI.setGameStateToAbort(reason);
+					ClientUserInterface.this.playGameGUI.setGameStateToAbort(reason);
 				}
 			});
 		} else if (this.hostMenuGUI != null) {
