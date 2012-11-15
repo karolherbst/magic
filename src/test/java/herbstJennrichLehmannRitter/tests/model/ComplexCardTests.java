@@ -301,4 +301,34 @@ public class ComplexCardTests {
 		paritaetTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
 		assertEquals(13, playerTwo.getMagicLab().getLevel());	
 	}
+	
+//	@Test
+//	public void testPfuschenderSchmied() {
+//		Card pfuschenderSchmied = this.gameCardFactory.createCard("Pfuschender Schmied");
+//		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+//				1, 1, 1, 1);
+//		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+//				12, 12, 12, 12);
+//		pfuschenderSchmied.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+//		Collection<Card> handCards = playerOne.getDeck().getAllCards();
+//		for (Card card : handCards) {
+//			assertEquals(card.getCardType(), CardType.DUNGEON, CardType.MAGIC_LAB);
+//		}
+//	}
+	
+	@Test
+	public void testPureMagie() {
+		Card pureMagie = this.gameCardFactory.createCard("Pure Magie");
+		Player playerOne = this.playerFactory.createPlayer("1", this.gameCardFactory.createDefaultDeck(),
+				5, 5, 5, 5);
+		Player playerTwo = this.playerFactory.createPlayer("2", this.gameCardFactory.createDefaultDeck(),
+				5, 5, 5, 5);
+		
+		pureMagie.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		
+		Collection<Card> newCards = playerOne.getDeck().getAllCards();
+		for (Card card : newCards) {
+			assertEquals(card.getCardType(), CardType.MAGIC_LAB);
+		}
+	}
 }
