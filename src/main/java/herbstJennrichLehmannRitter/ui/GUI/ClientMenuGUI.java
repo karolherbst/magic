@@ -85,7 +85,7 @@ public class ClientMenuGUI {
 		this.backButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				shell.setVisible(false);
+				ClientMenuGUI.this.shell.setVisible(false);
 			}
 		});
 	}
@@ -99,16 +99,16 @@ public class ClientMenuGUI {
 		this.connectButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				final GameServer gameServer = Globals.getRemoteServer(ipTextField.getText());
-				timer = new Timer();
-				timer.schedule(new TimerTask() {
+				final GameServer gameServer = Globals.getRemoteServer(ClientMenuGUI.this.ipTextField.getText());
+				ClientMenuGUI.this.timer = new Timer();
+				ClientMenuGUI.this.timer.schedule(new TimerTask() {
 					@Override
 					public void run() {
-						display.asyncExec(new Runnable() {
+						ClientMenuGUI.this.display.asyncExec(new Runnable() {
 							@Override
 							public void run() {
 								try {
-									gameServer.unregister(mainMenuGUI.getClientUserInterface());
+									gameServer.unregister(ClientMenuGUI.this.mainMenuGUI.getClientUserInterface());
 								} catch (RemoteException e) {
 									System.out.println(e.getLocalizedMessage());
 								}

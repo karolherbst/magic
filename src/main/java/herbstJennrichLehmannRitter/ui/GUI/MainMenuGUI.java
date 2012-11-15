@@ -47,22 +47,22 @@ public class MainMenuGUI {
 	private GameServer gameServer;
 	
 	public MainMenuGUI() {
-		this.display = new Display();
+		MainMenuGUI.this.display = new Display();
 		initShell();
 		initStartGameButton();
 		initStartDemoButton();
 		initChooseDeckButton();
 		initGameTypeBox();
 		initExitButton();
-		this.shell.pack();
-		setShellLocationCenteredToScreen(this.display, this.shell);
-		this.shell.open();
-		getClientUserInterface().setMainMenuGUI(this);
+		MainMenuGUI.this.shell.pack();
+		setShellLocationCenteredToScreen(MainMenuGUI.this.display, MainMenuGUI.this.shell);
+		MainMenuGUI.this.shell.open();
+		getClientUserInterface().setMainMenuGUI(MainMenuGUI.this);
 		
 		Collection<Card> cards = Globals.getGameCardFactory().createDefaultDeck();
 		for (Card card:cards) {
-			this.playerCards.add(card.getName());
-			this.enemyCards.add(card.getName());
+			MainMenuGUI.this.playerCards.add(card.getName());
+			MainMenuGUI.this.enemyCards.add(card.getName());
 		}
 	}
 	
@@ -74,21 +74,21 @@ public class MainMenuGUI {
 	}
 	
 	public ClientUserInterface getClientUserInterface() {
-		return (ClientUserInterface)this.clientUserInterface;
+		return (ClientUserInterface)MainMenuGUI.this.clientUserInterface;
 	}
 	
 	public String getPlayerName() {
-		return this.playerName;
+		return MainMenuGUI.this.playerName;
 	}
 	public void setPlayerName(String name) {
-		this.playerName = name;
+		MainMenuGUI.this.playerName = name;
 	}
 	
 	public String getEnemyName() {
-		return this.enemyName;
+		return MainMenuGUI.this.enemyName;
 	}
 	public void setEnemyName(String name) {
-		this.enemyName = name;
+		MainMenuGUI.this.enemyName = name;
 	}
 	
 	public Collection<String> getPlayerCards() {
@@ -130,10 +130,10 @@ public class MainMenuGUI {
 	}
 
 	private void initChooseDeckButton() {
-		this.chooseDeckButton = new Button(this.shell, SWT.NONE);
-		this.chooseDeckButton.setText("Deck erstellen");
-		this.chooseDeckButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
-		this.chooseDeckButton.addSelectionListener(new SelectionAdapter() {
+		MainMenuGUI.this.chooseDeckButton = new Button(MainMenuGUI.this.shell, SWT.NONE);
+		MainMenuGUI.this.chooseDeckButton.setText("Deck erstellen");
+		MainMenuGUI.this.chooseDeckButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
+		MainMenuGUI.this.chooseDeckButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				ChooseDeckGUI chooseDeckGUI = new ChooseDeckGUI(MainMenuGUI.this.display, MainMenuGUI.this);
@@ -144,10 +144,10 @@ public class MainMenuGUI {
 	}
 
 	private void initExitButton() {
-		this.exitButton = new Button(this.shell, SWT.NONE);
-		this.exitButton.setText("Beenden");
-		this.exitButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
-		this.exitButton.addSelectionListener(new SelectionAdapter() {
+		MainMenuGUI.this.exitButton = new Button(MainMenuGUI.this.shell, SWT.NONE);
+		MainMenuGUI.this.exitButton.setText("Beenden");
+		MainMenuGUI.this.exitButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
+		MainMenuGUI.this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				MainMenuGUI.this.shell.dispose();
@@ -156,18 +156,18 @@ public class MainMenuGUI {
 	}
 	
 	private void initGameTypeBox() {
-		this.gameTypeBox = new Combo (this.shell , SWT.READ_ONLY);
+		MainMenuGUI.this.gameTypeBox = new Combo (MainMenuGUI.this.shell , SWT.READ_ONLY);
 		for (GameType gt: GameType.values()) {
-			this.gameTypeBox.add(gt.toString(), gt.ordinal());
+			MainMenuGUI.this.gameTypeBox.add(gt.toString(), gt.ordinal());
 		}
-		this.gameTypeBox.select(this.gameType.ordinal());
-		this.gameTypeBox.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
-		this.gameTypeBox.addModifyListener(new ModifyListener() {
+		MainMenuGUI.this.gameTypeBox.select(this.gameType.ordinal());
+		MainMenuGUI.this.gameTypeBox.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
+		MainMenuGUI.this.gameTypeBox.addModifyListener(new ModifyListener() {
 			@Override
 			public void modifyText(ModifyEvent e) {
 				for (GameType gt: GameType.values()) {
-					if (gt.toString().equals(gameTypeBox.getText())) {
-						gameType = gt;
+					if (gt.toString().equals(MainMenuGUI.this.gameTypeBox.getText())) {
+						MainMenuGUI.this.gameType = gt;
 						break;
 					}
 				}
@@ -176,24 +176,24 @@ public class MainMenuGUI {
 	}
 
 	private void initStartDemoButton() {
-		this.startDemoButton = new Button(this.shell, SWT.NONE);
-		this.startDemoButton.setText("Starte Demo");
-		this.startDemoButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
-		this.startDemoButton.addSelectionListener(new SelectionAdapter() {
+		MainMenuGUI.this.startDemoButton = new Button(this.shell, SWT.NONE);
+		MainMenuGUI.this.startDemoButton.setText("Starte Demo");
+		MainMenuGUI.this.startDemoButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
+		MainMenuGUI.this.startDemoButton.addSelectionListener(new SelectionAdapter() {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				gameServer = Globals.getLocalGameServer();
+				MainMenuGUI.this.gameServer = Globals.getLocalGameServer();
 
-				PlayGameGUI playGameGUI = new PlayGameGUI(display, MainMenuGUI.this);
+				PlayGameGUI playGameGUI = new PlayGameGUI(MainMenuGUI.this.display, MainMenuGUI.this);
 				playGameGUI.open();
 
 				DemoUserInterface demoUserInterface = new DemoUserInterface();
 				demoUserInterface.setMainMenuGUI(MainMenuGUI.this);
 				demoUserInterface.setPlayGameGUI(playGameGUI);
 				
-				KI.startBridgedKIOnServer(gameServer, getPlayerName(), getClientUserInterface());
-				KI.startBridgedKIOnServer(gameServer, getEnemyName(), demoUserInterface);
+				KI.startBridgedKIOnServer(MainMenuGUI.this.gameServer, getPlayerName(), getClientUserInterface());
+				KI.startBridgedKIOnServer(MainMenuGUI.this.gameServer, getEnemyName(), demoUserInterface);
 			}
 		});
 	}

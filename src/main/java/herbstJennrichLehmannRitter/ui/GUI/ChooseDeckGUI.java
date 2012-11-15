@@ -155,7 +155,7 @@ public class ChooseDeckGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				Collections.addAll(ChooseDeckGUI.this.playerCards, ChooseDeckGUI.this.userList.getItems());
-				mainMenuGui.setPlayerCards(Arrays.asList(ChooseDeckGUI.this.userList.getItems()));
+				ChooseDeckGUI.this.mainMenuGui.setPlayerCards(Arrays.asList(ChooseDeckGUI.this.userList.getItems()));
 				ChooseDeckGUI.this.shell.setVisible(false);
 			}
 		});
@@ -175,11 +175,11 @@ public class ChooseDeckGUI {
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 				String[] selectedItems = list.getSelection();
-				if (selectedItems.length == 1 && cardDetailIsOpen == false) {
+				if (selectedItems.length == 1 && ChooseDeckGUI.this.cardDetailIsOpen == false) {
 					ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(ChooseDeckGUI.this.display, null,
 							ChooseDeckGUI.this, Globals.getGameCardFactory().createCard(selectedItems[0]));
 					showCardDetailGUI.open();
-					cardDetailIsOpen = true;
+					ChooseDeckGUI.this.cardDetailIsOpen = true;
 				}
 			}
 		});
@@ -335,13 +335,13 @@ public class ChooseDeckGUI {
 		sortList(this.userList);
 	}
 	
-	private void sortList(List list) {
+	private static void sortList(List list) {
 		String[] items = list.getItems();
 		Arrays.sort(items);
 		list.setItems(items);
 	}
 
-	private void moveCardsToOtherList(List sourceList, List targetList) {
+	private static void moveCardsToOtherList(List sourceList, List targetList) {
 		if (!sourceList.getSelection().toString().isEmpty()) {
 			String[] selectedCard = sourceList.getSelection();
 			for (int i=0;i< selectedCard.length; i++) {

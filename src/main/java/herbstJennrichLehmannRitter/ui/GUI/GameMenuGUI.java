@@ -151,7 +151,7 @@ public class GameMenuGUI {
 					localUserInterface.setMainMenuGUI(GameMenuGUI.this.mainMenuGUI);
 					localUserInterface.setPlayGameGUI(playGameGUI);
 					
-					KI.startBridgedKIOnServer(gameServer, GameMenuGUI.this.mainMenuGUI.getEnemyName(), 
+					KI.startBridgedKIOnServer(GameMenuGUI.this.gameServer, GameMenuGUI.this.mainMenuGUI.getEnemyName(), 
 							localUserInterface);
 					
 					playGameGUI.open();
