@@ -16,25 +16,25 @@ public class GameActionImpl implements GameAction {
 	
 	@Override
 	public boolean checkIfIHaveWonTheGame() {
-		return this.wonLooseDicision(this.targetPlayer);
+		return GameActionImpl.wonLooseDicision(this.targetPlayer);
 	}
 
 	@Override
 	public boolean checkIfIHaveLooseTheGame() {
-		return this.wonLooseDicision(this.sourcePlayer);
+		return GameActionImpl.wonLooseDicision(this.sourcePlayer);
 	}
 	
 
 	@Override
 	public boolean checkIfTheGameIsUndecided() {
-		if (this.wonLooseDicision(this.sourcePlayer) && this.wonLooseDicision(this.targetPlayer)) {
+		if (GameActionImpl.wonLooseDicision(this.sourcePlayer) && GameActionImpl.wonLooseDicision(this.targetPlayer)) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	private boolean wonLooseDicision(Player player) {
+	private static boolean wonLooseDicision(Player player) {
 		if (player.getTower().getActualPoints() == 0) {
 			return true;
 		} else {
