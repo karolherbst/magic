@@ -135,8 +135,9 @@ public class PlayGameGUI {
 	
 	private void exitButtonPressed (SelectionEvent e) {
 			try {
-				mainMenuGUI.getGameServer().stop();
-				mainMenuGUI.getGameServer().unregister(mainMenuGUI.getClientUserInterface());
+				PlayGameGUI.this.mainMenuGUI.getGameServer().stop();
+				PlayGameGUI.this.mainMenuGUI.getGameServer().unregister(
+						PlayGameGUI.this.mainMenuGUI.getClientUserInterface());
 			} catch (RemoteException e1) {
 				e1.printStackTrace();
 			}
@@ -277,13 +278,13 @@ public class PlayGameGUI {
 	}
 
 	public void playerPlayedCard(String name) {
-		this.removeCardFromDeck(this.playerCards, name);
+		PlayGameGUI.removeCardFromDeck(this.playerCards, name);
 		this.playerChoosenCard.setCardName(name);
 		this.playerChoosenCard.setVisible(true);
 	}
 	
 	public void playerDiscardCard(String name) {
-		this.removeCardFromDeck(this.playerCards, name);
+		PlayGameGUI.removeCardFromDeck(this.playerCards, name);
 	}	
 	
 	private void initEnemyDungeon() {
@@ -363,7 +364,7 @@ public class PlayGameGUI {
 		} while (cardIterator.hasNext());
 	}
 
-	private void removeCardFromDeck(ArrayList<CardFields> cardFields, String name) {
+	private static void removeCardFromDeck(ArrayList<CardFields> cardFields, String name) {
 		for (CardFields cardField: cardFields) {
 			if( cardField.getCardName() == name) {
 				cardField.setCardName("");
@@ -387,13 +388,13 @@ public class PlayGameGUI {
 	}
 	
 	public void enemyPlayedCard(String name) {
-		this.removeCardFromDeck(this.enemyCards, name);
+		PlayGameGUI.removeCardFromDeck(this.enemyCards, name);
 		this.enemyChoosenCards.setCardName(name);
 		this.enemyChoosenCards.setVisible(true);
 	}
 	
 	public void enemyDiscardCard(String name) {
-		this.removeCardFromDeck(this.enemyCards, name);
+		PlayGameGUI.removeCardFromDeck(this.enemyCards, name);
 	}
 	
 	
@@ -417,15 +418,15 @@ public class PlayGameGUI {
 	
 	public void playAnotherCardPlayer() {
 		this.playerName.setPlayerActive("hat noch einen Zug");
-		this.playAnotherCard(this.playerCards);
+		PlayGameGUI.playAnotherCard(this.playerCards);
 	}
 	
 	public void playAnotherCardEnemy() {
 		this.playerName.setPlayerActive("hat noch einen Zug");
-		this.playAnotherCard(this.enemyCards);
+		PlayGameGUI.playAnotherCard(this.enemyCards);
 	}
 	
-	private void playAnotherCard(ArrayList<CardFields> cardFields) {
+	private static void playAnotherCard(ArrayList<CardFields> cardFields) {
 		for (CardFields cardField: cardFields) {
 			if (cardField.getCardName() == "") {
 				cardField.setVisible(false);
@@ -456,7 +457,7 @@ public class PlayGameGUI {
 			cardData.height = 120;
 			cardData.width = 110;
 
-			this.cardComp = new Composite(shell, SWT.BORDER);
+			this.cardComp = new Composite(PlayGameGUI.this.shell, SWT.BORDER);
 			if (isVisible) {
 				this.cardComp.setVisible(true);
 			} else {
@@ -483,11 +484,11 @@ public class PlayGameGUI {
 		}
 		
 		private void mousePressed(MouseEvent e) {
-			if (!getCardName().isEmpty() && cardDetailIsOpen == false) {
-				ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(display, 
+			if (!getCardName().isEmpty() && PlayGameGUI.this.cardDetailIsOpen == false) {
+				ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(PlayGameGUI.this.display, 
 						PlayGameGUI.this, null, Globals.getGameCardFactory().createCard(getCardName()));
 				showCardDetailGUI.open();
-				cardDetailIsOpen = true;
+				PlayGameGUI.this.cardDetailIsOpen = true;
 			}
 		  }
 		
@@ -515,7 +516,7 @@ public class PlayGameGUI {
 			canvasData.width = 180;
 			canvasData.height = 54;
 			
-			Composite defenceComp = new Composite(shell, SWT.BORDER);
+			Composite defenceComp = new Composite(PlayGameGUI.this.shell, SWT.BORDER);
 			defenceComp.setLayoutData(canvasData);
 			{
 				Label headlineLabel = new Label(defenceComp, SWT.CENTER);
@@ -550,7 +551,7 @@ public class PlayGameGUI {
 			canvasData.width = 200;
 			canvasData.height = 54;
 			
-			Composite ressourceComp = new Composite(shell, SWT.BORDER);
+			Composite ressourceComp = new Composite(PlayGameGUI.this.shell, SWT.BORDER);
 			ressourceComp.setLayoutData(canvasData);
 			{
 				Label headlineLabel = new Label(ressourceComp, SWT.CENTER);
@@ -606,22 +607,22 @@ public class PlayGameGUI {
 			nameData.width = 1004;
 			nameData.height = 20;
 			
-			this.nameLabel = new Label(shell, SWT.CENTER | SWT.BORDER_SOLID);
-			this.nameLabel.setText(this.playerName);
+			this.nameLabel = new Label(PlayGameGUI.this.shell, SWT.CENTER | SWT.BORDER_SOLID);
+			this.nameLabel.setText(NameFields.this.playerName);
 			this.nameLabel.setLayoutData(nameData);
 			this.nameLabel.pack();
 		}
 		
 		public void setPlayerActive(String text) {
-			this.nameLabel.setBackground(new Color(display, 150, 0, 0));
-			this.nameLabel.setForeground(new Color(display, 255, 255, 255));
-			this.nameLabel.setText(playerName + ' ' + text);
+			this.nameLabel.setBackground(new Color(PlayGameGUI.this.display, 150, 0, 0));
+			this.nameLabel.setForeground(new Color(PlayGameGUI.this.display, 255, 255, 255));
+			this.nameLabel.setText(NameFields.this.playerName + ' ' + text);
 		}
 		
 		public void setPlayerInactive() {
 			this.nameLabel.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
 			this.nameLabel.setForeground(Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_FOREGROUND));
-			this.nameLabel.setText(playerName);
+			this.nameLabel.setText(NameFields.this.playerName);
 		}
 		
 	}
@@ -641,62 +642,44 @@ public class PlayGameGUI {
 			gameMessageData.height = 500;
 			gameMessageData.width = 500;
 			
-			this.gameMessageCanv = new Canvas(shell, SWT.BORDER);
+			this.gameMessageCanv = new Canvas(PlayGameGUI.this.shell, SWT.BORDER);
 			this.gameMessageCanv.setLayoutData(gameMessageData);
 			this.gameMessageCanv.setVisible(false);
-			this.gameMessageCanv.setBackground(new Color(display, 255, 255, 255));
+			this.gameMessageCanv.setBackground(new Color(PlayGameGUI.this.display, 255, 255, 255));
 		
 			this.gameMessageCanv.addPaintListener(new PaintListener()  {
 				public void paintControl(PaintEvent e) {
-					paintEvent = e;
-					
-					paintEvent.gc.setFont(new Font(display, "Verdana", 28, SWT.BOLD));
+					GameMessage.this.paintEvent = e;
+					GameMessage.this.paintEvent.gc.setFont(new Font(PlayGameGUI.this.display, "Verdana", 28, SWT.BOLD));
 				}
 			});
 		}
 		
 		public void setTitleToWon() {
-			this.gameMessageCanv.addPaintListener(new PaintListener()  {
-				public void paintControl(PaintEvent e) {
-					paintEvent = e;
-					
-					paintEvent.gc.setForeground(new Color(display, 0, 200, 0));
-					String text = "Sie haben gewonnen!";
-					Point textSize = paintEvent.gc.textExtent(text);
-					paintEvent.gc.drawText(text, (gameMessageCanv.getSize().x - textSize.x)/2, 
-							(gameMessageCanv.getSize().y - textSize.y)/2);
-				}
-			});
-			this.gameMessageCanv.setVisible(true);
+			GameMessage.this.setGameMessageText("Sie haben gewonnen", 0, 200);
 		}
 		
 		public void setTitleToLoose() {
-			this.gameMessageCanv.addPaintListener(new PaintListener()  {
-				public void paintControl(PaintEvent e) {
-					paintEvent = e;
-					
-					paintEvent.gc.setForeground(new Color(display, 200, 0, 0));
-					String text = "Sie haben verloren!";
-					Point textSize = paintEvent.gc.textExtent(text);
-					paintEvent.gc.drawText(text, (gameMessageCanv.getSize().x - textSize.x)/2, 
-							(gameMessageCanv.getSize().y - textSize.y)/2);
-				}
-			});
-			this.gameMessageCanv.setVisible(true);
+			GameMessage.this.setGameMessageText("Sie haben verloren", 200, 0);
 		}
 		
 		public void setTitleToAbort(final String text) {
-			this.gameMessageCanv.addPaintListener(new PaintListener()  {
+			GameMessage.this.setGameMessageText(text, 0, 0);
+		}
+		
+		private void setGameMessageText(final String text, final int red, final int green) {
+			GameMessage.this.gameMessageCanv.addPaintListener(new PaintListener()  {
 				public void paintControl(PaintEvent e) {
-					paintEvent = e;
+					GameMessage.this.paintEvent = e;
 					
-					paintEvent.gc.setForeground(new Color(display, 0, 0, 0));
-					Point textSize = paintEvent.gc.textExtent(text);
-					paintEvent.gc.drawText(text, (gameMessageCanv.getSize().x - textSize.x)/2, 
-							(gameMessageCanv.getSize().y - textSize.y)/2);
+					GameMessage.this.paintEvent.gc.setForeground(new Color(PlayGameGUI.this.display, red, green, 0));
+					Point textSize = GameMessage.this.paintEvent.gc.textExtent(text);
+					GameMessage.this.paintEvent.gc.drawText(text, 
+							(GameMessage.this.gameMessageCanv.getSize().x - textSize.x)/2, 
+							(GameMessage.this.gameMessageCanv.getSize().y - textSize.y)/2);
 				}
 			});
-			this.gameMessageCanv.setVisible(true);
+			GameMessage.this.gameMessageCanv.setVisible(true);
 		}
 	}
 }
