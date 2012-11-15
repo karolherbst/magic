@@ -162,7 +162,7 @@ public class HostMenuGUI {
 		this.shell.setVisible(false);
 	}
 	
-	private String lookupIpAddress() throws SocketException {
+	private static String lookupIpAddress() throws SocketException {
 		Collection<String> allIPs = new ArrayList<String>();  
 		Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
 		for (NetworkInterface netinterface : Collections.list(networkInterfaces)) {
