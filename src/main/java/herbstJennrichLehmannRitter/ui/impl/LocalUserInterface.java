@@ -81,6 +81,7 @@ public class LocalUserInterface implements UserInterface {
 		});
 	}
 	
+	@Override
 	public void onPlayCard(final Card card) {}
 	
 	@Override

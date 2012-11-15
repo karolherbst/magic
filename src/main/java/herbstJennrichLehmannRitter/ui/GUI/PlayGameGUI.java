@@ -648,6 +648,7 @@ public class PlayGameGUI {
 			this.gameMessageCanv.setBackground(new Color(PlayGameGUI.this.display, 255, 255, 255));
 		
 			this.gameMessageCanv.addPaintListener(new PaintListener()  {
+				@Override
 				public void paintControl(PaintEvent e) {
 					GameMessage.this.paintEvent = e;
 					GameMessage.this.paintEvent.gc.setFont(new Font(PlayGameGUI.this.display, "Verdana", 28, SWT.BOLD));
@@ -669,6 +670,7 @@ public class PlayGameGUI {
 		
 		private void setGameMessageText(final String text, final int red, final int green) {
 			GameMessage.this.gameMessageCanv.addPaintListener(new PaintListener()  {
+				@Override
 				public void paintControl(PaintEvent e) {
 					GameMessage.this.paintEvent = e;
 					
