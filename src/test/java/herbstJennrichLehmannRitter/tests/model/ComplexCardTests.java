@@ -331,4 +331,26 @@ public class ComplexCardTests {
 			assertEquals(card.getCardType(), CardType.MAGIC_LAB);
 		}
 	}
+	
+	@Test
+	public void testSpionage() {
+		Card spionage = this.gameCardFactory.createCard("Spionage");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				1, 1, 1, 1);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		spionage.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(12, playerOne.getMine().getLevel());	
+	}
+	
+	@Test
+	public void testSpionageTwo() {
+		Card spionageTwo = this.gameCardFactory.createCard("Spionage");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				13, 13, 13, 13);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 9, 12);
+		spionageTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(13, playerOne.getMine().getLevel());	
+	}
 }
