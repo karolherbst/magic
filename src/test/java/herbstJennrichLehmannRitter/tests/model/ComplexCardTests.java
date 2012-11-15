@@ -105,6 +105,19 @@ public class ComplexCardTests {
 	}
 	
 	@Test
+	public void testDemolieren() {
+		Card demolieren = this.gameCardFactory.createCard("Demolieren");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				5, 5, 5, 5);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				5, 5, 5, 5);
+		
+		demolieren.getComplexCardAction().applyActionOnPlayer(playerTwo, playerOne);
+		assertEquals(playerOne.getWall().getActualPoints(), 0);
+		assertEquals(playerTwo.getWall().getActualPoints(), 5);
+	}
+	
+	@Test
 	public void testDieb() {
 		Card dieb = this.gameCardFactory.createCard("Dieb");
 		Player player1 = new PlayerImpl();
