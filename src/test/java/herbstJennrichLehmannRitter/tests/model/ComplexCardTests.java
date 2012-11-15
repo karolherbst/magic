@@ -167,4 +167,25 @@ public class ComplexCardTests {
 		einhornTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
 		assertEquals(playerTwo.getWall().getActualPoints(), 4);		
 	}
+	
+	@Test
+	public void testElfischeBogenschuetzen () {
+		Card elfischeBogenschuetzen = this.gameCardFactory.createCard("Elfische Bogenschützen");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				10, 14, 10, 10);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		elfischeBogenschuetzen.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(playerTwo.getTower().getActualPoints(), 6);	
+	}
+	@Test
+	public void testElfischeBogenschuetzenTwo () {
+		Card elfischeBogenschuetzenTwo = this.gameCardFactory.createCard("Elfische Bogenschützen");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				10, 10, 10, 10);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		elfischeBogenschuetzenTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(playerTwo.getWall().getActualPoints(), 6);	
+	}
 }
