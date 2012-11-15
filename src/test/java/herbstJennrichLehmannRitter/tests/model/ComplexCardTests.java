@@ -218,4 +218,26 @@ public class ComplexCardTests {
 		glasperlenTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
 		assertEquals(14, playerOne.getTower().getActualPoints());	
 	}
+	
+	@Test
+	public void testGrundstein () {
+		Card grundstein = this.gameCardFactory.createCard("Grundstein");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				0, 0, 0, 0);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		grundstein.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(6, playerOne.getWall().getActualPoints());	
+	}
+	
+	@Test
+	public void testGrundsteinTwo () {
+		Card grundsteinTwo = this.gameCardFactory.createCard("Grundstein");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				13, 13, 13, 13);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		grundsteinTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(16, playerOne.getWall().getActualPoints());	
+	}
 }
