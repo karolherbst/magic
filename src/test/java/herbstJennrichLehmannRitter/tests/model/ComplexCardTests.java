@@ -303,6 +303,7 @@ public class ComplexCardTests {
 	}
 	
 //	@Test
+//	TODO: wie fragt man zwei verschieden möglichkeiten ab?
 //	public void testPfuschenderSchmied() {
 //		Card pfuschenderSchmied = this.gameCardFactory.createCard("Pfuschender Schmied");
 //		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
