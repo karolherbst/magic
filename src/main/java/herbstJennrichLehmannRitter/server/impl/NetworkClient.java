@@ -12,6 +12,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Collection;
 
+//FIXME: Nutzen wir überhaupt diese Klasse? Kann die nicht weg?
 public class NetworkClient implements GameServer {
 	
 	private GameService remoteGameService;
