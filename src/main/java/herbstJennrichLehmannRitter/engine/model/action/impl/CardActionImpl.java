@@ -51,9 +51,9 @@ public class CardActionImpl implements CardAction {
 		
 		MagicUtils.addValueToStringBuilder("Karte ablegen", Integer.valueOf(getOwnAmountCardDiscard()), stringBuilder);
 		MagicUtils.addValueToStringBuilder("Karte ziehen", Integer.valueOf(getAmountCardDraw()), stringBuilder);
-		//TODO: if playCards == true {
-			//MagicUtils.addValueToStringBuilder("noch eine Karte spielen", stringBuilder);
-		//}
+		if (getPlayCards() == true) {
+			MagicUtils.addValueToStringBuilder("noch eine Karte spielen", stringBuilder);
+		}
 		return stringBuilder.toString();
 	}
 	

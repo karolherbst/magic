@@ -6,8 +6,6 @@ import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 
 public abstract class AbstractCard implements Card {
 	
-	//TODO: How to implement String "Noch eine Karte spielen?" Boolean PlayAnotherCard is implemented (Sönke)
-
 	@Override
 	public String getCostDescription() {
 		StringBuilder stringBuilder = new StringBuilder();
