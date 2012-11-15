@@ -25,4 +25,6 @@ public interface GameEngineController {
 	
 	public void addResourcesToPlayer(Player player);
 	
+	public boolean hasPlayerWon(Player player, Player enemy);
+	
 }

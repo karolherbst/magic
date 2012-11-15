@@ -70,6 +70,21 @@ public class GameServiceImpl implements GameService {
 		uiHolder.enemy.userInterface.setData(enemyData);
 	}
 	
+	private boolean hasSomebodyWon(UIHolder uiHolder) {
+		if (this.gameEngineController.hasPlayerWon(uiHolder.player, uiHolder.enemy.player)) {
+			uiHolder.userInterface.youWon();
+			uiHolder.enemy.userInterface.youLost();
+			return true;
+		}
+		
+		if (this.gameEngineController.hasPlayerWon(uiHolder.enemy.player, uiHolder.player)) {
+			uiHolder.enemy.userInterface.youWon();
+			uiHolder.userInterface.youLost();
+			return true;
+		}
+		return false;
+	}
+	
 	@Override
 	public synchronized void register(Thread thread, UserInterface userInterface) {
 
@@ -153,8 +168,10 @@ public class GameServiceImpl implements GameService {
 				uiHolder.userInterface.playAnotherCard();
 			} else {
 				this.gameEngineController.addResourcesToPlayer(uiHolder.enemy.player);
-				updatePlayerDatas(uiHolder);
-				uiHolder.enemy.userInterface.nextTurn();
+				if (!hasSomebodyWon(uiHolder)) {
+					updatePlayerDatas(uiHolder);
+					uiHolder.enemy.userInterface.nextTurn();
+				}
 			}
 		}
 		
@@ -176,9 +193,10 @@ public class GameServiceImpl implements GameService {
 		
 			this.gameEngineController.discardCard(card, uiHolder.player);
 			this.gameEngineController.addResourcesToPlayer(uiHolder.enemy.player);
-
-			updatePlayerDatas(uiHolder);
-			uiHolder.enemy.userInterface.nextTurn();
+			if (!hasSomebodyWon(uiHolder)) {
+				updatePlayerDatas(uiHolder);
+				uiHolder.enemy.userInterface.nextTurn();
+			}
 		}
 	}
 

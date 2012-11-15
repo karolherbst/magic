@@ -190,4 +190,9 @@ public class GameEngineControllerImpl implements GameEngineController {
 	private boolean ownsPlayerCard(Card card, Player player) {
 		return player.getDeck().getAllCards().contains(card);
 	}
+	
+	@Override
+	public boolean hasPlayerWon(Player player, Player enemy) {
+		return false;
+	}
 }
