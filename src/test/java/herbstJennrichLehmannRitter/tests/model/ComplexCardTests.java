@@ -176,7 +176,7 @@ public class ComplexCardTests {
 	}
 	
 	@Test
-	public void testElfischeBogenschuetzen () {
+	public void testElfischeBogenschuetzen() {
 		Card elfischeBogenschuetzen = this.gameCardFactory.createCard("Elfische Bogenschützen");
 		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
 				10, 14, 10, 10);
@@ -187,7 +187,7 @@ public class ComplexCardTests {
 	}
 	
 	@Test
-	public void testElfischeBogenschuetzenTwo () {
+	public void testElfischeBogenschuetzenTwo() {
 		Card elfischeBogenschuetzenTwo = this.gameCardFactory.createCard("Elfische Bogenschützen");
 		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
 				10, 10, 10, 10);
@@ -198,7 +198,7 @@ public class ComplexCardTests {
 	}
 	
 	@Test
-	public void testGlasperlen () {
+	public void testGlasperlen() {
 		Card glasperlen = this.gameCardFactory.createCard("Glasperlen");
 		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
 				10, 10, 10, 10);
@@ -209,7 +209,7 @@ public class ComplexCardTests {
 	}
 	
 	@Test
-	public void testGlasperlenTwo () {
+	public void testGlasperlenTwo() {
 		Card glasperlenTwo = this.gameCardFactory.createCard("Glasperlen");
 		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
 				13, 13, 13, 13);
@@ -220,7 +220,7 @@ public class ComplexCardTests {
 	}
 	
 	@Test
-	public void testGrundstein () {
+	public void testGrundstein() {
 		Card grundstein = this.gameCardFactory.createCard("Grundstein");
 		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
 				1, 0, 1, 1);
@@ -231,7 +231,7 @@ public class ComplexCardTests {
 	}
 	
 	@Test
-	public void testGrundsteinTwo () {
+	public void testGrundsteinTwo() {
 		Card grundsteinTwo = this.gameCardFactory.createCard("Grundstein");
 		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
 				13, 13, 13, 13);
@@ -242,7 +242,7 @@ public class ComplexCardTests {
 	}
 	
 	@Test
-	public void testHauptader () {
+	public void testHauptader() {
 		Card hauptader = this.gameCardFactory.createCard("Hauptader");
 		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
 				1, 1, 1, 1);
@@ -253,7 +253,7 @@ public class ComplexCardTests {
 	}
 	
 	@Test
-	public void testHauptaderTwo () {
+	public void testHauptaderTwo() {
 		Card hauptaderTwo = this.gameCardFactory.createCard("Hauptader");
 		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
 				13, 13, 13, 13);
@@ -262,4 +262,21 @@ public class ComplexCardTests {
 		hauptaderTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
 		assertEquals(14, playerOne.getMine().getLevel());	
 	}
+	
+	
+//	TODO: kann auf den Test hier bitte mal einer schauen? Weiß grad nicht, wie ich den bauen soll.
+//	@Test
+//	public void testParadoxon() {
+//		Card paradoxon = this.gameCardFactory.createCard("Paradoxon");
+//		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+//				1, 1, 1, 1);
+//		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+//				12, 12, 12, 12);
+//		Collection<Card> oldCards = playerTwo.getDeck().getAllCards();
+//		paradoxon.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+//		Collection<Card> newCards = playerOne.getDeck().getAllCards();
+//		for (Card card : oldCards) {
+//			assertEquals(card.getCardAction(), playerTwo.getDeck().getAllCards());
+//		}
+//	}
 }
