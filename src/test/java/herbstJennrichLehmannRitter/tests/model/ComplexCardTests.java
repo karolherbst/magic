@@ -223,7 +223,7 @@ public class ComplexCardTests {
 	public void testGrundstein () {
 		Card grundstein = this.gameCardFactory.createCard("Grundstein");
 		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
-				0, 0, 0, 0);
+				1, 0, 1, 1);
 		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
 				12, 12, 12, 12);
 		grundstein.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
@@ -239,5 +239,27 @@ public class ComplexCardTests {
 				12, 12, 12, 12);
 		grundsteinTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
 		assertEquals(16, playerOne.getWall().getActualPoints());	
+	}
+	
+	@Test
+	public void testHauptader () {
+		Card hauptader = this.gameCardFactory.createCard("Hauptader");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				1, 1, 1, 1);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		hauptader.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(3, playerOne.getMine().getLevel());	
+	}
+	
+	@Test
+	public void testHauptaderTwo () {
+		Card hauptaderTwo = this.gameCardFactory.createCard("Hauptader");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				13, 13, 13, 13);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		hauptaderTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(14, playerOne.getMine().getLevel());	
 	}
 }
