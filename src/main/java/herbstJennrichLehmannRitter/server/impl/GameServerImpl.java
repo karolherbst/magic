@@ -10,7 +10,7 @@ import java.util.Collection;
 
 public class GameServerImpl implements GameServer {
 
-	private GameService gameService;
+	private final GameService gameService;
 	
 	public GameServerImpl(GameService gameService) {
 		this.gameService = gameService;
