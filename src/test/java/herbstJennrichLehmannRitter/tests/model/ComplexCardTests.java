@@ -6,7 +6,6 @@ import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.impl.PlayerImpl;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,6 +27,19 @@ public class ComplexCardTests {
 		auferstehung.getComplexCardAction().applyActionOnPlayer(player1, player2);
 		
 		assertEquals(32, player1.getTower().getActualPoints());
+	}
+	
+	@Test
+	public void testBarracke() {
+		Card barracke = this.gameCardFactory.createCard("Barracke");
+		Player player1 = new PlayerImpl();
+		Player player2 = new PlayerImpl();
+		player1.getDungeon().addLevel(0);
+		player2.getDungeon().addLevel(3);
+		
+		barracke.getComplexCardAction().applyActionOnPlayer(player1, player2);
+		
+		assertEquals(2, player1.getDungeon().getLevel());
 	}
 	
 	@Test
