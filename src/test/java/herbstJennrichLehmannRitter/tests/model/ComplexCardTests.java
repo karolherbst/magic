@@ -146,4 +146,25 @@ public class ComplexCardTests {
 		assertEquals(0, player2.getMagicLab().getStock());
 		assertEquals(0, player2.getMine().getStock());
 	}
+	
+	@Test
+	public void testEinhornOne() {
+		Card einhornOne = this.gameCardFactory.createCard("Einhorn");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				14, 14, 14, 14);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		einhornOne.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(playerTwo.getWall().getActualPoints(), 0);		
+	}
+	@Test
+	public void testEinhornTwo() {
+		Card einhornTwo = this.gameCardFactory.createCard("Einhorn");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				10, 10, 10, 10);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		einhornTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(playerTwo.getWall().getActualPoints(), 4);		
+	}
 }
