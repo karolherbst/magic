@@ -1,12 +1,19 @@
 package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
+import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.exception.GameCardFactoryException;
 import herbstJennrichLehmannRitter.engine.exception.GameEngineException;
+import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
+import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
+import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
+import herbstJennrichLehmannRitter.engine.factory.impl.PlayerFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.CardAction;
 import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
 import herbstJennrichLehmannRitter.engine.model.action.impl.CardActionImpl;
@@ -159,12 +166,53 @@ public class CardTests {
 	}
 	
 	@Test
-	public void testMagicUtilsaddNullToStringBuider() {
+	public void testMagicUtilsAddNullToStringBuider() {
 		StringBuilder stringBuilder = new StringBuilder();
 
 		MagicUtils.addValueToStringBuilder(null, stringBuilder);
 		MagicUtils.addValueToStringBuilder("", null, stringBuilder, false);
 		assertEquals(stringBuilder.length(), 0);
+	}
+	
+	@Test
+	public void testCanPlayerEffortCard() {
+		PlayerFactory playerFactory = new PlayerFactoryImpl();
+		GameCardFactory gameCardFactory = new GameCardFactoryImpl();
+		
+		Player player = playerFactory.createPlayer("Spieler", Globals.getGameCardFactory().createDefaultDeck(),
+				25, 25, 1, 15);
+		Card cardArchitektur = gameCardFactory.createCard("Architektur");
+		Card cardKatapult = gameCardFactory.createCard("Katapult");
+		Card cardDisput = gameCardFactory.createCard("Disput");
+		Card cardDiamant = gameCardFactory.createCard("Diamant");
+		Card cardEinhorn = gameCardFactory.createCard("Einhorn");
+		Card cardKoloss = gameCardFactory.createCard("Koloss");
+		
+		assertTrue(MagicUtils.canPlayerEffortCard(player, cardArchitektur));
+		assertFalse(MagicUtils.canPlayerEffortCard(player, cardKatapult));
+		assertTrue(MagicUtils.canPlayerEffortCard(player, cardDisput));
+		assertFalse(MagicUtils.canPlayerEffortCard(player, cardDiamant));
+		assertTrue(MagicUtils.canPlayerEffortCard(player, cardEinhorn));
+		assertFalse(MagicUtils.canPlayerEffortCard(player, cardKoloss));
+	}
+	
+	@Test
+	public void testCanPlayerPlayAnotherRound() {
+		PlayerFactory playerFactory = new PlayerFactoryImpl();
+		GameCardFactory gameCardFactory = new GameCardFactoryImpl();
+		
+		Player player = playerFactory.createPlayer("Spieler", Globals.getGameCardFactory().createDefaultDeck(),
+				25, 25, 1, 15);
+		Card cardFreundlicheUmgebung = gameCardFactory.createCard("Freundliche Umgebung");
+		Card cardGrundstein = gameCardFactory.createCard("Grundstein");
+		
+		assertTrue(MagicUtils.canPlayerPlayAnotherRound(cardFreundlicheUmgebung, player));
+		assertFalse(MagicUtils.canPlayerPlayAnotherRound(cardGrundstein, player));
+		
+		player.getDeck().discardAllCards();
+		assertEquals(player.getDeck().getHandDeckSize(), 0);
+		assertFalse(MagicUtils.canPlayerPlayAnotherRound(cardFreundlicheUmgebung, player));
+		
 	}
 
 }

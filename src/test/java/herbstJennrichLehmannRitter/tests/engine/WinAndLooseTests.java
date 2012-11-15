@@ -38,11 +38,18 @@ public class WinAndLooseTests {
 	}
 	
 	@Test
-	public void testHasPlayerWonWithTowerPointsAbove100() {
+	public void testHasPlayerWonWithTowerPointsEqual100() {
 		this.player.getTower().addPoints(100);
 		WinAndLoseChecker winAndLoseChecker = new WinAndLoseTowerBuildingChecker();
 		assertTrue(winAndLoseChecker.hasPlayerWon(this.player));
 	}
+	
+	@Test
+	public void testHasPlayerWonWithTowerPointsAbove100() {
+		this.player.getTower().addPoints(105);
+		WinAndLoseChecker winAndLoseChecker = new WinAndLoseTowerBuildingChecker();
+		assertTrue(winAndLoseChecker.hasPlayerWon(this.player));
+	}	
 	
 	@Test
 	public void testHasPlayerWonWithCrystalAbove400() {
