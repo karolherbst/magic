@@ -128,11 +128,9 @@ public class MainMenuGUI {
 			}
 		});
 	}
-
+	
 	private void initChooseDeckButton() {
-		MainMenuGUI.this.chooseDeckButton = new Button(MainMenuGUI.this.shell, SWT.NONE);
-		MainMenuGUI.this.chooseDeckButton.setText("Deck erstellen");
-		MainMenuGUI.this.chooseDeckButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
+		MainMenuGUI.this.chooseDeckButton = createButton("Deck erstellen");
 		MainMenuGUI.this.chooseDeckButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -144,9 +142,7 @@ public class MainMenuGUI {
 	}
 
 	private void initExitButton() {
-		MainMenuGUI.this.exitButton = new Button(MainMenuGUI.this.shell, SWT.NONE);
-		MainMenuGUI.this.exitButton.setText("Beenden");
-		MainMenuGUI.this.exitButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
+		MainMenuGUI.this.exitButton = createButton("Beenden");
 		MainMenuGUI.this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -176,11 +172,8 @@ public class MainMenuGUI {
 	}
 
 	private void initStartDemoButton() {
-		MainMenuGUI.this.startDemoButton = new Button(this.shell, SWT.NONE);
-		MainMenuGUI.this.startDemoButton.setText("Starte Demo");
-		MainMenuGUI.this.startDemoButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
+		MainMenuGUI.this.startDemoButton = createButton("Starte Demo");
 		MainMenuGUI.this.startDemoButton.addSelectionListener(new SelectionAdapter() {
-
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				MainMenuGUI.this.gameServer = Globals.getLocalGameServer();
@@ -199,9 +192,7 @@ public class MainMenuGUI {
 	}
 
 	private void initStartGameButton() {
-		this.startGameButton = new Button(this.shell, SWT.NONE);
-		this.startGameButton.setText("Starte Spiel");
-		this.startGameButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
+		this.startGameButton = createButton("Starte Spiel");
 		this.startGameButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -223,6 +214,14 @@ public class MainMenuGUI {
 
 	private boolean allShellsDisposed() {
 		return this.shells == 0;
+	}
+	
+	private Button createButton(String text) {
+		Button button = new Button(MainMenuGUI.this.shell, SWT.NONE);
+		button.setText(text);
+		button.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
+		
+		return button;
 	}
 	
 	public static void setShellLocationCenteredToScreen(Display display, Shell shell) {
