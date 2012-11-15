@@ -1,8 +1,14 @@
 package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.assertEquals;
+
+import java.util.Collection;
+
+import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
+import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
+import herbstJennrichLehmannRitter.engine.factory.impl.PlayerFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.impl.PlayerImpl;
@@ -12,6 +18,7 @@ import org.junit.Test;
 public class ComplexCardTests {
 	
 	private GameCardFactory gameCardFactory;
+	private PlayerFactory playerFactory = new PlayerFactoryImpl();
 	
 	@Before
 	public void before() {
@@ -80,6 +87,21 @@ public class ComplexCardTests {
 		blitzUndDonnerTwo.getComplexCardAction().applyActionOnPlayer(player1, player2);
 		
 		assertEquals(2, player2.getWall().getActualPoints());
+	}
+	
+	@Test
+	public void testBlutmond() {
+		Card blutmond = this.gameCardFactory.createCard("Blutmond");
+		Player player1 = this.playerFactory.createPlayer("1", this.gameCardFactory.createDefaultDeck(),
+				5, 5, 5, 5);
+		Player player2 = new PlayerImpl();
+		
+		blutmond.getComplexCardAction().applyActionOnPlayer(player1, player2);
+		
+		Collection<Card> newCards = player1.getDeck().getAllCards();
+		for (Card card : newCards) {
+			assertEquals(card.getCardType(), CardType.DUNGEON);
+		}
 	}
 	
 	@Test
