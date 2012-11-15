@@ -105,7 +105,6 @@ public class PlayGameGUI {
 	}
 	
 	private void initMenuBar() {
-		
 		Menu menuBar = new Menu(this.shell, SWT.BAR);
 		MenuItem fileMenuHead = new MenuItem(menuBar, SWT.CASCADE);
 		fileMenuHead.setText("Menü");
@@ -144,25 +143,27 @@ public class PlayGameGUI {
 			PlayGameGUI.this.shell.setVisible(false);
 	}
 	
-//	Quelle für Carriage Return: http://www.java2s.com/Code/JavaScript/Window-Browser/Acarriagereturninalertdialogbox.htm
 	private void howToButtonPressed (SelectionEvent e){
 		MessageBox messageBox = new MessageBox(this.shell, SWT.ICON_INFORMATION);
-		messageBox.getStyle();
 		String messageString = "Jeder Spieler beginnt mit dem Folgenden: Turm 25 Punkte, Mauer 10 Punkte, " +
 				"Steinbruch, Zauberlabor, Verlies jeweils Stufe 1 und 15 Ressourcen. " +
-				"Und 6 zufälligen Spielkarten aus seinem Kartenstapel. \rEs gibt zwei verschiedene Modi: " +
+				"Und 6 zufälligen Spielkarten aus seinem Kartenstapel. \n" +
+				"Es gibt zwei verschiedene Modi: " +
 				"Turmbau und Sammelwut. " +
 				"Ein Spieler gewinnt, wenn der gegnerische Turm 0 Punkte hat (beide Modi), " +
 				"der eigene Turm 100 Punkte hat (Turmbau) oder von einer Sorte Ressourcen 400 Stück " +
-				"gesammelt worden sind (Sammelwut). \rDas Spiel läuft in Runden ab. " +
+				"gesammelt worden sind (Sammelwut). \n" +
+				"Das Spiel läuft in Runden ab. " +
 				"Zum Anfang der Runde erhält der Spieler Ressourcen im Wert seiner aktuellen Stufen von Verlies, " +
-				"Zauberlabor und Steinbruch. Dann kann der Spieler eine Karte auswählen und spielen oder verwerfen. " +
-				"Gespielt werden kann die Karte nur, wenn er genügend Ressourcen besitzt, wenn ja, werden alle Aktionen " +
-				"gleichzeitig ausgeführt. Im Anschluss wird die Karte auf den Friedhof gelegt und der Spieler zieht Karten " +
-				"vom Deck, bis er wieder 6 Karten auf der Hand hat. Falls das Deck leer ist, wird der Friedhof neu gemischt. " +
-				"Der andere Spieler ist am Zug. \rSchaden wird erst von der Mauer, danach vom Turm abgezogen, Mauerschaden nur " +
-				"von der Mauer und Turmschaden immer vom Turm. Ressourcengebäude können Stufen gewinnen oder verlieren, dabei ist " +
-				"die niedrigste Stufe Stufe 1. Ressourcenbestände können nicht unter 0 fallen.";
+				"Zauberlabor und Steinbruch. Dann kann der Spieler eine Karte auswählen und spielen oder " +
+				"verwerfen. Gespielt werden kann die Karte nur, wenn er genügend Ressourcen besitzt, wenn ja, " +
+				"werden alle Aktionen gleichzeitig ausgeführt. Im Anschluss wird die Karte auf den Friedhof " +
+				"gelegt und der Spieler zieht Karten vom Deck, bis er wieder 6 Karten auf der Hand hat. Falls das " +
+				"Deck leer ist, wird der Friedhof neu gemischt. Der andere Spieler ist am Zug. \n" +
+				"Schaden wird erst von der Mauer, danach vom Turm abgezogen, Mauerschaden nur " +
+				"von der Mauer und Turmschaden immer vom Turm. Ressourcengebäude können Stufen gewinnen " +
+				"oder verlieren, dabei ist die niedrigste Stufe Stufe 1. " +
+				"Ressourcenbestände können nicht unter 0 fallen.";
 		messageBox.setMessage(messageString);
 		messageBox.open();
 		
@@ -242,26 +243,7 @@ public class PlayGameGUI {
 	}
 	
 	public void setPlayerHandCards(Collection<Card> cards) {
-		ArrayList<String> cardFields = new ArrayList<String>();
-		for (CardFields cardField: this.playerCards) {
-			cardFields.add(cardField.getCardName());
-			cardField.setVisible(true);
-		}
-		
-		Iterator<Card> cardIterator = cards.iterator();
-		Card card;
-		do {
-			card = cardIterator.next();
-			if (cardFields.contains(card.getName())) {
-				continue;
-			}
-			for (CardFields cardField: this.playerCards) {
-				if (cardField.getCardName() == "") {
-					cardField.setCardName(card.getName());
-					break;
-				}
-			}
-		} while (cardIterator.hasNext());
+		PlayGameGUI.this.setHandCards(PlayGameGUI.this.playerCards, cards);
 	}
 	
 	private void initPlayerChoosenCards() {
@@ -269,12 +251,7 @@ public class PlayGameGUI {
 	}
 	
 	public void setPlayerChoosenCardName(String name) {
-		if (name != null) {
-			this.playerChoosenCard.setCardName(name);
-			this.playerChoosenCard.setVisible(true);
-		} else {
-			this.playerChoosenCard.setVisible(false);
-		}
+		PlayGameGUI.this.setChoosenCardName(PlayGameGUI.this.playerChoosenCard, name);
 	}
 
 	public void playerPlayedCard(String name) {
@@ -330,7 +307,6 @@ public class PlayGameGUI {
 	public void setEnemyTower(int level) {
 		this.enemyTower.setLevel(level);
 	}
-	
 
 	private void initEnemyCards() {
 		int x = 157;
@@ -342,36 +318,7 @@ public class PlayGameGUI {
 	}
 	
 	public void setEnemyHandCards(Collection<Card> cards) {
-		ArrayList<String> cardFields = new ArrayList<String>();
-		for (CardFields cardField: this.enemyCards) {
-			cardFields.add(cardField.getCardName());
-			cardField.setVisible(true);
-		}
-		
-		Iterator<Card> cardIterator = cards.iterator();
-		Card card;
-		do {
-			card = cardIterator.next();
-			if (cardFields.contains(card.getName())) {
-				continue;
-			}
-			for (CardFields cardField: this.enemyCards) {
-				if (cardField.getCardName() == "") {
-					cardField.setCardName(card.getName());
-					break;
-				}
-			}
-		} while (cardIterator.hasNext());
-	}
-
-	private static void removeCardFromDeck(ArrayList<CardFields> cardFields, String name) {
-		for (CardFields cardField: cardFields) {
-			if( cardField.getCardName() == name) {
-				cardField.setCardName("");
-				cardField.setVisible(false);
-				break;
-			}
-		}
+		PlayGameGUI.this.setHandCards(PlayGameGUI.this.enemyCards, cards);
 	}
 	
 	private void initEnemyChoosenCards() {
@@ -379,12 +326,7 @@ public class PlayGameGUI {
 	}
 	
 	public void setEnemyChoosenCardName(String name) {
-		if (name != null) {
-			this.enemyChoosenCards.setCardName(name);
-			this.enemyChoosenCards.setVisible(true);
-		} else {
-			this.enemyChoosenCards.setVisible(false);
-		}
+		PlayGameGUI.this.setChoosenCardName(PlayGameGUI.this.enemyChoosenCards, name);
 	}
 	
 	public void enemyPlayedCard(String name) {
@@ -458,11 +400,7 @@ public class PlayGameGUI {
 			cardData.width = 110;
 
 			this.cardComp = new Composite(PlayGameGUI.this.shell, SWT.BORDER);
-			if (isVisible) {
-				this.cardComp.setVisible(true);
-			} else {
-				this.cardComp.setVisible(false);
-			}
+			this.cardComp.setVisible(isVisible);
 			this.cardComp.setLayoutData(cardData);
 			
 			this.nameLabel = new Label(this.cardComp, SWT.CENTER | SWT.WRAP);
@@ -490,8 +428,7 @@ public class PlayGameGUI {
 				showCardDetailGUI.open();
 				PlayGameGUI.this.cardDetailIsOpen = true;
 			}
-		  }
-		
+		}
 		
 		public void setCardName(String cardName) {
 			this.nameLabel.setText(cardName);
@@ -504,6 +441,49 @@ public class PlayGameGUI {
 		public void setVisible(boolean isVisible) {
 			this.cardComp.setVisible(isVisible);
 		}
+	}
+	
+	private void setHandCards(ArrayList<CardFields> playerCards, Collection<Card> cards) {
+		ArrayList<String> cardFields = new ArrayList<String>();
+		for (CardFields cardField: playerCards) {
+			cardFields.add(cardField.getCardName());
+			cardField.setVisible(true);
+		}
+		
+		Iterator<Card> cardIterator = cards.iterator();
+		Card card;
+		do {
+			card = cardIterator.next();
+			if (cardFields.contains(card.getName())) {
+				continue;
+			}
+			for (CardFields cardField: playerCards) {
+				if (cardField.getCardName() == "") {
+					cardField.setCardName(card.getName());
+					break;
+				}
+			}
+		} while (cardIterator.hasNext());
+	}
+	
+	private static void removeCardFromDeck(ArrayList<CardFields> cardFields, String name) {
+		for (CardFields cardField: cardFields) {
+			if( cardField.getCardName() == name) {
+				cardField.setCardName("");
+				cardField.setVisible(false);
+				break;
+			}
+		}
+	}
+	
+	private void setChoosenCardName(CardFields cardField, String name) {
+		if (name != null) {
+			cardField.setCardName(name);
+			cardField.setVisible(true);
+		} else {
+			cardField.setVisible(false);
+		}
+		
 	}
 	
 	private class DefenceBuildingFields {
