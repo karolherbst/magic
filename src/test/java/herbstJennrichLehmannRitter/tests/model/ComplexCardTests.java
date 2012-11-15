@@ -279,4 +279,26 @@ public class ComplexCardTests {
 //			assertEquals(card.getCardAction(), playerTwo.getDeck().getAllCards());
 //		}
 //	}
+	
+	@Test
+	public void testParitaet() {
+		Card paritaet = this.gameCardFactory.createCard("Parität");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				1, 1, 1, 1);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		paritaet.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(12, playerOne.getMagicLab().getLevel());	
+	}
+	
+	@Test
+	public void testParitaetTwo() {
+		Card paritaetTwo = this.gameCardFactory.createCard("Parität");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				13, 13, 13, 13);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 9, 12);
+		paritaetTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(13, playerTwo.getMagicLab().getLevel());	
+	}
 }
