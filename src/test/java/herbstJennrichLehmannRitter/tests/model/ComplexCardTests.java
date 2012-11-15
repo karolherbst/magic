@@ -178,6 +178,7 @@ public class ComplexCardTests {
 		elfischeBogenschuetzen.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
 		assertEquals(playerTwo.getTower().getActualPoints(), 6);	
 	}
+	
 	@Test
 	public void testElfischeBogenschuetzenTwo () {
 		Card elfischeBogenschuetzenTwo = this.gameCardFactory.createCard("Elfische Bogenschützen");
@@ -187,5 +188,27 @@ public class ComplexCardTests {
 				12, 12, 12, 12);
 		elfischeBogenschuetzenTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
 		assertEquals(playerTwo.getWall().getActualPoints(), 6);	
+	}
+	
+	@Test
+	public void testGlasperlen () {
+		Card glasperlen = this.gameCardFactory.createCard("Glasperlen");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				10, 10, 10, 10);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		glasperlen.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(playerOne.getTower().getActualPoints(), 12);	
+	}
+	
+	@Test
+	public void testGlasperlenTwo () {
+		Card glasperlenTwo = this.gameCardFactory.createCard("Glasperlen");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				13, 13, 13, 13);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		glasperlenTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(playerOne.getTower().getActualPoints(), 14);	
 	}
 }
