@@ -3,6 +3,7 @@ package herbstJennrichLehmannRitter.ui;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Collection;
  * Interface um den Client Informationen zu übergeben
  *
  */
-public interface UserInterface {
+public interface UserInterface extends Serializable {
 	
 	public void setData(Data data);
 
