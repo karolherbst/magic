@@ -170,8 +170,8 @@ public class ToStringTest {
 		assertNotNull(pfuschenderSchmied);
 		System.out.println(pfuschenderSchmied);
 		//TODO: Text muss noch angepasst werden, wenn Karte ziehen und spielen korrekt implementiert ist
-		assertEquals("Pfuschender Schmied[Kosten: 2 Kristall, 2 Ziegel; Selbst: 1 Karte ziehen; " +
-				"Gegner: Alle Steinbruchkarten aus der Hand ablegen]", pfuschenderSchmied.toString());
+		assertEquals("Pfuschender Schmied[Kosten: 2 Kristall, 2 Ziegel; Selbst: 1 Karte ziehen, noch eine Karte " +
+				"spielen; Gegner: Alle Steinbruchkarten aus der Hand ablegen]", pfuschenderSchmied.toString());
 	}
 	
 	@Test
