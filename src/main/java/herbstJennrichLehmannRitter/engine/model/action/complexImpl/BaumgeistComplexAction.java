@@ -10,7 +10,7 @@ public class BaumgeistComplexAction implements ComplexCardAction {
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
 		if (sourcePlayer.getDungeon().getLevel() > targetPlayer.getWall().getActualPoints()) {
-			targetPlayer.getWall().applyDamage(11);
+			targetPlayer.getTower().applyDamage(11);
 		}
 	}
 
