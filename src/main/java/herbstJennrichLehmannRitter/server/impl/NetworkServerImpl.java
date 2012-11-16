@@ -11,9 +11,7 @@ import java.util.Collection;
 
 public class NetworkServerImpl extends UnicastRemoteObject implements GameServer {
 
-//	private static final long serialVersionUID = -5758886288940510467L;
-	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -5758886288940510467L;
 	private GameServer gameServer;
 	
 	public NetworkServerImpl(GameServer gameServer) throws RemoteException {
