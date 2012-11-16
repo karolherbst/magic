@@ -1,6 +1,6 @@
 package herbstJennrichLehmannRitter.engine.model.impl;
 
-import herbstJennrichLehmannRitter.engine.enums.RessourceType;
+import herbstJennrichLehmannRitter.engine.enums.ResourceType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 
@@ -10,9 +10,9 @@ public abstract class AbstractCard implements Card {
 	public String getCostDescription() {
 		StringBuilder stringBuilder = new StringBuilder();
 		
-		MagicUtils.addValueToStringBuilder(RessourceType.MONSTER, Integer.valueOf(getCostMonsters()), stringBuilder);
-		MagicUtils.addValueToStringBuilder(RessourceType.CRYSTAL, Integer.valueOf(getCostCrystal()), stringBuilder);
-		MagicUtils.addValueToStringBuilder(RessourceType.BRICK, Integer.valueOf(getCostBrick()), stringBuilder);
+		MagicUtils.addValueToStringBuilder(ResourceType.MONSTER, Integer.valueOf(getCostMonsters()), stringBuilder);
+		MagicUtils.addValueToStringBuilder(ResourceType.CRYSTAL, Integer.valueOf(getCostCrystal()), stringBuilder);
+		MagicUtils.addValueToStringBuilder(ResourceType.BRICK, Integer.valueOf(getCostBrick()), stringBuilder);
 		
 		return stringBuilder.toString();
 	}

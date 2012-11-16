@@ -5,7 +5,7 @@ package herbstJennrichLehmannRitter.engine.enums;
  * Enum der Ressourcentypen
  * 
  */
-public enum RessourceType {
+public enum ResourceType {
 	
 	BRICK("Ziegel"),
 	CRYSTAL("Kristall"),
@@ -13,7 +13,7 @@ public enum RessourceType {
 	
 	private final String value;
 	
-	private RessourceType(String value) {
+	private ResourceType(String value) {
 		this.value = value;
 	}
 	

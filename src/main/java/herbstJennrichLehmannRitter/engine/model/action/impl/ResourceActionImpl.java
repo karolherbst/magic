@@ -1,7 +1,7 @@
 package herbstJennrichLehmannRitter.engine.model.action.impl;
 
 import herbstJennrichLehmannRitter.engine.enums.BuildingType;
-import herbstJennrichLehmannRitter.engine.enums.RessourceType;
+import herbstJennrichLehmannRitter.engine.enums.ResourceType;
 import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
 import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 
@@ -95,9 +95,9 @@ public class ResourceActionImpl implements ResourceAction {
 		MagicUtils.addValueToStringBuilder(BuildingType.MINE, Integer.valueOf(getMineLvlEffect()), stringBuilder, true);
 		MagicUtils.addValueToStringBuilder(BuildingType.DUNGEON, Integer.valueOf(getDungeonLvlEffect()), stringBuilder, true);
 		MagicUtils.addValueToStringBuilder(BuildingType.MAGIC_LAB, Integer.valueOf(getMagicLabLvlEffect()), stringBuilder, true);
-		MagicUtils.addValueToStringBuilder(RessourceType.BRICK, Integer.valueOf(getBrickEffect()), stringBuilder, true);
-		MagicUtils.addValueToStringBuilder(RessourceType.MONSTER, Integer.valueOf(getMonsterEffect()), stringBuilder, true);
-		MagicUtils.addValueToStringBuilder(RessourceType.CRYSTAL, Integer.valueOf(getCrystalEffect()), stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(ResourceType.BRICK, Integer.valueOf(getBrickEffect()), stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(ResourceType.MONSTER, Integer.valueOf(getMonsterEffect()), stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(ResourceType.CRYSTAL, Integer.valueOf(getCrystalEffect()), stringBuilder, true);
 		MagicUtils.addValueToStringBuilder("Schaden", Integer.valueOf(getDamage()), stringBuilder, true);
 		
 		return stringBuilder.toString();

@@ -53,8 +53,8 @@ public class PlayGameGUI {
 	private RessourceFields enemyMine;
 	private ArrayList<CardFields> playerCards;
 	private ArrayList<CardFields> enemyCards;
-	private CardFields playerChoosenCard;
-	private CardFields enemyChoosenCards;
+	private CardFields playerChosenCard;
+	private CardFields enemyChosenCards;
 	
 	protected String text;
 	private GameMessage gameMessage;
@@ -85,8 +85,8 @@ public class PlayGameGUI {
 		initEnemyTower();
 		initPlayerCards();
 		initEnemyCards();
-		initPlayerChoosenCards();
-		initEnemyChoosenCards();
+		initPlayerChosenCards();
+		initEnemyChosenCards();
 		initEnemyName();
 		horizontalLine();
 		this.shell.pack();
@@ -263,18 +263,18 @@ public class PlayGameGUI {
 		PlayGameGUI.setHandCards(PlayGameGUI.this.playerCards, cards);
 	}
 	
-	private void initPlayerChoosenCards() {
-		this.playerChoosenCard = new CardFields(457, 388, false, false);
+	private void initPlayerChosenCards() {
+		this.playerChosenCard = new CardFields(457, 388, false, false);
 	}
 	
-	public void setPlayerChoosenCardName(String name) {
-		PlayGameGUI.setChoosenCardName(PlayGameGUI.this.playerChoosenCard, name);
+	public void setPlayerChosenCardName(String name) {
+		PlayGameGUI.setChosenCardName(PlayGameGUI.this.playerChosenCard, name);
 	}
 
 	public void playerPlayedCard(String name) {
 		PlayGameGUI.removeCardFromDeck(this.playerCards, name);
-		this.playerChoosenCard.setCardName(name);
-		this.playerChoosenCard.setVisible(true);
+		this.playerChosenCard.setCardName(name);
+		this.playerChosenCard.setVisible(true);
 	}
 	
 	public void playerDiscardCard(String name) {
@@ -338,18 +338,18 @@ public class PlayGameGUI {
 		PlayGameGUI.setHandCards(PlayGameGUI.this.enemyCards, cards);
 	}
 	
-	private void initEnemyChoosenCards() {
-		this.enemyChoosenCards = new CardFields(457, 227, false, false);
+	private void initEnemyChosenCards() {
+		this.enemyChosenCards = new CardFields(457, 227, false, false);
 	}
 	
-	public void setEnemyChoosenCardName(String name) {
-		PlayGameGUI.setChoosenCardName(PlayGameGUI.this.enemyChoosenCards, name);
+	public void setEnemyChosenCardName(String name) {
+		PlayGameGUI.setChosenCardName(PlayGameGUI.this.enemyChosenCards, name);
 	}
 	
 	public void enemyPlayedCard(String name) {
 		PlayGameGUI.removeCardFromDeck(this.enemyCards, name);
-		this.enemyChoosenCards.setCardName(name);
-		this.enemyChoosenCards.setVisible(true);
+		this.enemyChosenCards.setCardName(name);
+		this.enemyChosenCards.setVisible(true);
 	}
 	
 	public void enemyDiscardCard(String name) {
@@ -493,7 +493,7 @@ public class PlayGameGUI {
 		}
 	}
 	
-	private static void setChoosenCardName(CardFields cardField, String name) {
+	private static void setChosenCardName(CardFields cardField, String name) {
 		if (name != null) {
 			cardField.setCardName(name);
 			cardField.setVisible(true);

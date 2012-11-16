@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import herbstJennrichLehmannRitter.engine.enums.BuildingType;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.enums.GameType;
-import herbstJennrichLehmannRitter.engine.enums.RessourceType;
+import herbstJennrichLehmannRitter.engine.enums.ResourceType;
 
 import org.junit.Test;
 
@@ -35,8 +35,8 @@ public class EnumTests {
 	
 	@Test
 	public void testRessourceTypeToString() {
-		assertEquals(RessourceType.BRICK.toString(), "Ziegel");
-		assertEquals(RessourceType.CRYSTAL.toString(), "Kristall");
-		assertEquals(RessourceType.MONSTER.toString(), "Monster");
+		assertEquals(ResourceType.BRICK.toString(), "Ziegel");
+		assertEquals(ResourceType.CRYSTAL.toString(), "Kristall");
+		assertEquals(ResourceType.MONSTER.toString(), "Monster");
 	}
 }

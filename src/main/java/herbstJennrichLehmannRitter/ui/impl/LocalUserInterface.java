@@ -76,7 +76,7 @@ public class LocalUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				LocalUserInterface.this.playGameGUI.setPlayerChoosenCardName(card.getName());
+				LocalUserInterface.this.playGameGUI.setPlayerChosenCardName(card.getName());
 			}
 		});
 	}

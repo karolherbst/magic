@@ -104,7 +104,7 @@ public class ClientUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				ClientUserInterface.this.playGameGUI.setEnemyChoosenCardName(card.getName());
+				ClientUserInterface.this.playGameGUI.setEnemyChosenCardName(card.getName());
 			}
 		});
 	}

@@ -107,7 +107,7 @@ public class DemoUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				DemoUserInterface.this.playGameGUI.setPlayerChoosenCardName(card.getName());
+				DemoUserInterface.this.playGameGUI.setPlayerChosenCardName(card.getName());
 			}
 		});
 	}
