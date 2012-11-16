@@ -7,6 +7,7 @@ import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 @ComplexCard("Überflutung")
 public class UeberflutungComplexAction implements ComplexCardAction {
 
+	
 	@Override
 	public void applyActionOnPlayer(Player sourcePlayer, Player targetPlayer) {
 		if( sourcePlayer.getWall().getActualPoints() < targetPlayer.getWall().getActualPoints()) {
