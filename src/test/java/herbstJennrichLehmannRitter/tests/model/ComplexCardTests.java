@@ -3,6 +3,8 @@ package herbstJennrichLehmannRitter.tests.model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -268,25 +270,23 @@ public class ComplexCardTests {
 	
 	
 //	TODO: kann auf den Test hier bitte mal einer schauen? Weiß grad nicht, wie ich den bauen soll.
-//	@Test
-//	public void testParadoxon() {
-//		Card paradoxon = this.gameCardFactory.createCard("Paradoxon");
-//		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
-//				1, 1, 1, 1);
-//		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
-//				12, 12, 12, 12);
-//		Collection<Card> playerOneCards = playerOne.getDeck().getAllCards();
-//		Collections.sort(playerOneCards);
-//		paradoxon.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
-//		Collection<Card> playerTwoCards = playerTwo.getDeck().getAllCards();
-//		for (Card cardTwo : playerTwoCards) {
-//			cardTwo.getName();
-//		}
-//		for (Card card : playerOneCards) {
-//			assertEquals(card.getName(), playerTwoCards.);
-//		}
-//		assertTrue(playerOneCards.equals(playerTwoCards));
-//	}
+	@Test
+	public void testParadoxon() {
+		Card paradoxon = this.gameCardFactory.createCard("Paradoxon");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				1, 1, 1, 1);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				2, 2, 2, 2);
+		Collection<Card> playerOneCardsOld = playerOne.getDeck().getAllCards();
+		Collection<Card> playerTwoCardsOld = playerTwo.getDeck().getAllCards();
+		paradoxon.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		Collection<Card> playerOneCardsNew = playerOne.getDeck().getAllCards();
+		Collection<Card> playerTwoCardsNew = playerTwo.getDeck().getAllCards();
+		List<Card> playerOneOldlist = new ArrayList<Card>(playerOneCardsOld);
+		List<Card> playerTwoOldlist = new ArrayList<Card>(playerTwoCardsOld);
+		assertTrue(playerOneOldlist.containsAll(playerTwoCardsNew));
+		assertTrue(playerTwoOldlist.containsAll(playerOneCardsNew));
+	}
 	
 	@Test
 	public void testParitaet() {
