@@ -386,11 +386,37 @@ public class ComplexCardTests {
 	@Test
 	public void testWeihnachtsmann() {
 		Card weihnachtsmann = this.gameCardFactory.createCard("Weihnachtsmann");
-		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
-				1, 1, 1, 1);
-		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
-				12, 12, 12, 12);
+		
+		Collection<Card> cards = new ArrayList<Card>();
+		cards.add(this.gameCardFactory.createCard("Architektur"));
+		cards.add(this.gameCardFactory.createCard("Barracke"));
+		cards.add(this.gameCardFactory.createCard("Kristallsteine"));
+		cards.add(this.gameCardFactory.createCard("Feuerrubin"));
+		cards.add(this.gameCardFactory.createCard("Lavajuwel"));
+		cards.add(this.gameCardFactory.createCard("Prisma"));
+		cards.add(this.gameCardFactory.createCard("Drache"));
+		cards.add(this.gameCardFactory.createCard("Ork"));
+		cards.add(this.gameCardFactory.createCard("Pfuschender Schmied"));
+		cards.add(weihnachtsmann);
+		
+		Player playerOne = this.playerFactory.createPlayer("Spieler", cards, 1, 1, 1, 1);
+		Player playerTwo = new PlayerImpl();
+		
+		do {
+			playerOne.getDeck().discardAllCards();
+			playerOne.getDeck().pickCard();
+			if (playerOne.getDeck().getAllCards().contains(weihnachtsmann)) {
+				break;
+			}
+		} while (true);
+		
 		weihnachtsmann.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
-		//TODO: Hier fehlt noch eine Implementation der Kostenabfrage, aber ich hab keine Ahnung, wie ich das machen soll...
+		playerOne.getDeck().discardCard(weihnachtsmann);
+		assertEquals(playerOne.getDeck().getHandDeckSize(), 1);
+		
+		List<Card> listOfCards = new ArrayList<Card>(playerOne.getDeck().getAllCards());
+		Card handCard = listOfCards.get(0);
+		int sumOfCosts = handCard.getCostBrick() + handCard.getCostCrystal() + handCard.getCostMonsters();
+		assertTrue(sumOfCosts > 14);
 	}
 }
