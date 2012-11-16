@@ -1,15 +1,7 @@
 package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
@@ -18,6 +10,11 @@ import herbstJennrichLehmannRitter.engine.factory.impl.PlayerFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.impl.PlayerImpl;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
