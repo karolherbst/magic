@@ -145,7 +145,7 @@ public class HostMenuGUI {
 	private void cancelTimer() {
 		this.timer.cancel();
 	}
-	
+
 	public void cancelTimerAndOpenPlayGameGUI() {
 		cancelTimer();
 		try {
