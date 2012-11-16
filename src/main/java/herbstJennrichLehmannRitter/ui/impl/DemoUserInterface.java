@@ -15,6 +15,7 @@ import java.util.Collection;
 
 import org.eclipse.swt.widgets.Display;
 
+@SuppressWarnings("serial")
 public class DemoUserInterface implements UserInterface {
 
 	private MainMenuGUI mainMenuGUI;
@@ -134,27 +135,10 @@ public class DemoUserInterface implements UserInterface {
 	
 	
 	@Override
-	public void youLost() {
-		Display.getDefault().asyncExec(new Runnable() {
-			
-			@Override
-			public void run() {
-				DemoUserInterface.this.playGameGUI.setGameStateToLoose();
-			}
-		});
-		
-	}
+	public void youLost() {}
 
 	@Override
-	public void youWon() {
-		Display.getDefault().asyncExec(new Runnable() {
-			
-			@Override
-			public void run() {
-				DemoUserInterface.this.playGameGUI.setGameStateToWon();
-			}
-		});
-	}
+	public void youWon() {}
 
 	@Override
 	public void abort(final String reason) {
