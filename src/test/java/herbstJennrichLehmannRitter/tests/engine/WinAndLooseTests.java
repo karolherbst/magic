@@ -18,7 +18,7 @@ public class WinAndLooseTests {
 	private Player player2;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 
 		this.player1 = this.playerFactory.createPlayer("Player1", Globals.getGameCardFactory().createDefaultDeck(),
 				0, 0, 0, 0);
