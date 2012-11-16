@@ -148,6 +148,7 @@ public class HostMenuGUI {
 	
 	public void cancelTimerAndOpenPlayGameGUI() {
 		cancelTimer();
+		this.shell.setVisible(false);
 		this.mainMenuGUI.getClientUserInterface().getPlayGameGUI().open();
 	}
 	
