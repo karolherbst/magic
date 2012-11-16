@@ -443,4 +443,18 @@ public class ComplexCardTests {
 		assertEquals(8, playerTwo.getDungeon().getLevel());
 		assertEquals(10, playerTwo.getTower().getActualPoints());
 	}
+	
+	@Test
+	public void testUeberflutungThree() {
+		Card ueberflutungThree = this.gameCardFactory.createCard("Überflutung");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				13, 13, 13, 13);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				13, 13, 13, 13);
+		ueberflutungThree.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(13, playerOne.getDungeon().getLevel());
+		assertEquals(13, playerOne.getTower().getActualPoints());
+		assertEquals(13, playerTwo.getDungeon().getLevel());
+		assertEquals(13, playerTwo.getTower().getActualPoints());
+	}
 }
