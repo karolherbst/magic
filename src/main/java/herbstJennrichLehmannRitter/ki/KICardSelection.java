@@ -86,11 +86,7 @@ public class KICardSelection {
 		}
 		
 		int enemyWall = enemyResourceAction.getWallEffect();
-		if (enemyWall > 0) {
-			this.cardSum += enemyWall * QUANTIFIER.LOW.value();
-		} else {
-			this.cardSum += enemyWall * QUANTIFIER.MEDIUM.value() * -1;
-		}
+		this.cardSum += enemyWall * QUANTIFIER.MEDIUM.value() * -1;
 		
 		int ownDungeon = ownResourceAction.getDungeonLvlEffect();
 		if (ownDungeon > 0) {
@@ -113,12 +109,7 @@ public class KICardSelection {
 			this.cardSum += ownMagicLab * QUANTIFIER.LOW.value();
 		}
 		
-		int enemyMagicLab = enemyResourceAction.getMagicLabLvlEffect();
-		if (enemyMagicLab > 0) {
-			this.cardSum += enemyMagicLab * QUANTIFIER.LOW.value();
-		} else {
-			this.cardSum += enemyMagicLab * QUANTIFIER.MEDIUM.value() * -1;
-		}
+		this.cardSum += enemyResourceAction.getMagicLabLvlEffect() * QUANTIFIER.MEDIUM.value() * -1;
 		
 		int ownMine = ownResourceAction.getMineLvlEffect();
 		if (ownMine > 0) {
@@ -141,12 +132,7 @@ public class KICardSelection {
 			this.cardSum += ownBrick * QUANTIFIER.LOW.value();
 		}
 		
-		int enemyBrick = enemyResourceAction.getBrickEffect();
-		if (enemyBrick > 0) {
-			this.cardSum += enemyBrick * QUANTIFIER.NULL.value();
-		} else {
-			this.cardSum += enemyBrick * QUANTIFIER.MEDIUM.value() * -1;
-		}
+		this.cardSum += enemyResourceAction.getBrickEffect() * QUANTIFIER.MEDIUM.value() * -1;
 		
 		int ownCrystal = ownResourceAction.getCrystalEffect();
 		if (ownCrystal > 0) {
@@ -155,12 +141,7 @@ public class KICardSelection {
 			this.cardSum += ownCrystal * QUANTIFIER.LOW.value();
 		}
 		
-		int enemyCrystal = enemyResourceAction.getCrystalEffect();
-		if (enemyCrystal > 0) {
-			this.cardSum += enemyCrystal * QUANTIFIER.NULL.value();
-		} else {
-			this.cardSum += enemyCrystal * QUANTIFIER.MEDIUM.value() * -1;
-		}
+		this.cardSum += enemyResourceAction.getCrystalEffect() * QUANTIFIER.MEDIUM.value() * -1;
 		
 		int ownMonster = ownResourceAction.getMonsterEffect();
 		if (ownMonster > 0) {
@@ -169,12 +150,7 @@ public class KICardSelection {
 			this.cardSum += ownMonster * QUANTIFIER.LOW.value();
 		}
 		
-		int enemyMonster = enemyResourceAction.getMonsterEffect();
-		if (enemyMonster > 0) {
-			this.cardSum += enemyMonster * QUANTIFIER.NULL.value();
-		} else {
-			this.cardSum += enemyMonster * QUANTIFIER.MEDIUM.value() * -1;
-		}
+		this.cardSum += enemyResourceAction.getMonsterEffect() * QUANTIFIER.MEDIUM.value() * -1;
 		
 		this.cardSum += ownResourceAction.getDamage() * QUANTIFIER.NULL.value();
 		this.cardSum += enemyResourceAction.getDamage() * QUANTIFIER.LOW.value();
@@ -211,11 +187,7 @@ public class KICardSelection {
 		}
 		
 		int enemyWall = enemyResourceAction.getWallEffect();
-		if (enemyWall > 0) {
-			this.cardSum += enemyWall * QUANTIFIER.LOW.value();
-		} else {
-			this.cardSum += enemyWall * QUANTIFIER.MEDIUM.value() * -1;
-		}
+		this.cardSum += enemyWall * QUANTIFIER.MEDIUM.value() * -1;
 		
 		int ownDungeon = ownResourceAction.getDungeonLvlEffect();
 		if (ownDungeon > 0) {
@@ -238,12 +210,7 @@ public class KICardSelection {
 			this.cardSum += ownMagicLab * QUANTIFIER.LOW.value();
 		}
 		
-		int enemyMagicLab = enemyResourceAction.getMagicLabLvlEffect();
-		if (enemyMagicLab > 0) {
-			this.cardSum += enemyMagicLab * QUANTIFIER.LOW.value();
-		} else {
-			this.cardSum += enemyMagicLab * QUANTIFIER.MEDIUM.value() * -1;
-		}
+		this.cardSum += enemyResourceAction.getMagicLabLvlEffect() * QUANTIFIER.MEDIUM.value() * -1;
 		
 		int ownMine = ownResourceAction.getMineLvlEffect();
 		if (ownMine > 0) {
@@ -266,12 +233,7 @@ public class KICardSelection {
 			this.cardSum += ownBrick * QUANTIFIER.LOW.value();
 		}
 		
-		int enemyBrick = enemyResourceAction.getBrickEffect();
-		if (enemyBrick > 0) {
-			this.cardSum += enemyBrick * QUANTIFIER.NULL.value();
-		} else {
-			this.cardSum += enemyBrick * QUANTIFIER.HIGH.value() * -1;
-		}
+		this.cardSum += enemyResourceAction.getBrickEffect() * QUANTIFIER.HIGH.value() * -1;
 		
 		int ownCrystal = ownResourceAction.getCrystalEffect();
 		if (ownCrystal > 0) {
@@ -280,12 +242,7 @@ public class KICardSelection {
 			this.cardSum += ownCrystal * QUANTIFIER.LOW.value();
 		}
 		
-		int enemyCrystal = enemyResourceAction.getCrystalEffect();
-		if (enemyCrystal > 0) {
-			this.cardSum += enemyCrystal * QUANTIFIER.NULL.value();
-		} else {
-			this.cardSum += enemyCrystal * QUANTIFIER.HIGH.value() * -1;
-		}
+		this.cardSum += enemyResourceAction.getCrystalEffect() * QUANTIFIER.HIGH.value() * -1;
 		
 		int ownMonster = ownResourceAction.getMonsterEffect();
 		if (ownMonster > 0) {
@@ -294,12 +251,7 @@ public class KICardSelection {
 			this.cardSum += ownMonster * QUANTIFIER.LOW.value();
 		}
 		
-		int enemyMonster = enemyResourceAction.getMonsterEffect();
-		if (enemyMonster > 0) {
-			this.cardSum += enemyMonster * QUANTIFIER.NULL.value();
-		} else {
-			this.cardSum += enemyMonster * QUANTIFIER.HIGH.value() * -1;
-		}
+		this.cardSum += enemyResourceAction.getMonsterEffect() * QUANTIFIER.HIGH.value() * -1;
 		
 		this.cardSum += ownResourceAction.getDamage() * QUANTIFIER.NULL.value();
 		this.cardSum += enemyResourceAction.getDamage() * QUANTIFIER.MEDIUM.value();
@@ -336,11 +288,7 @@ public class KICardSelection {
 		}
 		
 		int enemyWall = enemyResourceAction.getWallEffect();
-		if (enemyWall > 0) {
-			this.cardSum += enemyWall * QUANTIFIER.LOW.value();
-		} else {
-			this.cardSum += enemyWall * QUANTIFIER.HIGH.value() * -1;
-		}
+		this.cardSum += enemyWall * QUANTIFIER.HIGH.value() * -1;
 		
 		int ownDungeon = ownResourceAction.getDungeonLvlEffect();
 		if (ownDungeon > 0) {
@@ -363,12 +311,7 @@ public class KICardSelection {
 			this.cardSum += ownMagicLab * QUANTIFIER.LOW.value();
 		}
 		
-		int enemyMagicLab = enemyResourceAction.getMagicLabLvlEffect();
-		if (enemyMagicLab > 0) {
-			this.cardSum += enemyMagicLab * QUANTIFIER.LOW.value();
-		} else {
-			this.cardSum += enemyMagicLab * QUANTIFIER.MEDIUM.value() * -1;
-		}
+		this.cardSum += enemyResourceAction.getMagicLabLvlEffect() * QUANTIFIER.MEDIUM.value() * -1;
 		
 		int ownMine = ownResourceAction.getMineLvlEffect();
 		if (ownMine > 0) {
@@ -391,12 +334,7 @@ public class KICardSelection {
 			this.cardSum += ownBrick * QUANTIFIER.LOW.value();
 		}
 		
-		int enemyBrick = enemyResourceAction.getBrickEffect();
-		if (enemyBrick > 0) {
-			this.cardSum += enemyBrick * QUANTIFIER.NULL.value();
-		} else {
-			this.cardSum += enemyBrick * QUANTIFIER.MEDIUM.value() * -1;
-		}
+		this.cardSum += enemyResourceAction.getBrickEffect() * QUANTIFIER.MEDIUM.value() * -1;
 		
 		int ownCrystal = ownResourceAction.getCrystalEffect();
 		if (ownCrystal > 0) {
@@ -405,12 +343,7 @@ public class KICardSelection {
 			this.cardSum += ownCrystal * QUANTIFIER.LOW.value();
 		}
 		
-		int enemyCrystal = enemyResourceAction.getCrystalEffect();
-		if (enemyCrystal > 0) {
-			this.cardSum += enemyCrystal * QUANTIFIER.NULL.value();
-		} else {
-			this.cardSum += enemyCrystal * QUANTIFIER.MEDIUM.value() * -1;
-		}
+		this.cardSum += enemyResourceAction.getCrystalEffect() * QUANTIFIER.MEDIUM.value() * -1;
 		
 		int ownMonster = ownResourceAction.getMonsterEffect();
 		if (ownMonster > 0) {
@@ -419,12 +352,7 @@ public class KICardSelection {
 			this.cardSum += ownMonster * QUANTIFIER.LOW.value();
 		}
 		
-		int enemyMonster = enemyResourceAction.getMonsterEffect();
-		if (enemyMonster > 0) {
-			this.cardSum += enemyMonster * QUANTIFIER.NULL.value();
-		} else {
-			this.cardSum += enemyMonster * QUANTIFIER.HIGH.value() * -1;
-		}
+		this.cardSum += enemyResourceAction.getMonsterEffect() * QUANTIFIER.HIGH.value() * -1;
 		
 		this.cardSum += ownResourceAction.getDamage() * QUANTIFIER.LOW.value();
 		this.cardSum += enemyResourceAction.getDamage() * QUANTIFIER.HIGH.value();
@@ -434,9 +362,11 @@ public class KICardSelection {
 	}
 	
 	private void addComplexCards() {
-		this.cardSum += (int)(this.card.getCostBrick() * Math.PI);
-		this.cardSum += (int)(this.card.getCostCrystal() * Math.E);
-		this.cardSum += (int)(this.card.getCostMonsters() * 1.337);
+		if (this.card.getComplexCardAction() != null) {
+			this.cardSum += (int)(this.card.getCostBrick() * Math.PI);
+			this.cardSum += (int)(this.card.getCostCrystal() * Math.E);
+			this.cardSum += (int)(this.card.getCostMonsters() * 1.337);
+		}
 	}
 	
 	private void subtractCosts() {
