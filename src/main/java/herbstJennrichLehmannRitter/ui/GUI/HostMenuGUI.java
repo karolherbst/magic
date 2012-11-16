@@ -148,6 +148,12 @@ public class HostMenuGUI {
 	
 	public void cancelTimerAndOpenPlayGameGUI() {
 		cancelTimer();
+		try {
+			this.gameServer.start(this.gameType);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.shell.setVisible(false);
 		this.mainMenuGUI.getClientUserInterface().getPlayGameGUI().open();
 	}
