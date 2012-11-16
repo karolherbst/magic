@@ -13,6 +13,7 @@ import java.util.Collection;
 
 import org.eclipse.swt.widgets.Display;
 
+@SuppressWarnings("serial")
 public class LocalUserInterface implements UserInterface {
 
 	private MainMenuGUI mainMenuGUI;
