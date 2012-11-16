@@ -661,11 +661,11 @@ public class PlayGameGUI {
 		}
 		
 		public void setTitleToWon() {
-			GameMessage.this.setGameMessageText("Sie haben gewonnen", 0, 200);
+			GameMessage.this.setGameMessageText(PlayGameGUI.this.getPlayerName() + " hat gewonnen", 0, 200);
 		}
 		
 		public void setTitleToLoose() {
-			GameMessage.this.setGameMessageText("Sie haben verloren", 200, 0);
+			GameMessage.this.setGameMessageText(PlayGameGUI.this.getPlayerName() + " hat verloren", 200, 0);
 		}
 		
 		public void setTitleToAbort(final String text) {
