@@ -3,7 +3,6 @@ package herbstJennrichLehmannRitter.engine.controller.impl;
 import herbstJennrichLehmannRitter.engine.controller.WinAndLoseChecker;
 import herbstJennrichLehmannRitter.engine.model.Player;
 
-//TODO: Test
 public class WinAndLoseTowerBuildingChecker extends WinAndLoseChecker {
 
 	@Override

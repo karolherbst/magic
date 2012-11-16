@@ -10,7 +10,6 @@ import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
 import herbstJennrichLehmannRitter.engine.model.action.impl.CardActionImpl;
 import herbstJennrichLehmannRitter.engine.model.action.impl.ResourceActionImpl;
 
-//TODO: Test
 public class CardImpl extends AbstractCard {
 
 	private final String name;
