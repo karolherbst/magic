@@ -2,9 +2,12 @@ package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.assertEquals;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
+import herbstJennrichLehmannRitter.engine.factory.PlayerFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
+import herbstJennrichLehmannRitter.engine.factory.impl.PlayerFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Deck;
 import herbstJennrichLehmannRitter.engine.model.DefenceBuilding;
+import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
 import herbstJennrichLehmannRitter.engine.model.impl.DeckImpl;
 import herbstJennrichLehmannRitter.engine.model.impl.DungeonImpl;
@@ -80,5 +83,17 @@ public class PlayerTests {
 		this.player.setWall(wall);
 		
 		assertEquals(wall, this.player.getWall());
+	}
+	
+	@Test
+	public void testPlayerCopy() {
+		Player player = new PlayerImpl();
+		player.setName("Kurt");
+		
+		PlayerFactory playerFactory = new PlayerFactoryImpl();
+		Player enemy = playerFactory.createCopyForEnemy(player);
+		
+		assertEquals(player.toString(), enemy.toString());
+		
 	}
 }

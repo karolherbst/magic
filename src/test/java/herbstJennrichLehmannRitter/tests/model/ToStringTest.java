@@ -5,6 +5,8 @@ import static org.junit.Assert.assertNotNull;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
 import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
 import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.Player;
+import herbstJennrichLehmannRitter.engine.model.impl.PlayerImpl;
 
 import org.junit.Test;
 
@@ -216,5 +218,13 @@ public class ToStringTest {
 		System.out.println(weihnachtsmann);
 		assertEquals("Weihnachtsmann[Selbst: +5 Ziegel, +5 Monster, +5 Kristall, " +
 			"Zufällige Karte mit Kosten>14 vom Vorratsstapel oder Friedhof ziehen]", weihnachtsmann.toString());
+	}
+	
+	@Test
+	public void testPlayerToString() {
+		Player player = new PlayerImpl();
+		player.setName("Kurt");
+		assertEquals("Player[name:Kurt tower:25 wall:10 " +
+				"mine:{lvl:1 stock:15} magicLab:{lvl:1 stock:15} dungeon:{lvl:1 stock:15}]", player.toString());
 	}
 }
