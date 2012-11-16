@@ -30,6 +30,7 @@ public class GameEngineControllerImpl implements GameEngineController {
 	private static final int DEFAULT_RSC_BUILDING_STOCK = 15;
 
 	private WinAndLoseChecker winAndLoseChecker;
+	private GameType gameType;
 	
 	private GameCardFactory gameCardFactory = new GameCardFactoryImpl();
 	private PlayerFactory playerFactory = new PlayerFactoryImpl();
@@ -65,6 +66,7 @@ public class GameEngineControllerImpl implements GameEngineController {
 
 	@Override
 	public void start(GameType gameType) {
+		this.gameType = gameType;
 		
 		switch (gameType) {
 		case TOWER_BUILDING:
@@ -196,5 +198,10 @@ public class GameEngineControllerImpl implements GameEngineController {
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public GameType getGameType() {
+		return this.gameType;
 	}
 }

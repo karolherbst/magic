@@ -203,4 +203,9 @@ public class GameServiceImpl implements GameService {
 	public Collection<Card> getAllPossibleCards() {
 		return this.gameEngineController.getGameCardFactory().getAllPossibleCards();
 	}
+	
+	@Override
+	public GameType getGameType() {
+		return this.gameEngineController.getGameType();
+	}
 }

@@ -23,4 +23,5 @@ public interface GameService {
 	public void discardCard(Thread thread, Card card);
 
 	public Collection<Card> getAllPossibleCards();
+	public GameType getGameType();
 }

@@ -58,6 +58,11 @@ public class GameServerImpl implements GameServer {
 	public Collection<Card> getAllPossibleCards() {
 		return this.gameService.getAllPossibleCards();
 	}
+	
+	@Override
+	public GameType getGameType() {
+		return this.gameService.getGameType();
+	}
 
 	@Override
 	public void register(final UserInterface userInterface) {

@@ -52,5 +52,10 @@ public class NetworkServerImpl extends UnicastRemoteObject implements GameServer
 	public Collection<Card> getAllPossibleCards() throws RemoteException {
 		return this.gameServer.getAllPossibleCards();
 	}
+	
+	@Override
+	public GameType getGameType() throws RemoteException {
+		return this.gameServer.getGameType();
+	}
 
 }

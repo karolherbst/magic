@@ -27,4 +27,6 @@ public interface GameEngineController {
 	
 	public boolean hasPlayerWon(Player player, Player enemy);
 	
+	public GameType getGameType();
+	
 }

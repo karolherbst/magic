@@ -25,4 +25,5 @@ public interface GameServer extends Remote {
 	public void discardCard(Card card) throws RemoteException;
 	
 	public Collection<Card> getAllPossibleCards() throws RemoteException;
+	public GameType getGameType() throws RemoteException;
 }
