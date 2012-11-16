@@ -149,8 +149,11 @@ public class KI implements UserInterface, Runnable {
 		Card cardToPlay = null;
 		for (Card card : cardMap.values()) {
 			if (MagicUtils.canPlayerEffortCard(this.data.getOwnPlayer(), card)) {
-				cardToPlay = card;
-				break;
+				if (this.data.getOwnPlayer().getTower().getActualPoints() > 
+						card.getOwnResourceAction().getTowerEffect()) {
+					cardToPlay = card;
+					break;
+				}
 			}
 		}
 		
