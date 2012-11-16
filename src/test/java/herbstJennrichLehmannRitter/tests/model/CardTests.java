@@ -1,8 +1,8 @@
 package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.engine.enums.CardType;
@@ -212,7 +212,15 @@ public class CardTests {
 		player.getDeck().discardAllCards();
 		assertEquals(player.getDeck().getHandDeckSize(), 0);
 		assertFalse(MagicUtils.canPlayerPlayAnotherRound(cardFreundlicheUmgebung, player));
-		
 	}
-
+	
+	@Test
+	public void testCardEquals() {
+		GameCardFactory gameCardFactory = new GameCardFactoryImpl();
+		Card architektur = gameCardFactory.createCard("Architektur");
+		Integer zwoelf = new Integer(12);
+		
+		assertFalse(architektur.equals(zwoelf));
+	}
+	
 }
