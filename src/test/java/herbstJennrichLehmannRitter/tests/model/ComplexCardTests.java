@@ -419,4 +419,28 @@ public class ComplexCardTests {
 		int sumOfCosts = handCard.getCostBrick() + handCard.getCostCrystal() + handCard.getCostMonsters();
 		assertTrue(sumOfCosts > 14);
 	}
+	
+	@Test
+	public void testUeberflutung() {
+		Card ueberflutung = this.gameCardFactory.createCard("Überflutung");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				10, 10, 10, 10);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		ueberflutung.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(9, playerOne.getDungeon().getLevel());
+		assertEquals(8, playerOne.getTower().getActualPoints());
+	}
+	
+	@Test
+	public void testUeberflutungTwo() {
+		Card ueberflutungTwo = this.gameCardFactory.createCard("Überflutung");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				13, 13, 13, 13);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 9, 12);
+		ueberflutungTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(8, playerTwo.getDungeon().getLevel());
+		assertEquals(10, playerTwo.getTower().getActualPoints());
+	}
 }
