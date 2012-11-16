@@ -268,8 +268,6 @@ public class ComplexCardTests {
 		assertEquals(14, playerOne.getMine().getLevel());	
 	}
 	
-	
-//	TODO: kann auf den Test hier bitte mal einer schauen? Weiß grad nicht, wie ich den bauen soll.
 	@Test
 	public void testParadoxon() {
 		Card paradoxon = this.gameCardFactory.createCard("Paradoxon");
