@@ -1,6 +1,7 @@
 package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -308,21 +309,30 @@ public class ComplexCardTests {
 		assertEquals(13, playerTwo.getMagicLab().getLevel());	
 	}
 	
-//	@Test
-//	TODO: wie fragt man zwei verschieden möglichkeiten ab?
-//	public void testPfuschenderSchmied() {
-//		Card pfuschenderSchmied = this.gameCardFactory.createCard("Pfuschender Schmied");
-//		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
-//				1, 1, 1, 1);
-//		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
-//				12, 12, 12, 12);
-//		pfuschenderSchmied.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
-//		Collection<Card> handCards = playerOne.getDeck().getAllCards();
-//		for (Card card : handCards) {
-//			assertEquals(card.getCardType(), CardType.DUNGEON, CardType.MAGIC_LAB);
-//		}
-//	}
-	
+	@Test
+
+	public void testPfuschenderSchmied() {
+		Card pfuschenderSchmied = this.gameCardFactory.createCard("Pfuschender Schmied");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				11, 11, 11, 11);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		
+		pfuschenderSchmied.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		Collection<Card> handCards = playerOne.getDeck().getAllCards();
+		for (Card card : handCards) {
+			if (card.getCardType() ==  CardType.MAGIC_LAB){
+				assertEquals(card.getCardType(), CardType.MAGIC_LAB);
+			}
+			if (card.getCardType() ==  CardType.DUNGEON){
+				assertEquals(card.getCardType(), CardType.DUNGEON);
+			}
+			if(card.getCardType() ==  CardType.MINE){
+				assertEquals(card.getCardType(), CardType.MINE);
+			}
+		}
+	}
+
 	@Test
 	public void testPureMagie() {
 		Card pureMagie = this.gameCardFactory.createCard("Pure Magie");
