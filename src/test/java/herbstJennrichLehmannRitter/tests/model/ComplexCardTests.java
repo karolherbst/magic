@@ -1,8 +1,11 @@
 package herbstJennrichLehmannRitter.tests.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
@@ -272,12 +275,17 @@ public class ComplexCardTests {
 //				1, 1, 1, 1);
 //		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
 //				12, 12, 12, 12);
-//		Collection<Card> oldCards = playerTwo.getDeck().getAllCards();
+//		Collection<Card> playerOneCards = playerOne.getDeck().getAllCards();
+//		Collections.sort(playerOneCards);
 //		paradoxon.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
-//		Collection<Card> newCards = playerOne.getDeck().getAllCards();
-//		for (Card card : oldCards) {
-//			assertEquals(card.getCardAction(), playerTwo.getDeck().getAllCards());
+//		Collection<Card> playerTwoCards = playerTwo.getDeck().getAllCards();
+//		for (Card cardTwo : playerTwoCards) {
+//			cardTwo.getName();
 //		}
+//		for (Card card : playerOneCards) {
+//			assertEquals(card.getName(), playerTwoCards.);
+//		}
+//		assertTrue(playerOneCards.equals(playerTwoCards));
 //	}
 	
 	@Test
