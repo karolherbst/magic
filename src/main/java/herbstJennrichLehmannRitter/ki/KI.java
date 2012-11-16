@@ -11,7 +11,6 @@ import java.rmi.RemoteException;
 import java.util.Collection;
 import java.util.concurrent.Semaphore;
 
-//TODO: Tests
 
 public class KI implements UserInterface, Runnable {
 
