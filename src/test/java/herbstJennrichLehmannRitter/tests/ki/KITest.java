@@ -17,20 +17,22 @@ public class KITest {
 		// wait for KI to register
 		Thread.sleep(100);
 		Globals.getLocalGameServer().start(GameType.COLLECTION_RAGE);
-		Thread.sleep(6000);
+		Thread.sleep(30000);
 		Globals.getLocalGameServer().stop();
+		Globals.getLocalGameServer().unregister(new KI("KI2000", Globals.getLocalGameServer()));
+		Globals.getLocalGameServer().unregister(new KI("KI3000", Globals.getLocalGameServer()));
 	}
 	
-	//TODO Test KI with TOWER_BUILDING
-//	@Test
+	@Test
 	public void testKiWithTowerBuilding() throws InterruptedException, RemoteException {
 		KI.startKIOnLocal("KI2000");
 		KI.startKIOnLocal("KI3000");
 		// wait for KI to register
 		Thread.sleep(100);
 		Globals.getLocalGameServer().start(GameType.TOWER_BUILDING);
-		Thread.sleep(6000);
+		Thread.sleep(30000);
+		Globals.getLocalGameServer().stop();
+		Globals.getLocalGameServer().unregister(new KI("KI2000", Globals.getLocalGameServer()));
+		Globals.getLocalGameServer().unregister(new KI("KI3000", Globals.getLocalGameServer()));
 	}
-	
-	
 }
