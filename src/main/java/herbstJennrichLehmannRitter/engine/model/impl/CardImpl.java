@@ -36,23 +36,9 @@ public class CardImpl extends AbstractCard {
 		this.costMonsters = card.getCostMonsters();
 		this.costCrystal = card.getCostCrystal();
 		
-		if (card.getCardAction() != null) {
-			this.cardAction = new CardActionImpl(card.getCardAction());
-		} else {
-			this.cardAction = null;
-		}
-		
-		if (card.getOwnResourceAction() != null) {
-			this.ownResourceActions = new ResourceActionImpl(card.getOwnResourceAction());
-		} else {
-			this.ownResourceActions = null;
-		}
-		
-		if (card.getEnemyResourceAction() != null) {
-			this.enemyResourceActions = new ResourceActionImpl(card.getEnemyResourceAction());
-		} else {
-			this.enemyResourceActions = null;
-		}
+		this.cardAction = new CardActionImpl(card.getCardAction());
+		this.ownResourceActions = new ResourceActionImpl(card.getOwnResourceAction());
+		this.enemyResourceActions = new ResourceActionImpl(card.getEnemyResourceAction());
 		
 		this.complexCardAction = card.getComplexCardAction();
 		this.canBeDiscarded = card.getCanBeDiscarded();
