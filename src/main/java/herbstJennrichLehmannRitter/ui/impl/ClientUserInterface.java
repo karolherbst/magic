@@ -19,10 +19,10 @@ public class ClientUserInterface implements UserInterface {
 
 	private static final long serialVersionUID = 4502825312932565802L;
 	
-	private MainMenuGUI mainMenuGUI;
-	private PlayGameGUI playGameGUI;
-	private HostMenuGUI hostMenuGUI;
-	private ClientMenuGUI clientMenuGUI;
+	private transient MainMenuGUI mainMenuGUI;
+	private transient PlayGameGUI playGameGUI;
+	private transient HostMenuGUI hostMenuGUI;
+	private transient ClientMenuGUI clientMenuGUI;
 
 	public void setMainMenuGUI(MainMenuGUI mainMenuGUI) {
 		this.mainMenuGUI = mainMenuGUI;
