@@ -31,30 +31,22 @@ public class KICardSelection {
 	private int cardSum = 0;
 	private Player player;
 	
-	public KICardSelection(GameType gameType) {
-		this.gameType = gameType;
-	}
-	
-	public KICardSelection(GameType gameType, Player player, Card card) {
-		this.gameType = gameType;
-		this.setPlayer(player);
-		this.setCard(card);
-		this.generateCardSum();
-	}
-	
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
 	
-	public void setCard(Card card) {
-		this.card = card;
+	public void setGameType(GameType gameType) {
+		this.gameType = gameType;
 	}
 	
-	public int getCardSum() {
+	public int generateCardSum(Card card) {
+		this.card = card;
+		this.chooseSumMethod();
+		
 		return this.cardSum;
 	}
 	
-	public void generateCardSum() {
+	private void chooseSumMethod() {
 		if (this.gameType == GameType.COLLECTION_RAGE) {
 			if (this.player.getTower().getActualPoints() <= 15) {
 				this.collectionRageTowerDefence();
@@ -186,6 +178,9 @@ public class KICardSelection {
 		
 		this.cardSum += ownResourceAction.getDamage() * QUANTIFIER.NULL.value();
 		this.cardSum += enemyResourceAction.getDamage() * QUANTIFIER.LOW.value();
+		
+		this.addComplexCards();
+		this.subtractCosts();
 	}
 	
 	private void collectionRage() {
@@ -308,6 +303,9 @@ public class KICardSelection {
 		
 		this.cardSum += ownResourceAction.getDamage() * QUANTIFIER.NULL.value();
 		this.cardSum += enemyResourceAction.getDamage() * QUANTIFIER.MEDIUM.value();
+		
+		this.addComplexCards();
+		this.subtractCosts();
 	}
 	
 	private void towerBuilding() {
@@ -430,5 +428,20 @@ public class KICardSelection {
 		
 		this.cardSum += ownResourceAction.getDamage() * QUANTIFIER.LOW.value();
 		this.cardSum += enemyResourceAction.getDamage() * QUANTIFIER.HIGH.value();
-	}	
+		
+		this.addComplexCards();
+		this.subtractCosts();
+	}
+	
+	private void addComplexCards() {
+		this.cardSum += (int)(this.card.getCostBrick() * Math.PI);
+		this.cardSum += (int)(this.card.getCostCrystal() * Math.E);
+		this.cardSum += (int)(this.card.getCostMonsters() * 1.337);
+	}
+	
+	private void subtractCosts() {
+		this.cardSum -= (int)(this.card.getCostBrick() * 0.5);
+		this.cardSum -= (int)(this.card.getCostCrystal() * 0.5);
+		this.cardSum -= (int)(this.card.getCostMonsters() * 0.5);
+	}
 }

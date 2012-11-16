@@ -9,6 +9,7 @@ import herbstJennrichLehmannRitter.ui.UserInterface;
 
 import java.rmi.RemoteException;
 import java.util.Collection;
+import java.util.TreeMap;
 import java.util.concurrent.Semaphore;
 
 
@@ -20,6 +21,7 @@ public class KI implements UserInterface, Runnable {
 	private final GameServer gameServer;
 	private Object mutex = new Object();
 	private Semaphore semaphore = new Semaphore(1);
+	private KICardSelection kiCardSelection = new KICardSelection();
 	
 	static public void newKiOnServer(final GameServer gameServer, String name) {
 		final KI ki = new KI(name, gameServer);
@@ -107,6 +109,7 @@ public class KI implements UserInterface, Runnable {
 				this.semaphore.release();
 				this.mutex.wait();
 			}
+			this.kiCardSelection.setGameType(this.gameServer.getGameType());
 			runKILogic();
 			
 			while (true) {
@@ -137,10 +140,14 @@ public class KI implements UserInterface, Runnable {
 		
 		Thread.sleep(1);
 		
-		Card cardToPlay = null;
-		Card lastCard = null;
+		this.kiCardSelection.setPlayer(this.data.getOwnPlayer());
+		TreeMap<Integer, Card> cardMap = new TreeMap<Integer, Card>();
 		for (Card card : this.data.getOwnPlayer().getDeck().getAllCards()) {
-			lastCard = card;
+			cardMap.put(this.kiCardSelection.generateCardSum(card), card);
+		}
+
+		Card cardToPlay = null;
+		for (Card card : cardMap.values()) {
 			if (MagicUtils.canPlayerEffortCard(this.data.getOwnPlayer(), card)) {
 				cardToPlay = card;
 				break;
@@ -151,8 +158,14 @@ public class KI implements UserInterface, Runnable {
 			onPlayCard(cardToPlay);
 			this.gameServer.playCard(cardToPlay);
 		} else {
-			onDiscardCard(lastCard);
-			this.gameServer.discardCard(lastCard);
+			Collection<Card> cards = cardMap.descendingMap().values();
+			for (Card card : cards) {
+				if (!MagicUtils.canPlayerEffortCard(this.data.getOwnPlayer(), card)) {
+					onDiscardCard(card);
+					this.gameServer.discardCard(card);
+					break;
+				}
+			}
 		}
 	}
 	

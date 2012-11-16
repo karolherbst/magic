@@ -1,8 +1,15 @@
 package herbstJennrichLehmannRitter.tests.ki;
 
+import static org.junit.Assert.assertEquals;
 import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.engine.enums.GameType;
+import herbstJennrichLehmannRitter.engine.factory.GameCardFactory;
+import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
+import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.engine.model.Player;
+import herbstJennrichLehmannRitter.engine.model.impl.PlayerImpl;
 import herbstJennrichLehmannRitter.ki.KI;
+import herbstJennrichLehmannRitter.ki.KICardSelection;
 
 import java.rmi.RemoteException;
 
@@ -34,5 +41,18 @@ public class KITest {
 		Globals.getLocalGameServer().stop();
 		Globals.getLocalGameServer().unregister(new KI("KI2000", Globals.getLocalGameServer()));
 		Globals.getLocalGameServer().unregister(new KI("KI3000", Globals.getLocalGameServer()));
+	}
+	
+	@Test
+	public void testKiSelectorWithKolossAndCollectionRage() {
+		GameCardFactory gameCardFactory = new GameCardFactoryImpl();
+		Card koloss = gameCardFactory.createCard("Koloss");
+		Player player = new PlayerImpl();
+		player.getTower().addPoints(20);
+		
+		KICardSelection kiCardSelection = new KICardSelection();
+		kiCardSelection.setGameType(GameType.COLLECTION_RAGE);
+		kiCardSelection.setPlayer(player);
+		assertEquals(kiCardSelection.generateCardSum(koloss), 30);
 	}
 }
