@@ -44,7 +44,7 @@ public class ToStringTest {
 		assertNotNull(barracke);
 		System.out.println(barracke);
 		assertEquals("Barracke[Kosten: 10 Ziegel; Selbst: +6 Mauer, +6 Monster, Wenn das eigene Verlies " +
-				"kleiner als das des Gegners ist, wird es um 1 erhöht]", barracke.toString());
+			"kleiner als das des Gegners ist, wird es um 1 erhöht]", barracke.toString());
 	}
 	
 	@Test
@@ -53,7 +53,7 @@ public class ToStringTest {
 		assertNotNull(baumgeist);
 		System.out.println(baumgeist);
 		assertEquals("Baumgeist[Kosten: 9 Monster, 7 Ziegel; Gegner: Wenn das eigene Verlies größer als die" +
-				" gegnerische Mauer ist, bekommt der Gegner 11 Turmschaden]", baumgeist.toString());
+			" gegnerische Mauer ist, bekommt der Gegner 11 Turmschaden]", baumgeist.toString());
 	}
 	
 	@Test
@@ -62,7 +62,7 @@ public class ToStringTest {
 		assertNotNull(blitzUndDonner);
 		System.out.println(blitzUndDonner);
 		assertEquals("Blitz und Donner[Kosten: 11 Kristall; Gegner: Wenn der eigene Turm größer als der des Gegners ist, " +
-				"werden 8 Turmschaden und sonst 8 Schaden zugefügt]", blitzUndDonner.toString());
+			"werden 8 Turmschaden und sonst 8 Schaden zugefügt]", blitzUndDonner.toString());
 	}
 	
 	@Test
@@ -71,7 +71,7 @@ public class ToStringTest {
 		assertNotNull(blutmond);
 		System.out.println(blutmond);
 		assertEquals("Blutmond[Kosten: 8 Monster; Selbst: -1 Zauberlabor, Es werden alle Karten auf der Hand verworfen " +
-				"und 6 zufällige Verlieskarten gezogen]", blutmond.toString());
+			"und 6 zufällige Verlieskarten gezogen]", blutmond.toString());
 	}
 	
 	@Test
@@ -79,7 +79,8 @@ public class ToStringTest {
 		Card bruechigerStein = this.gameCardFactory.createCard("Brüchiger Stein");
 		assertNotNull(bruechigerStein);
 		System.out.println(bruechigerStein);
-		assertEquals("Brüchiger Stein[Kosten: 7 Kristall; Selbst: +5 Turm; Gegner: -6 Ziegel]", bruechigerStein.toString());
+		assertEquals("Brüchiger Stein[Kosten: 7 Kristall; Selbst: +5 Turm; Gegner: -6 Ziegel]", 
+			bruechigerStein.toString());
 	}
 	
 	@Test
@@ -96,7 +97,7 @@ public class ToStringTest {
 		assertNotNull(dieb);
 		System.out.println(dieb);
 		assertEquals("Dieb[Kosten: 12 Monster; Selbst: Man erhält die Hälfte des gegnerischen Verlustes; " +
-				"Gegner: Es werden maximal -10 Kristall und -5 Ziegel abgezogen]", dieb.toString());
+			"Gegner: Es werden maximal -10 Kristall und -5 Ziegel abgezogen]", dieb.toString());
 	}
 	
 	@Test
@@ -105,7 +106,7 @@ public class ToStringTest {
 		assertNotNull(einhorn);
 		System.out.println(einhorn);
 		assertEquals("Einhorn[Kosten: 9 Monster; Gegner: Wenn das eigene Zauberlabor größer als das des " +
-				"Gegners ist, wird 12 Schaden zugefügt, sonst nur 8]", einhorn.toString());
+			"Gegners ist, wird 12 Schaden zugefügt, sonst nur 8]", einhorn.toString());
 	}
 	
 	@Test
@@ -114,7 +115,7 @@ public class ToStringTest {
 		assertNotNull(elfischeBogenschuetzen);
 		System.out.println(elfischeBogenschuetzen);
 		assertEquals("Elfische Bogenschützen[Kosten: 10 Monster; Gegner: Wenn die eigene Mauer mehr " +
-				"Leben hat, als die gegnerische Mauer, dann werden dem Gegner 6 Turmschaden zugefügt, " +
+			"Leben hat, als die gegnerische Mauer, dann werden dem Gegner 6 Turmschaden zugefügt, " +
 				"sonst nur 6 Schaden.]", elfischeBogenschuetzen.toString());
 	}
 	
@@ -124,7 +125,7 @@ public class ToStringTest {
 		assertNotNull(glasperlen);
 		System.out.println(glasperlen);
 		assertEquals("Glasperlen[Selbst: Wenn der eigene Turm kleiner als der des Gegner ist, " +
-				"wird er um 2 erhöht, sonst um 1]", glasperlen.toString());
+			"wird er um 2 erhöht, sonst um 1]", glasperlen.toString());
 	}
 	
 	@Test
@@ -133,7 +134,7 @@ public class ToStringTest {
 		assertNotNull(grundstein);
 		System.out.println(grundstein);
 		assertEquals("Grundstein[Kosten: 3 Ziegel; Selbst: Wenn die eigene Mauer zerstört wurde, " +
-				"wird die Mauer um 6 erhöht, sonst nur um 3]", grundstein.toString());
+			"wird die Mauer um 6 erhöht, sonst nur um 3]", grundstein.toString());
 	}
 	
 	@Test
@@ -142,7 +143,7 @@ public class ToStringTest {
 		assertNotNull(hauptader);
 		System.out.println(hauptader);
 		assertEquals("Hauptader[Kosten: 4 Ziegel; Selbst: Wenn der eigene Steinbruch kleiner als der " +
-				"des Gegners ist, wird er um 2 erhöht, sonst nur um 1]", hauptader.toString());
+			"des Gegners ist, wird er um 2 erhöht, sonst nur um 1]", hauptader.toString());
 	}
 	
 	@Test
@@ -151,7 +152,7 @@ public class ToStringTest {
 		assertNotNull(paradoxon);
 		System.out.println(paradoxon);
 		assertEquals("Paradoxon[Kosten: 5 Monster, 5 Kristall, 5 Ziegel; Selbst: Tausche Kartenhand mit dem Gegner; " +
-				"Gegner: Tausche Kartenhand mit dem Gegner]", paradoxon.toString());
+			"Gegner: Tausche Kartenhand mit dem Gegner]", paradoxon.toString());
 	}
 	
 	@Test
@@ -160,8 +161,8 @@ public class ToStringTest {
 		assertNotNull(paritaet);
 		System.out.println(paritaet);
 		assertEquals("Parität[Kosten: 7 Kristall; Selbst: Zauberlabor auf höchste " +
-				"Zauberlaborstufe im Spiel setzen; Gegner: Zauberlabor auf höchste Zauberlaborstufe im " +
-				"Spiel setzen]", paritaet.toString());
+			"Zauberlaborstufe im Spiel setzen; Gegner: Zauberlabor auf höchste Zauberlaborstufe im " +
+			"Spiel setzen]", paritaet.toString());
 	}
 	
 	@Test
@@ -169,8 +170,8 @@ public class ToStringTest {
 		Card pfuschenderSchmied = this.gameCardFactory.createCard("Pfuschender Schmied");
 		assertNotNull(pfuschenderSchmied);
 		assertEquals("Pfuschender Schmied[Kosten: 2 Kristall, 2 Ziegel; Selbst: 1 Karte ziehen" +
-				", noch eine Karte spielen; Gegner: Alle Steinbruchkarten aus der Hand ablegen]", 
-				pfuschenderSchmied.toString());
+			", noch eine Karte spielen; Gegner: Alle Steinbruchkarten aus der Hand ablegen]", 
+			pfuschenderSchmied.toString());
 	}
 	
 	@Test
@@ -179,7 +180,7 @@ public class ToStringTest {
 		assertNotNull(pureMagie);
 		System.out.println(pureMagie);
 		assertEquals("Pure Magie[Kosten: 15 Kristall; Selbst: Verwirf alle Karten und ziehe 6 " +
-				"zufällige Zauberlaborkarten]", pureMagie.toString());
+			"zufällige Zauberlaborkarten]", pureMagie.toString());
 	}
 	
 	@Test
@@ -188,7 +189,17 @@ public class ToStringTest {
 		assertNotNull(spionage);
 		System.out.println(spionage);
 		assertEquals("Spionage[Kosten: 5 Ziegel; Selbst: Wenn dein Steinbruchlevel niedriger " +
-				"als das des Gegners ist, wird es auf die Stufe des Gegners angehoben]", spionage.toString());
+			"als das des Gegners ist, wird es auf die Stufe des Gegners angehoben]", spionage.toString());
+	}
+	
+	@Test
+	public void testUeberflutungComplexAction() {
+		Card ueberflutung = this.gameCardFactory.createCard("Überflutung");
+		assertNotNull(ueberflutung);
+		System.out.println(ueberflutung);
+		assertEquals("Überflutung[Kosten: 6 Ziegel; Selbst: Spieler mit niedrigster Mauer -1 Verlies und 2 " +
+			"Turmschaden; Gegner: Spieler mit niedrigster Mauer -1 Verlies und 2 Turmschaden]", 
+			ueberflutung.toString());
 	}
 	
 	@Test
@@ -197,7 +208,7 @@ public class ToStringTest {
 		assertNotNull(verschiebung);
 		System.out.println(verschiebung);
 		assertEquals("Verschiebung[Kosten: 17 Ziegel; Selbst: Tausche deine Mauer mit der des " +
-				"Gegners]", verschiebung.toString());
+			"Gegners]", verschiebung.toString());
 	}
 	
 	@Test
@@ -206,6 +217,6 @@ public class ToStringTest {
 		assertNotNull(weihnachtsmann);
 		System.out.println(weihnachtsmann);
 		assertEquals("Weihnachtsmann[Selbst: +5 Ziegel, +5 Monster, +5 Kristall, " +
-				"Zufällige Karte mit Kosten>14 vom Vorratsstapel oder Friedhof ziehen]", weihnachtsmann.toString());
+			"Zufällige Karte mit Kosten>14 vom Vorratsstapel oder Friedhof ziehen]", weihnachtsmann.toString());
 	}
 }
