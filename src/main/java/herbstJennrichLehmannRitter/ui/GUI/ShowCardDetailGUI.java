@@ -175,8 +175,6 @@ public class ShowCardDetailGUI {
 					Globals.getLocalGameServer().playCard(ShowCardDetailGUI.this.card);
 					ShowCardDetailGUI.this.shell.setVisible(false);
 				} catch (RemoteException e1) {
-					// TODO: exception
-					e1.printStackTrace();
 				}
 			}
 		});

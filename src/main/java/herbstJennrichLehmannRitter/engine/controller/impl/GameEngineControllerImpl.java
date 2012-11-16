@@ -154,7 +154,6 @@ public class GameEngineControllerImpl implements GameEngineController {
 		}
 	}
 	
-	// playCard helper functions
 	private void applyCostFromCardOnPlayer(Card card, Player player) {
 		player.getDungeon().reduceStock(card.getCostMonsters());
 		player.getMagicLab().reduceStock(card.getCostCrystal());
@@ -175,7 +174,6 @@ public class GameEngineControllerImpl implements GameEngineController {
 		player.getWall().addPoints(ra.getWallEffect());
 		player.getTower().addPoints(ra.getTowerEffect());
 		
-		// apply damage on Player
 		player.getTower().applyDamage(player.getWall().applyDamage(ra.getDamage()));
 	}
 	

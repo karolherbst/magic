@@ -51,7 +51,6 @@ public class XmlCardAction implements CardAction {
 		this.playCards = playCards;
 	}
 
-	//TODO: muss ich hier implementieren, Karol richtig so? (Sebastian)
 	@Override
 	public String getOwnEffectDescription() {
 		return "";

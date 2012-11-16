@@ -30,11 +30,6 @@ public class PlayerFactoryImpl implements PlayerFactory {
 	public Player createPlayer(String name, Collection<Card> cards, int pointsTower, int pointsWall, int resourceBuildingLvl, 
 			int resourceBuildingStock) {
 		
-		// TODO: wir haben tests, wo Spieler mit weniger als 50 Karten erstellt werden
-//		if (cards.size() < 50) {
-//			throw new PlayerCouldNotBeCreatedException(PLAYER_ERROR.NOT_ENOUGH_CARDS);
-//		}
-		
 		ResourceBuilding dungeon = new DungeonImpl();
 		dungeon.setLevel(resourceBuildingLvl);
 		dungeon.setStock(resourceBuildingStock);

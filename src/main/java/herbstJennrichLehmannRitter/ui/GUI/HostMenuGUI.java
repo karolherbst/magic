@@ -95,8 +95,6 @@ public class HostMenuGUI {
 		try {
 			Globals.startRemoteServer();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 		this.timer = new Timer();

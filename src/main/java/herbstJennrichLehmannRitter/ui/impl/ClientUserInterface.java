@@ -170,7 +170,6 @@ public class ClientUserInterface implements UserInterface {
 	@Override
 	public String getName() {
 		return this.playGameGUI.getPlayerName();
-//		return this.mainMenuGUI.getPlayerName();
 	}
 
 	@Override

@@ -11,7 +11,6 @@ import org.junit.Test;
 public class KITest {
 
 	@Test
-	//@Ignore
 	public void testKiWithCollectionRage() throws InterruptedException, RemoteException {
 		KI.startKIOnLocal("KI2000");
 		KI.startKIOnLocal("KI3000");

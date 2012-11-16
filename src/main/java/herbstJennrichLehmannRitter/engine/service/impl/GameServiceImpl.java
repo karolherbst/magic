@@ -144,12 +144,11 @@ public class GameServiceImpl implements GameService {
 		this.threadToUi.remove(key);
 	}
 
-	// for debugging
+	//TODO: for debugging (remove before release)
 	static int round = 0;
 	@Override
 	public void playCard(Thread thread, Card card) {
 		System.out.println("round: " + ++round);
-		// sleep a bit to take away stress from the process
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -180,7 +179,6 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public void discardCard(Thread thread, Card card) {
 		System.out.println("round: " + ++round);
-		// sleep a bit to take away stress from the process
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
