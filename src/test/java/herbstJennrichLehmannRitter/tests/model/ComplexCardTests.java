@@ -316,16 +316,13 @@ public class ComplexCardTests {
 				12, 12, 12, 12);
 		
 		pfuschenderSchmied.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
-		Collection<Card> handCards = playerOne.getDeck().getAllCards();
+		Collection<Card> handCards = playerTwo.getDeck().getAllCards();
 		for (Card card : handCards) {
 			if (card.getCardType() ==  CardType.MAGIC_LAB){
 				assertEquals(card.getCardType(), CardType.MAGIC_LAB);
 			}
 			if (card.getCardType() ==  CardType.DUNGEON){
 				assertEquals(card.getCardType(), CardType.DUNGEON);
-			}
-			if(card.getCardType() ==  CardType.MINE){
-				assertEquals(card.getCardType(), CardType.MINE);
 			}
 		}
 	}
