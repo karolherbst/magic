@@ -25,8 +25,8 @@ public class KITest {
 	
 	@Test
 	public void testKiWithTowerBuilding() throws InterruptedException, RemoteException {
-		KI.startKIOnLocal("KI2000");
-		KI.startKIOnLocal("KI3000");
+		KI.startKIOnLocal("KI4000");
+		KI.startKIOnLocal("KI5000");
 		// wait for KI to register
 		Thread.sleep(100);
 		Globals.getLocalGameServer().start(GameType.TOWER_BUILDING);
