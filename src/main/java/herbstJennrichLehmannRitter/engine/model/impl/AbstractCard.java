@@ -4,7 +4,6 @@ import herbstJennrichLehmannRitter.engine.enums.ResourceType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 
-//TODO: Test
 public abstract class AbstractCard implements Card {
 	
 	@Override
@@ -22,13 +21,8 @@ public abstract class AbstractCard implements Card {
 	public String getOwnEffectDescription() {
 		StringBuilder stringBuilder = new StringBuilder();
 		
-		if (getOwnResourceAction() != null) {
-			MagicUtils.addValueToStringBuilder(getOwnResourceAction(), stringBuilder);
-		}
-		
-		if (getCardAction() != null) {
-			MagicUtils.addValueToStringBuilder(getCardAction().getOwnEffectDescription(), stringBuilder);
-		}
+		MagicUtils.addValueToStringBuilder(getOwnResourceAction(), stringBuilder);
+		MagicUtils.addValueToStringBuilder(getCardAction().getOwnEffectDescription(), stringBuilder);
 
 		if (getComplexCardAction() != null && getComplexCardAction().getOwnEffectDescription() != null
 				&& getComplexCardAction().getOwnEffectDescription().length() > 0) {
@@ -41,14 +35,9 @@ public abstract class AbstractCard implements Card {
 	public String getEnemyEffectDescription() {
 		StringBuilder stringBuilder = new StringBuilder();
 		
-		if (getEnemyResourceAction() != null) {
-			MagicUtils.addValueToStringBuilder(getEnemyResourceAction(), stringBuilder);
-		}
-		
-		if (getCardAction() != null) {
-			MagicUtils.addValueToStringBuilder(getCardAction().getEnemyEffectDescription(), stringBuilder);
-		}
-		
+		MagicUtils.addValueToStringBuilder(getEnemyResourceAction(), stringBuilder);
+		MagicUtils.addValueToStringBuilder(getCardAction().getEnemyEffectDescription(), stringBuilder);
+
 		if (getComplexCardAction() != null && getComplexCardAction().getEnemyEffectDescription() != null
 				&& getComplexCardAction().getEnemyEffectDescription().length() > 0) {
 			MagicUtils.addValueToStringBuilder(getComplexCardAction().getEnemyEffectDescription(), stringBuilder);
