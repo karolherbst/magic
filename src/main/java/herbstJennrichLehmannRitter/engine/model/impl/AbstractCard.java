@@ -4,6 +4,7 @@ import herbstJennrichLehmannRitter.engine.enums.ResourceType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 
+//TODO: Test
 public abstract class AbstractCard implements Card {
 	
 	@Override
