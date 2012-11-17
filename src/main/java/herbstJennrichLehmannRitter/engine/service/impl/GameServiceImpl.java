@@ -15,7 +15,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-//TODO: Test
 public class GameServiceImpl implements GameService {
 
 	private class UIHolder {
@@ -30,6 +29,7 @@ public class GameServiceImpl implements GameService {
 	}
 	
 	private Map<Thread, UIHolder> threadToUi = new HashMap<Thread, GameServiceImpl.UIHolder>(2, 1);
+	private int round;
 	
 	private final GameEngineController gameEngineController;
 	
@@ -44,8 +44,8 @@ public class GameServiceImpl implements GameService {
 		}
 		
 		this.gameEngineController.start(gameType);
+		this.round = 0;
 		UIHolder uiHolder = this.threadToUi.values().iterator().next();
-		this.gameEngineController.addResourcesToPlayer(uiHolder.player);
 		uiHolder.userInterface.nextTurn();
 	}
 	
@@ -145,11 +145,10 @@ public class GameServiceImpl implements GameService {
 		this.threadToUi.remove(key);
 	}
 
-	//TODO: for debugging (remove before release)
-	static int round = 0;
 	@Override
 	public void playCard(Thread thread, Card card) {
-		System.out.println("round: " + ++round);
+		++this.round;
+		System.out.println("round: " + this.round);
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -167,7 +166,9 @@ public class GameServiceImpl implements GameService {
 				updatePlayerDatas(uiHolder);
 				uiHolder.userInterface.playAnotherCard();
 			} else {
-				this.gameEngineController.addResourcesToPlayer(uiHolder.enemy.player);
+				if (this.round > 1) {
+					this.gameEngineController.addResourcesToPlayer(uiHolder.enemy.player);
+				}
 				if (!hasSomebodyWon(uiHolder)) {
 					updatePlayerDatas(uiHolder);
 					uiHolder.enemy.userInterface.nextTurn();
