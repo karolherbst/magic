@@ -28,7 +28,8 @@ public abstract class MagicUtils {
 		stringBuilder.append(value);
 	}
 	
-	public static void addValueToStringBuilder(Object key, Number value, StringBuilder stringBuilder, boolean displayPlus) {
+	public static void addValueToStringBuilder(Object key, Number value, StringBuilder stringBuilder, 
+			boolean displayPlus) {
 		if (value == null
 			|| value.doubleValue() == 0d ) {
 			return;

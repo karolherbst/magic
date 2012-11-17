@@ -90,15 +90,24 @@ public class ResourceActionImpl implements ResourceAction {
 	public String toString() {
 		StringBuilder stringBuilder = new StringBuilder();
 		
-		MagicUtils.addValueToStringBuilder(BuildingType.WALL, Integer.valueOf(getWallEffect()), stringBuilder, true);
-		MagicUtils.addValueToStringBuilder(BuildingType.TOWER, Integer.valueOf(getTowerEffect()), stringBuilder, true);
-		MagicUtils.addValueToStringBuilder(BuildingType.MINE, Integer.valueOf(getMineLvlEffect()), stringBuilder, true);
-		MagicUtils.addValueToStringBuilder(BuildingType.DUNGEON, Integer.valueOf(getDungeonLvlEffect()), stringBuilder, true);
-		MagicUtils.addValueToStringBuilder(BuildingType.MAGIC_LAB, Integer.valueOf(getMagicLabLvlEffect()), stringBuilder, true);
-		MagicUtils.addValueToStringBuilder(ResourceType.BRICK, Integer.valueOf(getBrickEffect()), stringBuilder, true);
-		MagicUtils.addValueToStringBuilder(ResourceType.MONSTER, Integer.valueOf(getMonsterEffect()), stringBuilder, true);
-		MagicUtils.addValueToStringBuilder(ResourceType.CRYSTAL, Integer.valueOf(getCrystalEffect()), stringBuilder, true);
-		MagicUtils.addValueToStringBuilder("Schaden", Integer.valueOf(getDamage()), stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(BuildingType.WALL, Integer.valueOf(getWallEffect()), 
+				stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(BuildingType.TOWER, Integer.valueOf(getTowerEffect()), 
+				stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(BuildingType.MINE, Integer.valueOf(getMineLvlEffect()), 
+				stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(BuildingType.DUNGEON, Integer.valueOf(getDungeonLvlEffect()), 
+				stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(BuildingType.MAGIC_LAB, Integer.valueOf(getMagicLabLvlEffect()), 
+				stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(ResourceType.BRICK, Integer.valueOf(getBrickEffect()), 
+				stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(ResourceType.MONSTER, Integer.valueOf(getMonsterEffect()), 
+				stringBuilder, true);
+		MagicUtils.addValueToStringBuilder(ResourceType.CRYSTAL, Integer.valueOf(getCrystalEffect()), 
+				stringBuilder, true);
+		MagicUtils.addValueToStringBuilder("Schaden", Integer.valueOf(getDamage()), 
+				stringBuilder, true);
 		
 		return stringBuilder.toString();
 	}

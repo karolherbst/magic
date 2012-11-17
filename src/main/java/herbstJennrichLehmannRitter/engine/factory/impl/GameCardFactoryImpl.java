@@ -50,7 +50,8 @@ public class GameCardFactoryImpl implements GameCardFactory {
 		}
 	}
 	
-	private static Map<String, Class<?>> getComplexCardActions(String packageName) throws IOException, ClassNotFoundException {
+	private static Map<String, Class<?>> getComplexCardActions(String packageName) throws IOException, 
+	ClassNotFoundException {
 		Map<String, Class<?>> classes = new HashMap<String, Class<?>>();
 		
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -80,7 +81,8 @@ public class GameCardFactoryImpl implements GameCardFactory {
 	
 	public GameCardFactoryImpl() {
 		try {
-			this.complexCardActions = getComplexCardActions("herbstJennrichLehmannRitter.engine.model.action.complexImpl");
+			this.complexCardActions = getComplexCardActions
+					("herbstJennrichLehmannRitter.engine.model.action.complexImpl");
 		} catch (IOException e) {
 			throw new GameCardFactoryException(CARD_FACTORY_ERROR.COULD_NOT_LOAD_COMPLEX_ACTIONS, e);
 		} catch (ClassNotFoundException e) {
@@ -93,7 +95,8 @@ public class GameCardFactoryImpl implements GameCardFactory {
 			this.marshaller = jaxbContext.createMarshaller();
 			this.marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			
-			InputStream is = this.getClass().getResourceAsStream("/herbstJennrichLehmannRitter/engine/model/cards.xml");
+			InputStream is = this.getClass().getResourceAsStream
+					("/herbstJennrichLehmannRitter/engine/model/cards.xml");
 			XmlCards xmlCards = (XmlCards)this.unmarshaller.unmarshal(is);
 			is.close();
 			
@@ -169,7 +172,6 @@ public class GameCardFactoryImpl implements GameCardFactory {
 
 	@Override
 	public void saveToXml(Collection<String> cardNames, Writer destination) {
-		// TODO: check all names; checked all names once; please second check by another person. Daniel
 		try {
 			XmlCardNames xmlCardNames = new XmlCardNames(cardNames);
 			this.marshaller.marshal(xmlCardNames, destination);

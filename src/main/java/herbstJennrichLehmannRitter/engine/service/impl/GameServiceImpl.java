@@ -62,11 +62,13 @@ public class GameServiceImpl implements GameService {
 	}
 	
 	private void updatePlayerDatas(UIHolder uiHolder) {
-		Data ownData = this.gameEngineController.createDataForPlayer(uiHolder.player, uiHolder.enemy.player);
+		Data ownData = this.gameEngineController.createDataForPlayer(uiHolder.player, 
+				uiHolder.enemy.player);
 		System.out.println("new data for player " + uiHolder.player.getName() + ":\n" + ownData);
 		uiHolder.userInterface.setData(ownData);
 		
-		Data enemyData = this.gameEngineController.createDataForPlayer( uiHolder.enemy.player, uiHolder.player);
+		Data enemyData = this.gameEngineController.createDataForPlayer( uiHolder.enemy.player, 
+				uiHolder.player);
 		System.out.println("new data for player " + uiHolder.enemy.player.getName() + ":\n" + enemyData);
 		uiHolder.enemy.userInterface.setData(enemyData);
 	}
@@ -157,7 +159,8 @@ public class GameServiceImpl implements GameService {
 		
 		UIHolder uiHolder = this.threadToUi.get(thread);
 		if (uiHolder != null) {
-			System.out.println("service: player " + uiHolder.player.getName() + " played card " + card.getName());
+			System.out.println("service: player " + uiHolder.player.getName() + " played card " + 
+					card.getName());
 			
 			this.gameEngineController.playCard(card, uiHolder.player, uiHolder.enemy.player);
 			uiHolder.enemy.userInterface.enemyPlayedCard(card);
@@ -190,7 +193,8 @@ public class GameServiceImpl implements GameService {
 				
 		UIHolder uiHolder = this.threadToUi.get(thread);
 		if (uiHolder != null) {
-			System.out.println("service: player " + uiHolder.player.getName() + " discard card " + card.getName());
+			System.out.println("service: player " + uiHolder.player.getName() + " discard card " + 
+					card.getName());
 		
 			this.gameEngineController.discardCard(card, uiHolder.player);
 			if (this.round > 1) {

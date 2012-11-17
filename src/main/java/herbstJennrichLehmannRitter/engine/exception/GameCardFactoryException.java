@@ -9,7 +9,8 @@ public class GameCardFactoryException extends MagicException {
 	public static enum CARD_FACTORY_ERROR {
 		WRITE_OBJECTS_TO_FILE_FAILED("Karten konnten nicht in eine Datei gespeichert werden!"),
 		WRONG_FORMAT("Die geladene Datei hat ein falsches Format!"),
-		COULD_NOT_LOAD_COMPLEX_ACTIONS("Die Spezialaktionen konnten nicht geladen werden. Möglicherweise ist die *.jar" +
+		COULD_NOT_LOAD_COMPLEX_ACTIONS("Die Spezialaktionen konnten nicht geladen werden. " +
+				"Möglicherweise ist die *.jar" +
 				" Datei beschädigt!"),
 		XML_ERROR("Ein interner JaxB Fehler ist aufgetreten!"),
 		INTERNAL_CARD_WAS_NULL("Ein interner Server error!"),

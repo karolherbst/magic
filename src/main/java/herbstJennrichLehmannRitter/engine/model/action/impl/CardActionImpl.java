@@ -49,8 +49,10 @@ public class CardActionImpl implements CardAction {
 	public String getOwnEffectDescription() {
 		StringBuilder stringBuilder = new StringBuilder();
 		
-		MagicUtils.addValueToStringBuilder("Karte ablegen", Integer.valueOf(getOwnAmountCardDiscard()), stringBuilder);
-		MagicUtils.addValueToStringBuilder("Karte ziehen", Integer.valueOf(getAmountCardDraw()), stringBuilder);
+		MagicUtils.addValueToStringBuilder("Karte ablegen", Integer.valueOf(getOwnAmountCardDiscard()), 
+				stringBuilder);
+		MagicUtils.addValueToStringBuilder("Karte ziehen", Integer.valueOf(getAmountCardDraw()), 
+				stringBuilder);
 		if (getPlayCards() == true) {
 			MagicUtils.addValueToStringBuilder("noch eine Karte spielen", stringBuilder);
 		}
@@ -61,7 +63,8 @@ public class CardActionImpl implements CardAction {
 	public String getEnemyEffectDescription() {
 		StringBuilder stringBuilder = new StringBuilder();
 		
-		MagicUtils.addValueToStringBuilder("Karte ablegen", Integer.valueOf(getEnemyAmountCardDiscard()), stringBuilder);
+		MagicUtils.addValueToStringBuilder("Karte ablegen", Integer.valueOf(getEnemyAmountCardDiscard()), 
+				stringBuilder);
 		
 		return stringBuilder.toString();
 	}	

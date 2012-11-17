@@ -10,9 +10,12 @@ public abstract class AbstractCard implements Card {
 	public String getCostDescription() {
 		StringBuilder stringBuilder = new StringBuilder();
 		
-		MagicUtils.addValueToStringBuilder(ResourceType.MONSTER, Integer.valueOf(getCostMonsters()), stringBuilder);
-		MagicUtils.addValueToStringBuilder(ResourceType.CRYSTAL, Integer.valueOf(getCostCrystal()), stringBuilder);
-		MagicUtils.addValueToStringBuilder(ResourceType.BRICK, Integer.valueOf(getCostBrick()), stringBuilder);
+		MagicUtils.addValueToStringBuilder(ResourceType.MONSTER, Integer.valueOf(getCostMonsters()), 
+				stringBuilder);
+		MagicUtils.addValueToStringBuilder(ResourceType.CRYSTAL, Integer.valueOf(getCostCrystal()), 
+				stringBuilder);
+		MagicUtils.addValueToStringBuilder(ResourceType.BRICK, Integer.valueOf(getCostBrick()), 
+				stringBuilder);
 		
 		return stringBuilder.toString();
 	}
@@ -22,11 +25,13 @@ public abstract class AbstractCard implements Card {
 		StringBuilder stringBuilder = new StringBuilder();
 		
 		MagicUtils.addValueToStringBuilder(getOwnResourceAction(), stringBuilder);
-		MagicUtils.addValueToStringBuilder(getCardAction().getOwnEffectDescription(), stringBuilder);
+		MagicUtils.addValueToStringBuilder(getCardAction().getOwnEffectDescription(), 
+				stringBuilder);
 
 		if (getComplexCardAction() != null && getComplexCardAction().getOwnEffectDescription() != null
 				&& getComplexCardAction().getOwnEffectDescription().length() > 0) {
-			MagicUtils.addValueToStringBuilder(getComplexCardAction().getOwnEffectDescription(), stringBuilder);
+			MagicUtils.addValueToStringBuilder(getComplexCardAction().getOwnEffectDescription(), 
+					stringBuilder);
 		}
 		return stringBuilder.toString();
 	}
@@ -36,11 +41,13 @@ public abstract class AbstractCard implements Card {
 		StringBuilder stringBuilder = new StringBuilder();
 		
 		MagicUtils.addValueToStringBuilder(getEnemyResourceAction(), stringBuilder);
-		MagicUtils.addValueToStringBuilder(getCardAction().getEnemyEffectDescription(), stringBuilder);
+		MagicUtils.addValueToStringBuilder(getCardAction().getEnemyEffectDescription(), 
+				stringBuilder);
 
 		if (getComplexCardAction() != null && getComplexCardAction().getEnemyEffectDescription() != null
 				&& getComplexCardAction().getEnemyEffectDescription().length() > 0) {
-			MagicUtils.addValueToStringBuilder(getComplexCardAction().getEnemyEffectDescription(), stringBuilder);
+			MagicUtils.addValueToStringBuilder(getComplexCardAction().getEnemyEffectDescription(), 
+					stringBuilder);
 		}
 		
 		return stringBuilder.toString();

@@ -161,8 +161,9 @@ public class ChooseDeckGUI {
 			public void widgetDefaultSelected(SelectionEvent e) {
 				String[] selectedItems = list.getSelection();
 				if (selectedItems.length == 1 && ChooseDeckGUI.this.cardDetailIsOpen == false) {
-					ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(ChooseDeckGUI.this.display, null,
-							ChooseDeckGUI.this, Globals.getGameCardFactory().createCard(selectedItems[0]));
+					ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(ChooseDeckGUI.this.display, 
+							null, ChooseDeckGUI.this, 
+							Globals.getGameCardFactory().createCard(selectedItems[0]));
 					showCardDetailGUI.open();
 					ChooseDeckGUI.this.cardDetailIsOpen = true;
 				}

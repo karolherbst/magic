@@ -21,6 +21,7 @@ public class BaumgeistComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getEnemyEffectDescription() {
-		return "Wenn das eigene Verlies größer als die gegnerische Mauer ist, bekommt der Gegner 11 Turmschaden";
+		return "Wenn das eigene Verlies größer als die gegnerische Mauer ist, " +
+				"bekommt der Gegner 11 Turmschaden";
 	}
 }
