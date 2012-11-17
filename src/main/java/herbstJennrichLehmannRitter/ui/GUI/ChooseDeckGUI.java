@@ -28,11 +28,12 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 
+/**	Description of ChooseDeckGUI Class
+ * GUI for choosing and creating a new deck
+ */
+
 public class ChooseDeckGUI {
  
-	/**
-	 * @param args
-	 */
 	private Shell shell;
 	private final Display display;
 	private Button systemToUserButton;

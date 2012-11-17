@@ -27,11 +27,11 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 
-public class HostMenuGUI {
+/**	Description of HostMenuGUI Class
+ * Implementation of the Game as Host with IP-Adress being shown
+ */
 
-	/**
-	 * Menü des Hosts
-	 */
+public class HostMenuGUI {
 	
 	private Shell shell;
 	private final Display display;

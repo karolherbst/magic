@@ -19,10 +19,10 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
-
-/**
- * Karten Details aus dem Deck-Creator
+/**	Description of HostMenuGUI Class
+ * Implementation of the Show Card Detail GUI
  */
+
 public class ShowCardDetailGUI {
 	
 	private Shell shell;

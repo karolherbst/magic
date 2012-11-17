@@ -19,11 +19,13 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+
+/**	Description of GameMenuGUI Class
+ * Implementation of Menu Selection
+ */
+
 public class GameMenuGUI {
 
-	/**
-	 * Implementation Menü Spielauswahl
-	 */
 	private Shell shell;
 	private final Display display;
 	private Text nameTextField;

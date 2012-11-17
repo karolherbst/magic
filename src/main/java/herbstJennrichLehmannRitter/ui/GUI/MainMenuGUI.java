@@ -27,6 +27,11 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
+
+/**	Description of MainMenuGUI Class
+ * Implementation of the Main Menu
+ */
+
 public class MainMenuGUI {
 	
 	private int shells = 0;

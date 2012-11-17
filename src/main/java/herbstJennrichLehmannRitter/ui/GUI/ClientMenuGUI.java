@@ -19,11 +19,13 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+
+/**	Description of ClientMenuGUI Class
+ * Implementation of the Game as Client with the possibility to enter an IP-Adress
+ */
+
 public class ClientMenuGUI {
 
-	/**
-	 * Implementation des Spiels als Client mit der Eingabe der IP-Adresse
-	 */
 	
 	private Shell shell;
 	private final Display display;
