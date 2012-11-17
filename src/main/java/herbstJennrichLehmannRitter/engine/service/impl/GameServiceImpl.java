@@ -180,7 +180,8 @@ public class GameServiceImpl implements GameService {
 
 	@Override
 	public void discardCard(Thread thread, Card card) {
-		System.out.println("round: " + ++round);
+		++this.round;
+		System.out.println("round: " + this.round);
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -192,7 +193,9 @@ public class GameServiceImpl implements GameService {
 			System.out.println("service: player " + uiHolder.player.getName() + " discard card " + card.getName());
 		
 			this.gameEngineController.discardCard(card, uiHolder.player);
-			this.gameEngineController.addResourcesToPlayer(uiHolder.enemy.player);
+			if (this.round > 1) {
+				this.gameEngineController.addResourcesToPlayer(uiHolder.enemy.player);
+			}
 			if (!hasSomebodyWon(uiHolder)) {
 				updatePlayerDatas(uiHolder);
 				uiHolder.enemy.userInterface.nextTurn();
