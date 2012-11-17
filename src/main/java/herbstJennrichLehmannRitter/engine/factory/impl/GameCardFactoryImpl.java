@@ -29,6 +29,11 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+/** Description of GameCardFactoryImpl Class
+ *  This Class implements the GameCardFactory Interface.
+ *  To do this it searches the .xml file for the cards.
+ */
+
 public class GameCardFactoryImpl implements GameCardFactory {
 
 	private Unmarshaller unmarshaller;
