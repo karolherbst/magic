@@ -4,6 +4,12 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+/** Description of Speikaefer Class
+ *  This Class implements the complex effect for the complex Card Speikaefer.
+ *  To do this, the game checks, if the enemy's wall is down to level 'zero'. If the wall is down to 'zero', the enemy
+ *  suffers 10 damage. If not, the enemy suffers 6 damage. * 
+ */
+
 @ComplexCard("Speikäfer")
 public class SpeikaeferComplexAction implements ComplexCardAction {
 
