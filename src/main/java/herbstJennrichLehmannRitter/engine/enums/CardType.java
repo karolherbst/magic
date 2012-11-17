@@ -4,6 +4,10 @@ import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
 
+/** Description of CardType enum
+ *  This Class implements the enums for all Cards.
+ */
+
 @XmlType(name="CardType")
 @XmlEnum
 public enum CardType {

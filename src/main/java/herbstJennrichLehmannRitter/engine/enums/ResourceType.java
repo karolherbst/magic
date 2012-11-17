@@ -1,10 +1,9 @@
 package herbstJennrichLehmannRitter.engine.enums;
 
-/**
- * 
- * Enum der Ressourcentypen
- * 
+/** Description of ResourceType enum
+ *  This Class implements the enums for all Resources.
  */
+
 public enum ResourceType {
 	
 	BRICK("Ziegel"),

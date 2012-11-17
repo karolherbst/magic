@@ -1,5 +1,9 @@
 package herbstJennrichLehmannRitter.engine.enums;
 
+/** Description of BuildingType enum
+ *  This Class implements the enums for all Buildings.
+ */
+
 public enum BuildingType {
 	
 	TOWER("Turm"),

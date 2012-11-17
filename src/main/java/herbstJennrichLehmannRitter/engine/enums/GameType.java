@@ -1,10 +1,9 @@
 package herbstJennrichLehmannRitter.engine.enums;
 
-/**
- * 
- * Enum der Spieltypen
- * 
+/** Description of GameType enum
+ *  This Class implements the enums for all Game Types.
  */
+
 public enum GameType {
 	
 	TOWER_BUILDING("Turmbau"),
