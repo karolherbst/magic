@@ -18,12 +18,11 @@ public class SpeikaeferComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getOwnEffectDescription() {
-		return "Wenn dein Steinbruchlevel niedriger als das des Gegners ist, " +
-				"wird es auf die Stufe des Gegners angehoben";
+		return "";
 	}
 
 	@Override
 	public String getEnemyEffectDescription() {
-		return "";
+		return "Wenn gegnerische Mauer=0 dann 10 Schaden sonst 6 Schaden";
 	}
 }

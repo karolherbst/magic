@@ -184,6 +184,15 @@ public class ToStringTest {
 	}
 	
 	@Test
+	public void testSpeikaeferComplexAction() {
+		Card speikaefer = this.gameCardFactory.createCard("Speikäfer");
+		assertNotNull(speikaefer);
+		System.out.println(speikaefer);
+		assertEquals("Speikäfer[Kosten: 8 Monster; Gegner: Wenn gegnerische Mauer=0 dann 10 Schaden sonst 6 Schaden]", 
+				speikaefer.toString());
+	}
+	
+	@Test
 	public void testSpionageComplexAction() {
 		Card spionage = this.gameCardFactory.createCard("Spionage");
 		assertNotNull(spionage);
