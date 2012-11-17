@@ -5,8 +5,8 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
 
-/**
- * Implementierung der Wertigkeit einer einzelnen Karte für die KI Logik
+/**	Description of KICardSelection Class
+ *  This Class implements the points of a single card for the KI.
  */
 public class KICardSelection {
 	private enum QUANTIFIER {

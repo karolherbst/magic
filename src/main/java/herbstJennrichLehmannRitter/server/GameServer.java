@@ -8,10 +8,8 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Collection;
 
-/**
- * 
- * Interface für die Schnittstelle zum GameClient
- *
+/**	Description of GameServer Class
+ *  This Class extends the Remote Interface and works as interface to the GameClient
  */
 public interface GameServer extends Remote {
 	

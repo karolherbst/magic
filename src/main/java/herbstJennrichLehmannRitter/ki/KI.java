@@ -13,6 +13,10 @@ import java.util.TreeMap;
 import java.util.concurrent.Semaphore;
 
 
+/**	Description of KI Class
+ *  This Class implements the UserInterface Interface and creates a computer player.
+ */
+
 public class KI implements UserInterface, Runnable {
 
 	private Thread thread = null;
