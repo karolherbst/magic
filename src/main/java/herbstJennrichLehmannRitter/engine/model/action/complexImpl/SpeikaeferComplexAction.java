@@ -4,7 +4,7 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
-@ComplexCard("Spionage")
+@ComplexCard("Speikäfer")
 public class SpeikaeferComplexAction implements ComplexCardAction {
 
 	@Override

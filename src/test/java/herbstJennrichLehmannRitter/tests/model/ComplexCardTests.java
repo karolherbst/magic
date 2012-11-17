@@ -344,6 +344,28 @@ public class ComplexCardTests {
 	}
 	
 	@Test
+	public void testSpeikaefer() {
+		Card speikaefer = this.gameCardFactory.createCard("Speikäfer");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				1, 1, 1, 1);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				20, 0, 12, 12);
+		speikaefer.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(10, playerTwo.getTower().getActualPoints());
+	}
+	
+	@Test
+	public void testSpeikaeferTwo() {
+		Card speikaeferTwo = this.gameCardFactory.createCard("Speikäfer");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				13, 13, 13, 13);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 9, 12);
+		speikaeferTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(6, playerTwo.getWall().getActualPoints());	
+	}
+	
+	@Test
 	public void testSpionage() {
 		Card spionage = this.gameCardFactory.createCard("Spionage");
 		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
@@ -363,6 +385,44 @@ public class ComplexCardTests {
 				12, 12, 9, 12);
 		spionageTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
 		assertEquals(13, playerOne.getMine().getLevel());	
+	}
+	
+	@Test
+	public void testUeberflutung() {
+		Card ueberflutung = this.gameCardFactory.createCard("Überflutung");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				10, 10, 10, 10);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		ueberflutung.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(9, playerOne.getDungeon().getLevel());
+		assertEquals(8, playerOne.getTower().getActualPoints());
+	}
+	
+	@Test
+	public void testUeberflutungTwo() {
+		Card ueberflutungTwo = this.gameCardFactory.createCard("Überflutung");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				13, 13, 13, 13);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 9, 12);
+		ueberflutungTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(8, playerTwo.getDungeon().getLevel());
+		assertEquals(10, playerTwo.getTower().getActualPoints());
+	}
+	
+	@Test
+	public void testUeberflutungThree() {
+		Card ueberflutungThree = this.gameCardFactory.createCard("Überflutung");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				13, 13, 13, 13);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				13, 13, 13, 13);
+		ueberflutungThree.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(13, playerOne.getDungeon().getLevel());
+		assertEquals(13, playerOne.getTower().getActualPoints());
+		assertEquals(13, playerTwo.getDungeon().getLevel());
+		assertEquals(13, playerTwo.getTower().getActualPoints());
 	}
 	
 	@Test
@@ -414,41 +474,5 @@ public class ComplexCardTests {
 		assertTrue(sumOfCosts > 14);
 	}
 	
-	@Test
-	public void testUeberflutung() {
-		Card ueberflutung = this.gameCardFactory.createCard("Überflutung");
-		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
-				10, 10, 10, 10);
-		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
-				12, 12, 12, 12);
-		ueberflutung.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
-		assertEquals(9, playerOne.getDungeon().getLevel());
-		assertEquals(8, playerOne.getTower().getActualPoints());
-	}
 	
-	@Test
-	public void testUeberflutungTwo() {
-		Card ueberflutungTwo = this.gameCardFactory.createCard("Überflutung");
-		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
-				13, 13, 13, 13);
-		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
-				12, 12, 9, 12);
-		ueberflutungTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
-		assertEquals(8, playerTwo.getDungeon().getLevel());
-		assertEquals(10, playerTwo.getTower().getActualPoints());
-	}
-	
-	@Test
-	public void testUeberflutungThree() {
-		Card ueberflutungThree = this.gameCardFactory.createCard("Überflutung");
-		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
-				13, 13, 13, 13);
-		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
-				13, 13, 13, 13);
-		ueberflutungThree.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
-		assertEquals(13, playerOne.getDungeon().getLevel());
-		assertEquals(13, playerOne.getTower().getActualPoints());
-		assertEquals(13, playerTwo.getDungeon().getLevel());
-		assertEquals(13, playerTwo.getTower().getActualPoints());
-	}
 }
