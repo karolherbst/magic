@@ -9,7 +9,7 @@ import java.util.Collection;
 
 /**
  * 
- * Interface für die Erstellung von Kartenobjekten
+ * Interface for the creation of Cards
  * 
  */
 public interface GameCardFactory {

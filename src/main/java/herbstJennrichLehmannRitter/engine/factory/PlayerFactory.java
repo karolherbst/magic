@@ -7,7 +7,7 @@ import java.util.Collection;
 
 /**
  * 
- * Interface für die Erstellung von Spielerobjekten
+ * Interface for the creation of player objects
  * 
  */
 public interface PlayerFactory {
