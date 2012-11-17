@@ -18,11 +18,9 @@ import herbstJennrichLehmannRitter.engine.model.impl.WallImpl;
 
 import java.util.Collection;
 
-/**
- * 
- * Implementation der Playerfactory
- * Die Playerfactory erstellt Spielerobjekte und weist Ihnen alle benötigten Daten zu
- *
+/**	Description of PlayerFactoryImpl Class
+ *  This Class implements the PlayerFactory Interface.
+ *  The PlayerFactory creates playerObjects and assigns all needed Data.
  */
 public class PlayerFactoryImpl implements PlayerFactory {
 
