@@ -23,7 +23,8 @@ public class ElfischeBogenschuetzenComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getEnemyEffectDescription() {
-		return "Wenn die eigene Mauer mehr Leben hat, als die gegnerische Mauer, dann werden dem Gegner 6 Turmschaden zugefügt, " +
+		return "Wenn die eigene Mauer mehr Leben hat, als die gegnerische Mauer, " +
+				"dann werden dem Gegner 6 Turmschaden zugefügt, " +
 				"sonst nur 6 Schaden.";
 	}
 }
