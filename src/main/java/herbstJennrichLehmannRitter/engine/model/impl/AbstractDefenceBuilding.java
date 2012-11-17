@@ -2,6 +2,11 @@ package herbstJennrichLehmannRitter.engine.model.impl;
 
 import herbstJennrichLehmannRitter.engine.model.DefenceBuilding;
 
+/** Description of AbstractDefenceBuilding Class
+ *  This Class implements the DefenceBuilding Interface.
+ *  It creates the methods for the defence buildings.
+ */
+
 public abstract class AbstractDefenceBuilding implements DefenceBuilding {
 
 	private int actualPoints;

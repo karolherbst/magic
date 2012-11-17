@@ -10,6 +10,11 @@ import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
 import herbstJennrichLehmannRitter.engine.model.action.impl.CardActionImpl;
 import herbstJennrichLehmannRitter.engine.model.action.impl.ResourceActionImpl;
 
+/** Description of CardImpl Class
+ *  This Class extends the AbstractCard Interface.
+ *  It implements the costs and actions for all cards.
+ */
+
 public class CardImpl extends AbstractCard {
 
 	private final String name;

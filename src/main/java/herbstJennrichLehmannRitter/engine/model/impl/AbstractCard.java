@@ -4,6 +4,11 @@ import herbstJennrichLehmannRitter.engine.enums.ResourceType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 
+/** Description of AbstractCard Class
+ *  This Class implements the Card Interface.
+ *  It creates the strings for the complex cards.
+ */
+
 public abstract class AbstractCard implements Card {
 	
 	@Override

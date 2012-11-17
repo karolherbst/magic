@@ -2,6 +2,11 @@ package herbstJennrichLehmannRitter.engine.model.impl;
 
 import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
 
+/** Description of AbstractResourceBuilding Class
+ *  This Class implements the ResourceBuilding Interface.
+ *  It creates the methods for the resource buildings.
+ */
+
 public abstract class AbstractResourceBuilding implements ResourceBuilding {
 
 	private int level = 1;
