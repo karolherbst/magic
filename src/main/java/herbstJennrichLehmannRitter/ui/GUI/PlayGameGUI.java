@@ -611,7 +611,7 @@ public class PlayGameGUI {
 		}
 		
 		public void setPlayerActive(String text) {
-			this.nameLabel.setBackground(new Color(PlayGameGUI.this.display, 150, 0, 0));
+			this.nameLabel.setBackground(new Color(PlayGameGUI.this.display, 255, 200, 0));
 			this.nameLabel.setForeground(new Color(PlayGameGUI.this.display, 255, 255, 255));
 			this.nameLabel.setText(NameFields.this.playerName + ' ' + text);
 		}
