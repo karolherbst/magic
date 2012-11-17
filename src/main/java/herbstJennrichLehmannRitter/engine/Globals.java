@@ -17,6 +17,10 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+/** Description of Globals Class
+ *  This Class implements the Game Service, the Game Server and the GameCard Factory.
+ */
+
 public final class Globals {
 	
 	private static GameService gameService;
