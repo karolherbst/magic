@@ -4,6 +4,11 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+/** Description of Weihnachtsmann Class
+ *  This Class implements the complex effect for the complex Card Weihnachtsmann.
+ *  To do this, the player picks up a random card with costs higher than 14.
+ */
+
 @ComplexCard("Weihnachtsmann")
 public class WeihnachtsmannComplexAction implements ComplexCardAction {
 

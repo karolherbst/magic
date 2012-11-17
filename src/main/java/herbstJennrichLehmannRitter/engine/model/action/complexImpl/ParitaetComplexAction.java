@@ -4,6 +4,11 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+/** Description of Paritaet Class
+ *  This Class implements the complex effect for the complex Card Paritaet.
+ *  To do this, the players and the enemies magic lab are set on the highest level of the game.
+ */
+
 @ComplexCard("Parität")
 public class ParitaetComplexAction implements ComplexCardAction {
 

@@ -4,6 +4,11 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+/** Description of Ueberflutung Class
+ *  This Class implements the complex effect for the complex Card Ueberflutung.
+ *  To do this, the player with the lowest wall gets 2 tower damage and loses 1 dungeon level.
+ */
+
 @ComplexCard("Überflutung")
 public class UeberflutungComplexAction implements ComplexCardAction {
 

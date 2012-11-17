@@ -5,6 +5,11 @@ import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+/** Description of PureMagie Class
+ *  This Class implements the complex effect for the complex Card Pure Magie.
+ *  To do this, the player discards all hand cards and picks up 6 magic lab cards.
+ */
+
 @ComplexCard("Pure Magie")
 public class PureMagieComplexAction implements ComplexCardAction {
 

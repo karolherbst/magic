@@ -5,6 +5,11 @@ import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+/** Description of PfuschenderSchmied Class
+ *  This Class implements the complex effect for the complex Card Pfuschender Schmied.
+ *  To do this, all mine cards on the enemies hand are discarded.
+ */
+
 @ComplexCard("Pfuschender Schmied")
 public class PfuschenderSchmiedComplexAction implements ComplexCardAction {
 

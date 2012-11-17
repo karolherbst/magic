@@ -4,6 +4,12 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+/** Description of Spionage Class
+ *  This Class implements the complex effect for the complex Card Spionage.
+ *  To do this, the game checks, if the players mine level is lower than the enemies. If this is the case, the players 
+ *  mine gets the same level as the enemies mine.
+ */
+
 @ComplexCard("Spionage")
 public class SpionageComplexAction implements ComplexCardAction {
 

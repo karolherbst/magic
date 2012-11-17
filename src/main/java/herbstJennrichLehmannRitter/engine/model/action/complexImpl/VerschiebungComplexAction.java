@@ -4,6 +4,11 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+/** Description of Verschiebung Class
+ *  This Class implements the complex effect for the complex Card Verschiebung.
+ *  To do this, the players wall is exchanged with the enemies wall.
+ */
+
 @ComplexCard("Verschiebung")
 public class VerschiebungComplexAction implements ComplexCardAction {
 

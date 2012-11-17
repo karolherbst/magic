@@ -4,6 +4,11 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+/** Description of Paradoxon Class
+ *  This Class implements the complex effect for the complex Card Paradoxon.
+ *  To do this, the players and the enemies hand cards are exchanged.
+ */
+
 @ComplexCard("Paradoxon")
 public class ParadoxonComplexAction implements ComplexCardAction {
 

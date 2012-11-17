@@ -6,8 +6,8 @@ import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
 /** Description of Speertraeger Class
  *  This Class implements the complex effect for the complex Card Speertraeger.
- *  To do this, the game checks, if the enemy's wall is down to level 'zero'. If the wall is down to 'zero', the enemy
- *  suffers 10 damage. If not, the enemy suffers 6 damage. * 
+ *  To do this, the game checks, if the players wall is higher than the enemies. If this is the case, the enemy 
+ *  suffers 3 damage. If not, the enemy suffers 2 damage. 
  */
 
 @ComplexCard("Speerträger")
