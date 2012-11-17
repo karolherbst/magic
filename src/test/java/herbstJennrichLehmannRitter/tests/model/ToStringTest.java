@@ -147,6 +147,15 @@ public class ToStringTest {
 	}
 	
 	@Test
+	public void testKorrosionComplexAction() {
+		Card korrosion = this.gameCardFactory.createCard("Korrosion");
+		assertNotNull(korrosion);
+		System.out.println(korrosion);
+		assertEquals("Korrosion[Kosten: 11 Monster; Gegner: Wenn gegnerische Mauer>0 dann 10 Schaden sonst 7 Schaden]",
+				korrosion.toString());
+	}
+	
+	@Test
 	public void testParadoxonComplexAction() {
 		Card paradoxon = this.gameCardFactory.createCard("Paradoxon");
 		assertNotNull(paradoxon);
