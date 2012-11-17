@@ -8,12 +8,11 @@ import herbstJennrichLehmannRitter.engine.model.DefenceBuilding;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
 
-/**
- *
- * Implementation des Spielerobjektes
- * Hält alle relevanten Objekte des Spielers
- *
+/**	Description ofPlayerImpl Class
+ *  This Class implements the Player Interface and implements the dungeon.
+ *	Saves name and information about the player.
  */
+
 public class PlayerImpl implements Player {
 
 	private String name;

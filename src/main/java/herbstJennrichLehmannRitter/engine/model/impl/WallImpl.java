@@ -6,11 +6,11 @@ package herbstJennrichLehmannRitter.engine.model.impl;
 import herbstJennrichLehmannRitter.engine.enums.BuildingType;
 
 
-/**
- * In der Implementierung der Mauer werden die aktuellen Punkte der Mauer für das jeweilige 
- * Spielerobjekt gespeichert. 
- *
+/**	Description of WallImpl Class
+ *  This Class extends the AbstractDefenceBuilding Interface and implements the wall.
+ *	Saves level of the wall.
  */
+
 public class WallImpl extends AbstractDefenceBuilding {
 
 	public WallImpl() {

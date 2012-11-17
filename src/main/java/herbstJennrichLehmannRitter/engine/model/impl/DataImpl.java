@@ -3,13 +3,11 @@ package herbstJennrichLehmannRitter.engine.model.impl;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.engine.model.Player;
 
-/**
- * Implementation von Data.<br />
- * Die Spielerobjekte werden in dieser Klasse gespeichert und 
- * von den GameClients ({@link herbstJennrichLehmannRitter.client.GameClient}) genutzt, um die 
- * beiden Spielerobjekte abzurufen.
- *
+/** Description of DataImpl Class
+ *  This Class implements the Data Interface.
+ *  The playerobjects are saved in this class and are used by the GameClients to call both PlayerObjects.
  */
+
 public class DataImpl implements Data {
 
 	private Player ownPlayer = null;

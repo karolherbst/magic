@@ -9,6 +9,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+/** Description of DeckImpl Class
+ *  This Class implements the Deck Interface.
+ *  The Hand decks are saved in this class.
+ */
+
 public class DeckImpl implements Deck {
 	
 	private HandDeckImpl handDeck = new HandDeckImpl();

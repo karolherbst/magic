@@ -5,14 +5,11 @@ package herbstJennrichLehmannRitter.engine.model.impl;
 
 import herbstJennrichLehmannRitter.engine.enums.BuildingType;
 
-
-
-/**
- * 
- * In der Implementierung des Towers werden die aktuellen Punkte des Towers für das jeweilige 
- * Spielerobjekt gespeichert. 
- *
+/**	Description of TowerImpl Class
+ *  This Class extends the AbstractDefenceBuilding Interface and implements the tower.
+ *	Saves level of the tower.
  */
+
 public class TowerImpl extends AbstractDefenceBuilding {
 
 	public TowerImpl() {

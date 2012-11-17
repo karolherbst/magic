@@ -1,12 +1,11 @@
 package herbstJennrichLehmannRitter.engine.model.impl;
 
 
-/**
- *
- * Implementation des Ressourcengebäudes Verlies.<br />
- * Speichert das Level und den Ressourcenstand des Verlies.
- *
+/**	Description of DungeonImpl Class
+ *  This Class extends the AbstractResourceBuilding Interface and implements the dungeon.
+ *	Saves level and stock of the dungeon.
  */
+
 public class DungeonImpl extends AbstractResourceBuilding {
 
 	@Override

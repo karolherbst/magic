@@ -1,12 +1,11 @@
 package herbstJennrichLehmannRitter.engine.model.impl;
 
 
-/**
-*
-* Implementation des Ressourcengebäudes Mine.<br />
-* Speichert das Level und den Ressourcenstand der Mine.
-*
-*/
+/**	Description of MineImpl Class
+ *  This Class extends the AbstractResourceBuilding Interface and implements the mine.
+ *	Saves level and stock of the mine.
+ */
+
 public class MineImpl extends AbstractResourceBuilding {
 	
 	@Override
