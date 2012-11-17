@@ -158,7 +158,9 @@ public class GameEngineControllerImpl implements GameEngineController {
 	
 	public void throwAwayCardAndRefillHandDeckIfNeeded(Card card, Player player) {
 		player.getDeck().discardCard(card);
-		
+		if (card.getCardAction().getAmountCardDraw() == 1){
+			player.getDeck().pickCards(1);
+		}
 		if (!card.getCardAction().getPlayCards()) {
 			player.getDeck().pickCards(6);
 		}
