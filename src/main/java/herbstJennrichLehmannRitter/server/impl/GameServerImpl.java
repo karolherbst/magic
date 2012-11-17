@@ -8,6 +8,10 @@ import herbstJennrichLehmannRitter.ui.UserInterface;
 
 import java.util.Collection;
 
+/**	Description of GameServerImpl Class
+ *  This Class implements the GameServer Interface and saves the necessary data
+ */
+
 public class GameServerImpl implements GameServer {
 
 	private final GameService gameService;

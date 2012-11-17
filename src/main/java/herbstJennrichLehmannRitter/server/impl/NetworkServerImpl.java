@@ -9,6 +9,10 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Collection;
 
+/**	Description of NetworkServerImpl Class
+ *  This Class implements the GameServer Interface and saves the necessary network data
+ */
+
 public class NetworkServerImpl extends UnicastRemoteObject implements GameServer {
 
 	private static final long serialVersionUID = -5758886288940510467L;
