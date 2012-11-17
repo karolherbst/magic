@@ -5,6 +5,11 @@ import herbstJennrichLehmannRitter.engine.enums.ResourceType;
 import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
 import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 
+/** Description of ResourceActionImpl Class
+ *  This Class implements the ResourceAction Interface.
+ *  It implements 10 integers and generates the simpleCardEffects.
+ */
+
 public class ResourceActionImpl implements ResourceAction {
 
 	private final int towerEffect;

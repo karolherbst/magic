@@ -3,6 +3,11 @@ package herbstJennrichLehmannRitter.engine.model.action.impl;
 import herbstJennrichLehmannRitter.engine.model.action.CardAction;
 import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 
+/** Description of CardActionImpl Class
+ *  This Class implements the CardAction Interface.
+ *  It implements 3 integers and one boolean and creates the text effects.
+ */
+
 public class CardActionImpl implements CardAction {
 
 	private final int amountCardDraw;

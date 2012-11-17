@@ -3,6 +3,11 @@ package herbstJennrichLehmannRitter.engine.model.action.impl;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.GameAction;
 
+/** Description of GameActionImpl Class
+ *  This Class implements the GameAction Interface.
+ *  It implements 2 players and decides who has won.
+ */
+
 public class GameActionImpl implements GameAction {
 	
 	private Player sourcePlayer;
