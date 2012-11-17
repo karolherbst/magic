@@ -4,7 +4,7 @@ import herbstJennrichLehmannRitter.exception.MagicException;
 
 /** Description of GameCardFactoryException Class
  *  This Class extends the MagicException Interface.
- *  It sets a serialVersionUID and declares the error texts.
+ *  It sets a serialVersionUID and declares the error texts for the CardFactory.
  */
 
 public class GameCardFactoryException extends MagicException {

@@ -2,6 +2,11 @@ package herbstJennrichLehmannRitter.engine.exception;
 
 import herbstJennrichLehmannRitter.exception.MagicException;
 
+/** Description of GameEngineException Class
+ *  This Class extends the MagicException Interface.
+ *  It sets a serialVersionUID and declares the error texts for the GameEngine.
+ */
+
 public class GameEngineException extends MagicException {
 	
 	private static final long serialVersionUID = 8288228990384367096L;
