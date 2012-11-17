@@ -15,6 +15,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+/**	Description of GameServiceImpl Class
+ *  This Class implements the GameService Interface and creates the ui, the player and the game engine.
+ */
+
 public class GameServiceImpl implements GameService {
 
 	private class UIHolder {

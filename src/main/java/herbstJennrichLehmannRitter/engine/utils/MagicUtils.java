@@ -4,11 +4,13 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Player;
 
 
+/**Description of GameServiceImpl Class
+ * MagicUtils should never be instantiated
+ */
+
 public abstract class MagicUtils {
 
-	/**
-	 * MagicUtils should never be instantiated
-	 */
+
 	private MagicUtils() {}	
 	
 	public static void addValueToStringBuilder(Object value, StringBuilder stringBuilder) {

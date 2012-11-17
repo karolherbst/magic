@@ -1,5 +1,9 @@
 package herbstJennrichLehmannRitter.exception;
 
+/**	Description of MagicException Class
+ *  This Class extends the RuntimeException Interface and catches exceptions.
+ */
+
 public abstract class MagicException extends RuntimeException {
 	
 	private static final long serialVersionUID = 3788396458956006670L;
