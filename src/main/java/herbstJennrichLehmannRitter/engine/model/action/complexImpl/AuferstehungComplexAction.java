@@ -5,6 +5,11 @@ import herbstJennrichLehmannRitter.engine.enums.BuildingType;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+/** Description of Auferstehung Class
+ *  This Class implements the complex effect for the complex Card Auferstehung.
+ *  To do this, the game adds 30% to the players tower. 
+ */
+
 @ComplexCard("Auferstehung")
 public class AuferstehungComplexAction implements ComplexCardAction {
 

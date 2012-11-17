@@ -4,6 +4,12 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+/** Description of Baumgeist Class
+ *  This Class implements the complex effect for the complex Card Baumgeist.
+ *  To do this, the game checks, if the players dungeon level is higher than the enemy wall level. 
+ *  If this is the case, the enemies tower gets 11 damage.
+ */
+
 @ComplexCard("Baumgeist")
 public class BaumgeistComplexAction implements ComplexCardAction {
 

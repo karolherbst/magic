@@ -4,6 +4,12 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+/** Description of BlitzUndDonner Class
+ *  This Class implements the complex effect for the complex Card Blitz und Donner.
+ *  To do this, the game checks, if the players tower health is higher than the enemy tower health. 
+ *  If this is the case, the enemies tower gets 8 damage. Otherwise the enemy gets 8 damage.
+ */
+
 @ComplexCard("Blitz und Donner")
 public class BlitzUndDonnerComplexAction implements ComplexCardAction {
 

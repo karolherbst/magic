@@ -5,8 +5,12 @@ import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
-@ComplexCard("Blutmond")
+/** Description of Blutmond Class
+ *  This Class implements the complex effect for the complex Card Blutmond.
+ *  To do this, the players hand Deck is discarded and 6 cards with the type Dungeon are picked up.
+ */
 
+@ComplexCard("Blutmond")
 public class BlutmondComplexAction implements ComplexCardAction {
 	
 	@Override

@@ -3,6 +3,12 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+/** Description of Dieb Class
+ *  This Class implements the complex effect for the complex Card Dieb.
+ *  To do this, the enemies stock of bricks is reduced by maximum 5 and the stock of crystal is reduced by maximum 10.
+ *  The player gets half the stolen amount.
+ */
+
 @ComplexCard("Dieb")
 public class DiebComplexAction implements ComplexCardAction {
 	@Override
