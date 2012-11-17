@@ -1,11 +1,10 @@
 package herbstJennrichLehmannRitter.engine.model;
 
 
-/**
- * 
- * Interface für die Ressourcenbebäude.
- *
+/**	Description of ResourceBuilding Class
+ * Interface for Mine, Magic Lab and Dungeon
  */
+
 public interface ResourceBuilding extends Building {
 	
 	public int getLevel();
