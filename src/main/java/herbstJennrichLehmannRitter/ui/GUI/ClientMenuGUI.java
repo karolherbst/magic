@@ -3,6 +3,7 @@ package herbstJennrichLehmannRitter.ui.GUI;
 import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
+import herbstJennrichLehmannRitter.ui.impl.RMIUserInterface;
 
 import java.rmi.RemoteException;
 import java.util.Timer;
@@ -129,7 +130,7 @@ public class ClientMenuGUI {
 					clientUserInterface.setClientMenuGUI(ClientMenuGUI.this);
 					clientUserInterface.setPlayGameGUI(ClientMenuGUI.this.playGameGUI);
 					
-					gameServer.register(clientUserInterface);
+					gameServer.register(new RMIUserInterface(clientUserInterface));
 				} catch (RemoteException e1) {
 				}
 			}
