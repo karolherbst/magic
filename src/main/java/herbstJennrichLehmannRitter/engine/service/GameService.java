@@ -6,10 +6,8 @@ import herbstJennrichLehmannRitter.ui.UserInterface;
 
 import java.util.Collection;
 
-/**
- * 
- * Der Gameservice stellt die Funktionalität der GameEngine nach Außen bereit
- *
+/**	Description of GameService Class
+ * 	The Gameservice secures the functionality of the GameEngine to the outside
  */
 public interface GameService {
 	
