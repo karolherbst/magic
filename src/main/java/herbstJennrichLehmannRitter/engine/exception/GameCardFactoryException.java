@@ -2,6 +2,11 @@ package herbstJennrichLehmannRitter.engine.exception;
 
 import herbstJennrichLehmannRitter.exception.MagicException;
 
+/** Description of GameCardFactoryException Class
+ *  This Class extends the MagicException Interface.
+ *  It sets a serialVersionUID and declares the error texts.
+ */
+
 public class GameCardFactoryException extends MagicException {
 
 	private static final long serialVersionUID = 8275730135609871722L;
