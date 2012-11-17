@@ -4,9 +4,10 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
+import java.rmi.server.RemoteObject;
 import java.util.Collection;
 
-public class RMIUserInterface implements UserInterface {
+public class RMIUserInterface extends RemoteObject implements UserInterface {
 
 	private static final long serialVersionUID = -3976482349872923026L;
 	
