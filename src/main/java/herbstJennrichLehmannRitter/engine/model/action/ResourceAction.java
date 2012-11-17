@@ -2,15 +2,9 @@ package herbstJennrichLehmannRitter.engine.model.action;
 
 import java.io.Serializable;
 
-/**
- *
- * Interface für alle Karten, die nur einfache Aktionen durchführen, wie<br />
- *  - Schaden<br />
- *  - Ressourcenverteilung<br />
- *  - Gebäudeaktionen und <br />
- *  - Kartenaktionen<br />
- *  hinausgehen
- *
+/**	Description of ResourceAction Class
+ * 	Contains all relevant information for all cards who perform only simple actions like applying damage, distributing
+ * 	resources, actions on buildings and card actions.
  */
 public interface ResourceAction extends Serializable {
 	
