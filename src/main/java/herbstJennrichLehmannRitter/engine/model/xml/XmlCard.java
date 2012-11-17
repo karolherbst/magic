@@ -12,6 +12,10 @@ import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**	Description of XmlCard Class
+ *  This Class extends the AbstractCard Interface and sets all card details as said in the .xml-file.
+ */
+
 @XmlRootElement(name="Card")
 public class XmlCard extends AbstractCard {
 

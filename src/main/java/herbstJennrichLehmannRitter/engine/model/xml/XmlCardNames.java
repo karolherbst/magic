@@ -6,6 +6,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**	Description of XmlCardNames Class
+ *  This Class searches for the card names in the .xml-file.
+ */
+
 @XmlRootElement(name="CardNames")
 public class XmlCardNames {
 	

@@ -4,6 +4,10 @@ import javax.xml.bind.annotation.XmlElement;
 
 import herbstJennrichLehmannRitter.engine.model.action.CardAction;
 
+/**	Description of XmlCardAction Class
+ *  This Class implements the CardAction Interface and sets the draw card details as said in the .xml-file.
+ */
+
 public class XmlCardAction implements CardAction {
 
 	private int amountCardDraw;

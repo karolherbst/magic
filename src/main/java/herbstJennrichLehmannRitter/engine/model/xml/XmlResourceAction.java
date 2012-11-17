@@ -4,6 +4,10 @@ import javax.xml.bind.annotation.XmlElement;
 
 import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
 
+/**	Description of XmlResourceAction Class
+ *  This Class implements the ResourceAction Interface and sets the Resource actions in the .xml-file.
+ */
+
 public class XmlResourceAction implements ResourceAction {
 
 	private int towerEffect;
