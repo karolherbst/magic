@@ -4,10 +4,8 @@ import java.util.Collection;
 
 import herbstJennrichLehmannRitter.engine.model.Card;
 
-/**
- * 
- * Interface um ein Kartendecks zu erstellen bzw. ein bestehendes Kartendeck zu verwalten
- *
+/**	Description of DeckCreator Class
+ * Interface for creating a card deck or manage an existing deck
  */
 public interface DeckCreator {
 	

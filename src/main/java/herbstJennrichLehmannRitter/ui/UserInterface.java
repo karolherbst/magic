@@ -6,10 +6,8 @@ import herbstJennrichLehmannRitter.engine.model.Data;
 import java.io.Serializable;
 import java.util.Collection;
 
-/**
- * 
- * Interface um den Client Informationen zu übergeben
- *
+/**	Description of GameServerImpl Class
+ *	Interface for sending information to the client
  */
 public interface UserInterface extends Serializable {
 	
