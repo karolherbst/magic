@@ -344,6 +344,28 @@ public class ComplexCardTests {
 	}
 	
 	@Test
+	public void testSpeertraeger() {
+		Card speertraeger = this.gameCardFactory.createCard("Speerträger");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				20, 10, 12, 12);
+		speertraeger.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(7, playerTwo.getWall().getActualPoints());
+	}
+	
+	@Test
+	public void testSpeertraegerTwo() {
+		Card speertraegerTwo = this.gameCardFactory.createCard("Speerträger");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				12, 12, 12, 12);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				20, 14, 9, 12);
+		speertraegerTwo.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(12, playerTwo.getWall().getActualPoints());	
+	}
+	
+	@Test
 	public void testSpeikaefer() {
 		Card speikaefer = this.gameCardFactory.createCard("Speikäfer");
 		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),

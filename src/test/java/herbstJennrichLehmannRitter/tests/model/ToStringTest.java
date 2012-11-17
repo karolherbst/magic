@@ -184,6 +184,15 @@ public class ToStringTest {
 	}
 	
 	@Test
+	public void testSpeertraegerComplexAction() {
+		Card speertraeger = this.gameCardFactory.createCard("Speerträger");
+		assertNotNull(speertraeger);
+		System.out.println(speertraeger);
+		assertEquals("Speerträger[Kosten: 2 Monster; Gegner: Wenn die Mauer größer der gegnerischen Mauer dann 3 " +
+				"Schaden sonst 2 Schaden]", speertraeger.toString());
+	}
+	
+	@Test
 	public void testSpeikaeferComplexAction() {
 		Card speikaefer = this.gameCardFactory.createCard("Speikäfer");
 		assertNotNull(speikaefer);
