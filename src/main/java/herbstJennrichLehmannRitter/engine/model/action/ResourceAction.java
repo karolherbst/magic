@@ -1,5 +1,7 @@
 package herbstJennrichLehmannRitter.engine.model.action;
 
+import java.io.Serializable;
+
 /**
  *
  * Interface für alle Karten, die nur einfache Aktionen durchführen, wie<br />
@@ -10,7 +12,7 @@ package herbstJennrichLehmannRitter.engine.model.action;
  *  hinausgehen
  *
  */
-public interface ResourceAction {
+public interface ResourceAction extends Serializable {
 	
 	public int getTowerEffect();
 	public int getWallEffect();

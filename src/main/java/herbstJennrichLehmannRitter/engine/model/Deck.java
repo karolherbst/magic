@@ -2,6 +2,7 @@ package herbstJennrichLehmannRitter.engine.model;
 
 import herbstJennrichLehmannRitter.engine.enums.CardType;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 
@@ -10,7 +11,7 @@ import java.util.Collection;
  * Interface, für die Karten
  *
  */
-public interface Deck {
+public interface Deck extends Serializable {
 	
 	public Collection<Card> getAllCards();
 	

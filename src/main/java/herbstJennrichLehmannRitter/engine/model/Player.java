@@ -1,12 +1,14 @@
 package herbstJennrichLehmannRitter.engine.model;
 
+import java.io.Serializable;
+
 /**
  * 
  * Interface für das Spielerobjekt.
  * Beinhaltet alle relevanten Schnittstellen eines Spielerobjektes.
  *
  */
-public interface Player {
+public interface Player extends Serializable {
 	
 	public String getName();
 	public void setName(String name);

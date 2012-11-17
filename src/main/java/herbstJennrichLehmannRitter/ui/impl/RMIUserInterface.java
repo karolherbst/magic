@@ -4,7 +4,6 @@ import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
-import java.rmi.RemoteException;
 import java.util.Collection;
 
 public class RMIUserInterface implements UserInterface {
@@ -13,8 +12,7 @@ public class RMIUserInterface implements UserInterface {
 	
 	private final UserInterface userInterface;
 	
-	public RMIUserInterface(UserInterface userInterface) throws RemoteException {
-		super();
+	public RMIUserInterface(UserInterface userInterface) {
 		this.userInterface = userInterface;
 	}
 	

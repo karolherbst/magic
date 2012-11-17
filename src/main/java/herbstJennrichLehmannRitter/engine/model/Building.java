@@ -1,6 +1,8 @@
 package herbstJennrichLehmannRitter.engine.model;
 
-public interface Building {
+import java.io.Serializable;
+
+public interface Building extends Serializable {
 	
 	public String getName();
 	

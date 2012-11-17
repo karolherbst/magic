@@ -10,7 +10,7 @@ import herbstJennrichLehmannRitter.server.impl.GameServerImpl;
 import herbstJennrichLehmannRitter.server.impl.NetworkServerImpl;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.rmi.AlreadyBoundException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -31,6 +31,7 @@ public final class Globals {
 	private static boolean started = false;
 	
 	public static final String GAME_SERVER_NAME = "MagicServer";
+	private static final int GAME_SERVER_PORT = 40000;
 	
 	/**
 	 * The Class Globals should never be instantiated
@@ -63,15 +64,12 @@ public final class Globals {
 		}
 		
 		try {
-			LocateRegistry.createRegistry(1099);
+			Registry registry = LocateRegistry.createRegistry(GAME_SERVER_PORT);
 			System.out.println("Registry wurde erzeugt!");
 			
-			remoteGameServer = new NetworkServerImpl(getLocalGameServer());
-			
-			Naming.rebind(GAME_SERVER_NAME, remoteGameServer);
+			registry.bind(GAME_SERVER_NAME, new NetworkServerImpl(getLocalGameServer()));
 			System.out.println(GAME_SERVER_NAME + ": remoteGameServer wurde registriert!");
-//			Naming.rebind("//localhost/" + GAME_SERVER_NAME, remoteGameServer);
-		} catch (MalformedURLException e) {
+		} catch (AlreadyBoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -95,11 +93,10 @@ public final class Globals {
 	public static GameServer getRemoteServer(String ipAddress) {
 		GameServer gameServer = null;
 		try {
-			Registry registry = LocateRegistry.getRegistry(ipAddress, 1099);
+			Registry registry = LocateRegistry.getRegistry(ipAddress, GAME_SERVER_PORT);
 			System.out.println("Registry wurde located on IP:" + ipAddress);
 			gameServer = (GameServer)registry.lookup(GAME_SERVER_NAME);
 			System.out.println("Looking up to:" + GAME_SERVER_NAME);
-//			gameServer = (GameServer)Naming.lookup("//" + ipAddress + "/" + GAME_SERVER_NAME);
 		} catch (Exception e) {
 			System.out.println("Exception Client");
 			e.printStackTrace();

@@ -5,6 +5,8 @@ import herbstJennrichLehmannRitter.engine.model.action.CardAction;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
 
+import java.io.Serializable;
+
 /**
  * 
  * Interface für die Spielkarten
@@ -13,7 +15,7 @@ import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
  *
  * 
  */
-public interface Card {
+public interface Card extends Serializable {
 	
 	public String getName();
 	public CardType getCardType();

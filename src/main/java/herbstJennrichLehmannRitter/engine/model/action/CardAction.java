@@ -1,6 +1,8 @@
 package herbstJennrichLehmannRitter.engine.model.action;
 
-public interface CardAction {
+import java.io.Serializable;
+
+public interface CardAction extends Serializable {
 	
 	public int getAmountCardDraw();
 	public int getOwnAmountCardDiscard();
