@@ -267,6 +267,30 @@ public class ComplexCardTests {
 	}
 	
 	@Test
+	public void testKorrosionOne() {
+		Card card = this.gameCardFactory.createCard("Korrosion");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				11, 11, 11, 11);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				10, 1, 12, 12);
+		card.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(1, playerTwo.getTower().getActualPoints());	
+	}
+	
+	@Test
+	public void testKorrosionTwo() {
+		Card card = this.gameCardFactory.createCard("Korrosion");
+		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
+				11, 11, 11, 11);
+		Player playerTwo = this.playerFactory.createPlayer("Spieler 2", this.gameCardFactory.createDefaultDeck(),
+				10, 0, 12, 12);
+		card.getComplexCardAction().applyActionOnPlayer(playerOne, playerTwo);
+		assertEquals(3, playerTwo.getTower().getActualPoints());	
+	}
+	
+	
+	
+	@Test
 	public void testParadoxon() {
 		Card paradoxon = this.gameCardFactory.createCard("Paradoxon");
 		Player playerOne = this.playerFactory.createPlayer("Spieler 1", this.gameCardFactory.createDefaultDeck(),
