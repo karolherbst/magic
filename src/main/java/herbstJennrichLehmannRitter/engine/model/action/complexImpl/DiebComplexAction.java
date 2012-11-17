@@ -33,6 +33,6 @@ public class DiebComplexAction implements ComplexCardAction {
 
 	@Override
 	public String getEnemyEffectDescription() {
-		return "Es werden maximal -10 Kristall und -5 Ziegel abgezogen";
+		return "Es werden maximal 10 Kristall und 5 Ziegel abgezogen";
 	}
 }
