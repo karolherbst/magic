@@ -20,6 +20,13 @@ import herbstJennrichLehmannRitter.engine.utils.MagicUtils;
 
 import java.util.Collection;
 
+/** Description of GameEngineControllerImpl Class
+ *  This Class implements the GameEngineController.
+ *  It starts the GameCardFactory and sets the default settings for tower, wall, ressource building and level
+ *  Furthermore it creates the players, stops the game, discards cards, applies ressources on buildings and fills the
+ *  hand deck.
+ */
+
 //TODO: Test
 public class GameEngineControllerImpl implements GameEngineController {
 
