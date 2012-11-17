@@ -2,6 +2,11 @@ package herbstJennrichLehmannRitter.engine.exception;
 
 import herbstJennrichLehmannRitter.exception.MagicException;
 
+/** Description of PlayerCouldNotBeCreatedException Class
+ *  This Class extends the MagicException Interface.
+ *  It sets a serialVersionUID and declares the error texts for the PlayerCouldNotBeCreated Errors.
+ */
+
 public class PlayerCouldNotBeCreatedException extends MagicException {
 
 	private static final long serialVersionUID = -5445087690691741698L;
