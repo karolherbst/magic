@@ -6,11 +6,10 @@ import java.io.Serializable;
 import java.util.Collection;
 
 
-/**
- * 
- * Interface, für die Karten
- *
+/**	Description of Deck Class
+ * Interface for the Decks
  */
+
 public interface Deck extends Serializable {
 	
 	public Collection<Card> getAllCards();

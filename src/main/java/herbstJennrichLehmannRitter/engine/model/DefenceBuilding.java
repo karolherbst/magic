@@ -1,10 +1,9 @@
 package herbstJennrichLehmannRitter.engine.model;
 
-/**
- * 
- * Interface für den Turm und die Mauer
- *
+/**	Description of DefenceBuilding Class
+ * Interface for Tower and Wall
  */
+
 public interface DefenceBuilding extends Building {
 
 	public int getActualPoints();

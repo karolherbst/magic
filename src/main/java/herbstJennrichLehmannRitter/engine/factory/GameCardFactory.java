@@ -7,11 +7,10 @@ import java.io.Reader;
 import java.io.Writer;
 import java.util.Collection;
 
-/**
- * 
- * Interface for the creation of Cards
- * 
+/**	Description of GameCardFactory Class
+ * Interface for the creation of Cards 
  */
+
 public interface GameCardFactory {
 	
 	public Card createCard(String card);

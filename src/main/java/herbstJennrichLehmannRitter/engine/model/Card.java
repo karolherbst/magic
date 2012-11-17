@@ -7,13 +7,8 @@ import herbstJennrichLehmannRitter.engine.model.action.ResourceAction;
 
 import java.io.Serializable;
 
-/**
- * 
- * Interface für die Spielkarten
- * Dieses Interface beinhaltet die Schnittstellen für alle Kartenaktionen
- * 
- *
- * 
+/**	Description of Card Class
+ * Interface for all Cards 
  */
 public interface Card extends Serializable {
 	
