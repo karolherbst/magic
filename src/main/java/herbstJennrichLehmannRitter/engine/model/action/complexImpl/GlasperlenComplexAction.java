@@ -4,6 +4,12 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+/** Description of Glasperlen Class
+ *  This Class implements the complex effect for the complex Card Glasperlen.
+ *  To do this, the game checks, if the players tower level is lower than the enemies tower level. 
+ *  If this is the case, the players tower gets 2 points. Otherwise the tower gets 1 point.
+ */
+
 @ComplexCard("Glasperlen")
 public class GlasperlenComplexAction implements ComplexCardAction {
 

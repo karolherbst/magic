@@ -4,6 +4,12 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+/** Description of Hauptader Class
+ *  This Class implements the complex effect for the complex Card Hauptader.
+ *  To do this, the game checks, if the players mine level is lower than the enemies mine level. 
+ *  If this is the case, the players mine gets 2 points. Otherwise the mine gets 1 point.
+ */
+
 @ComplexCard("Hauptader")
 public class HauptaderComplexAction implements ComplexCardAction {
 

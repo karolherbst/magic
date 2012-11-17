@@ -4,6 +4,12 @@ import herbstJennrichLehmannRitter.engine.annotation.ComplexCard;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.action.ComplexCardAction;
 
+/** Description of ElfischeBogenschuetzen Class
+ *  This Class implements the complex effect for the complex Card Elfische Bogenschuetzen.
+ *  To do this, the game checks, if the players wall level is higher than the enemies wall level. 
+ *  If this is the case, the enemies tower gets 6 damage. Otherwise the enemy gets 6 damage.
+ */
+
 @ComplexCard("Elfische Bogenschützen")
 public class ElfischeBogenschuetzenComplexAction implements ComplexCardAction {
 
