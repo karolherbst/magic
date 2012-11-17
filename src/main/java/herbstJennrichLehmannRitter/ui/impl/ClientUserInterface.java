@@ -15,6 +15,10 @@ import java.util.Collection;
 
 import org.eclipse.swt.widgets.Display;
 
+/**	Description of ClientUserInterface Class
+ * This class implements the UserInterface to show the GUI
+ */
+
 public class ClientUserInterface implements UserInterface {
 
 	private static final long serialVersionUID = 4502825312932565802L;

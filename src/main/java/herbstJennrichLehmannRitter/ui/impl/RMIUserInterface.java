@@ -7,6 +7,10 @@ import herbstJennrichLehmannRitter.ui.UserInterface;
 import java.rmi.server.RemoteObject;
 import java.util.Collection;
 
+/**	Description of RMIUserInterface Class
+ * This class implements the UserInterface for playing between two computers
+ */
+
 public class RMIUserInterface extends RemoteObject implements UserInterface {
 
 	private static final long serialVersionUID = -3976482349872923026L;

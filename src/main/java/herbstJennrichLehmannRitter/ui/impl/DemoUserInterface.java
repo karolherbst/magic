@@ -15,6 +15,10 @@ import java.util.Collection;
 
 import org.eclipse.swt.widgets.Display;
 
+/**	Description of DemoUserInterface Class
+ * This class implements the UserInterface to show the Demo GUI
+ */
+
 @SuppressWarnings("serial")
 public class DemoUserInterface implements UserInterface {
 

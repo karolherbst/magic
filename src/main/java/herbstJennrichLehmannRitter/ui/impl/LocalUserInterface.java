@@ -13,6 +13,10 @@ import java.util.Collection;
 
 import org.eclipse.swt.widgets.Display;
 
+/**	Description of LocalUserInterface Class
+ * This class implements the UserInterface to show the GUI in local games against the KI
+ */
+
 @SuppressWarnings("serial")
 public class LocalUserInterface implements UserInterface {
 

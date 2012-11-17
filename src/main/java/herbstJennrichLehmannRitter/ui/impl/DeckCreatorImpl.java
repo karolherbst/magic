@@ -6,6 +6,10 @@ import java.util.Collection;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.ui.DeckCreator;
 
+/**	Description of DeckCreatorImpl Class
+ * This class implements the DeckCreator to create a new Deck
+ */
+
 public class DeckCreatorImpl implements DeckCreator {
 
 	Collection<Card> cards = new ArrayList<Card>();
