@@ -141,7 +141,6 @@ public class PlayGameGUI {
 				this.gameServer.stop();
 				this.gameServer.unregister(this.clientUserInterface);
 			} catch (RemoteException e1) {
-				e1.printStackTrace();
 			} catch (NullPointerException e2) {
 			}
 			PlayGameGUI.this.shell.setVisible(false);
