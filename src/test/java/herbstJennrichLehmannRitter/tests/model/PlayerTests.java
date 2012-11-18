@@ -88,16 +88,4 @@ public class PlayerTests {
 		
 		assertEquals(wall, this.player.getWall());
 	}
-	
-	@Test
-	public void testPlayerCopy() {
-		Player player = new PlayerImpl();
-		player.setName("Kurt");
-		
-		PlayerFactory playerFactory = new PlayerFactoryImpl();
-		Player enemy = playerFactory.createCopyForEnemy(player);
-		
-		assertEquals(player.toString(), enemy.toString());
-		
-	}
 }
