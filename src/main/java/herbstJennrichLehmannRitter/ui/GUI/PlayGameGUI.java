@@ -105,7 +105,8 @@ public class PlayGameGUI extends AbstractMagicGUIElement {
 				try {
 					PlayGameGUI.this.gameServer.stop();
 					PlayGameGUI.this.gameServer.unregister();
-				} catch (RemoteException | NullPointerException e) {
+				} catch (RemoteException e1) {
+				} catch (NullPointerException e2) {
 				}
 			}
 		};
