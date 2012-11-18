@@ -187,7 +187,8 @@ public class ShowCardDetailGUI extends AbstractMagicGUIElement {
 				try {
 					ShowCardDetailGUI.this.playGameGui.setCardDetailIsOpen(false);
 					ShowCardDetailGUI.this.playGameGui.playerPlayedCard(
-							ShowCardDetailGUI.this.card.getName());
+							ShowCardDetailGUI.this.card.getName(),
+							ShowCardDetailGUI.this.card.getCardAction().getPlayCards());
 					ShowCardDetailGUI.this.gameServer.playCard(ShowCardDetailGUI.this.card);
 					getShell().close();
 				} catch (RemoteException e1) {

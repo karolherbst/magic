@@ -285,16 +285,20 @@ public class PlayGameGUI extends AbstractMagicGUIElement {
 		}
 	}
 
-	public void playerPlayedCard(String name) {
+	public void playerPlayedCard(String name, boolean anotherTurn) {
 		this.playerCanPlayCard = false;
 		PlayGameGUI.removeCardFromDeck(this.playerCards, name);
 		this.playerChosenCard.setCardName(name);
 		this.playerChosenCard.setVisible(true);
+		if (!anotherTurn && this.playerCards.size() > 0) {
+			nextTurnEnemy();
+		}
 	}
 	
 	public void playerDiscardCard(String name) {
 		this.playerCanPlayCard = false;
 		PlayGameGUI.removeCardFromDeck(this.playerCards, name);
+		nextTurnEnemy();
 	}	
 	
 	private void initEnemyDungeon() {
