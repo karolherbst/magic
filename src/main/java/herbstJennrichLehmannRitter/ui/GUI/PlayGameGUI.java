@@ -27,7 +27,9 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.MessageBox;
@@ -71,6 +73,13 @@ public class PlayGameGUI {
 		this.display = parent;
 		this.clientUserInterface = clientUserInterface;
 		this.gameServer = gameServer;
+		
+		initGUI();
+		
+		this.clientUserInterface.setPlayGameGUI(this);
+	}
+	
+	private void initGUI() {
 		initShell();
 		this.gameMessage = new GameMessage();
 		initMenuBar();
@@ -91,13 +100,39 @@ public class PlayGameGUI {
 		initEnemyChosenCards();
 		initEnemyName();
 		horizontalLine();
-		this.shell.pack();
 		
 		Rectangle shellBounds = this.shell.getBounds();
 		this.shell.setSize(1024, (shellBounds.height+5));
+		this.shell.pack();
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 		
-		this.clientUserInterface.setPlayGameGUI(this);
+		this.shell.addListener(SWT.Close, this.onCloseListener);
+	}
+	
+	private Listener onCloseListener = new Listener() {
+		@Override
+		public void handleEvent(Event event) {
+			try {
+				PlayGameGUI.this.gameServer.stop();
+				PlayGameGUI.this.gameServer.unregister();
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			} catch (NullPointerException e2) {
+				e2.printStackTrace();
+			}
+		}
+	};
+	
+	public void open() {
+		if (this.shell.isDisposed()) {
+			initGUI();
+		}
+		
+		if (this.shell.isVisible()) {
+			this.shell.forceActive();
+			return;
+		}
+		this.shell.open();
 	}
 	
 	private void initShell() {
@@ -130,23 +165,11 @@ public class PlayGameGUI {
 		menuItemExit.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				exitButtonPressed(e);
+				PlayGameGUI.this.shell.close();
 			}
 		});
 		this.shell.setMenuBar(menuBar);
 	
-	}
-	
-	private void exitButtonPressed (SelectionEvent e) {
-			try {
-				this.gameServer.stop();
-				this.gameServer.unregister();
-			} catch (RemoteException e1) {
-				e1.printStackTrace();
-			} catch (NullPointerException e2) {
-				e2.printStackTrace();
-			}
-			PlayGameGUI.this.shell.setVisible(false);
 	}
 	
 	private void howToButtonPressed (SelectionEvent e){
@@ -419,6 +442,10 @@ public class PlayGameGUI {
 	}
 	
 	public void setGameStateToAbort(String reason) {
+		if (this.shell.isDisposed()) {
+			return;
+		}
+		
 		this.gameMessage.setTitleToAbort(reason);
 	}
 	
@@ -650,10 +677,6 @@ public class PlayGameGUI {
 		}
 	}
 
-	public void open() {
-		this.shell.open();
-	}
-	
 	private class GameMessage {
 		private Canvas gameMessageCanv;
 		private PaintEvent paintEvent;

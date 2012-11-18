@@ -51,7 +51,7 @@ public class ShowCardDetailGUI {
 		initGUI();
 	}
 	
-	public void initGUI() {
+	private void initGUI() {
 		initShell();
 		initCardNameText();
 		initCardTypeLabel();
