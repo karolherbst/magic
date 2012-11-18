@@ -9,6 +9,10 @@ import java.rmi.RemoteException;
 
 import org.junit.Test;
 
+/** Description of GameServerTest Class
+ *  This class tests the GameServer and one possible exception.
+ */
+
 public class GameServerTest {
 
 	private GameServer localGameServer = Globals.getLocalGameServer();

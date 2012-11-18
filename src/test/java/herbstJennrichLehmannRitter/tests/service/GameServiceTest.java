@@ -9,6 +9,10 @@ import herbstJennrichLehmannRitter.engine.service.impl.GameServiceImpl;
 
 import org.junit.Test;
 
+/** Description of GameServiceTest Class
+ *  This class tests the GameService and one possible exception.
+ */
+
 public class GameServiceTest {
 
 	private GameService gameService = new GameServiceImpl(new GameEngineControllerImpl(Globals.getGameCardFactory()));

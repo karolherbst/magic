@@ -15,6 +15,10 @@ import java.util.Collection;
 import org.junit.Before;
 import org.junit.Test;
 
+/** Description of DeckCreatorTests Class
+ *  This class tests the gameCardfactory and the deck creation.
+ */
+
 public class DeckCreatorTests {
 	
 	private GameCardFactory gameCardFactory;
