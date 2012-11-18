@@ -37,15 +37,24 @@ public class DemoEnemyKIUserInterface implements UserInterface {
 			
 			@Override
 			public void run() {
-				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
-				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyDungeonStock(data.getOwnPlayer().getDungeon().getStock());
-				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyMagicLabLevel(data.getOwnPlayer().getMagicLab().getLevel());
-				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyMagicLabStock(data.getOwnPlayer().getMagicLab().getStock());
-				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyMineLevel(data.getOwnPlayer().getMine().getLevel());
-				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyMineStock(data.getOwnPlayer().getMine().getStock());
-				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyTower(data.getOwnPlayer().getTower().getActualPoints());
-				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyWall(data.getOwnPlayer().getWall().getActualPoints());
-				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyHandCards(data.getOwnPlayer().getDeck().getAllCards());
+				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyDungeonLevel(
+						data.getOwnPlayer().getDungeon().getLevel());
+				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyDungeonStock(
+						data.getOwnPlayer().getDungeon().getStock());
+				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyMagicLabLevel(
+						data.getOwnPlayer().getMagicLab().getLevel());
+				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyMagicLabStock(
+						data.getOwnPlayer().getMagicLab().getStock());
+				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyMineLevel(
+						data.getOwnPlayer().getMine().getLevel());
+				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyMineStock(
+						data.getOwnPlayer().getMine().getStock());
+				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyTower(
+						data.getOwnPlayer().getTower().getActualPoints());
+				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyWall(
+						data.getOwnPlayer().getWall().getActualPoints());
+				DemoEnemyKIUserInterface.this.playGameGUI.setEnemyHandCards(
+						data.getOwnPlayer().getDeck().getAllCards());
 			}
 		});
 	}

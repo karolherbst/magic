@@ -37,11 +37,16 @@ public class LocalEnemyKIUserInterface implements UserInterface {
 			
 			@Override
 			public void run() {
-				LocalEnemyKIUserInterface.this.playGameGUI.setEnemyDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
-				LocalEnemyKIUserInterface.this.playGameGUI.setEnemyMagicLabLevel(data.getOwnPlayer().getMagicLab().getLevel());
-				LocalEnemyKIUserInterface.this.playGameGUI.setEnemyMineLevel(data.getOwnPlayer().getMine().getLevel());
-				LocalEnemyKIUserInterface.this.playGameGUI.setEnemyTower(data.getOwnPlayer().getTower().getActualPoints());
-				LocalEnemyKIUserInterface.this.playGameGUI.setEnemyWall(data.getOwnPlayer().getWall().getActualPoints());
+				LocalEnemyKIUserInterface.this.playGameGUI.setEnemyDungeonLevel(
+						data.getOwnPlayer().getDungeon().getLevel());
+				LocalEnemyKIUserInterface.this.playGameGUI.setEnemyMagicLabLevel(
+						data.getOwnPlayer().getMagicLab().getLevel());
+				LocalEnemyKIUserInterface.this.playGameGUI.setEnemyMineLevel(
+						data.getOwnPlayer().getMine().getLevel());
+				LocalEnemyKIUserInterface.this.playGameGUI.setEnemyTower(
+						data.getOwnPlayer().getTower().getActualPoints());
+				LocalEnemyKIUserInterface.this.playGameGUI.setEnemyWall(
+						data.getOwnPlayer().getWall().getActualPoints());
 			}
 		});
 	}
