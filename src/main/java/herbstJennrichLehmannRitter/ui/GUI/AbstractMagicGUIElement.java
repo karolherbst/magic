@@ -5,6 +5,10 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
+/**	Description of AbstractMagicGUIElement Class
+ * Abstract class for the GUI
+ */
+
 public abstract class AbstractMagicGUIElement {
 	
 	private Shell shell;
