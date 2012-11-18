@@ -121,6 +121,12 @@ public class ClientMenuGUI extends AbstractMagicGUIElement {
 				final NetworkServer gameServer = Globals.getRemoteServer
 						(ClientMenuGUI.this.ipTextField.getText(),
 						ClientMenuGUI.this.getShell());
+				
+				if (gameServer == null) {
+					// TODO: error meldung
+					return;
+				}
+				
 				ClientMenuGUI.this.timer = new Timer();
 				
 				ClientUserInterface clientUserInterface = new ClientUserInterface();
