@@ -33,7 +33,6 @@ public class ClientMenuGUI extends AbstractMagicGUIElement {
 	private Button backButton;
 	
 	private MainMenuGUI mainMenuGUI;
-	private Timer timer;
 	private PlayGameGUI playGameGUI;
 	
 	private RMIUsertInterface rmi;
@@ -143,7 +142,6 @@ public class ClientMenuGUI extends AbstractMagicGUIElement {
 	}
 
 	public void cancelTimerAndOpenPlayGameGUI() {
-		this.timer.cancel();
 		this.playGameGUI.setPlayerName(ClientMenuGUI.this.mainMenuGUI.getPlayerName());
 		this.playGameGUI.setEnemyName("Gegner");
 		this.playGameGUI.open();
