@@ -201,7 +201,7 @@ public class MainMenuGUI {
 				demoUserInterface.setPlayGameGUI(playGameGUI);
 				
 				KI.startBridgedKIOnServer(MainMenuGUI.this.gameServer, 
-											getPlayerName(), getClientUserInterface());
+										getPlayerName(), getClientUserInterface());
 				KI.startBridgedKIOnServer(MainMenuGUI.this.gameServer, getEnemyName(), demoUserInterface);
 			}
 		});

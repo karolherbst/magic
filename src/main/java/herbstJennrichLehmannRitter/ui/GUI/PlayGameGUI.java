@@ -477,7 +477,8 @@ public class PlayGameGUI extends AbstractMagicGUIElement {
 		private void mousePressed(MouseEvent e) {
 			if (!getCardName().isEmpty() && PlayGameGUI.this.cardDetailIsOpen == false) {
 				ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(getDisplay(), 
-						PlayGameGUI.this, null, Globals.getGameCardFactory().createCard(getCardName()),
+						PlayGameGUI.this, null, 
+						Globals.getGameCardFactory().createCard(getCardName()),
 						PlayGameGUI.this.gameServer);
 				showCardDetailGUI.open();
 				PlayGameGUI.this.cardDetailIsOpen = true;
@@ -690,7 +691,7 @@ public class PlayGameGUI extends AbstractMagicGUIElement {
 				public void paintControl(PaintEvent e) {
 					GameMessage.this.paintEvent = e;
 					GameMessage.this.paintEvent.gc.setFont(new Font(getDisplay(), 
-															"Verdana", 28, SWT.BOLD));
+												"Verdana", 28, SWT.BOLD));
 				}
 			});
 		}

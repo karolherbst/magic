@@ -133,7 +133,7 @@ public class GameMenuGUI extends AbstractMagicGUIElement {
 							GameMenuGUI.this.mainMenuGUI.getGameServer());
 
 					GameMenuGUI.this.gameServer.register(GameMenuGUI.this.mainMenuGUI.
-																	getClientUserInterface());
+																		getClientUserInterface());
 
 					LocalEnemyKIUserInterface localUserInterface = new LocalEnemyKIUserInterface();
 					localUserInterface.setMainMenuGUI(GameMenuGUI.this.mainMenuGUI);

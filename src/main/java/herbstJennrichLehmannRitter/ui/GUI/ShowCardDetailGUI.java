@@ -170,7 +170,7 @@ public class ShowCardDetailGUI extends AbstractMagicGUIElement {
 					
 					ShowCardDetailGUI.this.gameServer.discardCard(ShowCardDetailGUI.this.card);
 					ShowCardDetailGUI.this.playGameGui.playerDiscardCard(
-														ShowCardDetailGUI.this.card.getName());
+							ShowCardDetailGUI.this.card.getName());
 					getShell().close();
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
@@ -186,7 +186,8 @@ public class ShowCardDetailGUI extends AbstractMagicGUIElement {
 			public void widgetSelected(SelectionEvent e) {
 				try {
 					ShowCardDetailGUI.this.playGameGui.setCardDetailIsOpen(false);
-					ShowCardDetailGUI.this.playGameGui.playerPlayedCard(ShowCardDetailGUI.this.card.getName());
+					ShowCardDetailGUI.this.playGameGui.playerPlayedCard(
+							ShowCardDetailGUI.this.card.getName());
 					ShowCardDetailGUI.this.gameServer.playCard(ShowCardDetailGUI.this.card);
 					getShell().close();
 				} catch (RemoteException e1) {
