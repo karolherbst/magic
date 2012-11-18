@@ -169,7 +169,8 @@ public class GameServiceImpl implements GameService {
 					if (uiHolder.enemy != null && uiHolder.enemy.userInterface != null) {
 						uiHolder.enemy.enemy = null;
 						UserInterface userInterface2 = uiHolder.enemy.userInterface;
-						userInterface2.abort("Player " + uiHolder.player.getName() + " left the game");
+						userInterface2.abort("Player " + uiHolder.player.getName() + 
+								" left the game");
 					}
 					
 				}

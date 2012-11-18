@@ -32,7 +32,8 @@ public class GameActionImpl implements GameAction {
 
 	@Override
 	public boolean checkIfTheGameIsUndecided() {
-		if (GameActionImpl.wonLooseDicision(this.sourcePlayer) && GameActionImpl.wonLooseDicision(this.targetPlayer)) {
+		if (GameActionImpl.wonLooseDicision(this.sourcePlayer) && 
+				GameActionImpl.wonLooseDicision(this.targetPlayer)) {
 			return true;
 		} else {
 			return false;

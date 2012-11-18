@@ -115,8 +115,8 @@ public class GameCardFactoryImpl implements GameCardFactory {
 				throw new GameCardFactoryException(CARD_FACTORY_ERROR.NO_CARDS_FOUND);
 			}
 			
-			// store all cards in a map to improve performance (getting a card from a HashMap is less expensive 
-			// than from a list even if the list is sorted)
+			// store all cards in a map to improve performance 
+			//(getting a card from a HashMap is less expensive than from a list even if the list is sorted)
 			this.cards = new HashMap<String, Card>(xmlCards.getCards().size(), 1);
 			for (XmlCard card : xmlCards.getCards()) {
 				assertCard(card);
@@ -127,8 +127,8 @@ public class GameCardFactoryImpl implements GameCardFactory {
 				// if so, then create a new Instance and add it to the card
 				if (complexActionClass != null) {
 					try {
-						card.setComplexCardAction((ComplexCardAction)complexActionClass.newInstance());
-						
+						card.setComplexCardAction(
+								(ComplexCardAction)complexActionClass.newInstance());
 					} catch (InstantiationException e) {
 						e.printStackTrace();
 					} catch (IllegalAccessException e) {
