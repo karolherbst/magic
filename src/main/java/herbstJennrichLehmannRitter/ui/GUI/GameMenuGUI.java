@@ -99,8 +99,10 @@ public class GameMenuGUI {
 				PlayGameGUI playGameGUI = new PlayGameGUI(GameMenuGUI.this.display, 
 						GameMenuGUI.this.mainMenuGUI.getClientUserInterface(),
 						GameMenuGUI.this.mainMenuGUI.getGameServer());
-				playGameGUI.setPlayerName(GameMenuGUI.this.mainMenuGUI.getPlayerName());
 				
+				playGameGUI.setPlayerName(GameMenuGUI.this.mainMenuGUI.getPlayerName());
+				playGameGUI.setEnemyName(GameMenuGUI.this.mainMenuGUI.getEnemyName());
+				hostMenuGUI.setPlayGameGUI(playGameGUI);
 				GameMenuGUI.this.mainMenuGUI.getClientUserInterface().setPlayGameGUI(playGameGUI);
 				hostMenuGUI.open();
 			}
