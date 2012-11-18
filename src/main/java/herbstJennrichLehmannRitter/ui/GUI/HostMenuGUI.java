@@ -118,7 +118,7 @@ public class HostMenuGUI {
 					}
 				});
 			}
-		}, 3000000);
+		}, 60000);
 	}
 	
 	private void initShell() {

@@ -124,7 +124,7 @@ public class ClientMenuGUI {
 								}
 							});
 						}
-					}, 3000000);
+					}, 60000);
 					ClientMenuGUI.this.mainMenuGUI.setGameServer(new NetworkServerWrapper(gameServer));
 					
 					PlayGameGUI playGameGUI = new PlayGameGUI(ClientMenuGUI.this.display, 
