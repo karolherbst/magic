@@ -84,7 +84,7 @@ public class HostMenuGUI {
 			return;
 		}
 		this.mainMenuGUI.getClientUserInterface().setHostMenuGUI(this);
-		this.gameServer = Globals.getLocalGameServer();
+		this.gameServer = this.mainMenuGUI.getGameServer();
 		try {
 			this.gameServer.register(this.mainMenuGUI.getClientUserInterface());
 		} catch (RemoteException e) {
@@ -147,6 +147,11 @@ public class HostMenuGUI {
 	public void cancelTimerAndOpenPlayGameGUI() {
 		cancelTimer();
 		this.shell.setVisible(false);
+		try {
+			this.mainMenuGUI.getGameServer().start(this.mainMenuGUI.getGameType());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		this.mainMenuGUI.getClientUserInterface().getPlayGameGUI().open();
 	}
 	
