@@ -20,7 +20,6 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -33,17 +32,13 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.MessageBox;
-import org.eclipse.swt.widgets.Shell;
 
 /**	Description of PlayMenuGUI Class
  * Implementation of the GameGUI
  */
 
-public class PlayGameGUI {
+public class PlayGameGUI extends AbstractMagicGUIElement {
 
-	
-	private Shell shell;
-	private final Display display;
 	private DefenceBuildingFields enemyTower;
 	private DefenceBuildingFields enemyWall;
 	private DefenceBuildingFields playerWall;
@@ -70,7 +65,7 @@ public class PlayGameGUI {
 	private GameServer gameServer;
 	
 	public PlayGameGUI(Display parent, ClientUserInterface clientUserInterface, GameServer gameServer) {
-		this.display = parent;
+		super(parent);
 		this.clientUserInterface = clientUserInterface;
 		this.gameServer = gameServer;
 		
@@ -79,8 +74,8 @@ public class PlayGameGUI {
 		this.clientUserInterface.setPlayGameGUI(this);
 	}
 	
-	private void initGUI() {
-		initShell();
+	@Override
+	protected void onInitGUI() {
 		this.gameMessage = new GameMessage();
 		initMenuBar();
 		initPlayerName();
@@ -100,46 +95,30 @@ public class PlayGameGUI {
 		initEnemyChosenCards();
 		initEnemyName();
 		horizontalLine();
-		
-		Rectangle shellBounds = this.shell.getBounds();
-		this.shell.setSize(1024, (shellBounds.height+5));
-		this.shell.pack();
-		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
-		
-		this.shell.addListener(SWT.Close, this.onCloseListener);
 	}
 	
-	private Listener onCloseListener = new Listener() {
-		@Override
-		public void handleEvent(Event event) {
-			try {
-				PlayGameGUI.this.gameServer.stop();
-				PlayGameGUI.this.gameServer.unregister();
-			} catch (RemoteException e1) {
-				e1.printStackTrace();
-			} catch (NullPointerException e2) {
-				e2.printStackTrace();
+	@Override
+	protected Listener getOnCloseListener() {
+		return new Listener() {
+			@Override
+			public void handleEvent(Event event) {
+				try {
+					PlayGameGUI.this.gameServer.stop();
+					PlayGameGUI.this.gameServer.unregister();
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				} catch (NullPointerException e2) {
+					e2.printStackTrace();
+				}
 			}
-		}
-	};
-	
-	public void open() {
-		if (this.shell.isDisposed()) {
-			initGUI();
-		}
-		
-		if (this.shell.isVisible()) {
-			this.shell.forceActive();
-			return;
-		}
-		this.shell.open();
+		};
 	}
 	
-	private void initShell() {
-		this.shell = new Shell(SWT.TITLE);
-		this.shell.setText("Magic");
-		this.shell.setLayout(new FormLayout());
-		this.shell.layout();
+	@Override
+	protected void onInitShell() {
+		getShell().setText("Magic");
+		getShell().setLayout(new FormLayout());
+		getShell().layout();
 	}
 	
 	public void setCardDetailIsOpen(boolean bool) {
@@ -147,10 +126,10 @@ public class PlayGameGUI {
 	}
 	
 	private void initMenuBar() {
-		Menu menuBar = new Menu(this.shell, SWT.BAR);
+		Menu menuBar = new Menu(getShell(), SWT.BAR);
 		MenuItem fileMenuHead = new MenuItem(menuBar, SWT.CASCADE);
 		fileMenuHead.setText("Menü");
-		Menu menuMenu = new Menu(this.shell, SWT.DROP_DOWN);
+		Menu menuMenu = new Menu(getShell(), SWT.DROP_DOWN);
 		fileMenuHead.setMenu(menuMenu);
 		MenuItem menuItemHowTo = new MenuItem(menuMenu, SWT.PUSH);
 		menuItemHowTo.setText("Spielregeln");
@@ -165,15 +144,14 @@ public class PlayGameGUI {
 		menuItemExit.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				PlayGameGUI.this.shell.close();
+				getShell().close();
 			}
 		});
-		this.shell.setMenuBar(menuBar);
-	
+		getShell().setMenuBar(menuBar);
 	}
 	
 	private void howToButtonPressed (SelectionEvent e){
-		MessageBox messageBox = new MessageBox(this.shell, SWT.ICON_INFORMATION);
+		MessageBox messageBox = new MessageBox(getShell(), SWT.ICON_INFORMATION);
 		String messageString = "Jeder Spieler beginnt mit dem Folgenden: Turm 25 Punkte, Mauer 10 Punkte, " +
 				"Steinbruch, Zauberlabor, Verlies jeweils Stufe 1 und 15 Ressourcen. " +
 				"Und 6 zufälligen Spielkarten aus seinem Kartenstapel. \n" +
@@ -203,7 +181,7 @@ public class PlayGameGUI {
 		formData.left =  new FormAttachment(0, 1000, 10);
 		formData.top =  new FormAttachment(0, 1000, 362);
 		formData.width = 1004;
-		Label line = new Label(this.shell, SWT.SEPARATOR | SWT.HORIZONTAL | SWT.SHADOW_OUT);
+		Label line = new Label(getShell(), SWT.SEPARATOR | SWT.HORIZONTAL | SWT.SHADOW_OUT);
 		line.setLayoutData(formData);
 	}
 	
@@ -298,7 +276,9 @@ public class PlayGameGUI {
 	}
 	
 	public void setPlayerChosenCardName(String name) {
-		PlayGameGUI.setChosenCardName(PlayGameGUI.this.playerChosenCard, name);
+		if (!getShell().isDisposed()) {
+			PlayGameGUI.setChosenCardName(PlayGameGUI.this.playerChosenCard, name);
+		}
 	}
 
 	public void playerPlayedCard(String name) {
@@ -404,25 +384,33 @@ public class PlayGameGUI {
 	}
 	
 	public void nextTurnPlayer() {
-		this.playerCanPlayCard = true;
-		this.playerName.setPlayerActive("ist am Zug");
-		this.enemyName.setPlayerInactive();
+		if (!getShell().isDisposed()) {
+			this.playerCanPlayCard = true;
+			this.playerName.setPlayerActive("ist am Zug");
+			this.enemyName.setPlayerInactive();
+		}
 	}
 
 	public void nextTurnEnemy() {
-		this.enemyName.setPlayerActive("ist am Zug");
-		this.playerName.setPlayerInactive();
+		if (!getShell().isDisposed()) {
+			this.enemyName.setPlayerActive("ist am Zug");
+			this.playerName.setPlayerInactive();
+		}
 	}
 	
 	public void playAnotherCardPlayer() {
-		this.playerCanPlayCard = true;
-		this.playerName.setPlayerActive("hat noch einen Zug");
-		PlayGameGUI.playAnotherCard(this.playerCards);
+		if (!getShell().isDisposed()) {
+			this.playerCanPlayCard = true;
+			this.playerName.setPlayerActive("hat noch einen Zug");
+			PlayGameGUI.playAnotherCard(this.playerCards);
+		}
 	}
 	
 	public void playAnotherCardEnemy() {
-		this.playerName.setPlayerActive("hat noch einen Zug");
-		PlayGameGUI.playAnotherCard(this.enemyCards);
+		if (!getShell().isDisposed()) {
+			this.playerName.setPlayerActive("hat noch einen Zug");
+			PlayGameGUI.playAnotherCard(this.enemyCards);
+		}
 	}
 	
 	private static void playAnotherCard(ArrayList<CardFields> cardFields) {
@@ -442,7 +430,7 @@ public class PlayGameGUI {
 	}
 	
 	public void setGameStateToAbort(String reason) {
-		if (this.shell.isDisposed()) {
+		if (getShell().isDisposed()) {
 			return;
 		}
 		
@@ -460,7 +448,7 @@ public class PlayGameGUI {
 			cardData.height = 120;
 			cardData.width = 110;
 
-			this.cardComp = new Composite(PlayGameGUI.this.shell, SWT.BORDER);
+			this.cardComp = new Composite(getShell(), SWT.BORDER);
 			this.cardComp.setVisible(isVisible);
 			this.cardComp.setLayoutData(cardData);
 			
@@ -484,7 +472,7 @@ public class PlayGameGUI {
 		
 		private void mousePressed(MouseEvent e) {
 			if (!getCardName().isEmpty() && PlayGameGUI.this.cardDetailIsOpen == false) {
-				ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(PlayGameGUI.this.display, 
+				ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(getDisplay(), 
 						PlayGameGUI.this, null, Globals.getGameCardFactory().createCard(getCardName()),
 						PlayGameGUI.this.gameServer);
 				showCardDetailGUI.open();
@@ -558,7 +546,7 @@ public class PlayGameGUI {
 			canvasData.width = 180;
 			canvasData.height = 54;
 			
-			Composite defenceComp = new Composite(PlayGameGUI.this.shell, SWT.BORDER);
+			Composite defenceComp = new Composite(getShell(), SWT.BORDER);
 			defenceComp.setLayoutData(canvasData);
 			{
 				Label headlineLabel = new Label(defenceComp, SWT.CENTER);
@@ -593,7 +581,7 @@ public class PlayGameGUI {
 			canvasData.width = 200;
 			canvasData.height = 54;
 			
-			Composite ressourceComp = new Composite(PlayGameGUI.this.shell, SWT.BORDER);
+			Composite ressourceComp = new Composite(getShell(), SWT.BORDER);
 			ressourceComp.setLayoutData(canvasData);
 			{
 				Label headlineLabel = new Label(ressourceComp, SWT.CENTER);
@@ -649,15 +637,15 @@ public class PlayGameGUI {
 			nameData.width = 1004;
 			nameData.height = 20;
 			
-			this.nameLabel = new Label(PlayGameGUI.this.shell, SWT.CENTER | SWT.BORDER_SOLID);
+			this.nameLabel = new Label(getShell(), SWT.CENTER | SWT.BORDER_SOLID);
 			this.nameLabel.setText(NameFields.this.playerName);
 			this.nameLabel.setLayoutData(nameData);
 			this.nameLabel.pack();
 		}
 		
 		public void setPlayerActive(String text) {
-			this.nameLabel.setBackground(new Color(PlayGameGUI.this.display, 255, 200, 0));
-			this.nameLabel.setForeground(new Color(PlayGameGUI.this.display, 255, 255, 255));
+			this.nameLabel.setBackground(new Color(getDisplay(), 255, 200, 0));
+			this.nameLabel.setForeground(new Color(getDisplay(), 255, 255, 255));
 			this.nameLabel.setText(NameFields.this.playerName + ' ' + text);
 		}
 		
@@ -688,16 +676,16 @@ public class PlayGameGUI {
 			gameMessageData.height = 500;
 			gameMessageData.width = 800;
 			
-			this.gameMessageCanv = new Canvas(PlayGameGUI.this.shell, SWT.BORDER);
+			this.gameMessageCanv = new Canvas(getShell(), SWT.BORDER);
 			this.gameMessageCanv.setLayoutData(gameMessageData);
 			this.gameMessageCanv.setVisible(false);
-			this.gameMessageCanv.setBackground(new Color(PlayGameGUI.this.display, 255, 255, 255));
+			this.gameMessageCanv.setBackground(new Color(getDisplay(), 255, 255, 255));
 		
 			this.gameMessageCanv.addPaintListener(new PaintListener()  {
 				@Override
 				public void paintControl(PaintEvent e) {
 					GameMessage.this.paintEvent = e;
-					GameMessage.this.paintEvent.gc.setFont(new Font(PlayGameGUI.this.display, "Verdana", 28, SWT.BOLD));
+					GameMessage.this.paintEvent.gc.setFont(new Font(getDisplay(), "Verdana", 28, SWT.BOLD));
 				}
 			});
 		}
@@ -720,7 +708,7 @@ public class PlayGameGUI {
 				public void paintControl(PaintEvent e) {
 					GameMessage.this.paintEvent = e;
 					
-					GameMessage.this.paintEvent.gc.setForeground(new Color(PlayGameGUI.this.display, red, green, 0));
+					GameMessage.this.paintEvent.gc.setForeground(new Color(getDisplay(), red, green, 0));
 					Point textSize = GameMessage.this.paintEvent.gc.textExtent(text);
 					GameMessage.this.paintEvent.gc.drawText(text, 
 							(GameMessage.this.gameMessageCanv.getSize().x - textSize.x)/2, 

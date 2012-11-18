@@ -25,16 +25,13 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
-import org.eclipse.swt.widgets.Shell;
 
 /**	Description of HostMenuGUI Class
  * Implementation of the Game as Host with IP-Adress being shown
  */
 
-public class HostMenuGUI {
+public class HostMenuGUI extends AbstractMagicGUIElement {
 	
-	private Shell shell;
-	private final Display display;
 	private Button exitButton;
 	private Label wartenLabel;
 	private Timer timer;
@@ -44,50 +41,39 @@ public class HostMenuGUI {
 	private PlayGameGUI playGameGUI;
 
 	public HostMenuGUI(Display parent, MainMenuGUI mainMenuGUI){
-		this.display = parent;
+		super(parent);
 		this.mainMenuGUI = mainMenuGUI;
-		
 		initGUI();
 	}
 	
-	private void initGUI() {
-		initShell();
+	@Override
+	protected void onInitGUI() {
 		initWartenLabel();
 		initExitButton();
-		this.shell.pack();
-		
-		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
-		
-		this.shell.addListener(SWT.Close, this.onCloseListener);
 	}
 	
 	public void setPlayGameGUI(PlayGameGUI playGameGUI) {
 		this.playGameGUI = playGameGUI;
 	}
 	
-	private Listener onCloseListener = new Listener() {
-		@Override
-		public void handleEvent(Event event) {
-			cancelTimer();
-			HostMenuGUI.this.shell.setVisible(false);
-			try {
-				HostMenuGUI.this.gameServer.unregister();
-			} catch (RemoteException e) {
-				e.printStackTrace();
+	@Override
+	protected Listener getOnCloseListener() {
+		return new Listener() {
+			@Override
+			public void handleEvent(Event event) {
+				cancelTimer();
+				try {
+					HostMenuGUI.this.gameServer.unregister();
+				} catch (RemoteException e) {
+					e.printStackTrace();
+				}
+				Globals.stopRemoteServer();
 			}
-			Globals.stopRemoteServer();
-		}
-	};
+		};
+	}
 	
-	public void open() {
-		if (this.shell.isDisposed()) {
-			initGUI();
-		}
-		
-		if (this.shell.isVisible()) {
-			this.shell.forceActive();
-			return;
-		}
+	@Override
+	protected void onOpen() {
 		this.mainMenuGUI.getClientUserInterface().setHostMenuGUI(this);
 		this.gameServer = this.mainMenuGUI.getGameServer();
 		try {
@@ -96,7 +82,6 @@ public class HostMenuGUI {
 			e.getLocalizedMessage();
 		}
 		
-		this.shell.open();
 		try {
 			Globals.startRemoteServer();
 		} catch (RemoteException e) {
@@ -106,7 +91,7 @@ public class HostMenuGUI {
 		this.timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
-				HostMenuGUI.this.display.asyncExec(new Runnable() {
+				getDisplay().asyncExec(new Runnable() {
 					@Override
 					public void run() {
 						String text = "Leider hat sich keiner mit dir verbunden!\n";
@@ -114,17 +99,17 @@ public class HostMenuGUI {
 						text += "Dann musst wohl lokal Spielen!\n";
 						text += "www.facebook.de kann dir helfen";
 						displayMessageBox(text);
-						HostMenuGUI.this.shell.close();
+						getShell().close();
 					}
 				});
 			}
 		}, 60000);
 	}
 	
-	private void initShell() {
-		this.shell = new Shell(SWT.TITLE);
-		this.shell.setText("Spielauswahl");
-		this.shell.setLayout(new GridLayout(1, false));
+	@Override
+	protected void onInitShell() {
+		getShell().setText("Spielauswahl");
+		getShell().setLayout(new GridLayout(1, false));
 	}
 	
 	private void initWartenLabel() {
@@ -139,10 +124,10 @@ public class HostMenuGUI {
 		}
 		text += "\nWarte auf Client...";
 		
-		this.wartenLabel = new Label(this.shell, SWT.CENTER);
+		this.wartenLabel = new Label(getShell(), SWT.CENTER);
 		this.wartenLabel.setText(text);
 		this.wartenLabel.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
-		this.wartenLabel.setBounds(this.shell.getClientArea());
+		this.wartenLabel.setBounds(getShell().getClientArea());
 	}
 	
 	private void cancelTimer() {
@@ -151,7 +136,6 @@ public class HostMenuGUI {
 
 	public void cancelTimerAndOpenPlayGameGUI() {
 		cancelTimer();
-		this.shell.setVisible(false);
 		try {
 			this.mainMenuGUI.getGameServer().start(this.mainMenuGUI.getGameType());
 		} catch (RemoteException e) {
@@ -161,13 +145,13 @@ public class HostMenuGUI {
 	}
 	
 	public void displayMessageBox(String text) {
-		MessageBox msgBox = new MessageBox(this.shell);
+		MessageBox msgBox = new MessageBox(getShell());
 		msgBox.setMessage(text);
 		msgBox.open();
 		if (this.timer != null) {
 			this.timer.purge();
 		}
-		this.shell.setVisible(false);
+		getShell().setVisible(false);
 	}
 	
 	private static String lookupIpAddress() throws SocketException {
@@ -185,13 +169,13 @@ public class HostMenuGUI {
 	}
 
 	private void initExitButton() {
-		this.exitButton = new Button(this.shell, SWT.NONE);
+		this.exitButton = new Button(getShell(), SWT.NONE);
 		this.exitButton.setText("Abbrechen");
 		this.exitButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
 		this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				HostMenuGUI.this.shell.close();
+				getShell().close();
 			}
 		});
 	}

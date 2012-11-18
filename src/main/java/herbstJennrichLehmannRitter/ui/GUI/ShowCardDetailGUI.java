@@ -19,16 +19,13 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Shell;
 
 /**	Description of HostMenuGUI Class
  * Implementation of the Show Card Detail GUI
  */
 
-public class ShowCardDetailGUI {
+public class ShowCardDetailGUI extends AbstractMagicGUIElement {
 	
-	private Shell shell;
-	private final Display display;
 	private Label cardNameLabel;
 	private Button exitButton;
 	private Button discardButton;
@@ -42,8 +39,8 @@ public class ShowCardDetailGUI {
 	
 	public ShowCardDetailGUI(Display parent, PlayGameGUI playGameGUI, ChooseDeckGUI chooseDeckGUI, Card card,
 			GameServer gameServer) {
+		super(parent);
 		this.gameServer = gameServer;
-		this.display = parent;
 		this.playGameGui = playGameGUI;
 		this.chooseDeckGui = chooseDeckGUI;
 		this.card = card;
@@ -51,8 +48,8 @@ public class ShowCardDetailGUI {
 		initGUI();
 	}
 	
-	private void initGUI() {
-		initShell();
+	@Override
+	protected void onInitGUI() {
 		initCardNameText();
 		initCardTypeLabel();
 		initCardTypeText();
@@ -79,39 +76,27 @@ public class ShowCardDetailGUI {
 				}
 			}
 		}
-		this.shell.pack();
-		this.shell.addListener(SWT.Close, this.onCloseListener);
 	}
 	
-	private Listener onCloseListener = new Listener() {
-		@Override
-		public void handleEvent(Event event) {
-			if (ShowCardDetailGUI.this.playGameGui != null) {
-				ShowCardDetailGUI.this.playGameGui.setCardDetailIsOpen(false);
+	@Override
+	protected Listener getOnCloseListener() {
+		return new Listener() {
+			@Override
+			public void handleEvent(Event event) {
+				if (ShowCardDetailGUI.this.playGameGui != null) {
+					ShowCardDetailGUI.this.playGameGui.setCardDetailIsOpen(false);
+				}
+				if (ShowCardDetailGUI.this.chooseDeckGui != null) {
+					ShowCardDetailGUI.this.chooseDeckGui.setCardDetailIsOpen(false);
+				}
 			}
-			if (ShowCardDetailGUI.this.chooseDeckGui != null) {
-				ShowCardDetailGUI.this.chooseDeckGui.setCardDetailIsOpen(false);
-			}
-		}
-	};
-	
-	public void open() {
-		if (this.shell.isDisposed()) {
-			initGUI();
-		}
-		
-		if (this.shell.isVisible()) {
-			this.shell.forceActive();
-			return;
-		}
-		this.shell.open();
+		};
 	}
 	
-	private void initShell() {
-		this.shell = new Shell(SWT.TITLE | SWT.ON_TOP);
-		this.shell.setText("Kartendetails");
-		this.shell.setLayout(new FormLayout());
-		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
+	@Override
+	protected void onInitShell() {
+		getShell().setText("Kartendetails");
+		getShell().setLayout(new FormLayout());
 	}
 	
 	private void initCardNameText() {		
@@ -119,9 +104,9 @@ public class ShowCardDetailGUI {
 		LabelData.left = new FormAttachment(0, 1000, 40);
 		LabelData.top =  new FormAttachment(0, 1000, 15);
 		LabelData.width = 300;
-		Font font = new Font(this.display, "Arial", 14, SWT.BOLD);
+		Font font = new Font(getDisplay(), "Arial", 14, SWT.BOLD);
 		
-		this.cardNameLabel = new Label(this.shell, SWT.CENTER | SWT.WRAP);
+		this.cardNameLabel = new Label(getShell(), SWT.CENTER | SWT.WRAP);
 		this.cardNameLabel.setText(this.card.getName().toString());
 		this.cardNameLabel.setFont(font);
 		this.cardNameLabel.setLayoutData(LabelData);
@@ -170,7 +155,7 @@ public class ShowCardDetailGUI {
 		this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ShowCardDetailGUI.this.shell.close();
+				getShell().close();
 			}
 		});
 	}
@@ -185,7 +170,7 @@ public class ShowCardDetailGUI {
 					
 					ShowCardDetailGUI.this.gameServer.discardCard(ShowCardDetailGUI.this.card);
 					ShowCardDetailGUI.this.playGameGui.playerDiscardCard(ShowCardDetailGUI.this.card.getName());
-					ShowCardDetailGUI.this.shell.setVisible(false);
+					getShell().close();
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
@@ -202,7 +187,7 @@ public class ShowCardDetailGUI {
 					ShowCardDetailGUI.this.playGameGui.setCardDetailIsOpen(false);
 					ShowCardDetailGUI.this.playGameGui.playerPlayedCard(ShowCardDetailGUI.this.card.getName());
 					ShowCardDetailGUI.this.gameServer.playCard(ShowCardDetailGUI.this.card);
-					ShowCardDetailGUI.this.shell.setVisible(false);
+					getShell().close();
 				} catch (RemoteException e1) {
 				}
 			}
@@ -216,7 +201,7 @@ public class ShowCardDetailGUI {
 		btnData.width = 100;
 		btnData.height = 28;
 		
-		Button button = new Button(this.shell, SWT.PUSH | SWT.CENTER);
+		Button button = new Button(getShell(), SWT.PUSH | SWT.CENTER);
 		button.setLayoutData(btnData);
 		button.setText(text);
 		
@@ -237,7 +222,7 @@ public class ShowCardDetailGUI {
 			formData.height = fieldHeight;
 		}
 		
-		StyledText field = new StyledText(this.shell, SWT.LEFT);
+		StyledText field = new StyledText(getShell(), SWT.LEFT);
 		field.setText(text);
 		
 		StyleRange styledRange = new StyleRange();
@@ -245,7 +230,7 @@ public class ShowCardDetailGUI {
 		styledRange.length = field.getText().length();
 		styledRange.underline = underline;
 		
-		field.setBackground(this.shell.getBackground());
+		field.setBackground(getShell().getBackground());
 		field.setStyleRange(styledRange);
 		field.setLayoutData(formData);
 	}
@@ -259,9 +244,9 @@ public class ShowCardDetailGUI {
 			formData.height = fieldHeight;
 		}
 		
-		StyledText field = new StyledText(this.shell, SWT.LEFT);
+		StyledText field = new StyledText(getShell(), SWT.LEFT);
 		field.setText(text);
-		field.setBackground(this.shell.getBackground());
+		field.setBackground(getShell().getBackground());
 		field.setWordWrap(true);
 		field.setLayoutData(formData);
 	}	

@@ -16,20 +16,15 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 /**	Description of GameMenuGUI Class
  * Implementation of Menu Selection
  */
 
-public class GameMenuGUI {
+public class GameMenuGUI extends AbstractMagicGUIElement {
 
-	private Shell shell;
-	private final Display display;
 	private Text nameTextField;
 	private Button startHostButton;
 	private Button startClientButton;
@@ -42,14 +37,14 @@ public class GameMenuGUI {
 	private ClientMenuGUI clientMenuGUI;
 	
 	public GameMenuGUI(Display parent, MainMenuGUI mainMenuGUI) {
-		this.display = parent;
+		super(parent);
 		this.mainMenuGUI = mainMenuGUI;
-		this.clientMenuGUI = new ClientMenuGUI(this.display, this.mainMenuGUI);
+		this.clientMenuGUI = new ClientMenuGUI(getDisplay(), this.mainMenuGUI);
 		initGUI();
 	}
 	
-	private void initGUI() {
-		initShell();
+	@Override
+	protected void onInitGUI() {
 		initNameTextLabel();
 		initNameTextField();
 		initSelectionTextLabel();
@@ -57,35 +52,12 @@ public class GameMenuGUI {
 		initStartClientButton();
 		initStartLocalButton();
 		initBackButton();
-		this.shell.pack();
-		
-		this.shell.addListener(SWT.Close, this.onCloseListener);
 	}
 	
-	private Listener onCloseListener = new Listener() {
-		@Override
-		public void handleEvent(Event event) {
-			
-		}
-	};
-	
-	public void open() {
-		if (this.shell.isDisposed()) {
-			initGUI();
-		}
-		
-		if (this.shell.isVisible()) {
-			this.shell.forceActive();
-			return;
-		}
-		this.shell.open();
-		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
-	}
-	
-	private void initShell() {
-		this.shell = new Shell(SWT.TITLE);
-		this.shell.setText("Spielauswahl");
-		this.shell.setLayout(new GridLayout(1, false));
+	@Override
+	protected void onInitShell() {
+		getShell().setText("Spielauswahl");
+		getShell().setLayout(new GridLayout(1, false));
 	}
 	
 	private void initNameTextLabel() {
@@ -97,7 +69,7 @@ public class GameMenuGUI {
 		gridData.grabExcessHorizontalSpace = true;
 		gridData.horizontalSpan = 3;
 		
-		this.nameTextField = new Text(this.shell, SWT.FILL);
+		this.nameTextField = new Text(getShell(), SWT.FILL);
 		this.nameTextField.setText(this.mainMenuGUI.getPlayerName());
 		this.nameTextField.setLayoutData(gridData);
 		this.nameTextField.addModifyListener(new ModifyListener() {
@@ -121,9 +93,9 @@ public class GameMenuGUI {
 				GameMenuGUI.this.gameServer = Globals.getLocalGameServer();
 				GameMenuGUI.this.mainMenuGUI.setGameServer(GameMenuGUI.this.gameServer);
 
-				HostMenuGUI hostMenuGUI = new HostMenuGUI(GameMenuGUI.this.display, GameMenuGUI.this.mainMenuGUI);
+				HostMenuGUI hostMenuGUI = new HostMenuGUI(getDisplay(), GameMenuGUI.this.mainMenuGUI);
 				
-				PlayGameGUI playGameGUI = new PlayGameGUI(GameMenuGUI.this.display, 
+				PlayGameGUI playGameGUI = new PlayGameGUI(getDisplay(), 
 						GameMenuGUI.this.mainMenuGUI.getClientUserInterface(), GameMenuGUI.this.gameServer);
 				
 				playGameGUI.setPlayerName(GameMenuGUI.this.mainMenuGUI.getPlayerName());
@@ -155,7 +127,7 @@ public class GameMenuGUI {
 					GameMenuGUI.this.gameServer = Globals.getLocalGameServer();
 					GameMenuGUI.this.mainMenuGUI.setGameServer(GameMenuGUI.this.gameServer);
 					
-					PlayGameGUI playGameGUI = new PlayGameGUI(GameMenuGUI.this.display,
+					PlayGameGUI playGameGUI = new PlayGameGUI(getDisplay(),
 							GameMenuGUI.this.mainMenuGUI.getClientUserInterface(),
 							GameMenuGUI.this.mainMenuGUI.getGameServer());
 
@@ -183,13 +155,13 @@ public class GameMenuGUI {
 		this.backButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				GameMenuGUI.this.shell.close();
+				getShell().close();
 			}
 		});
 	}
 	
 	private Button createButton(String text) {
-		Button button = new Button(this.shell, SWT.NONE);
+		Button button = new Button(getShell(), SWT.NONE);
 		button.setText(text);
 		button.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
 		return button;
@@ -200,9 +172,9 @@ public class GameMenuGUI {
 		gridData.grabExcessHorizontalSpace = true;
 		gridData.horizontalSpan = 3;
 		
-		Label label = new Label(this.shell, SWT.FILL);
+		Label label = new Label(getShell(), SWT.FILL);
 		label.setText(text);
-		label.setBackground(this.shell.getBackground());
+		label.setBackground(getShell().getBackground());
 		label.setLayoutData(gridData);
 	}
 

@@ -17,21 +17,15 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 /**	Description of ClientMenuGUI Class
  * Implementation of the Game as Client with the possibility to enter an IP-Adress
  */
 
-public class ClientMenuGUI {
+public class ClientMenuGUI extends AbstractMagicGUIElement {
 
-	
-	private Shell shell;
-	private final Display display;
 	private Text ipTextField;
 	private Label ipTextLabel;
 	private Button connectButton;
@@ -42,48 +36,23 @@ public class ClientMenuGUI {
 	private PlayGameGUI playGameGUI;
 	
 	public ClientMenuGUI(Display parent, MainMenuGUI mainMenuGUI) {
-		this.display = parent;
+		super(parent);
 		this.mainMenuGUI = mainMenuGUI;
-		
 		initGUI();
 	}
 	
-	private void initGUI() {
-		initShell();
+	@Override
+	protected void onInitGUI() {
 		initIpTextLabel();
 		initIpTextField();
 		initConnectButton();
 		initBackButton();
-		this.shell.pack();
-		
-		this.shell.addListener(SWT.Close, this.onCloseListener);
-		
-		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 	
-	private Listener onCloseListener = new Listener() {
-		@Override
-		public void handleEvent(Event event) {
-			
-		}
-	};
-	
-	public void open() {
-		if (this.shell.isDisposed()) {
-			initGUI();
-		}
-		
-		if (this.shell.isVisible()) {
-			this.shell.forceActive();
-			return;
-		}
-		this.shell.open();
-	}
-	
-	private void initShell() {
-		this.shell = new Shell(SWT.TITLE);
-		this.shell.setText("Starte Spiel als Client");
-		this.shell.setLayout(new GridLayout(2, false));
+	@Override
+	protected void onInitShell() {
+		getShell().setText("Starte Spiel als Client");
+		getShell().setLayout(new GridLayout(2, false));
 	}
 	
 	private void initIpTextLabel() {
@@ -91,9 +60,9 @@ public class ClientMenuGUI {
 		gridData.grabExcessHorizontalSpace = true;
 		gridData.horizontalSpan = 3;
 		
-		this.ipTextLabel = new Label(this.shell, SWT.FILL);
+		this.ipTextLabel = new Label(getShell(), SWT.FILL);
 		this.ipTextLabel.setText("Bitte geben Sie die IP vom Server an:");
-		this.ipTextLabel.setBackground(this.shell.getBackground());
+		this.ipTextLabel.setBackground(getShell().getBackground());
 		this.ipTextLabel.setLayoutData(gridData);
 	}	
 	
@@ -102,26 +71,26 @@ public class ClientMenuGUI {
 		gridData.grabExcessHorizontalSpace = true;
 		gridData.horizontalSpan = 3;
 		
-		this.ipTextField = new Text(this.shell, SWT.FILL);
+		this.ipTextField = new Text(getShell(), SWT.FILL);
 		this.ipTextField.setLayoutData(gridData);
 	}
 
 	private void initBackButton() {
-		this.backButton = new Button(this.shell, SWT.NONE);
+		this.backButton = new Button(getShell(), SWT.NONE);
 		this.backButton.setText("Zurück");
 		this.backButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
 		
 		this.backButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ClientMenuGUI.this.shell.close();
+				ClientMenuGUI.this.getShell().close();
 			}
 		});
 	}
 
 
 	private void initConnectButton() {
-		this.connectButton = new Button(this.shell, SWT.NONE);
+		this.connectButton = new Button(getShell(), SWT.NONE);
 		this.connectButton.setText("Verbinden");
 		this.connectButton.setLayoutData(new GridData(GridData.FILL, GridData.CENTER, true, false));
 		
@@ -129,7 +98,7 @@ public class ClientMenuGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				final NetworkServer gameServer = Globals.getRemoteServer(ClientMenuGUI.this.ipTextField.getText(),
-						ClientMenuGUI.this.shell);
+						ClientMenuGUI.this.getShell());
 				ClientMenuGUI.this.timer = new Timer();
 				
 				ClientUserInterface clientUserInterface = new ClientUserInterface();
@@ -138,7 +107,7 @@ public class ClientMenuGUI {
 					ClientMenuGUI.this.timer.schedule(new TimerTask() {
 						@Override
 						public void run() {
-							ClientMenuGUI.this.display.asyncExec(new Runnable() {
+							getDisplay().asyncExec(new Runnable() {
 								@Override
 								public void run() {
 									try {
@@ -152,7 +121,7 @@ public class ClientMenuGUI {
 					}, 60000);
 					ClientMenuGUI.this.mainMenuGUI.setGameServer(new NetworkServerWrapper(gameServer));
 					
-					PlayGameGUI playGameGUI = new PlayGameGUI(ClientMenuGUI.this.display, 
+					PlayGameGUI playGameGUI = new PlayGameGUI(getDisplay(), 
 							clientUserInterface, new NetworkServerWrapper(gameServer));
 					
 					ClientMenuGUI.this.playGameGUI = playGameGUI;
@@ -163,8 +132,6 @@ public class ClientMenuGUI {
 					
 					gameServer.register(rmi);
 				} catch (RemoteException e1) {
-				} catch (NullPointerException e2) {
-					ClientMenuGUI.this.shell.setVisible(false);
 				}
 			}
 		});
@@ -175,5 +142,5 @@ public class ClientMenuGUI {
 		this.playGameGUI.setPlayerName(ClientMenuGUI.this.mainMenuGUI.getPlayerName());
 		this.playGameGUI.setEnemyName("Gegner");
 		this.playGameGUI.open();
-	}	
+	}
 }

@@ -28,16 +28,13 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
-import org.eclipse.swt.widgets.Shell;
 
 /**	Description of ChooseDeckGUI Class
  * GUI for choosing and creating a new deck
  */
 
-public class ChooseDeckGUI {
+public class ChooseDeckGUI extends AbstractMagicGUIElement {
  
-	private Shell shell;
-	private final Display display;
 	private Button systemToUserButton;
 	private Button userToSystemButton;
 	private Button newButton;
@@ -51,13 +48,13 @@ public class ChooseDeckGUI {
 	private boolean cardDetailIsOpen = false;
 	
 	public ChooseDeckGUI(Display parent, MainMenuGUI mainMenuGUI){
-		this.display = parent;
+		super(parent);
 		this.mainMenuGui = mainMenuGUI;
 		initGUI();
 	}
 	
-	private void initGUI() {
-		initShell();
+	@Override
+	protected void onInitGUI() {
 		initNewButton();
 		initOpenButton();
 		initSaveButton();
@@ -68,45 +65,31 @@ public class ChooseDeckGUI {
 		initUserList();
 		initSystemToUserButton();
 		initUserToSystemButton();
-		this.shell.pack();
 		initPlayersDeck();
-		
-		this.shell.addListener(SWT.Close, this.onCloseListener);
-		
-		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 	
-	private Listener onCloseListener = new Listener() {
-		@Override
-		public void handleEvent(Event event) {
-			Collections.addAll(ChooseDeckGUI.this.playerCards, ChooseDeckGUI.this.userList.getItems());
-			if (ChooseDeckGUI.this.userList.getItemCount() < 50) {
-				ChooseDeckGUI.this.mainMenuGui.setPlayerCards(
-						Globals.getGameCardFactory().getAllPossibleCardNames());
-			} else {
-				ChooseDeckGUI.this.mainMenuGui.setPlayerCards(
-						Arrays.asList(ChooseDeckGUI.this.userList.getItems()));
+	@Override
+	protected Listener getOnCloseListener() {
+		return new Listener() {
+			@Override
+			public void handleEvent(Event event) {
+				Collections.addAll(ChooseDeckGUI.this.playerCards, ChooseDeckGUI.this.userList.getItems());
+				if (ChooseDeckGUI.this.userList.getItemCount() < 50) {
+					ChooseDeckGUI.this.mainMenuGui.setPlayerCards(
+							Globals.getGameCardFactory().getAllPossibleCardNames());
+				} else {
+					ChooseDeckGUI.this.mainMenuGui.setPlayerCards(
+							Arrays.asList(ChooseDeckGUI.this.userList.getItems()));
+				}
 			}
-		}
-	};
-	
-	public void open() {
-		if (this.shell.isDisposed()) {
-			initGUI();
-		}
-		
-		if (this.shell.isVisible()) {
-			this.shell.forceActive();
-			return;
-		}
-		this.shell.open();
+		};
 	}
 	
-	private void initShell() {
-		this.shell = new Shell(SWT.TITLE);
-		this.shell.setText("Deck erstellen");
-		this.shell.setLayout(new FormLayout());
-		this.shell.layout();
+	@Override
+	protected void onInitShell() {
+		getShell().setText("Deck erstellen");
+		getShell().setLayout(new FormLayout());
+		getShell().layout();
 	}
 	
 	private void initPlayersDeck() {
@@ -160,7 +143,7 @@ public class ChooseDeckGUI {
 		this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ChooseDeckGUI.this.shell.close();
+				ChooseDeckGUI.this.getShell().close();
 			}
 		});
 	}
@@ -189,7 +172,7 @@ public class ChooseDeckGUI {
 			public void widgetDefaultSelected(SelectionEvent e) {
 				String[] selectedItems = list.getSelection();
 				if (selectedItems.length == 1 && ChooseDeckGUI.this.cardDetailIsOpen == false) {
-					ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(ChooseDeckGUI.this.display, 
+					ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(getDisplay(), 
 							null, ChooseDeckGUI.this, 
 							Globals.getGameCardFactory().createCard(selectedItems[0]), null);
 					showCardDetailGUI.open();
@@ -247,7 +230,7 @@ public class ChooseDeckGUI {
 	}
 	
 	private void loadUserDeck() {
-		FileDialog fileDialog = new FileDialog(this.shell, SWT.OPEN);
+		FileDialog fileDialog = new FileDialog(getShell(), SWT.OPEN);
 		String[] fileExtNames = { "XML-Dateien" };
 		String[] fileExt = { "*.xml" };
 		fileDialog.setFilterNames(fileExtNames);
@@ -262,7 +245,7 @@ public class ChooseDeckGUI {
 					this.userList.add(card.getName());
 				}
 			} catch (Exception e) {
-					MessageBox msgBox = new MessageBox(this.shell, SWT.ICON_ERROR);
+					MessageBox msgBox = new MessageBox(getShell(), SWT.ICON_ERROR);
 					if (e.getLocalizedMessage() != null) {
 						msgBox.setMessage(e.getLocalizedMessage());
 					} else {
@@ -275,7 +258,7 @@ public class ChooseDeckGUI {
 	}
 	
 	private void saveUserDeck() {
-		FileDialog fileDialog = new FileDialog(this.shell, SWT.SAVE);
+		FileDialog fileDialog = new FileDialog(getShell(), SWT.SAVE);
 		String[] fileExtNames = { "XML-Dateien" };
 		String[] fileExt = { "*.xml" };
 		fileDialog.setFilterNames(fileExtNames);
@@ -288,7 +271,7 @@ public class ChooseDeckGUI {
 				Collections.addAll(cardNames, this.userList.getItems());
 				Globals.getGameCardFactory().saveToXml(cardNames, fileWriter);
 			} catch (Exception e) {
-				MessageBox msgBox = new MessageBox(this.shell, SWT.ICON_ERROR);
+				MessageBox msgBox = new MessageBox(getShell(), SWT.ICON_ERROR);
 				msgBox.setMessage(e.getLocalizedMessage());
 				msgBox.open();
 			}
@@ -296,7 +279,7 @@ public class ChooseDeckGUI {
 	}
 	
 	private Button createButton(String text, int x, int y, int width, int height) {
-		Button button = new Button(ChooseDeckGUI.this.shell, SWT.PUSH | SWT.CENTER);
+		Button button = new Button(ChooseDeckGUI.this.getShell(), SWT.PUSH | SWT.CENTER);
 		FormData formData = new FormData();
 		formData.left =  new FormAttachment(0, 1000, x);
 		formData.top =  new FormAttachment(0, 1000, y);
@@ -313,7 +296,7 @@ public class ChooseDeckGUI {
 		formData.left = new FormAttachment(0, 1000, x);
 		formData.top =  new FormAttachment(0, 1000, y);
 		
-		Label label = new Label(this.shell, SWT.CENTER);
+		Label label = new Label(getShell(), SWT.CENTER);
 		label.setText(text);
 		label.setLayoutData(formData);
 	}
@@ -324,7 +307,7 @@ public class ChooseDeckGUI {
 		formData.top =  new FormAttachment(0, 1000, y);
 		formData.width = 320;
 		formData.height = 420;
-		List list = new List(this.shell, SWT.NONE | SWT.MULTI | SWT.V_SCROLL);
+		List list = new List(getShell(), SWT.NONE | SWT.MULTI | SWT.V_SCROLL);
 		list.setLayoutData(formData);
 		
 		return list; 
