@@ -133,14 +133,14 @@ public class GameMenuGUI extends AbstractMagicGUIElement {
 							GameMenuGUI.this.mainMenuGUI.getGameServer());
 
 					GameMenuGUI.this.gameServer.register(GameMenuGUI.this.mainMenuGUI.
-																		getClientUserInterface());
+							getClientUserInterface());
 
 					LocalEnemyKIUserInterface localUserInterface = new LocalEnemyKIUserInterface();
 					localUserInterface.setMainMenuGUI(GameMenuGUI.this.mainMenuGUI);
 					localUserInterface.setPlayGameGUI(playGameGUI);
 					
 					KI.startBridgedKIOnServer(GameMenuGUI.this.gameServer, GameMenuGUI.this.mainMenuGUI.
-																	getEnemyName(),localUserInterface);
+							getEnemyName(),localUserInterface);
 					
 					playGameGUI.setPlayerName(GameMenuGUI.this.mainMenuGUI.getPlayerName());
 					playGameGUI.setEnemyName(GameMenuGUI.this.mainMenuGUI.getEnemyName());
