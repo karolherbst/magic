@@ -1,6 +1,3 @@
-/**
- * 
- */
 package herbstJennrichLehmannRitter.engine.model.impl;
 
 import herbstJennrichLehmannRitter.engine.model.Deck;
@@ -8,7 +5,7 @@ import herbstJennrichLehmannRitter.engine.model.DefenceBuilding;
 import herbstJennrichLehmannRitter.engine.model.Player;
 import herbstJennrichLehmannRitter.engine.model.ResourceBuilding;
 
-/**	Description ofPlayerImpl Class
+/**	Description of PlayerImpl Class
  *  This Class implements the Player Interface and implements the dungeon.
  *	Saves name and information about the player.
  */

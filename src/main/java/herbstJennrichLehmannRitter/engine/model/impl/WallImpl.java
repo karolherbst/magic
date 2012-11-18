@@ -1,6 +1,3 @@
-/**
- * 
- */
 package herbstJennrichLehmannRitter.engine.model.impl;
 
 import herbstJennrichLehmannRitter.engine.enums.BuildingType;
