@@ -7,6 +7,11 @@ import herbstJennrichLehmannRitter.engine.controller.impl.GameEngineControllerIm
 
 import org.junit.Test;
 
+/** Description of GameControllerTest Class
+ *  This Class tests the GameEngineController.
+ *  It creates a new GameEngineControllerImpl and tests if it is not null.
+ */
+
 public class GameControllerTest {
 
 	private GameEngineController gameEngineController = new GameEngineControllerImpl(Globals.getGameCardFactory());

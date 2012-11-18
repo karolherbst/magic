@@ -15,6 +15,10 @@ import java.rmi.RemoteException;
 
 import org.junit.Test;
 
+/** Description of KITests Class
+ *  This class tests the KI in the modes ResourceRage and TowerBuilding.
+ */
+
 public class KITest {
 
 	@Test

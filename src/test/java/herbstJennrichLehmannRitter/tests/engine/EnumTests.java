@@ -8,6 +8,10 @@ import herbstJennrichLehmannRitter.engine.enums.ResourceType;
 
 import org.junit.Test;
 
+/** Description of EnumTests Class
+ *  This test implements all tests for BuildingType, CardType, GameType and ResourceType enums.
+ */
+
 public class EnumTests {
 
 	@Test

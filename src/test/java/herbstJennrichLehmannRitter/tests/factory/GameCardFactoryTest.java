@@ -19,6 +19,10 @@ import java.util.Collection;
 import org.junit.Before;
 import org.junit.Test;
 
+/** Description of GameCardFactoryTests Class
+ *  This test implements tests for the creation of cards from the .xml-file and the saving of new Decks to .xml.
+ */
+
 public class GameCardFactoryTest {
 
 	private GameCardFactory gameCardFactory;

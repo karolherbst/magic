@@ -13,6 +13,10 @@ import herbstJennrichLehmannRitter.engine.model.Player;
 import org.junit.Before;
 import org.junit.Test;
 
+/** Description of WinAndLooseTests Class
+ *  This test implements all tests for the WinAndLoseChecker of both Resource Rage and Tower Building.
+ */
+
 public class WinAndLooseTests {
 	private PlayerFactory playerFactory = new PlayerFactoryImpl();
 	private Player playerOne;
