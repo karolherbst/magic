@@ -127,10 +127,10 @@ public class ClientMenuGUI {
 					}, 3000000);
 					ClientMenuGUI.this.mainMenuGUI.setGameServer(new NetworkServerWrapper(gameServer));
 					
-					ClientMenuGUI.this.playGameGUI = new PlayGameGUI(ClientMenuGUI.this.display, 
+					PlayGameGUI playGameGUI = new PlayGameGUI(ClientMenuGUI.this.display, 
 							clientUserInterface, new NetworkServerWrapper(gameServer));
-					ClientMenuGUI.this.playGameGUI.setPlayerName(ClientMenuGUI.this.mainMenuGUI.getPlayerName());
 					
+					ClientMenuGUI.this.playGameGUI = playGameGUI;
 					
 					clientUserInterface.setMainMenuGUI(ClientMenuGUI.this.mainMenuGUI);
 					clientUserInterface.setClientMenuGUI(ClientMenuGUI.this);
@@ -147,6 +147,8 @@ public class ClientMenuGUI {
 
 	public void cancelTimerAndOpenPlayGameGUI() {
 		this.timer.cancel();
+		this.playGameGUI.setPlayerName(ClientMenuGUI.this.mainMenuGUI.getPlayerName());
+		this.playGameGUI.setEnemyName("Gegner");
 		this.playGameGUI.open();
 	}	
 }

@@ -92,16 +92,17 @@ public class GameMenuGUI {
 		this.startHostButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				GameMenuGUI.this.mainMenuGUI.setGameServer(Globals.getLocalGameServer());
+				GameMenuGUI.this.gameServer = Globals.getLocalGameServer();
+				GameMenuGUI.this.mainMenuGUI.setGameServer(GameMenuGUI.this.gameServer);
 
 				HostMenuGUI hostMenuGUI = new HostMenuGUI(GameMenuGUI.this.display, GameMenuGUI.this.mainMenuGUI);
 				
 				PlayGameGUI playGameGUI = new PlayGameGUI(GameMenuGUI.this.display, 
-						GameMenuGUI.this.mainMenuGUI.getClientUserInterface(),
-						GameMenuGUI.this.mainMenuGUI.getGameServer());
+						GameMenuGUI.this.mainMenuGUI.getClientUserInterface(), GameMenuGUI.this.gameServer);
 				
 				playGameGUI.setPlayerName(GameMenuGUI.this.mainMenuGUI.getPlayerName());
-				playGameGUI.setEnemyName(GameMenuGUI.this.mainMenuGUI.getEnemyName());
+				playGameGUI.setEnemyName("Gegner");
+				
 				hostMenuGUI.setPlayGameGUI(playGameGUI);
 				GameMenuGUI.this.mainMenuGUI.getClientUserInterface().setPlayGameGUI(playGameGUI);
 				hostMenuGUI.open();

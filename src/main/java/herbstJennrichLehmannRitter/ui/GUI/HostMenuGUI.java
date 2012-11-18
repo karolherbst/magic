@@ -41,6 +41,7 @@ public class HostMenuGUI {
 	
 	private GameServer gameServer;
 	private MainMenuGUI mainMenuGUI;
+	private PlayGameGUI playGameGUI;
 
 	public HostMenuGUI(Display parent, MainMenuGUI mainMenuGUI){
 		this.display = parent;
@@ -58,6 +59,10 @@ public class HostMenuGUI {
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 		
 		this.shell.addListener(SWT.Close, this.onCloseListener);
+	}
+	
+	public void setPlayGameGUI(PlayGameGUI playGameGUI) {
+		this.playGameGUI = playGameGUI;
 	}
 	
 	private Listener onCloseListener = new Listener() {
@@ -152,7 +157,7 @@ public class HostMenuGUI {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		this.mainMenuGUI.getClientUserInterface().getPlayGameGUI().open();
+		this.playGameGUI.open();
 	}
 	
 	public void displayMessageBox(String text) {
