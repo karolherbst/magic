@@ -515,7 +515,7 @@ public class PlayGameGUI extends AbstractMagicGUIElement {
 				continue;
 			}
 			for (CardFields cardField: playerCards) {
-				if (cardField.getCardName() == "") {
+				if ("".equals(cardField.getCardName())) {
 					cardField.setCardName(card.getName());
 					break;
 				}
@@ -525,10 +525,17 @@ public class PlayGameGUI extends AbstractMagicGUIElement {
 	
 	private static void removeCardFromDeck(ArrayList<CardFields> cardFields, String name) {
 		for (CardFields cardField: cardFields) {
+			// check for card name equals "Paradoxon", if equals throw all cards away in GUI
+			if (name.equals("Paradoxon")) {
+				cardField.setCardName("");
+			}
 			if (cardField.getCardName().equals(name)) {
 				cardField.setCardName("");
 				cardField.setVisible(false);
-				break;
+				// is card name is equals Paradoxon do not end the loop
+				if (!name.equals("Paradoxon")) {
+					break;
+				}
 			}
 		}
 	}
