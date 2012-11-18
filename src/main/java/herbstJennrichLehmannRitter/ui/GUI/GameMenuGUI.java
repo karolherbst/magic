@@ -39,9 +39,12 @@ public class GameMenuGUI {
 	private MainMenuGUI mainMenuGUI;
 	protected GameServer gameServer;
 	
+	private ClientMenuGUI clientMenuGUI;
+	
 	public GameMenuGUI(Display parent, MainMenuGUI mainMenuGUI) {
 		this.display = parent;
 		this.mainMenuGUI = mainMenuGUI;
+		this.clientMenuGUI = new ClientMenuGUI(this.display, this.mainMenuGUI);
 		initGUI();
 	}
 	
@@ -138,8 +141,7 @@ public class GameMenuGUI {
 		this.startClientButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ClientMenuGUI clientMenuGUI = new ClientMenuGUI(GameMenuGUI.this.display, GameMenuGUI.this.mainMenuGUI);
-				clientMenuGUI.open();
+				GameMenuGUI.this.clientMenuGUI.open();
 			}
 		});
 	}

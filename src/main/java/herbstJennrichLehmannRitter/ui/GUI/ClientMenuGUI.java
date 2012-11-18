@@ -17,7 +17,9 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
@@ -42,16 +44,39 @@ public class ClientMenuGUI {
 	public ClientMenuGUI(Display parent, MainMenuGUI mainMenuGUI) {
 		this.display = parent;
 		this.mainMenuGUI = mainMenuGUI;
+		
+		initGUI();
+	}
+	
+	private void initGUI() {
 		initShell();
 		initIpTextLabel();
 		initIpTextField();
 		initConnectButton();
 		initBackButton();
 		this.shell.pack();
+		
+		this.shell.addListener(SWT.Close, this.onCloseListener);
+		
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 	
+	private Listener onCloseListener = new Listener() {
+		@Override
+		public void handleEvent(Event event) {
+			
+		}
+	};
+	
 	public void open() {
+		if (this.shell.isDisposed()) {
+			initGUI();
+		}
+		
+		if (this.shell.isVisible()) {
+			this.shell.forceActive();
+			return;
+		}
 		this.shell.open();
 	}
 	
@@ -89,7 +114,7 @@ public class ClientMenuGUI {
 		this.backButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ClientMenuGUI.this.shell.setVisible(false);
+				ClientMenuGUI.this.shell.close();
 			}
 		});
 	}
