@@ -60,8 +60,8 @@ public class ToStringTest {
 	public void testBlitzUndDonnerComplexAction() {
 		Card blitzUndDonner = this.gameCardFactory.createCard("Blitz und Donner");
 		assertNotNull(blitzUndDonner);
-		assertEquals("Blitz und Donner[Kosten: 11 Kristall; Gegner: Wenn der eigene Turm größer " +
-				"als der des Gegners ist,werden 8 Turmschaden und sonst 8 Schaden zugefügt]", 
+		assertEquals("Blitz und Donner[Kosten: 11 Kristall; Gegner: Wenn der eigene Turm größer als " +
+				"der des Gegners ist, werden 8 Turmschaden und sonst 8 Schaden zugefügt]", 
 				blitzUndDonner.toString());
 	}
 	
