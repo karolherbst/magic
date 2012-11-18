@@ -66,9 +66,13 @@ public class GameServiceImpl implements GameService {
 	
 	@Override
 	public synchronized void stop() {
-		this.gameEngineController.stop();
-		for (UIHolder uiHolder : this.threadToUi.values()) {
-			uiHolder.userInterface.abort("Das Spiel wurde gestoppt");
+		try {
+			this.gameEngineController.stop();
+			for (UIHolder uiHolder : this.threadToUi.values()) {
+				uiHolder.userInterface.abort("Das Spiel wurde gestoppt");
+			}
+		} catch (Throwable t) {
+			abort(t);
 		}
 	}
 	
