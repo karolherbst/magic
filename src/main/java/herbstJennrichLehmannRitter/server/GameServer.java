@@ -11,6 +11,7 @@ import java.util.Collection;
 /**	Description of GameServer Class
  *  This Class extends the Remote Interface and works as interface to the GameClient
  */
+
 public interface GameServer extends Remote {
 	
 	public void register(UserInterface userInterface) throws RemoteException;
