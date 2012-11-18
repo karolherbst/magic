@@ -33,9 +33,6 @@ public final class Globals {
 	public static final String GAME_SERVER_NAME = "MagicServer";
 	private static final int GAME_SERVER_PORT = 40000;
 	
-	/**
-	 * The Class Globals should never be instantiated
-	 */
 	private Globals() {}
 	
 	private static void buildUpLocalEngine() {

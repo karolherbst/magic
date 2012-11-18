@@ -7,6 +7,10 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Collection;
 
+/**	Description of RMIUsertInterface Class
+ *  This Class extends the Remote Interface and implements the methods for exceptions
+ */
+
 public interface RMIUsertInterface extends Remote {
 	
 	public void setData(Data data) throws RemoteException;

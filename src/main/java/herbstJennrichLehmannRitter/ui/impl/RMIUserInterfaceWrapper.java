@@ -8,6 +8,10 @@ import herbstJennrichLehmannRitter.ui.UserInterface;
 import java.rmi.RemoteException;
 import java.util.Collection;
 
+/**	Description of RMIUserInterfaceWrapper Class
+ * This class implements the UserInterface and wraps the RMIUserInterfaceImpl
+ */
+
 public class RMIUserInterfaceWrapper implements UserInterface {
 
 	private static final long serialVersionUID = 9141975062331394016L;

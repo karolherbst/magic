@@ -9,6 +9,10 @@ import herbstJennrichLehmannRitter.ui.UserInterface;
 import java.rmi.RemoteException;
 import java.util.Collection;
 
+/**	Description of NetworkServerWrapper Class
+ *  This Class implements the GameServer Interface and wraps the necessary network data
+ */
+
 public class NetworkServerWrapper implements GameServer {
 
 	private final NetworkServer networkServer;

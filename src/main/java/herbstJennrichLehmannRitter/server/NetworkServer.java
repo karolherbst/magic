@@ -8,6 +8,10 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.Collection;
 
+/**	Description of NetworkServer Class
+ *  This Class extends the Remote Interface and works as interface for the Network Server
+ */
+
 public interface NetworkServer extends Remote {
 	
 	public void register(RMIUsertInterface userInterface) throws RemoteException;
