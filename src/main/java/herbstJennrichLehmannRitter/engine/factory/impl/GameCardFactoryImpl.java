@@ -59,13 +59,16 @@ public class GameCardFactoryImpl implements GameCardFactory {
 	ClassNotFoundException {
 		Map<String, Class<?>> classes = new HashMap<String, Class<?>>();
 		
+		// first we need the current classloader
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		// now we are scanning the package
 		URL resource = classLoader.getResource(packageName.replace('.', '/'));
 		File directory = new File(URLDecoder.decode(resource.getFile(), "UTF-8"));
 		
 		if (!directory.exists()) {
 			throw new GameCardFactoryException(CARD_FACTORY_ERROR.COULD_NOT_LOAD_COMPLEX_ACTIONS);
 		}
+		// search for all files ending with .class
 		File[] files = directory.listFiles(new FilenameFilter() {
 			@Override
 			public boolean accept(File dir, String name) {
@@ -76,7 +79,9 @@ public class GameCardFactoryImpl implements GameCardFactory {
 		for (int i = 0; i < files.length; i++) {
 			File file = files[i];
 			String className = file.getName().substring(0, file.getName().length() - 6);
+			// get the class from the filename
 			Class<?> currentClass = Class.forName(packageName + '.' + className);
+			// read the annotation and put this class into the map with complexCardActions
 			ComplexCard complexCard = currentClass.getAnnotation(ComplexCard.class);
 			classes.put(complexCard.value(), currentClass);
 		}
@@ -95,6 +100,7 @@ public class GameCardFactoryImpl implements GameCardFactory {
 		}
 		
 		try {
+			// read the cards.xml and scan through every card
 			JAXBContext jaxbContext = JAXBContext.newInstance("herbstJennrichLehmannRitter.engine.model");
 			this.unmarshaller = jaxbContext.createUnmarshaller();
 			this.marshaller = jaxbContext.createMarshaller();
@@ -114,8 +120,11 @@ public class GameCardFactoryImpl implements GameCardFactory {
 			this.cards = new HashMap<String, Card>(xmlCards.getCards().size(), 1);
 			for (XmlCard card : xmlCards.getCards()) {
 				assertCard(card);
+				
+				// check if a complexAction exists for the current card
 				Class<?> complexActionClass = this.complexCardActions.get(card.getName());
 				
+				// if so, then create a new Instance and add it to the card
 				if (complexActionClass != null) {
 					try {
 						card.setComplexCardAction((ComplexCardAction)complexActionClass.newInstance());
