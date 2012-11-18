@@ -8,8 +8,6 @@ import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
 import herbstJennrichLehmannRitter.ui.impl.RMIUserInterfaceImpl;
 
 import java.rmi.RemoteException;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -121,33 +119,9 @@ public class ClientMenuGUI extends AbstractMagicGUIElement {
 				final NetworkServer gameServer = Globals.getRemoteServer
 						(ClientMenuGUI.this.ipTextField.getText(),
 						ClientMenuGUI.this.getShell());
-				
-				if (gameServer == null) {
-					// TODO: error meldung
-					return;
-				}
-				
-				ClientMenuGUI.this.timer = new Timer();
-				
 				ClientUserInterface clientUserInterface = new ClientUserInterface();
 				try {
 					ClientMenuGUI.this.rmi = new RMIUserInterfaceImpl(clientUserInterface);
-					ClientMenuGUI.this.timer.schedule(new TimerTask() {
-						@Override
-						public void run() {
-							getDisplay().asyncExec(new Runnable() {
-								@Override
-								public void run() {
-									try {
-										gameServer.unregister();
-									} catch (RemoteException e) {
-										System.out.println
-										(e.getLocalizedMessage());
-									}
-								}
-							});
-						}
-					}, 60000);
 					ClientMenuGUI.this.mainMenuGUI.setGameServer(new NetworkServerWrapper(gameServer));
 					
 					PlayGameGUI playGameGUI = new PlayGameGUI(getDisplay(), 
@@ -161,6 +135,8 @@ public class ClientMenuGUI extends AbstractMagicGUIElement {
 					
 					gameServer.register(ClientMenuGUI.this.rmi);
 				} catch (RemoteException e1) {
+				} catch (NullPointerException e2) {
+					ClientMenuGUI.this.getShell().dispose();
 				}
 			}
 		});
