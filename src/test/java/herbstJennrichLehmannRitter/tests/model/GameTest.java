@@ -23,8 +23,10 @@ public class GameTest {
 		PlayerFactory playerFactory = new PlayerFactoryImpl();
 		GameCardFactory gameCardFactory = new GameCardFactoryImpl();
 		
-		Player ownPlayer = playerFactory.createPlayer("Own Player", gameCardFactory.createDefaultDeck(), 25, 15, 1, 15);
-		Player enemyPlayer =  playerFactory.createPlayer("Enemy", gameCardFactory.createDefaultDeck(), 25, 15, 1, 15);
+		Player ownPlayer = playerFactory.createPlayer(
+				"Own Player", gameCardFactory.createDefaultDeck(), 25, 15, 1, 15);
+		Player enemyPlayer =  playerFactory.createPlayer(
+				"Enemy", gameCardFactory.createDefaultDeck(), 25, 15, 1, 15);
 		GameAction gameAction = new GameActionImpl(ownPlayer, enemyPlayer);
 		
 		enemyPlayer.getTower().applyDamage(30);
@@ -38,8 +40,10 @@ public class GameTest {
 		PlayerFactory playerFactory = new PlayerFactoryImpl();
 		GameCardFactory gameCardFactory = new GameCardFactoryImpl();
 		
-		Player ownPlayer = playerFactory.createPlayer("Own Player", gameCardFactory.createDefaultDeck(), 25, 15, 1, 15);
-		Player enemyPlayer =  playerFactory.createPlayer("Enemy", gameCardFactory.createDefaultDeck(), 25, 15, 1, 15);
+		Player ownPlayer = playerFactory.createPlayer(
+				"Own Player", gameCardFactory.createDefaultDeck(), 25, 15, 1, 15);
+		Player enemyPlayer =  playerFactory.createPlayer(
+				"Enemy", gameCardFactory.createDefaultDeck(), 25, 15, 1, 15);
 		GameAction gameAction = new GameActionImpl(ownPlayer, enemyPlayer);
 
 		ownPlayer.getTower().applyDamage(30);
@@ -54,8 +58,10 @@ public class GameTest {
 		PlayerFactory playerFactory = new PlayerFactoryImpl();
 		GameCardFactory gameCardFactory = new GameCardFactoryImpl();
 		
-		Player ownPlayer = playerFactory.createPlayer("Own Player", gameCardFactory.createDefaultDeck(), 25, 15, 1, 15);
-		Player enemyPlayer =  playerFactory.createPlayer("Enemy", gameCardFactory.createDefaultDeck(), 25, 15, 1, 15);
+		Player ownPlayer = playerFactory.createPlayer(
+				"Own Player", gameCardFactory.createDefaultDeck(), 25, 15, 1, 15);
+		Player enemyPlayer =  playerFactory.createPlayer(
+				"Enemy", gameCardFactory.createDefaultDeck(), 25, 15, 1, 15);
 		GameAction gameAction = new GameActionImpl(ownPlayer, enemyPlayer);
 
 		ownPlayer.getTower().applyDamage(30);

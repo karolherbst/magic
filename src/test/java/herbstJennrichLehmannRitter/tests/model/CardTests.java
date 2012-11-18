@@ -82,11 +82,19 @@ public class CardTests {
 			marshaller.marshal(card, System.out);
 			
 			Unmarshaller unmarshaller = this.jaxbContext.createUnmarshaller();
-			String xmlTree = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><Card name=\"dahsjdhaks\">" +
-					"<CardType>Steinbruch</CardType><CostBrick>2</CostBrick><CostCrystal>4</CostCrystal>" +
-					"<CostMonster>6</CostMonster><CanBeDiscarded>false</CanBeDiscarded><CardEffect>" +
-					"<DrawCard>3</DrawCard><OwnDiscardCard>2</OwnDiscardCard><EnemyDiscardCard>4</EnemyDiscardCard>" +
-					"<PlayAnotherCard>true</PlayAnotherCard></CardEffect></Card>";
+			String xmlTree = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
+					"<Card name=\"dahsjdhaks\">" +
+					"<CardType>Steinbruch</CardType>" +
+					"<CostBrick>2</CostBrick>" +
+					"<CostCrystal>4</CostCrystal>" +
+					"<CostMonster>6</CostMonster>" +
+					"<CanBeDiscarded>false</CanBeDiscarded>" +
+					"<CardEffect>" +
+					"<DrawCard>3</DrawCard>" +
+					"<OwnDiscardCard>2</OwnDiscardCard><EnemyDiscardCard>4</EnemyDiscardCard>" +
+					"<PlayAnotherCard>true</PlayAnotherCard>" +
+					"</CardEffect>" +
+					"</Card>";
 			StringReader stringReader = new StringReader(xmlTree);
 			XmlCard card2 = (XmlCard)unmarshaller.unmarshal(stringReader);
 			
@@ -120,7 +128,8 @@ public class CardTests {
 	public void testAllCards() {
 		try {
 			Unmarshaller unmarshaller = this.jaxbContext.createUnmarshaller();
-			InputStream is = this.getClass().getResourceAsStream("/herbstJennrichLehmannRitter/engine/model/cards.xml");
+			InputStream is = this.getClass().getResourceAsStream(
+					"/herbstJennrichLehmannRitter/engine/model/cards.xml");
 			XmlCards xmlCards = (XmlCards)unmarshaller.unmarshal(is);
 			is.close();
 			
@@ -182,7 +191,8 @@ public class CardTests {
 		PlayerFactory playerFactory = new PlayerFactoryImpl();
 		GameCardFactory gameCardFactory = new GameCardFactoryImpl();
 		
-		Player player = playerFactory.createPlayer("Spieler", Globals.getGameCardFactory().createDefaultDeck(),
+		Player player = playerFactory.createPlayer(
+				"Spieler", Globals.getGameCardFactory().createDefaultDeck(),
 				25, 25, 1, 15);
 		Card cardArchitektur = gameCardFactory.createCard("Architektur");
 		Card cardKatapult = gameCardFactory.createCard("Katapult");
@@ -204,7 +214,8 @@ public class CardTests {
 		PlayerFactory playerFactory = new PlayerFactoryImpl();
 		GameCardFactory gameCardFactory = new GameCardFactoryImpl();
 		
-		Player player = playerFactory.createPlayer("Spieler", Globals.getGameCardFactory().createDefaultDeck(),
+		Player player = playerFactory.createPlayer(
+				"Spieler", Globals.getGameCardFactory().createDefaultDeck(),
 				25, 25, 1, 15);
 		Card cardFreundlicheUmgebung = gameCardFactory.createCard("Freundliche Umgebung");
 		Card cardGrundstein = gameCardFactory.createCard("Grundstein");

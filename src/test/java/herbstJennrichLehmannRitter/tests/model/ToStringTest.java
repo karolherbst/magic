@@ -36,7 +36,8 @@ public class ToStringTest {
 	public void testAuferstehungComplexAction() {
 		Card auferstehung = this.gameCardFactory.createCard("Auferstehung");
 		assertNotNull(auferstehung);
-		assertEquals("Auferstehung[Kosten: 6 Monster, 6 Kristall, 6 Ziegel; Selbst: +30% Turm]", auferstehung.toString());
+		assertEquals("Auferstehung[Kosten: 6 Monster, 6 Kristall, 6 Ziegel; Selbst: +30% Turm]", 
+				auferstehung.toString());
 	}
 	
 	@Test
@@ -59,16 +60,18 @@ public class ToStringTest {
 	public void testBlitzUndDonnerComplexAction() {
 		Card blitzUndDonner = this.gameCardFactory.createCard("Blitz und Donner");
 		assertNotNull(blitzUndDonner);
-		assertEquals("Blitz und Donner[Kosten: 11 Kristall; Gegner: Wenn der eigene Turm größer als der des Gegners ist, " +
-			"werden 8 Turmschaden und sonst 8 Schaden zugefügt]", blitzUndDonner.toString());
+		assertEquals("Blitz und Donner[Kosten: 11 Kristall; Gegner: Wenn der eigene Turm größer " +
+				"als der des Gegners ist,werden 8 Turmschaden und sonst 8 Schaden zugefügt]", 
+				blitzUndDonner.toString());
 	}
 	
 	@Test
 	public void testBlutmondComplexAction() {
 		Card blutmond = this.gameCardFactory.createCard("Blutmond");
 		assertNotNull(blutmond);
-		assertEquals("Blutmond[Kosten: 8 Monster; Selbst: -1 Zauberlabor, Es werden alle Karten auf der Hand verworfen " +
-			"und 6 zufällige Verlieskarten gezogen]", blutmond.toString());
+		assertEquals("Blutmond[Kosten: 8 Monster; Selbst: -1 Zauberlabor, " +
+				"Es werden alle Karten auf der Hand verworfen und 6 zufällige Verlieskarten gezogen]", 
+				blutmond.toString());
 	}
 	
 	@Test
@@ -139,7 +142,8 @@ public class ToStringTest {
 	public void testKorrosionComplexAction() {
 		Card korrosion = this.gameCardFactory.createCard("Korrosion");
 		assertNotNull(korrosion);
-		assertEquals("Korrosion[Kosten: 11 Monster; Gegner: Wenn gegnerische Mauer>0 dann 10 Schaden sonst 7 Schaden]",
+		assertEquals("Korrosion[Kosten: 11 Monster; " +
+				"Gegner: Wenn gegnerische Mauer>0 dann 10 Schaden sonst 7 Schaden]",
 				korrosion.toString());
 	}
 	
@@ -147,7 +151,8 @@ public class ToStringTest {
 	public void testParadoxonComplexAction() {
 		Card paradoxon = this.gameCardFactory.createCard("Paradoxon");
 		assertNotNull(paradoxon);
-		assertEquals("Paradoxon[Kosten: 5 Monster, 5 Kristall, 5 Ziegel; Selbst: Tausche Kartenhand mit dem Gegner; " +
+		assertEquals("Paradoxon[Kosten: 5 Monster, 5 Kristall, 5 Ziegel; " +
+			"Selbst: Tausche Kartenhand mit dem Gegner; " +
 			"Gegner: Tausche Kartenhand mit dem Gegner]", paradoxon.toString());
 	}
 	
@@ -181,7 +186,8 @@ public class ToStringTest {
 	public void testSpeertraegerComplexAction() {
 		Card speertraeger = this.gameCardFactory.createCard("Speerträger");
 		assertNotNull(speertraeger);
-		assertEquals("Speerträger[Kosten: 2 Monster; Gegner: Wenn die Mauer größer der gegnerischen Mauer dann 3 " +
+		assertEquals("Speerträger[Kosten: 2 Monster; " +
+				"Gegner: Wenn die Mauer größer der gegnerischen Mauer dann 3 " +
 				"Schaden sonst 2 Schaden]", speertraeger.toString());
 	}
 	
@@ -189,7 +195,8 @@ public class ToStringTest {
 	public void testSpeikaeferComplexAction() {
 		Card speikaefer = this.gameCardFactory.createCard("Speikäfer");
 		assertNotNull(speikaefer);
-		assertEquals("Speikäfer[Kosten: 8 Monster; Gegner: Wenn gegnerische Mauer=0 dann 10 Schaden sonst 6 Schaden]", 
+		assertEquals("Speikäfer[Kosten: 8 Monster; " +
+				"Gegner: Wenn gegnerische Mauer=0 dann 10 Schaden sonst 6 Schaden]", 
 				speikaefer.toString());
 	}
 	
@@ -197,15 +204,18 @@ public class ToStringTest {
 	public void testSpionageComplexAction() {
 		Card spionage = this.gameCardFactory.createCard("Spionage");
 		assertNotNull(spionage);
-		assertEquals("Spionage[Kosten: 5 Ziegel; Selbst: Wenn dein Steinbruchlevel niedriger " +
-			"als das des Gegners ist, wird es auf die Stufe des Gegners angehoben]", spionage.toString());
+		assertEquals("Spionage[Kosten: 5 Ziegel; " +
+				"Selbst: Wenn dein Steinbruchlevel niedriger " +
+			"als das des Gegners ist, wird es auf die Stufe des Gegners angehoben]", 
+			spionage.toString());
 	}
 	
 	@Test
 	public void testUeberflutungComplexAction() {
 		Card ueberflutung = this.gameCardFactory.createCard("Überflutung");
 		assertNotNull(ueberflutung);
-		assertEquals("Überflutung[Kosten: 6 Ziegel; Selbst: Spieler mit niedrigster Mauer -1 Verlies und 2 " +
+		assertEquals("Überflutung[Kosten: 6 Ziegel; " +
+				"Selbst: Spieler mit niedrigster Mauer -1 Verlies und 2 " +
 			"Turmschaden; Gegner: Spieler mit niedrigster Mauer -1 Verlies und 2 Turmschaden]", 
 			ueberflutung.toString());
 	}
@@ -214,7 +224,8 @@ public class ToStringTest {
 	public void testVerschiebungComplexAction() {
 		Card verschiebung = this.gameCardFactory.createCard("Verschiebung");
 		assertNotNull(verschiebung);
-		assertEquals("Verschiebung[Kosten: 17 Ziegel; Selbst: Tausche deine Mauer mit der des " +
+		assertEquals("Verschiebung[Kosten: 17 Ziegel; " +
+				"Selbst: Tausche deine Mauer mit der des " +
 			"Gegners]", verschiebung.toString());
 	}
 	
@@ -223,7 +234,8 @@ public class ToStringTest {
 		Card weihnachtsmann = this.gameCardFactory.createCard("Weihnachtsmann");
 		assertNotNull(weihnachtsmann);
 		assertEquals("Weihnachtsmann[Selbst: +5 Ziegel, +5 Monster, +5 Kristall, " +
-			"Zufällige Karte mit Kosten>14 vom Vorratsstapel oder Friedhof ziehen]", weihnachtsmann.toString());
+			"Zufällige Karte mit Kosten>14 vom Vorratsstapel oder Friedhof ziehen]", 
+			weihnachtsmann.toString());
 	}
 	
 	@Test
@@ -231,6 +243,7 @@ public class ToStringTest {
 		Player player = new PlayerImpl();
 		player.setName("Kurt");
 		assertEquals("Player[name:Kurt tower:25 wall:10 " +
-				"mine:{lvl:1 stock:15} magicLab:{lvl:1 stock:15} dungeon:{lvl:1 stock:15}]", player.toString());
+				"mine:{lvl:1 stock:15} magicLab:{lvl:1 stock:15} dungeon:{lvl:1 stock:15}]", 
+				player.toString());
 	}
 }

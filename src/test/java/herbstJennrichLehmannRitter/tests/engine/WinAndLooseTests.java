@@ -24,9 +24,11 @@ public class WinAndLooseTests {
 
 	@Before
 	public void setUp() {
-		this.playerOne = this.playerFactory.createPlayer("Player1", Globals.getGameCardFactory().createDefaultDeck(),
+		this.playerOne = this.playerFactory.createPlayer(
+				"Player1", Globals.getGameCardFactory().createDefaultDeck(),
 				10, 10, 10, 10);
-		this.playerTwo = this.playerFactory.createPlayer("Player2", Globals.getGameCardFactory().createDefaultDeck(),
+		this.playerTwo = this.playerFactory.createPlayer(
+				"Player2", Globals.getGameCardFactory().createDefaultDeck(),
 				0, 0, 0, 0);
 	}
 
