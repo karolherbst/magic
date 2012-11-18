@@ -62,7 +62,6 @@ public class PlayGameGUI {
 	private NameFields playerName;
 	private NameFields enemyName;
 	private boolean cardDetailIsOpen = false;
-	private boolean gameExited = false;
 	
 	private ClientUserInterface clientUserInterface;
 	private GameServer gameServer;
@@ -397,17 +396,14 @@ public class PlayGameGUI {
 	}
 
 	public void setGameStateToWon() {
-		this.gameExited = true;
 		this.gameMessage.setTitleToWon();
 	}
 
 	public void setGameStateToLoose() {
-		this.gameExited = true;
 		this.gameMessage.setTitleToLoose();
 	}
 	
 	public void setGameStateToAbort(String reason) {
-		this.gameExited = true;
 		this.gameMessage.setTitleToAbort(reason);
 	}
 	
