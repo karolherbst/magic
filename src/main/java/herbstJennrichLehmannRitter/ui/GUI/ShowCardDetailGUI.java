@@ -1,7 +1,7 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
-import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.engine.model.Card;
+import herbstJennrichLehmannRitter.server.GameServer;
 
 import java.rmi.RemoteException;
 
@@ -36,7 +36,11 @@ public class ShowCardDetailGUI {
 	private PlayGameGUI playGameGui;
 	private ChooseDeckGUI chooseDeckGui;
 	
-	public ShowCardDetailGUI(Display parent, PlayGameGUI playGameGUI, ChooseDeckGUI chooseDeckGUI, Card card) {
+	private final GameServer gameServer;
+	
+	public ShowCardDetailGUI(Display parent, PlayGameGUI playGameGUI, ChooseDeckGUI chooseDeckGUI, Card card,
+			GameServer gameServer) {
+		this.gameServer = gameServer;
 		this.display = parent;
 		this.playGameGui = playGameGUI;
 		this.chooseDeckGui = chooseDeckGUI;
@@ -154,7 +158,8 @@ public class ShowCardDetailGUI {
 			public void widgetSelected(SelectionEvent e) {
 				try {
 					ShowCardDetailGUI.this.playGameGui.setCardDetailIsOpen(false);
-					Globals.getLocalGameServer().discardCard(ShowCardDetailGUI.this.card);
+					
+					ShowCardDetailGUI.this.gameServer.discardCard(ShowCardDetailGUI.this.card);
 					ShowCardDetailGUI.this.playGameGui.playerDiscardCard(ShowCardDetailGUI.this.card.getName());
 					ShowCardDetailGUI.this.shell.setVisible(false);
 				} catch (RemoteException e1) {
@@ -172,7 +177,7 @@ public class ShowCardDetailGUI {
 				try {
 					ShowCardDetailGUI.this.playGameGui.setCardDetailIsOpen(false);
 					ShowCardDetailGUI.this.playGameGui.playerPlayedCard(ShowCardDetailGUI.this.card.getName());
-					Globals.getLocalGameServer().playCard(ShowCardDetailGUI.this.card);
+					ShowCardDetailGUI.this.gameServer.playCard(ShowCardDetailGUI.this.card);
 					ShowCardDetailGUI.this.shell.setVisible(false);
 				} catch (RemoteException e1) {
 				}

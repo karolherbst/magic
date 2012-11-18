@@ -441,7 +441,8 @@ public class PlayGameGUI {
 		private void mousePressed(MouseEvent e) {
 			if (!getCardName().isEmpty() && PlayGameGUI.this.cardDetailIsOpen == false) {
 				ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(PlayGameGUI.this.display, 
-						PlayGameGUI.this, null, Globals.getGameCardFactory().createCard(getCardName()));
+						PlayGameGUI.this, null, Globals.getGameCardFactory().createCard(getCardName()),
+						PlayGameGUI.this.gameServer);
 				showCardDetailGUI.open();
 				PlayGameGUI.this.cardDetailIsOpen = true;
 			}
@@ -661,11 +662,11 @@ public class PlayGameGUI {
 		}
 		
 		public void setTitleToWon() {
-			GameMessage.this.setGameMessageText(PlayGameGUI.this.getPlayerName() + " hat gewonnen", 0, 200);
+			GameMessage.this.setGameMessageText(getPlayerName() + " hat gewonnen", 0, 200);
 		}
 		
 		public void setTitleToLoose() {
-			GameMessage.this.setGameMessageText(PlayGameGUI.this.getPlayerName() + " hat verloren", 200, 0);
+			GameMessage.this.setGameMessageText(getPlayerName() + " hat verloren", 200, 0);
 		}
 		
 		public void setTitleToAbort(final String text) {

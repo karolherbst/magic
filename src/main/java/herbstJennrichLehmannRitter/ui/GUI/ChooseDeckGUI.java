@@ -164,7 +164,7 @@ public class ChooseDeckGUI {
 				if (selectedItems.length == 1 && ChooseDeckGUI.this.cardDetailIsOpen == false) {
 					ShowCardDetailGUI showCardDetailGUI = new ShowCardDetailGUI(ChooseDeckGUI.this.display, 
 							null, ChooseDeckGUI.this, 
-							Globals.getGameCardFactory().createCard(selectedItems[0]));
+							Globals.getGameCardFactory().createCard(selectedItems[0]), null);
 					showCardDetailGUI.open();
 					ChooseDeckGUI.this.cardDetailIsOpen = true;
 				}
