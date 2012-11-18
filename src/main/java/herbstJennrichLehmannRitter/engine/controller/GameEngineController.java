@@ -15,6 +15,7 @@ public interface GameEngineController {
 	
 	public void start(GameType gameType);
 	public void stop();
+	public boolean isRunning();
 	
 	public Player createPlayer(String name, Collection<String> cardNames);
 	

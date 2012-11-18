@@ -94,7 +94,8 @@ public class GameEngineControllerImpl implements GameEngineController {
 		this.winAndLoseChecker = null;
 	}
 	
-	private boolean isRunning() {
+	@Override
+	public boolean isRunning() {
 		return this.winAndLoseChecker != null;
 	}
 	

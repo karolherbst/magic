@@ -51,6 +51,10 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public void start(GameType gameType) {
 		try {
+			if (this.gameEngineController.isRunning()) {
+				return;
+			}
+			
 			if (this.threadToUi.size() < 2) {
 				throw new GameEngineException(ENGINE_ERROR.NOT_2_PLAYERS_AVAILABLE);
 			}
