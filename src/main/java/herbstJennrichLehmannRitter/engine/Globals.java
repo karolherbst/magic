@@ -11,7 +11,6 @@ import herbstJennrichLehmannRitter.server.impl.GameServerImpl;
 import herbstJennrichLehmannRitter.server.impl.NetworkServerImpl;
 
 import java.rmi.AlreadyBoundException;
-import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -31,6 +30,8 @@ public final class Globals {
 	private static GameServer localGameServer;
 	private static NetworkServerImpl remoteGameServer;
 	private static GameCardFactory gameCardFactory;
+	
+	private static Registry registry;
 	
 	private static boolean started = false;
 	
@@ -65,8 +66,9 @@ public final class Globals {
 		}
 		
 		try {
-			Registry registry = LocateRegistry.createRegistry(GAME_SERVER_PORT);
-			registry.bind(GAME_SERVER_NAME, new NetworkServerImpl(getLocalGameServer()));
+			registry = LocateRegistry.createRegistry(GAME_SERVER_PORT);
+			remoteGameServer = new NetworkServerImpl(getLocalGameServer());
+			registry.bind(GAME_SERVER_NAME, remoteGameServer);
 		} catch (AlreadyBoundException e) {
 			e.printStackTrace();
 		}
@@ -78,7 +80,7 @@ public final class Globals {
 		}
 		
 		try {
-			Naming.unbind(GAME_SERVER_NAME);
+			registry.unbind(GAME_SERVER_NAME);
 			UnicastRemoteObject.unexportObject(remoteGameServer, true);
 			remoteGameServer = null;
 		} catch (Exception e) {
