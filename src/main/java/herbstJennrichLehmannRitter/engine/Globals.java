@@ -6,10 +6,10 @@ import herbstJennrichLehmannRitter.engine.factory.impl.GameCardFactoryImpl;
 import herbstJennrichLehmannRitter.engine.service.GameService;
 import herbstJennrichLehmannRitter.engine.service.impl.GameServiceImpl;
 import herbstJennrichLehmannRitter.server.GameServer;
+import herbstJennrichLehmannRitter.server.NetworkServer;
 import herbstJennrichLehmannRitter.server.impl.GameServerImpl;
 import herbstJennrichLehmannRitter.server.impl.NetworkServerImpl;
 
-import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -71,8 +71,6 @@ public final class Globals {
 			System.out.println(GAME_SERVER_NAME + ": remoteGameServer wurde registriert!");
 		} catch (AlreadyBoundException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -90,12 +88,12 @@ public final class Globals {
 		}
 	}
 	
-	public static GameServer getRemoteServer(String ipAddress) {
-		GameServer gameServer = null;
+	public static NetworkServer getRemoteServer(String ipAddress) {
+		NetworkServer gameServer = null;
 		try {
 			Registry registry = LocateRegistry.getRegistry(ipAddress, GAME_SERVER_PORT);
 			System.out.println("Registry wurde located on IP:" + ipAddress);
-			gameServer = (GameServer)registry.lookup(GAME_SERVER_NAME);
+			gameServer = (NetworkServer)registry.lookup(GAME_SERVER_NAME);
 			System.out.println("Looking up to:" + GAME_SERVER_NAME);
 		} catch (Exception e) {
 			System.out.println("Exception Client");

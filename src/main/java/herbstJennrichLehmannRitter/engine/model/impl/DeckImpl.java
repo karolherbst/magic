@@ -4,6 +4,7 @@ import herbstJennrichLehmannRitter.engine.enums.CardType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.engine.model.Deck;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -20,7 +21,7 @@ public class DeckImpl implements Deck {
 	private CemeteryDeckImpl cemeteryDeck = new CemeteryDeckImpl();
 	private DeckStackImpl deckStack = new DeckStackImpl();
 	
-	private class HandDeckImpl {
+	private class HandDeckImpl implements Serializable {
 		
 		private Collection<Card> handDeck = new ArrayList<Card>();
 		
@@ -142,7 +143,7 @@ public class DeckImpl implements Deck {
 		}
 	}
 	
-	private class CemeteryDeckImpl {
+	private class CemeteryDeckImpl implements Serializable {
 
 		private Collection<Card> cemeteryDeck = new ArrayList<Card>();
 		
@@ -167,7 +168,7 @@ public class DeckImpl implements Deck {
 		 }
 	}
 	
-	private class DeckStackImpl {
+	private class DeckStackImpl implements Serializable {
 
 		private List<Card> deckStack = new ArrayList<Card>();
 		

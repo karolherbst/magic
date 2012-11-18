@@ -23,10 +23,10 @@ public class ClientUserInterface implements UserInterface {
 
 	private static final long serialVersionUID = 4502825312932565802L;
 	
-	private transient MainMenuGUI mainMenuGUI;
-	private transient PlayGameGUI playGameGUI;
-	private transient HostMenuGUI hostMenuGUI;
-	private transient ClientMenuGUI clientMenuGUI;
+	private MainMenuGUI mainMenuGUI;
+	private PlayGameGUI playGameGUI;
+	private HostMenuGUI hostMenuGUI;
+	private ClientMenuGUI clientMenuGUI;
 
 	public void setMainMenuGUI(MainMenuGUI mainMenuGUI) {
 		this.mainMenuGUI = mainMenuGUI;
@@ -70,9 +70,19 @@ public class ClientUserInterface implements UserInterface {
 	@Override
 	public void twoPlayerFound() {
 		if (this.hostMenuGUI != null) {
-			this.hostMenuGUI.cancelTimerAndOpenPlayGameGUI();
+			Display.getDefault().asyncExec(new Runnable() {
+				@Override
+				public void run() {
+					ClientUserInterface.this.hostMenuGUI.cancelTimerAndOpenPlayGameGUI();
+				}
+			});
 		} else if (this.clientMenuGUI != null) {
-			this.clientMenuGUI.cancelTimerAndOpenPlayGameGUI();
+			Display.getDefault().asyncExec(new Runnable() {
+				@Override
+				public void run() {
+					ClientUserInterface.this.clientMenuGUI.cancelTimerAndOpenPlayGameGUI();
+				}
+			});
 		} else {
 			GameServer gameServer = Globals.getLocalGameServer();
 			try {

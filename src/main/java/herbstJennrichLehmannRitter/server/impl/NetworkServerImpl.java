@@ -3,7 +3,9 @@ package herbstJennrichLehmannRitter.server.impl;
 import herbstJennrichLehmannRitter.engine.enums.GameType;
 import herbstJennrichLehmannRitter.engine.model.Card;
 import herbstJennrichLehmannRitter.server.GameServer;
-import herbstJennrichLehmannRitter.ui.UserInterface;
+import herbstJennrichLehmannRitter.server.NetworkServer;
+import herbstJennrichLehmannRitter.ui.RMIUsertInterface;
+import herbstJennrichLehmannRitter.ui.impl.RMIUserInterfaceWrapper;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -13,7 +15,7 @@ import java.util.Collection;
  *  This Class implements the GameServer Interface and saves the necessary network data
  */
 
-public class NetworkServerImpl extends UnicastRemoteObject implements GameServer {
+public class NetworkServerImpl extends UnicastRemoteObject implements NetworkServer {
 
 	private static final long serialVersionUID = -5758886288940510467L;
 	private GameServer gameServer;
@@ -23,13 +25,13 @@ public class NetworkServerImpl extends UnicastRemoteObject implements GameServer
 	}
 
 	@Override
-	public void register(UserInterface userInterface) throws RemoteException {
-		this.gameServer.register(userInterface);
+	public void register(RMIUsertInterface userInterface) throws RemoteException {
+		this.gameServer.register(new RMIUserInterfaceWrapper(userInterface));
 	}
 
 	@Override
-	public void unregister(UserInterface userInterface) throws RemoteException {
-		this.gameServer.unregister(userInterface);
+	public void unregister(RMIUsertInterface userInterface) throws RemoteException {
+		this.gameServer.unregister(new RMIUserInterfaceWrapper(userInterface));
 	}
 
 	@Override

@@ -113,7 +113,7 @@ public class HostMenuGUI {
 					}
 				});
 			}
-		}, 30000);
+		}, 3000000);
 	}
 	
 	private void initShell() {

@@ -1,9 +1,10 @@
 package herbstJennrichLehmannRitter.ui.GUI;
 
 import herbstJennrichLehmannRitter.engine.Globals;
-import herbstJennrichLehmannRitter.server.GameServer;
+import herbstJennrichLehmannRitter.server.NetworkServer;
+import herbstJennrichLehmannRitter.server.impl.NetworkServerWrapper;
 import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
-import herbstJennrichLehmannRitter.ui.impl.RMIUserInterface;
+import herbstJennrichLehmannRitter.ui.impl.RMIUserInterfaceImpl;
 
 import java.rmi.RemoteException;
 import java.util.Timer;
@@ -102,38 +103,42 @@ public class ClientMenuGUI {
 		this.connectButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				final GameServer gameServer = Globals.getRemoteServer(ClientMenuGUI.this.ipTextField.getText());
+				final NetworkServer gameServer = Globals.getRemoteServer(ClientMenuGUI.this.ipTextField.getText());
 				ClientMenuGUI.this.timer = new Timer();
-				ClientMenuGUI.this.timer.schedule(new TimerTask() {
-					@Override
-					public void run() {
-						ClientMenuGUI.this.display.asyncExec(new Runnable() {
-							@Override
-							public void run() {
-								try {
-									gameServer.unregister(ClientMenuGUI.this.mainMenuGUI.getClientUserInterface());
-								} catch (RemoteException e) {
-									System.out.println(e.getLocalizedMessage());
-								}
-							}
-						});
-					}
-				}, 30000);
 				
+				ClientUserInterface clientUserInterface = new ClientUserInterface();
 				try {
-					ClientUserInterface clientUserInterface = new ClientUserInterface();
-					ClientMenuGUI.this.mainMenuGUI.setGameServer(gameServer);
+					final RMIUserInterfaceImpl rmi = new RMIUserInterfaceImpl(clientUserInterface);
+					ClientMenuGUI.this.timer.schedule(new TimerTask() {
+						@Override
+						public void run() {
+							ClientMenuGUI.this.display.asyncExec(new Runnable() {
+								@Override
+								public void run() {
+									try {
+										gameServer.unregister(rmi);
+									} catch (RemoteException e) {
+										System.out.println(e.getLocalizedMessage());
+									}
+								}
+							});
+						}
+					}, 3000000);
+					
+					ClientMenuGUI.this.mainMenuGUI.setGameServer(new NetworkServerWrapper(gameServer));
 					
 					ClientMenuGUI.this.playGameGUI = new PlayGameGUI(ClientMenuGUI.this.display, 
-							clientUserInterface, gameServer);
-
+							clientUserInterface, new NetworkServerWrapper(gameServer));
+					
 					ClientMenuGUI.this.playGameGUI.setPlayerName(ClientMenuGUI.this.mainMenuGUI.getPlayerName());
 					clientUserInterface.setMainMenuGUI(ClientMenuGUI.this.mainMenuGUI);
 					clientUserInterface.setClientMenuGUI(ClientMenuGUI.this);
 					clientUserInterface.setPlayGameGUI(ClientMenuGUI.this.playGameGUI);
 					
-					gameServer.register(new RMIUserInterface(clientUserInterface));
+					gameServer.register(rmi);
 				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
