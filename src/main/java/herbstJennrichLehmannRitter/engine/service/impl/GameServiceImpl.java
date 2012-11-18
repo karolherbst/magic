@@ -41,16 +41,27 @@ public class GameServiceImpl implements GameService {
 		this.gameEngineController = gameEngineController;
 	}
 	
+	private void abort (Throwable t) {
+		this.gameEngineController.stop();
+		for (UIHolder uiHolder : this.threadToUi.values()) {
+			uiHolder.userInterface.abort(t.getLocalizedMessage());
+		}
+	}
+	
 	@Override
 	public void start(GameType gameType) {
-		if (this.threadToUi.size() < 2) {
-			throw new GameEngineException(ENGINE_ERROR.NOT_2_PLAYERS_AVAILABLE);
+		try {
+			if (this.threadToUi.size() < 2) {
+				throw new GameEngineException(ENGINE_ERROR.NOT_2_PLAYERS_AVAILABLE);
+			}
+			
+			this.gameEngineController.start(gameType);
+			this.round = 0;
+			UIHolder uiHolder = this.threadToUi.values().iterator().next();
+			uiHolder.userInterface.nextTurn();
+		} catch (Throwable t) {
+			abort(t);
 		}
-		
-		this.gameEngineController.start(gameType);
-		this.round = 0;
-		UIHolder uiHolder = this.threadToUi.values().iterator().next();
-		uiHolder.userInterface.nextTurn();
 	}
 	
 	@Override
@@ -94,85 +105,124 @@ public class GameServiceImpl implements GameService {
 	
 	@Override
 	public synchronized void register(Thread thread, UserInterface userInterface) {
+		try {
+			final UIHolder newUIHolder = new UIHolder(userInterface);
 
-		final UIHolder newUIHolder = new UIHolder(userInterface);
-
-		if (this.threadToUi.size() == 0) {
-			newUIHolder.player = createPlayer(userInterface.getName(), userInterface.getCards());
-			this.threadToUi.put(thread, newUIHolder);
-			return;
-		}
-		
-		if (this.threadToUi.size() == 1) {
-			newUIHolder.player = createPlayer(userInterface.getName(), userInterface.getCards());
-			
-			for (UIHolder uiHolder : this.threadToUi.values()) {
-				// connect players
-				if (uiHolder != newUIHolder) {
-					newUIHolder.enemy = uiHolder;
-					uiHolder.enemy = newUIHolder;
-				}
+			if (this.threadToUi.size() == 0) {
+				newUIHolder.player = createPlayer(userInterface.getName(), userInterface.getCards());
+				this.threadToUi.put(thread, newUIHolder);
+				return;
 			}
 			
-			this.threadToUi.put(thread, newUIHolder);
+			if (this.threadToUi.size() == 1) {
+				newUIHolder.player = createPlayer(userInterface.getName(), userInterface.getCards());
+				
+				for (UIHolder uiHolder : this.threadToUi.values()) {
+					// connect players
+					if (uiHolder != newUIHolder) {
+						newUIHolder.enemy = uiHolder;
+						uiHolder.enemy = newUIHolder;
+					}
+				}
+				
+				this.threadToUi.put(thread, newUIHolder);
+				
+				updatePlayerDatas(newUIHolder);
+				
+				newUIHolder.userInterface.twoPlayerFound();
+				newUIHolder.enemy.userInterface.twoPlayerFound();
+				
+				return;
+			}
 			
-			updatePlayerDatas(newUIHolder);
-			
-			newUIHolder.userInterface.twoPlayerFound();
-			newUIHolder.enemy.userInterface.twoPlayerFound();
-			
-			return;
+			if (this.threadToUi.size() > 2) {
+				throw new IllegalArgumentException("there are already 2 players registered");
+			}
+			throw new IllegalStateException("this should never happen!");
+		} catch (Throwable t) {
+			abort(t);
 		}
-		
-		if (this.threadToUi.size() > 2) {
-			throw new IllegalArgumentException("there are already 2 players registered");
-		}
-		throw new IllegalStateException("this should never happen!");
 	}
 	
 	@Override
 	public synchronized void unregister(UserInterface userInterface) {
-		Thread key = null;
-		for (Map.Entry<Thread, UIHolder> entry : this.threadToUi.entrySet()) {
-			
-			UIHolder uiHolder = entry.getValue();
-			key = entry.getKey();
-			
-			if (uiHolder.userInterface == userInterface) {
+		try {
+			Thread key = null;
+			for (Map.Entry<Thread, UIHolder> entry : this.threadToUi.entrySet()) {
 				
-				if (uiHolder.enemy != null && uiHolder.enemy.userInterface != null) {
-					uiHolder.enemy.enemy = null;
-					UserInterface userInterface2 = uiHolder.enemy.userInterface;
-					userInterface2.abort("Player " + uiHolder.player.getName() + " left the game");
+				UIHolder uiHolder = entry.getValue();
+				key = entry.getKey();
+				
+				if (uiHolder.userInterface == userInterface) {
+					
+					if (uiHolder.enemy != null && uiHolder.enemy.userInterface != null) {
+						uiHolder.enemy.enemy = null;
+						UserInterface userInterface2 = uiHolder.enemy.userInterface;
+						userInterface2.abort("Player " + uiHolder.player.getName() + " left the game");
+					}
+					
 				}
-				
 			}
+			this.threadToUi.remove(key);
+		} catch (Throwable t) {
+			abort(t);
 		}
-		this.threadToUi.remove(key);
 	}
 
 	@Override
 	public void playCard(Thread thread, Card card) {
-		++this.round;
-		System.out.println("round: " + this.round);
 		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// do nothing here
+			++this.round;
+			System.out.println("round: " + this.round);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// do nothing here
+			}
+			
+			UIHolder uiHolder = this.threadToUi.get(thread);
+			if (uiHolder != null) {
+				System.out.println("service: player " + uiHolder.player.getName() + " played card " + 
+						card.getName());
+				
+				this.gameEngineController.playCard(card, uiHolder.player, uiHolder.enemy.player);
+				uiHolder.enemy.userInterface.enemyPlayedCard(card);
+				
+				if (MagicUtils.canPlayerPlayAnotherRound(card, uiHolder.player)) {
+					updatePlayerDatas(uiHolder);
+					uiHolder.userInterface.playAnotherCard();
+				} else {
+					if (this.round > 1) {
+						this.gameEngineController.addResourcesToPlayer(uiHolder.enemy.player);
+					}
+					if (!hasSomebodyWon(uiHolder)) {
+						updatePlayerDatas(uiHolder);
+						uiHolder.enemy.userInterface.nextTurn();
+					}
+				}
+			}
+		} catch (Throwable t) {
+			abort(t);
 		}
-		
-		UIHolder uiHolder = this.threadToUi.get(thread);
-		if (uiHolder != null) {
-			System.out.println("service: player " + uiHolder.player.getName() + " played card " + 
-					card.getName());
+	}
+
+	@Override
+	public void discardCard(Thread thread, Card card) {
+		try {
+			++this.round;
+			System.out.println("round: " + this.round);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// do nothing here
+			}
+					
+			UIHolder uiHolder = this.threadToUi.get(thread);
+			if (uiHolder != null) {
+				System.out.println("service: player " + uiHolder.player.getName() + " discard card " + 
+						card.getName());
 			
-			this.gameEngineController.playCard(card, uiHolder.player, uiHolder.enemy.player);
-			uiHolder.enemy.userInterface.enemyPlayedCard(card);
-			
-			if (MagicUtils.canPlayerPlayAnotherRound(card, uiHolder.player)) {
-				updatePlayerDatas(uiHolder);
-				uiHolder.userInterface.playAnotherCard();
-			} else {
+				this.gameEngineController.discardCard(card, uiHolder.player);
 				if (this.round > 1) {
 					this.gameEngineController.addResourcesToPlayer(uiHolder.enemy.player);
 				}
@@ -181,33 +231,8 @@ public class GameServiceImpl implements GameService {
 					uiHolder.enemy.userInterface.nextTurn();
 				}
 			}
-		}
-		
-	}
-
-	@Override
-	public void discardCard(Thread thread, Card card) {
-		++this.round;
-		System.out.println("round: " + this.round);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// do nothing here
-		}
-				
-		UIHolder uiHolder = this.threadToUi.get(thread);
-		if (uiHolder != null) {
-			System.out.println("service: player " + uiHolder.player.getName() + " discard card " + 
-					card.getName());
-		
-			this.gameEngineController.discardCard(card, uiHolder.player);
-			if (this.round > 1) {
-				this.gameEngineController.addResourcesToPlayer(uiHolder.enemy.player);
-			}
-			if (!hasSomebodyWon(uiHolder)) {
-				updatePlayerDatas(uiHolder);
-				uiHolder.enemy.userInterface.nextTurn();
-			}
+		} catch (Throwable t) {
+			abort(t);
 		}
 	}
 

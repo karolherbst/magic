@@ -22,4 +22,9 @@ public abstract class MagicException extends RuntimeException {
 	
 	public abstract Enum<?> getCode();
 	
+	@Override
+	public String getMessage() {
+		return getCode().toString();
+	}
+	
 }
