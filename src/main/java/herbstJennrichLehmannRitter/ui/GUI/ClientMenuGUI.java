@@ -97,7 +97,8 @@ public class ClientMenuGUI extends AbstractMagicGUIElement {
 		this.connectButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				final NetworkServer gameServer = Globals.getRemoteServer(ClientMenuGUI.this.ipTextField.getText(),
+				final NetworkServer gameServer = Globals.getRemoteServer
+						(ClientMenuGUI.this.ipTextField.getText(),
 						ClientMenuGUI.this.getShell());
 				ClientMenuGUI.this.timer = new Timer();
 				
@@ -113,7 +114,8 @@ public class ClientMenuGUI extends AbstractMagicGUIElement {
 									try {
 										gameServer.unregister();
 									} catch (RemoteException e) {
-										System.out.println(e.getLocalizedMessage());
+										System.out.println
+										(e.getLocalizedMessage());
 									}
 								}
 							});

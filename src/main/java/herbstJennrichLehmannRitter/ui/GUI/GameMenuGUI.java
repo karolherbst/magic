@@ -96,7 +96,8 @@ public class GameMenuGUI extends AbstractMagicGUIElement {
 				HostMenuGUI hostMenuGUI = new HostMenuGUI(getDisplay(), GameMenuGUI.this.mainMenuGUI);
 				
 				PlayGameGUI playGameGUI = new PlayGameGUI(getDisplay(), 
-						GameMenuGUI.this.mainMenuGUI.getClientUserInterface(), GameMenuGUI.this.gameServer);
+						GameMenuGUI.this.mainMenuGUI.getClientUserInterface(), 
+							GameMenuGUI.this.gameServer);
 				
 				playGameGUI.setPlayerName(GameMenuGUI.this.mainMenuGUI.getPlayerName());
 				playGameGUI.setEnemyName("Gegner");
@@ -131,14 +132,15 @@ public class GameMenuGUI extends AbstractMagicGUIElement {
 							GameMenuGUI.this.mainMenuGUI.getClientUserInterface(),
 							GameMenuGUI.this.mainMenuGUI.getGameServer());
 
-					GameMenuGUI.this.gameServer.register(GameMenuGUI.this.mainMenuGUI.getClientUserInterface());
+					GameMenuGUI.this.gameServer.register(GameMenuGUI.this.mainMenuGUI.
+																	getClientUserInterface());
 
 					LocalEnemyKIUserInterface localUserInterface = new LocalEnemyKIUserInterface();
 					localUserInterface.setMainMenuGUI(GameMenuGUI.this.mainMenuGUI);
 					localUserInterface.setPlayGameGUI(playGameGUI);
 					
-					KI.startBridgedKIOnServer(GameMenuGUI.this.gameServer, GameMenuGUI.this.mainMenuGUI.getEnemyName(), 
-							localUserInterface);
+					KI.startBridgedKIOnServer(GameMenuGUI.this.gameServer, GameMenuGUI.this.mainMenuGUI.
+																	getEnemyName(),localUserInterface);
 					
 					playGameGUI.setPlayerName(GameMenuGUI.this.mainMenuGUI.getPlayerName());
 					playGameGUI.setEnemyName(GameMenuGUI.this.mainMenuGUI.getEnemyName());

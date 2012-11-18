@@ -120,7 +120,8 @@ public class HostMenuGUI extends AbstractMagicGUIElement {
 			text += lookupIpAddress(); 
 			text += "\n";
 		} catch (SocketException e) {
-			text += "Ihre IP-Adresse ist unbekannt. Bitte prüfen Sie, ob Sie mit dem Netzwerk verbunden sind.\n";
+			text += "Ihre IP-Adresse ist unbekannt. " +
+					"Bitte prüfen Sie, ob Sie mit dem Netzwerk verbunden sind.\n";
 		}
 		text += "\nWarte auf Client...";
 		
