@@ -718,7 +718,8 @@ public class PlayGameGUI extends AbstractMagicGUIElement {
 				public void paintControl(PaintEvent e) {
 					GameMessage.this.paintEvent = e;
 					
-					GameMessage.this.paintEvent.gc.setForeground(new Color(getDisplay(), red, green, 0));
+					GameMessage.this.paintEvent.gc.setForeground(new Color
+							(getDisplay(), red, green, 0));
 					Point textSize = GameMessage.this.paintEvent.gc.textExtent(text);
 					GameMessage.this.paintEvent.gc.drawText(text, 
 							(GameMessage.this.gameMessageCanv.getSize().x - textSize.x)/2, 
