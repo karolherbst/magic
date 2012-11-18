@@ -140,7 +140,7 @@ public class PlayGameGUI {
 	private void exitButtonPressed (SelectionEvent e) {
 			try {
 				this.gameServer.stop();
-				this.gameServer.unregister(this.clientUserInterface);
+				this.gameServer.unregister();
 			} catch (RemoteException e1) {
 				e1.printStackTrace();
 			} catch (NullPointerException e2) {

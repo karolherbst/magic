@@ -30,8 +30,6 @@ public class KITest {
 		Globals.getLocalGameServer().start(GameType.COLLECTION_RAGE);
 		Thread.sleep(30000);
 		Globals.getLocalGameServer().stop();
-		Globals.getLocalGameServer().unregister(new KI("KI2000", Globals.getLocalGameServer()));
-		Globals.getLocalGameServer().unregister(new KI("KI3000", Globals.getLocalGameServer()));
 		
 		Thread.sleep(1000);
 	}
@@ -45,8 +43,6 @@ public class KITest {
 		Globals.getLocalGameServer().start(GameType.TOWER_BUILDING);
 		Thread.sleep(30000);
 		Globals.getLocalGameServer().stop();
-		Globals.getLocalGameServer().unregister(new KI("KI2000", Globals.getLocalGameServer()));
-		Globals.getLocalGameServer().unregister(new KI("KI3000", Globals.getLocalGameServer()));
 	}
 	
 	@Test

@@ -30,8 +30,8 @@ public class NetworkServerImpl extends UnicastRemoteObject implements NetworkSer
 	}
 
 	@Override
-	public void unregister(RMIUsertInterface userInterface) throws RemoteException {
-		this.gameServer.unregister(new RMIUserInterfaceWrapper(userInterface));
+	public void unregister() throws RemoteException {
+		this.gameServer.unregister();
 	}
 
 	@Override

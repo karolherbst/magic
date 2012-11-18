@@ -149,15 +149,16 @@ public class GameServiceImpl implements GameService {
 	}
 	
 	@Override
-	public synchronized void unregister(UserInterface userInterface) {
+	public synchronized void unregister(Thread thread) {
 		try {
+			UserInterface value = null;
 			Thread key = null;
 			for (Map.Entry<Thread, UIHolder> entry : this.threadToUi.entrySet()) {
 				
 				UIHolder uiHolder = entry.getValue();
 				key = entry.getKey();
 				
-				if (uiHolder.userInterface == userInterface) {
+				if (key == thread) {
 					
 					if (uiHolder.enemy != null && uiHolder.enemy.userInterface != null) {
 						uiHolder.enemy.enemy = null;

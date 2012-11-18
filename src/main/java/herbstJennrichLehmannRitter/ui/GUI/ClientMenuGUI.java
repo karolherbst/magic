@@ -117,7 +117,7 @@ public class ClientMenuGUI {
 								@Override
 								public void run() {
 									try {
-										gameServer.unregister(rmi);
+										gameServer.unregister();
 									} catch (RemoteException e) {
 										System.out.println(e.getLocalizedMessage());
 									}

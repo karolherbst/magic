@@ -27,8 +27,8 @@ public class NetworkServerWrapper implements GameServer {
 	}
 
 	@Override
-	public void unregister(UserInterface userInterface) throws RemoteException {
-		throw new UnsupportedOperationException();
+	public void unregister() throws RemoteException {
+		this.networkServer.unregister();
 	}
 
 	@Override

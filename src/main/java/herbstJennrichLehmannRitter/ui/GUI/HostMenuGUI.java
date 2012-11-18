@@ -71,7 +71,7 @@ public class HostMenuGUI {
 			cancelTimer();
 			HostMenuGUI.this.shell.setVisible(false);
 			try {
-				HostMenuGUI.this.gameServer.unregister(HostMenuGUI.this.mainMenuGUI.getClientUserInterface());
+				HostMenuGUI.this.gameServer.unregister();
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}

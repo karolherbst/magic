@@ -80,11 +80,12 @@ public class GameServerImpl implements GameServer {
 	}
 
 	@Override
-	public void unregister(final UserInterface userInterface) {
+	public void unregister() {
+		final Thread thread = Thread.currentThread();
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				GameServerImpl.this.gameService.unregister(userInterface);
+				GameServerImpl.this.gameService.unregister(thread);
 			}
 		}).start();
 	}

@@ -15,7 +15,7 @@ import java.util.Collection;
 public interface GameServer extends Remote {
 	
 	public void register(UserInterface userInterface) throws RemoteException;
-	public void unregister(UserInterface userInterface) throws RemoteException;
+	public void unregister() throws RemoteException;
 	
 	public void start(GameType gameType) throws RemoteException;
 	public void stop() throws RemoteException;

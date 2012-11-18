@@ -15,7 +15,7 @@ import java.util.Collection;
 public interface NetworkServer extends Remote {
 	
 	public void register(RMIUsertInterface userInterface) throws RemoteException;
-	public void unregister(RMIUsertInterface userInterface) throws RemoteException;
+	public void unregister() throws RemoteException;
 	public void start(GameType gameType) throws RemoteException;
 	public void stop() throws RemoteException;
 	public void playCard(Card card) throws RemoteException;

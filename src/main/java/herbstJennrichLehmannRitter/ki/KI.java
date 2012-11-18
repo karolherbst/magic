@@ -232,7 +232,7 @@ public class KI implements UserInterface, Runnable {
 			this.thread.interrupt();
 		}
 		try {
-			this.gameServer.unregister(this);
+			this.gameServer.unregister();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
