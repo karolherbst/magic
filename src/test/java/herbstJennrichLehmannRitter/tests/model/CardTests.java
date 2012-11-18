@@ -98,7 +98,6 @@ public class CardTests {
 			assertEquals(card2.getCanBeDiscarded(), false);
 			assertEquals(card2.getCardAction().getAmountCardDraw(), 3);
 			assertEquals(card2.getCardAction().getOwnAmountCardDiscard(), 2);
-			System.out.println(card2.getCardAction().getEnemyAmountCardDiscard());
 			assertEquals(card2.getCardAction().getEnemyAmountCardDiscard(), 4);
 			assertEquals(card2.getCardAction().getPlayCards(), true);
 		} catch (JAXBException e) {

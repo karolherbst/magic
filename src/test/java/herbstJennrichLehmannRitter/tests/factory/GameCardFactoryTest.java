@@ -72,10 +72,7 @@ public class GameCardFactoryTest {
 		Reader reader = new StringReader(xml);
 		Collection<Card> cards = this.gameCardFactory.loadFromXml(reader);
 		
-		for (Card card : cards) {
-			System.out.println(card);
-		}
+		assertEquals(cards.toString(), "[Architektur[Kosten: 15 Ziegel; Selbst: +8 Mauer, +5 Turm], " + 
+		                "Geheimraum[Kosten: 8 Ziegel; Selbst: +1 Zauberlabor, noch eine Karte spielen]]");
 	}
-	
-	
 }
