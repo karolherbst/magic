@@ -7,7 +7,7 @@ import herbstJennrichLehmannRitter.ki.KI;
 import herbstJennrichLehmannRitter.server.GameServer;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
-import herbstJennrichLehmannRitter.ui.impl.DemoUserInterface;
+import herbstJennrichLehmannRitter.ui.impl.DemoEnemyKIUserInterface;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -190,7 +190,7 @@ public class MainMenuGUI {
 				playGameGUI.setEnemyName(MainMenuGUI.this.enemyName);
 				playGameGUI.open();
 
-				DemoUserInterface demoUserInterface = new DemoUserInterface();
+				DemoEnemyKIUserInterface demoUserInterface = new DemoEnemyKIUserInterface();
 				demoUserInterface.setMainMenuGUI(MainMenuGUI.this);
 				demoUserInterface.setPlayGameGUI(playGameGUI);
 				
