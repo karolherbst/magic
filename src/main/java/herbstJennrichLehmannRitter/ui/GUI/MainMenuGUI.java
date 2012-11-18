@@ -51,7 +51,8 @@ public class MainMenuGUI {
 	private UserInterface clientUserInterface = new ClientUserInterface();
 	private GameServer gameServer;
 	
-	private final GameMenuGUI gameMenuGUI;
+	private GameMenuGUI gameMenuGUI;
+	private ChooseDeckGUI chooseDeckGUI;
 	
 	public MainMenuGUI() {
 		MainMenuGUI.this.display = Display.getDefault();
@@ -65,6 +66,7 @@ public class MainMenuGUI {
 		setShellLocationCenteredToScreen(MainMenuGUI.this.display, MainMenuGUI.this.shell);
 		
 		this.gameMenuGUI = new GameMenuGUI(MainMenuGUI.this.display, MainMenuGUI.this);
+		this.chooseDeckGUI = new ChooseDeckGUI(MainMenuGUI.this.display, MainMenuGUI.this);
 		
 		MainMenuGUI.this.shell.open();
 		getClientUserInterface().setMainMenuGUI(MainMenuGUI.this);
@@ -144,8 +146,7 @@ public class MainMenuGUI {
 		MainMenuGUI.this.chooseDeckButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ChooseDeckGUI chooseDeckGUI = new ChooseDeckGUI(MainMenuGUI.this.display, MainMenuGUI.this);
-				chooseDeckGUI.open();
+				MainMenuGUI.this.chooseDeckGUI.open();
 			}
 		});
 		

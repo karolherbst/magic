@@ -22,9 +22,11 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 
@@ -51,6 +53,10 @@ public class ChooseDeckGUI {
 	public ChooseDeckGUI(Display parent, MainMenuGUI mainMenuGUI){
 		this.display = parent;
 		this.mainMenuGui = mainMenuGUI;
+		initGUI();
+	}
+	
+	private void initGUI() {
 		initShell();
 		initNewButton();
 		initOpenButton();
@@ -64,7 +70,36 @@ public class ChooseDeckGUI {
 		initUserToSystemButton();
 		this.shell.pack();
 		initPlayersDeck();
+		
+		this.shell.addListener(SWT.Close, this.onCloseListener);
+		
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
+	}
+	
+	private Listener onCloseListener = new Listener() {
+		@Override
+		public void handleEvent(Event event) {
+			Collections.addAll(ChooseDeckGUI.this.playerCards, ChooseDeckGUI.this.userList.getItems());
+			if (ChooseDeckGUI.this.userList.getItemCount() < 50) {
+				ChooseDeckGUI.this.mainMenuGui.setPlayerCards(
+						Globals.getGameCardFactory().getAllPossibleCardNames());
+			} else {
+				ChooseDeckGUI.this.mainMenuGui.setPlayerCards(
+						Arrays.asList(ChooseDeckGUI.this.userList.getItems()));
+			}
+		}
+	};
+	
+	public void open() {
+		if (this.shell.isDisposed()) {
+			initGUI();
+		}
+		
+		if (this.shell.isVisible()) {
+			this.shell.forceActive();
+			return;
+		}
+		this.shell.open();
 	}
 	
 	private void initShell() {
@@ -125,15 +160,7 @@ public class ChooseDeckGUI {
 		this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Collections.addAll(ChooseDeckGUI.this.playerCards, ChooseDeckGUI.this.userList.getItems());
-				if (ChooseDeckGUI.this.userList.getItemCount() < 50) {
-					ChooseDeckGUI.this.mainMenuGui.setPlayerCards(
-							Globals.getGameCardFactory().getAllPossibleCardNames());
-				} else {
-					ChooseDeckGUI.this.mainMenuGui.setPlayerCards(
-							Arrays.asList(ChooseDeckGUI.this.userList.getItems()));
-				}
-				ChooseDeckGUI.this.shell.setVisible(false);
+				ChooseDeckGUI.this.shell.close();
 			}
 		});
 	}
@@ -266,11 +293,6 @@ public class ChooseDeckGUI {
 				msgBox.open();
 			}
 		}
-	}
-
-	
-	public void open() {
-		this.shell.open();
 	}
 	
 	private Button createButton(String text, int x, int y, int width, int height) {
