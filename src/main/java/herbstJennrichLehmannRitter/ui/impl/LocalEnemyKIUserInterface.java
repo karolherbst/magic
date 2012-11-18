@@ -18,17 +18,17 @@ import org.eclipse.swt.widgets.Display;
  */
 
 @SuppressWarnings("serial")
-public class LocalUserInterface implements UserInterface {
+public class LocalEnemyKIUserInterface implements UserInterface {
 
 	private MainMenuGUI mainMenuGUI;
 	private PlayGameGUI playGameGUI;
 
 	public void setMainMenuGUI(MainMenuGUI mainMenuGUI) {
-		LocalUserInterface.this.mainMenuGUI = mainMenuGUI;
+		LocalEnemyKIUserInterface.this.mainMenuGUI = mainMenuGUI;
 	}
 	
 	public void setPlayGameGUI(PlayGameGUI playGameGUI) {
-		LocalUserInterface.this.playGameGUI = playGameGUI;
+		LocalEnemyKIUserInterface.this.playGameGUI = playGameGUI;
 	}
 	
 	@Override
@@ -37,11 +37,11 @@ public class LocalUserInterface implements UserInterface {
 			
 			@Override
 			public void run() {
-				LocalUserInterface.this.playGameGUI.setEnemyDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
-				LocalUserInterface.this.playGameGUI.setEnemyMagicLabLevel(data.getOwnPlayer().getMagicLab().getLevel());
-				LocalUserInterface.this.playGameGUI.setEnemyMineLevel(data.getOwnPlayer().getMine().getLevel());
-				LocalUserInterface.this.playGameGUI.setEnemyTower(data.getOwnPlayer().getTower().getActualPoints());
-				LocalUserInterface.this.playGameGUI.setEnemyWall(data.getOwnPlayer().getWall().getActualPoints());
+				LocalEnemyKIUserInterface.this.playGameGUI.setEnemyDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
+				LocalEnemyKIUserInterface.this.playGameGUI.setEnemyMagicLabLevel(data.getOwnPlayer().getMagicLab().getLevel());
+				LocalEnemyKIUserInterface.this.playGameGUI.setEnemyMineLevel(data.getOwnPlayer().getMine().getLevel());
+				LocalEnemyKIUserInterface.this.playGameGUI.setEnemyTower(data.getOwnPlayer().getTower().getActualPoints());
+				LocalEnemyKIUserInterface.this.playGameGUI.setEnemyWall(data.getOwnPlayer().getWall().getActualPoints());
 			}
 		});
 	}
@@ -50,7 +50,7 @@ public class LocalUserInterface implements UserInterface {
 	public void twoPlayerFound() {
 		GameServer gameServer = Globals.getLocalGameServer();
 		try {
-			gameServer.start(LocalUserInterface.this.mainMenuGUI.getGameType());
+			gameServer.start(LocalEnemyKIUserInterface.this.mainMenuGUI.getGameType());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -61,7 +61,7 @@ public class LocalUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				LocalUserInterface.this.playGameGUI.nextTurnEnemy();
+				LocalEnemyKIUserInterface.this.playGameGUI.nextTurnEnemy();
 			}
 		});
 	}
@@ -71,7 +71,7 @@ public class LocalUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				LocalUserInterface.this.playGameGUI.playAnotherCardEnemy();
+				LocalEnemyKIUserInterface.this.playGameGUI.playAnotherCardEnemy();
 			}
 		});
 	}
@@ -81,7 +81,7 @@ public class LocalUserInterface implements UserInterface {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				LocalUserInterface.this.playGameGUI.setPlayerChosenCardName(card.getName());
+				LocalEnemyKIUserInterface.this.playGameGUI.setPlayerChosenCardName(card.getName());
 			}
 		});
 	}
@@ -103,11 +103,11 @@ public class LocalUserInterface implements UserInterface {
 
 	@Override
 	public String getName() {
-		return LocalUserInterface.this.mainMenuGUI.getEnemyName();
+		return LocalEnemyKIUserInterface.this.mainMenuGUI.getEnemyName();
 	}
 
 	@Override
 	public Collection<String> getCards() {
-		return LocalUserInterface.this.mainMenuGUI.getEnemyCards();
+		return LocalEnemyKIUserInterface.this.mainMenuGUI.getEnemyCards();
 	}
 }

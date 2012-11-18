@@ -3,7 +3,7 @@ package herbstJennrichLehmannRitter.ui.GUI;
 import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.ki.KI;
 import herbstJennrichLehmannRitter.server.GameServer;
-import herbstJennrichLehmannRitter.ui.impl.LocalUserInterface;
+import herbstJennrichLehmannRitter.ui.impl.LocalEnemyKIUserInterface;
 
 import java.rmi.RemoteException;
 
@@ -136,7 +136,7 @@ public class GameMenuGUI {
 
 					GameMenuGUI.this.gameServer.register(GameMenuGUI.this.mainMenuGUI.getClientUserInterface());
 
-					LocalUserInterface localUserInterface = new LocalUserInterface();
+					LocalEnemyKIUserInterface localUserInterface = new LocalEnemyKIUserInterface();
 					localUserInterface.setMainMenuGUI(GameMenuGUI.this.mainMenuGUI);
 					localUserInterface.setPlayGameGUI(playGameGUI);
 					
