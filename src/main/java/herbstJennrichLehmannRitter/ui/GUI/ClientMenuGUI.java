@@ -3,6 +3,7 @@ package herbstJennrichLehmannRitter.ui.GUI;
 import herbstJennrichLehmannRitter.engine.Globals;
 import herbstJennrichLehmannRitter.server.NetworkServer;
 import herbstJennrichLehmannRitter.server.impl.NetworkServerWrapper;
+import herbstJennrichLehmannRitter.ui.RMIUsertInterface;
 import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
 import herbstJennrichLehmannRitter.ui.impl.RMIUserInterfaceImpl;
 
@@ -17,7 +18,9 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 
 /**	Description of ClientMenuGUI Class
@@ -34,6 +37,8 @@ public class ClientMenuGUI extends AbstractMagicGUIElement {
 	private MainMenuGUI mainMenuGUI;
 	private Timer timer;
 	private PlayGameGUI playGameGUI;
+	
+	private RMIUsertInterface rmi;
 	
 	public ClientMenuGUI(Display parent, MainMenuGUI mainMenuGUI) {
 		super(parent);
@@ -53,6 +58,18 @@ public class ClientMenuGUI extends AbstractMagicGUIElement {
 	protected void onInitShell() {
 		getShell().setText("Starte Spiel als Client");
 		getShell().setLayout(new GridLayout(2, false));
+	}
+	
+	@Override
+	protected Listener getOnCloseListener() {
+		return new Listener() {
+			@Override
+			public void handleEvent(Event event) {
+				if (ClientMenuGUI.this.rmi != null) {
+					ClientMenuGUI.this.rmi.unexport();
+				}
+			}
+		};
 	}
 	
 	private void initIpTextLabel() {
@@ -104,7 +121,7 @@ public class ClientMenuGUI extends AbstractMagicGUIElement {
 				
 				ClientUserInterface clientUserInterface = new ClientUserInterface();
 				try {
-					final RMIUserInterfaceImpl rmi = new RMIUserInterfaceImpl(clientUserInterface);
+					ClientMenuGUI.this.rmi = new RMIUserInterfaceImpl(clientUserInterface);
 					ClientMenuGUI.this.timer.schedule(new TimerTask() {
 						@Override
 						public void run() {
@@ -132,7 +149,7 @@ public class ClientMenuGUI extends AbstractMagicGUIElement {
 					clientUserInterface.setClientMenuGUI(ClientMenuGUI.this);
 					clientUserInterface.setPlayGameGUI(ClientMenuGUI.this.playGameGUI);
 					
-					gameServer.register(rmi);
+					gameServer.register(ClientMenuGUI.this.rmi);
 				} catch (RemoteException e1) {
 				}
 			}

@@ -5,6 +5,7 @@ import herbstJennrichLehmannRitter.engine.model.Data;
 import herbstJennrichLehmannRitter.ui.RMIUsertInterface;
 import herbstJennrichLehmannRitter.ui.UserInterface;
 
+import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Collection;
@@ -81,6 +82,15 @@ public class RMIUserInterfaceImpl extends UnicastRemoteObject implements RMIUser
 	@Override
 	public Collection<String> getCards() throws RemoteException {
 		return this.userInterface.getCards();
+	}
+	
+	@Override
+	public void unexport() {
+		try {
+			UnicastRemoteObject.unexportObject(this, true);
+		} catch (NoSuchObjectException e) {
+			// can be ignored
+		}
 	}
 
 }
