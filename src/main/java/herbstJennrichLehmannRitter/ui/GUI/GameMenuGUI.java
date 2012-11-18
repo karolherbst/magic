@@ -120,12 +120,13 @@ public class GameMenuGUI {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try {
+					GameMenuGUI.this.gameServer = Globals.getLocalGameServer();
+					GameMenuGUI.this.mainMenuGUI.setGameServer(GameMenuGUI.this.gameServer);
+					
 					PlayGameGUI playGameGUI = new PlayGameGUI(GameMenuGUI.this.display,
 							GameMenuGUI.this.mainMenuGUI.getClientUserInterface(),
 							GameMenuGUI.this.mainMenuGUI.getGameServer());
 
-					GameMenuGUI.this.gameServer = Globals.getLocalGameServer();
-					GameMenuGUI.this.mainMenuGUI.setGameServer(GameMenuGUI.this.gameServer);
 					GameMenuGUI.this.gameServer.register(GameMenuGUI.this.mainMenuGUI.getClientUserInterface());
 
 					LocalUserInterface localUserInterface = new LocalUserInterface();
