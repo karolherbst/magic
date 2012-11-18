@@ -105,10 +105,7 @@ public class PlayGameGUI extends AbstractMagicGUIElement {
 				try {
 					PlayGameGUI.this.gameServer.stop();
 					PlayGameGUI.this.gameServer.unregister();
-				} catch (RemoteException e1) {
-					e1.printStackTrace();
-				} catch (NullPointerException e2) {
-					e2.printStackTrace();
+				} catch (RemoteException | NullPointerException e) {
 				}
 			}
 		};
@@ -527,7 +524,7 @@ public class PlayGameGUI extends AbstractMagicGUIElement {
 	
 	private static void removeCardFromDeck(ArrayList<CardFields> cardFields, String name) {
 		for (CardFields cardField: cardFields) {
-			if( cardField.getCardName() == name) {
+			if (cardField.getCardName().equals(name)) {
 				cardField.setCardName("");
 				cardField.setVisible(false);
 				break;
