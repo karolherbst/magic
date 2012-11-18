@@ -111,29 +111,24 @@ public class DeckImpl implements Deck {
 		}
 
 		public boolean pickNumberOfCardsWithType(int numberOfCards, CardType cardType) {
+			if (numberOfCards > 6) {
+				numberOfCards = 6;
+			}
+			
 			if (this.handDeck.size() < 6) {
-				List<Card> cards = new ArrayList<Card>();
-				Card card;
 				
 				do {
-					card = DeckImpl.this.deckStack.pickCard();
+					Card card = DeckImpl.this.deckStack.pickCard();
 					if (card.getCardType() == cardType) {
-						cards.add(card);
+						this.handDeck.add(card);
+					} else {
+						DeckImpl.this.cemeteryDeck.addCard(card);
 					}
-				} while (cards.size() < numberOfCards);
+				} while (this.handDeck.size() < numberOfCards);
 				
-				Collections.shuffle(cards);
-				
-				for (int i = 0; i < numberOfCards; i++) {
-					if (this.handDeck.size() >= 6) {
-						break;
-					}
-					this.handDeck.add(cards.get(i));
-				}
 				return true;
-			} else {
-				return false;
 			}
+			return false;
 		}
 		
 		public void exchangeCardsWithHandDeck(HandDeckImpl handDeck) {
