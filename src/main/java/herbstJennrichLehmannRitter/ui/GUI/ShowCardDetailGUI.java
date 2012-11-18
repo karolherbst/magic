@@ -49,6 +49,11 @@ public class ShowCardDetailGUI extends AbstractMagicGUIElement {
 	}
 	
 	@Override
+	protected int additionShellFlags() {
+		return SWT.ON_TOP;
+	}
+	
+	@Override
 	protected void onInitGUI() {
 		initCardNameText();
 		initCardTypeLabel();

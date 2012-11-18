@@ -58,7 +58,7 @@ public abstract class AbstractMagicGUIElement {
 	}
 	
 	private void initShell() {
-		this.shell = new Shell(SWT.TITLE);
+		this.shell = new Shell(SWT.TITLE | additionShellFlags());
 		onInitShell();
 	}
 	
@@ -67,5 +67,10 @@ public abstract class AbstractMagicGUIElement {
 	
 	protected void onOpen() {
 		// can be extended
+	}
+	
+	protected int additionShellFlags() {
+		// can be extended
+		return 0;
 	}
 }
