@@ -16,7 +16,9 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
@@ -40,6 +42,10 @@ public class GameMenuGUI {
 	public GameMenuGUI(Display parent, MainMenuGUI mainMenuGUI) {
 		this.display = parent;
 		this.mainMenuGUI = mainMenuGUI;
+		initGUI();
+	}
+	
+	private void initGUI() {
 		initShell();
 		initNameTextLabel();
 		initNameTextField();
@@ -49,11 +55,28 @@ public class GameMenuGUI {
 		initStartLocalButton();
 		initBackButton();
 		this.shell.pack();
-		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
+		
+		this.shell.addListener(SWT.Close, this.onCloseListener);
 	}
 	
+	private Listener onCloseListener = new Listener() {
+		@Override
+		public void handleEvent(Event event) {
+			
+		}
+	};
+	
 	public void open() {
+		if (this.shell.isDisposed()) {
+			initGUI();
+		}
+		
+		if (this.shell.isVisible()) {
+			this.shell.forceActive();
+			return;
+		}
 		this.shell.open();
+		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
 	}
 	
 	private void initShell() {
@@ -158,7 +181,7 @@ public class GameMenuGUI {
 		this.backButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				GameMenuGUI.this.shell.setVisible(false);
+				GameMenuGUI.this.shell.close();
 			}
 		});
 	}

@@ -51,8 +51,10 @@ public class MainMenuGUI {
 	private UserInterface clientUserInterface = new ClientUserInterface();
 	private GameServer gameServer;
 	
+	private final GameMenuGUI gameMenuGUI;
+	
 	public MainMenuGUI() {
-		MainMenuGUI.this.display = new Display();
+		MainMenuGUI.this.display = Display.getDefault();
 		initShell();
 		initStartGameButton();
 		initStartDemoButton();
@@ -61,6 +63,9 @@ public class MainMenuGUI {
 		initExitButton();
 		MainMenuGUI.this.shell.pack();
 		setShellLocationCenteredToScreen(MainMenuGUI.this.display, MainMenuGUI.this.shell);
+		
+		this.gameMenuGUI = new GameMenuGUI(MainMenuGUI.this.display, MainMenuGUI.this);
+		
 		MainMenuGUI.this.shell.open();
 		getClientUserInterface().setMainMenuGUI(MainMenuGUI.this);
 		
@@ -205,8 +210,7 @@ public class MainMenuGUI {
 		this.startGameButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				GameMenuGUI gameMenuGUI = new GameMenuGUI(MainMenuGUI.this.display, MainMenuGUI.this);
-				gameMenuGUI.open();
+				MainMenuGUI.this.gameMenuGUI.open();
 			}
 		});
 
