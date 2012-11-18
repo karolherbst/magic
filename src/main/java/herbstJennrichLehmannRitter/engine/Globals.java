@@ -66,10 +66,7 @@ public final class Globals {
 		
 		try {
 			Registry registry = LocateRegistry.createRegistry(GAME_SERVER_PORT);
-			System.out.println("Registry wurde erzeugt!");
-			
 			registry.bind(GAME_SERVER_NAME, new NetworkServerImpl(getLocalGameServer()));
-			System.out.println(GAME_SERVER_NAME + ": remoteGameServer wurde registriert!");
 		} catch (AlreadyBoundException e) {
 			e.printStackTrace();
 		}
