@@ -16,7 +16,9 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 
 /**	Description of HostMenuGUI Class
@@ -45,6 +47,11 @@ public class ShowCardDetailGUI {
 		this.playGameGui = playGameGUI;
 		this.chooseDeckGui = chooseDeckGUI;
 		this.card = card;
+		
+		initGUI();
+	}
+	
+	public void initGUI() {
 		initShell();
 		initCardNameText();
 		initCardTypeLabel();
@@ -56,26 +63,47 @@ public class ShowCardDetailGUI {
 		initCardOwnEffectsText();
 		initCardEnemyEffectsLabel();
 		initCardEnemyEffectsText();
-		if (card.getCanBeDiscarded() == false) {
+		if (this.card.getCanBeDiscarded() == false) {
 			initDiscardCardLabel();
 		}
 		initExitButton();
 		if (this.playGameGui != null) {
 			if (this.playGameGui.getPlayerCanPlayCard() == true) {
-				if (card.getCanBeDiscarded() == true) {
+				if (this.card.getCanBeDiscarded() == true) {
 					initDiscardButton();
 				}
-				if (this.playGameGui.getPlayerDungeonStock() >= card.getCostMonsters() && 
-						this.playGameGui.getPlayerMagicLabStock() >= card.getCostCrystal() && 
-						this.playGameGui.getPlayerMineStock() >= card.getCostBrick()) {
+				if (this.playGameGui.getPlayerDungeonStock() >= this.card.getCostMonsters() && 
+						this.playGameGui.getPlayerMagicLabStock() >= this.card.getCostCrystal() && 
+						this.playGameGui.getPlayerMineStock() >= this.card.getCostBrick()) {
 					initPlayCardButton();
 				}
 			}
 		}
 		this.shell.pack();
+		this.shell.addListener(SWT.Close, this.onCloseListener);
 	}
 	
+	private Listener onCloseListener = new Listener() {
+		@Override
+		public void handleEvent(Event event) {
+			if (ShowCardDetailGUI.this.playGameGui != null) {
+				ShowCardDetailGUI.this.playGameGui.setCardDetailIsOpen(false);
+			}
+			if (ShowCardDetailGUI.this.chooseDeckGui != null) {
+				ShowCardDetailGUI.this.chooseDeckGui.setCardDetailIsOpen(false);
+			}
+		}
+	};
+	
 	public void open() {
+		if (this.shell.isDisposed()) {
+			initGUI();
+		}
+		
+		if (this.shell.isVisible()) {
+			this.shell.forceActive();
+			return;
+		}
 		this.shell.open();
 	}
 	
@@ -142,13 +170,7 @@ public class ShowCardDetailGUI {
 		this.exitButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if (ShowCardDetailGUI.this.playGameGui != null) {
-					ShowCardDetailGUI.this.playGameGui.setCardDetailIsOpen(false);
-				}
-				if (ShowCardDetailGUI.this.chooseDeckGui != null) {
-					ShowCardDetailGUI.this.chooseDeckGui.setCardDetailIsOpen(false);
-				}
-				ShowCardDetailGUI.this.shell.setVisible(false);
+				ShowCardDetailGUI.this.shell.close();
 			}
 		});
 	}
