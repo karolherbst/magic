@@ -7,6 +7,10 @@ import herbstJennrichLehmannRitter.engine.model.impl.PlayerImpl;
 
 import org.junit.Test;
 
+/** Description of DataTests Class
+ *  This class tests the data of both players.
+ */
+
 public class DataTests {
 	
 	private Player player = new PlayerImpl();

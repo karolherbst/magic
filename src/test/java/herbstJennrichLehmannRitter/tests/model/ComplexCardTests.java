@@ -18,6 +18,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+/** Description of ComplexCardTests Class
+ *  This class implements tests for all complex card actions.
+ */
+
 public class ComplexCardTests {
 	
 	private GameCardFactory gameCardFactory;

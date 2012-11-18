@@ -37,6 +37,10 @@ import javax.xml.bind.Unmarshaller;
 import org.junit.Before;
 import org.junit.Test;
 
+/** Description of CardTests Class
+ *  This class implements tests for the simple card actions.
+ */
+
 public class CardTests {
 
 	private JAXBContext jaxbContext;

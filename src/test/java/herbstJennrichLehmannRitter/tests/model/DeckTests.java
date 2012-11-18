@@ -18,6 +18,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+/** Description of DeckTests Class
+ *  This class tests the decks of the players with some cards.
+ */
+
 public class DeckTests {
 
 	private PlayerFactory playerFactory = new PlayerFactoryImpl();
