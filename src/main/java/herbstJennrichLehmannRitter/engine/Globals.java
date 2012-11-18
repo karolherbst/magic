@@ -10,12 +10,18 @@ import herbstJennrichLehmannRitter.server.NetworkServer;
 import herbstJennrichLehmannRitter.server.impl.GameServerImpl;
 import herbstJennrichLehmannRitter.server.impl.NetworkServerImpl;
 
+import java.net.UnknownHostException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
 
 /** Description of Globals Class
  *  This Class implements the Game Service, the Game Server and the GameCard Factory.
@@ -85,18 +91,16 @@ public final class Globals {
 		}
 	}
 	
-	public static NetworkServer getRemoteServer(String ipAddress) {
+	public static NetworkServer getRemoteServer(String ipAddress, Shell shell) {
 		NetworkServer gameServer = null;
 		try {
 			Registry registry = LocateRegistry.getRegistry(ipAddress, GAME_SERVER_PORT);
-			System.out.println("Registry wurde located on IP:" + ipAddress);
 			gameServer = (NetworkServer)registry.lookup(GAME_SERVER_NAME);
-			System.out.println("Looking up to:" + GAME_SERVER_NAME);
 		} catch (Exception e) {
-			System.out.println("Exception Client");
-			e.printStackTrace();
+			MessageBox msgBox = new MessageBox(shell, SWT.ERROR);
+			msgBox.setMessage("Der Server wurde nicht gefunden!");
+			msgBox.open();
 		}
-		System.out.println(gameServer);
 		return gameServer;
 	}
 	

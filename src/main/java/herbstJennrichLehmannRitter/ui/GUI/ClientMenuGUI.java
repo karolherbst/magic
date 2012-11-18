@@ -103,7 +103,8 @@ public class ClientMenuGUI {
 		this.connectButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				final NetworkServer gameServer = Globals.getRemoteServer(ClientMenuGUI.this.ipTextField.getText());
+				final NetworkServer gameServer = Globals.getRemoteServer(ClientMenuGUI.this.ipTextField.getText(),
+						ClientMenuGUI.this.shell);
 				ClientMenuGUI.this.timer = new Timer();
 				
 				ClientUserInterface clientUserInterface = new ClientUserInterface();
@@ -124,21 +125,21 @@ public class ClientMenuGUI {
 							});
 						}
 					}, 3000000);
-					
 					ClientMenuGUI.this.mainMenuGUI.setGameServer(new NetworkServerWrapper(gameServer));
 					
 					ClientMenuGUI.this.playGameGUI = new PlayGameGUI(ClientMenuGUI.this.display, 
 							clientUserInterface, new NetworkServerWrapper(gameServer));
-					
 					ClientMenuGUI.this.playGameGUI.setPlayerName(ClientMenuGUI.this.mainMenuGUI.getPlayerName());
+					
+					
 					clientUserInterface.setMainMenuGUI(ClientMenuGUI.this.mainMenuGUI);
 					clientUserInterface.setClientMenuGUI(ClientMenuGUI.this);
 					clientUserInterface.setPlayGameGUI(ClientMenuGUI.this.playGameGUI);
 					
 					gameServer.register(rmi);
 				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				} catch (NullPointerException e2) {
+					ClientMenuGUI.this.shell.setVisible(false);
 				}
 			}
 		});
