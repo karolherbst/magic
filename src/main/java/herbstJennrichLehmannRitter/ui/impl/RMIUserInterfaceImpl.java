@@ -35,7 +35,7 @@ public class RMIUserInterfaceImpl extends UnicastRemoteObject implements RMIUser
 
 	@Override
 	public void nextTurn() throws RemoteException {
-		this.userInterface.twoPlayerFound();
+		this.userInterface.nextTurn();
 	}
 
 	@Override
