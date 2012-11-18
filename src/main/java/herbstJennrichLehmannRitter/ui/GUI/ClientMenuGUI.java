@@ -66,7 +66,11 @@ public class ClientMenuGUI extends AbstractMagicGUIElement {
 			@Override
 			public void handleEvent(Event event) {
 				if (ClientMenuGUI.this.rmi != null) {
-					ClientMenuGUI.this.rmi.unexport();
+					try {
+						ClientMenuGUI.this.rmi.unexport();
+					} catch (RemoteException e) {
+						// nothing should happen here
+					}
 				}
 			}
 		};

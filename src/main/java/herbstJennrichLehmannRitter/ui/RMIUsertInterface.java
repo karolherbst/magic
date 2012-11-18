@@ -26,5 +26,5 @@ public interface RMIUsertInterface extends Remote {
 	public String getName() throws RemoteException;
 	public Collection<String> getCards() throws RemoteException;
 	
-	public void unexport();
+	public void unexport() throws RemoteException;
 }

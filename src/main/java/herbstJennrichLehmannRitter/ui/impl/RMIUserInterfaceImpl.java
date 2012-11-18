@@ -85,7 +85,7 @@ public class RMIUserInterfaceImpl extends UnicastRemoteObject implements RMIUser
 	}
 	
 	@Override
-	public void unexport() {
+	public void unexport() throws RemoteException {
 		try {
 			UnicastRemoteObject.unexportObject(this, true);
 		} catch (NoSuchObjectException e) {
