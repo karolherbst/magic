@@ -7,6 +7,10 @@ import herbstJennrichLehmannRitter.engine.model.impl.DungeonImpl;
 import org.junit.Before;
 import org.junit.Test;
 
+/** Description of DungeonTests Class
+ *  This class tests the dungeons level, stock and all methods.
+ */
+
 public class DungeonTests {
 
 	private ResourceBuilding dungeon;

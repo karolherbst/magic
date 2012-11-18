@@ -20,6 +20,10 @@ import herbstJennrichLehmannRitter.engine.model.impl.WallImpl;
 import org.junit.Before;
 import org.junit.Test;
 
+/** Description of PlayerTests Class
+ *  This class tests the the player, name,  all of his buildings and his deck.
+ */
+
 public class PlayerTests {
 	
 	private PlayerImpl player;

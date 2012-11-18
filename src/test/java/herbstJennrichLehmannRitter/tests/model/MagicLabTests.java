@@ -7,6 +7,10 @@ import herbstJennrichLehmannRitter.engine.model.impl.MagicLabImpl;
 import org.junit.Before;
 import org.junit.Test;
 
+/** Description of MagicLabTests Class
+ *  This class tests the magicLab level, stock and all methods.
+ */
+
 public class MagicLabTests {
 
 	private ResourceBuilding magicLab;

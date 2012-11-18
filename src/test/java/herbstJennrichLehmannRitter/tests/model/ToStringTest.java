@@ -10,6 +10,10 @@ import herbstJennrichLehmannRitter.engine.model.impl.PlayerImpl;
 
 import org.junit.Test;
 
+/** Description of ToStringTest Class
+ *  This class tests the text of all complex cards and of some simple cards.
+ */
+
 public class ToStringTest {
 	
 	private GameCardFactory gameCardFactory = new GameCardFactoryImpl();

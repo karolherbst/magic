@@ -8,6 +8,10 @@ import herbstJennrichLehmannRitter.engine.model.impl.TowerImpl;
 import org.junit.Before;
 import org.junit.Test;
 
+/** Description of TowerTests Class
+ *  This class tests the tower level and all methods.
+ */
+
 public class TowerTests {
 
 	private DefenceBuilding tower;

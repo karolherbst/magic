@@ -7,6 +7,10 @@ import herbstJennrichLehmannRitter.engine.model.impl.MineImpl;
 import org.junit.Before;
 import org.junit.Test;
 
+/** Description of MineTests Class
+ *  This class tests the mine level, stock and all methods.
+ */
+
 public class MineTests {
 
 	private ResourceBuilding mine;

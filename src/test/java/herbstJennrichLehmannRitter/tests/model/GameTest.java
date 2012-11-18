@@ -12,6 +12,10 @@ import herbstJennrichLehmannRitter.engine.model.action.impl.GameActionImpl;
 
 import org.junit.Test;
 
+/** Description of GameTest Class
+ *  This class tests the methods checking who has won or lost the game.
+ */
+
 public class GameTest {
 
 	@Test

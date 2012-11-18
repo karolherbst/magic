@@ -8,6 +8,10 @@ import herbstJennrichLehmannRitter.engine.model.impl.WallImpl;
 import org.junit.Before;
 import org.junit.Test;
 
+/** Description of WallTests Class
+ *  This class tests the wall level and all methods.
+ */
+
 public class WallTests {
 
 	private DefenceBuilding wall;
