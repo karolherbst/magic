@@ -62,6 +62,7 @@ public class PlayGameGUI {
 	private NameFields playerName;
 	private NameFields enemyName;
 	private boolean cardDetailIsOpen = false;
+	private boolean playerCanPlayCard = false;
 	
 	private ClientUserInterface clientUserInterface;
 	private GameServer gameServer;
@@ -183,6 +184,10 @@ public class PlayGameGUI {
 		line.setLayoutData(formData);
 	}
 	
+	public boolean getPlayerCanPlayCard() {
+		return this.playerCanPlayCard;
+	}
+	
 	private void initPlayerDungeon() {
 		this.playerDungeon = new RessourceFields("Verlies", "Monster", 10, 642);
 	}
@@ -274,12 +279,14 @@ public class PlayGameGUI {
 	}
 
 	public void playerPlayedCard(String name) {
+		this.playerCanPlayCard = false;
 		PlayGameGUI.removeCardFromDeck(this.playerCards, name);
 		this.playerChosenCard.setCardName(name);
 		this.playerChosenCard.setVisible(true);
 	}
 	
 	public void playerDiscardCard(String name) {
+		this.playerCanPlayCard = false;
 		PlayGameGUI.removeCardFromDeck(this.playerCards, name);
 	}	
 	
@@ -290,7 +297,9 @@ public class PlayGameGUI {
 		this.enemyDungeon.setLevel(level);
 	}
 	public void setEnemyDungeonStock(int stock) {
-		this.enemyDungeon.setStock(stock);
+		if (stock != Integer.MAX_VALUE) {
+			this.enemyDungeon.setStock(stock);
+		}
 	}
 
 	private void initEnemyMagicLab() {
@@ -300,7 +309,9 @@ public class PlayGameGUI {
 		this.enemyMagicLab.setLevel(level);
 	}
 	public void setEnemyMagicLabStock(int stock) {
-		this.enemyMagicLab.setStock(stock);
+		if (stock != Integer.MAX_VALUE) {
+			this.enemyMagicLab.setStock(stock);
+		}
 	}
 	
 	private void initEnemyMine() {
@@ -310,7 +321,9 @@ public class PlayGameGUI {
 		this.enemyMine.setLevel(level);
 	}
 	public void setEnemyMineStock(int stock) {
-		this.enemyMine.setStock(stock);
+		if (stock != Integer.MAX_VALUE) {
+			this.enemyMine.setStock(stock);
+		}
 	}
 	
 	private void initEnemyWall() {
@@ -368,6 +381,7 @@ public class PlayGameGUI {
 	}
 	
 	public void nextTurnPlayer() {
+		this.playerCanPlayCard = true;
 		this.playerName.setPlayerActive("ist am Zug");
 		this.enemyName.setPlayerInactive();
 	}
@@ -378,6 +392,7 @@ public class PlayGameGUI {
 	}
 	
 	public void playAnotherCardPlayer() {
+		this.playerCanPlayCard = true;
 		this.playerName.setPlayerActive("hat noch einen Zug");
 		PlayGameGUI.playAnotherCard(this.playerCards);
 	}
@@ -645,10 +660,10 @@ public class PlayGameGUI {
 
 		public GameMessage() {
 			FormData gameMessageData = new FormData();
-			gameMessageData.left = new FormAttachment(0, 1, 260);
+			gameMessageData.left = new FormAttachment(0, 1, 100);
 			gameMessageData.top = new FormAttachment(0, 1, 150);
 			gameMessageData.height = 500;
-			gameMessageData.width = 500;
+			gameMessageData.width = 800;
 			
 			this.gameMessageCanv = new Canvas(PlayGameGUI.this.shell, SWT.BORDER);
 			this.gameMessageCanv.setLayoutData(gameMessageData);

@@ -48,7 +48,7 @@ public class PlayerFactoryImpl implements PlayerFactory {
 		newPlayer.setName(name);
 		newPlayer.setDeck(new DeckImpl(cards));
 		newPlayer.setDungeon(dungeon);
-		newPlayer.setMagiclab(magicLab);
+		newPlayer.setMagicLab(magicLab);
 		newPlayer.setMine(mine);
 		newPlayer.setTower(tower);
 		newPlayer.setWall(wall);
@@ -62,9 +62,12 @@ public class PlayerFactoryImpl implements PlayerFactory {
 		
 		copy.setName(player.getName());
 		copy.setDeck(null);
-		copy.setDungeon(player.getDungeon());
-		copy.setMagiclab(player.getMagicLab());
-		copy.setMine(player.getMine());
+		copy.getDungeon().setLevel(player.getDungeon().getLevel());
+		copy.getDungeon().setStock(Integer.MAX_VALUE);
+		copy.getMagicLab().setLevel(player.getMagicLab().getLevel());
+		copy.getMagicLab().setStock(Integer.MAX_VALUE);
+		copy.getMine().setLevel(player.getMine().getLevel());
+		copy.getMine().setStock(Integer.MAX_VALUE);
 		copy.setTower(player.getTower());
 		copy.setWall(player.getWall());
 		

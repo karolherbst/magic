@@ -59,7 +59,7 @@ public class PlayerImpl implements Player {
 		return this.magicLab;
 	}
 	
-	public void setMagiclab(ResourceBuilding magiclab) {
+	public void setMagicLab(ResourceBuilding magiclab) {
 		this.magicLab = magiclab;
 	}	
 

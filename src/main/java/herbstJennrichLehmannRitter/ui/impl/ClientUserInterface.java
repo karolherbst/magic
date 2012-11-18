@@ -51,9 +51,17 @@ public class ClientUserInterface implements UserInterface {
 	@Override
 	public void setData(final Data data) {
 		Display.getDefault().asyncExec(new Runnable() {
-			
 			@Override
 			public void run() {
+				ClientUserInterface.this.playGameGUI.setEnemyDungeonLevel(data.getEnemyPlayer().getDungeon().getLevel());
+				ClientUserInterface.this.playGameGUI.setEnemyDungeonStock(data.getEnemyPlayer().getDungeon().getStock());
+				ClientUserInterface.this.playGameGUI.setEnemyMagicLabLevel(data.getEnemyPlayer().getMagicLab().getLevel());
+				ClientUserInterface.this.playGameGUI.setEnemyMagicLabStock(data.getEnemyPlayer().getMagicLab().getStock());
+				ClientUserInterface.this.playGameGUI.setEnemyMineLevel(data.getEnemyPlayer().getMine().getLevel());
+				ClientUserInterface.this.playGameGUI.setEnemyMineStock(data.getEnemyPlayer().getMine().getStock());
+				ClientUserInterface.this.playGameGUI.setEnemyTower(data.getEnemyPlayer().getTower().getActualPoints());
+				ClientUserInterface.this.playGameGUI.setEnemyWall(data.getEnemyPlayer().getWall().getActualPoints());
+				
 				ClientUserInterface.this.playGameGUI.setPlayerDungeonLevel(data.getOwnPlayer().getDungeon().getLevel());
 				ClientUserInterface.this.playGameGUI.setPlayerDungeonStock(data.getOwnPlayer().getDungeon().getStock());
 				ClientUserInterface.this.playGameGUI.setPlayerMagicLabLevel(data.getOwnPlayer().getMagicLab().getLevel());

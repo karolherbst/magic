@@ -59,7 +59,7 @@ public class PlayerTests {
 	@Test
 	public void testMagicLab() {
 		ResourceBuilding magicLab = new MagicLabImpl();
-		this.player.setMagiclab(magicLab);
+		this.player.setMagicLab(magicLab);
 		
 		assertEquals(magicLab, this.player.getMagicLab());
 	}
