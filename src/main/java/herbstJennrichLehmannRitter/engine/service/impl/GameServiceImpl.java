@@ -33,7 +33,6 @@ public class GameServiceImpl implements GameService {
 	}
 	
 	private Map<Thread, UIHolder> threadToUi = new HashMap<Thread, GameServiceImpl.UIHolder>(2, 1);
-	private int round;
 	
 	private final GameEngineController gameEngineController;
 	
@@ -60,8 +59,11 @@ public class GameServiceImpl implements GameService {
 			}
 			
 			this.gameEngineController.start(gameType);
-			this.round = 0;
 			UIHolder uiHolder = this.threadToUi.values().iterator().next();
+			
+			this.gameEngineController.addResourcesToPlayer(uiHolder.player);
+			updatePlayerDatas(uiHolder);
+
 			uiHolder.userInterface.nextTurn();
 		} catch (Throwable t) {
 			abort(t);
@@ -181,8 +183,6 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public void playCard(Thread thread, Card card) {
 		try {
-			++this.round;
-			System.out.println("round: " + this.round);
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -201,9 +201,7 @@ public class GameServiceImpl implements GameService {
 					updatePlayerDatas(uiHolder);
 					uiHolder.userInterface.playAnotherCard();
 				} else {
-					if (this.round > 1) {
-						this.gameEngineController.addResourcesToPlayer(uiHolder.enemy.player);
-					}
+					this.gameEngineController.addResourcesToPlayer(uiHolder.enemy.player);
 					if (!hasSomebodyWon(uiHolder)) {
 						updatePlayerDatas(uiHolder);
 						uiHolder.enemy.userInterface.nextTurn();
@@ -218,8 +216,6 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public void discardCard(Thread thread, Card card) {
 		try {
-			++this.round;
-			System.out.println("round: " + this.round);
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -232,9 +228,7 @@ public class GameServiceImpl implements GameService {
 						card.getName());
 			
 				this.gameEngineController.discardCard(card, uiHolder.player);
-				if (this.round > 1) {
-					this.gameEngineController.addResourcesToPlayer(uiHolder.enemy.player);
-				}
+				this.gameEngineController.addResourcesToPlayer(uiHolder.enemy.player);
 				if (!hasSomebodyWon(uiHolder)) {
 					updatePlayerDatas(uiHolder);
 					uiHolder.enemy.userInterface.nextTurn();

@@ -142,6 +142,7 @@ public class HostMenuGUI extends AbstractMagicGUIElement {
 			e.printStackTrace();
 		}
 		this.playGameGUI.open();
+		this.playGameGUI.nextTurnEnemy();
 	}
 	
 	public void displayMessageBox(String text) {

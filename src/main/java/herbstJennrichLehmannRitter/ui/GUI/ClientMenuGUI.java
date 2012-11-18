@@ -142,5 +142,6 @@ public class ClientMenuGUI extends AbstractMagicGUIElement {
 		this.playGameGUI.setPlayerName(ClientMenuGUI.this.mainMenuGUI.getPlayerName());
 		this.playGameGUI.setEnemyName("Gegner");
 		this.playGameGUI.open();
+		this.playGameGUI.nextTurnEnemy();
 	}
 }
