@@ -13,7 +13,7 @@ import java.util.Collection;
 
 import org.eclipse.swt.widgets.Display;
 
-/**	Description of DemoUserInterface Class
+/**	Description of DemoEnemyKIUserInterface Class
  * This class implements the UserInterface to show the Demo GUI
  */
 
