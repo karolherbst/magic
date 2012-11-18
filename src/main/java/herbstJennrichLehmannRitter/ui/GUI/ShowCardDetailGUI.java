@@ -152,7 +152,7 @@ public class ShowCardDetailGUI extends AbstractMagicGUIElement {
 		createCardText(this.card.getEnemyEffectDescription(), 250, 90);
 	}
 	private void initDiscardCardLabel() {
-		createCategorieText("Karte kann nicht verworfen werden", true,  370, 90, 220);
+		createCategorieText("Karte kann nicht verworfen werden", true,  370, 20, 220);
 	}
 
 	private void initExitButton() {
