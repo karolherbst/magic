@@ -118,6 +118,11 @@ public class ClientMenuGUI extends AbstractMagicGUIElement {
 				final NetworkServer gameServer = Globals.getRemoteServer
 						(ClientMenuGUI.this.ipTextField.getText(),
 						ClientMenuGUI.this.getShell());
+				if (gameServer == null) {
+					getShell().close();
+					return;
+				}
+				
 				ClientUserInterface clientUserInterface = new ClientUserInterface();
 				try {
 					ClientMenuGUI.this.rmi = new RMIUserInterfaceImpl(clientUserInterface);
