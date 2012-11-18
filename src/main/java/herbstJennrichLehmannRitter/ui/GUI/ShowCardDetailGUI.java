@@ -78,7 +78,7 @@ public class ShowCardDetailGUI {
 	}
 	
 	private void initShell() {
-		this.shell = new Shell(SWT.TITLE);
+		this.shell = new Shell(SWT.TITLE | SWT.ON_TOP);
 		this.shell.setText("Kartendetails");
 		this.shell.setLayout(new FormLayout());
 		MainMenuGUI.setShellLocationCenteredToScreen(this.display, this.shell);
