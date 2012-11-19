@@ -8,7 +8,6 @@ import herbstJennrichLehmannRitter.ui.impl.ClientUserInterface;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
@@ -501,41 +500,20 @@ public class PlayGameGUI extends AbstractMagicGUIElement {
 	}
 	
 	private static void setHandCards(ArrayList<CardFields> playerCards, Collection<Card> cards) {
-		ArrayList<String> cardFields = new ArrayList<String>();
-		for (CardFields cardField: playerCards) {
-			cardFields.add(cardField.getCardName());
-			cardField.setVisible(true);
+		int i = 0;
+		for (Card card : cards) {
+			CardFields field = playerCards.get(i++);
+			field.setCardName(card.getName());
+			field.setVisible(true);
 		}
-		
-		Iterator<Card> cardIterator = cards.iterator();
-		Card card;
-		do {
-			card = cardIterator.next();
-			if (cardFields.contains(card.getName())) {
-				continue;
-			}
-			for (CardFields cardField: playerCards) {
-				if ("".equals(cardField.getCardName())) {
-					cardField.setCardName(card.getName());
-					break;
-				}
-			}
-		} while (cardIterator.hasNext());
 	}
 	
 	private static void removeCardFromDeck(ArrayList<CardFields> cardFields, String name) {
 		for (CardFields cardField: cardFields) {
-			// check for card name equals "Paradoxon", if equals throw all cards away in GUI
-			if (name.equals("Paradoxon")) {
-				cardField.setCardName("");
-			}
+			
 			if (cardField.getCardName().equals(name)) {
 				cardField.setCardName("");
 				cardField.setVisible(false);
-				// is card name is equals Paradoxon do not end the loop
-				if (!name.equals("Paradoxon")) {
-					break;
-				}
 			}
 		}
 	}

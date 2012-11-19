@@ -50,7 +50,7 @@ public class ShowCardDetailGUI extends AbstractMagicGUIElement {
 	
 	@Override
 	protected int additionShellFlags() {
-		return SWT.ON_TOP;
+		return 0; //SWT.ON_TOP;
 	}
 	
 	@Override
